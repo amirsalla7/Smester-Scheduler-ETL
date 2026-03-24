@@ -1,0 +1,23 @@
+{
+  "fields": {
+    "student": {
+      "id": ["id", "student_id", "std_id"],
+      "name": ["name", "student_name", "std_name"],
+      "major_id": ["major_id", "major", "specialization"]
+    },
+    "course": {
+      "id": ["id", "course_id"],
+      "name": ["name", "course_name"],
+      "hours": ["credit_hours", "hours"],
+      "major_id": ["major_id"]
+    }
+  },
+
+  "values": {
+    "major": {
+      "CS": "Computer Science",
+      "CompSci": "Computer Science",
+      "IT": "Information Technology"
+    }
+  }
+}
