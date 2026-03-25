@@ -1,2 +1,4 @@
-hello my name is omar
-git
+git pull
+git push
+git commit -m "anything"
+git add . 
