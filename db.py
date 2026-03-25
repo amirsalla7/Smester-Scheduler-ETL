@@ -17,8 +17,7 @@ def get_connection():
             f"DRIVER={{{DRIVER}}};"
             f"SERVER={SERVER};"
             f"DATABASE={DATABASE};"
-            f"UID={USERNAME};"
-            f"PWD={PASSWORD};"
+           
         )
     return pyodbc.connect(conn_str)
 
