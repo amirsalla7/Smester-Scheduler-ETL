@@ -1,23 +1,135 @@
 {
   "fields": {
+
     "student": {
       "id": ["id", "student_id", "std_id"],
-      "name": ["name", "student_name", "std_name"],
-      "major_id": ["major_id", "major", "specialization"]
+      "name": ["name", "student_name", "std_name", "full_name"],
+      "major_id": ["major_id", "major", "specialization", "program_id"]
+    
     },
+
     "course": {
-      "id": ["id", "course_id"],
-      "name": ["name", "course_name"],
-      "hours": ["credit_hours", "hours"],
-      "major_id": ["major_id"]
+      "id": ["id", "course_id", "subject_id"],
+      "name": ["name", "course_name", "subject_name"],
+      "hours": ["credit_hours", "hours", "credits"],
+      "type": ["type", "course_type", "class_type"],
+      "major_id": ["major_id", "program_id"],
+      "plan_id": ["plan_id", "study_plan_id"],
+      "prereq_id": ["prereq_id", "prerequisite", "pre_course_id"]
+    },
+
+    "instructor": {
+      "id": ["id", "instructor_id", "teacher_id", "staff_id"],
+      "name": ["name", "instructor_name", "teacher_name"],
+      "specialization": ["spec", "specialization", "field"],
+      "degree": ["degree_type", "degree", "qualification"]
+      
+    },
+
+    "room": {
+      "id": ["id", "room_id", "classroom_id"],
+      "building": ["building", "building_name"],
+      "capacity": ["capacity", "room_capacity", "size"],
+      "type": ["type", "room_type", "lab_type"]
+    },
+
+    "time_slot": {
+      "id": ["id", "time_id", "slot_id"],
+      "day": ["day", "weekday"],
+      "start_time": ["s_time", "start_time", "from_time"],
+      "end_time": ["e_time", "end_time", "to_time"]
+    },
+
+    "department": {
+      "id": ["id", "department_id", "dept_id"],
+      "name": ["name", "department_name", "dept_name"],
+      "college_id": ["collage_id", "college_id", "faculty_id"]
+    },
+
+    "college": {
+      "id": ["id", "collage_id", "college_id", "faculty_id"],
+      "name": ["name", "collage_na", "college_name", "faculty_name"]
+    },
+
+    "major": {
+      "id": ["id", "major_id", "program_id"],
+      "name": ["name", "major_name", "program_name"],
+      "credit_hours": ["credit_hours", "total_hours"],
+      "department_id": ["department_id", "dept_id"]
+    },
+
+    "semester": {
+      "id": ["id", "semester_id", "term_id"],
+      "name": ["name", "semester_name", "term_name"],
+      "start_date": ["s_date", "start_date", "begin_date"],
+      "end_date": ["e_date", "end_date", "finish_date"],
+      "status": ["status", "state"]
+    },
+
+    "schedule": {
+      "id": ["id", "schedule_id"],
+      "course_id": ["course_id", "subject_id"],
+      "room_id": ["room_id", "classroom_id"],
+      "time_id": ["time_id", "slot_id"],
+      "instructor_id": ["instructor_id", "teacher_id"]
     }
+
   },
 
   "values": {
+
     "major": {
-      "CS": "Computer Science",
-      "CompSci": "Computer Science",
-      "IT": "Information Technology"
+      "AI": "Artificial Intelligence",
+      "SE": "Software Engineering",
+      "CS": "cyber security"
+      
+    },
+
+    "degree": {
+      "PhD": "Doctor",
+      "Ph.D": "Doctor",
+      "Doctorate": "Doctor",
+
+      "MSc": "Master",
+      "MS": "Master",
+      "M.S": "Master",
+
+      "BSc": "Bachelor",
+      "BS": "Bachelor",
+      "B.S": "Bachelor"
+    },
+
+    "course_type": {
+      "Lab": "Lab",
+      "Laboratory": "Lab",
+      "Practical": "Lab",
+
+      "Lecture": "Lecture",
+      "Theory": "Lecture"
+    },
+
+    "room_type": {
+      "Lab": "Lab",
+      "Laboratory": "Lab",
+
+      "Lecture": "Lecture",
+      "Class": "Lecture",
+      "Room": "Lecture"
+    },
+
+    "day": {
+      "Sun": "Sunday",
+      "Mon": "Monday",
+      "Tue": "Tuesday",
+      "Wed": "Wednesday",
+      "Thu": "Thursday",
+
+      "Sunday": "Sunday",
+      "Monday": "Monday",
+      "Tuesday": "Tuesday",
+      "Wednesday": "Wednesday",
+      "Thursday": "Thursday"
     }
+
   }
 }
