@@ -17,7 +17,7 @@
       "plan_id": ["plan_id", "study_plan_id"],
       "prereq_id": ["prereq_id", "prerequisite", "pre_course_id"]
     },
-
+  
     "instructor": {
       "id": ["id", "instructor_id", "teacher_id", "staff_id"],
       "name": ["name", "instructor_name", "teacher_name"],
