@@ -8,7 +8,3 @@ reportlab
 # git push
 # git commit -m "anything"
 # git add . 
-
-# عمر اعمل ال dp  و عبيلي فيو داتا
-#!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-# اجرب اعمل الجداول 
