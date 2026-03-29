@@ -7,10 +7,10 @@ namespace SchedulerUI
 {
     public partial class Form1 : Form
     {
-        private Button btnRun;
-        private Label lblTitle;
-        private Label lblSubtitle;
-        private Label lblStatus;
+        private Button? btnRun;
+        private Label? lblTitle;
+        private Label? lblSubtitle;
+        private Label? lblStatus;
 
         public Form1()
         {
@@ -101,7 +101,7 @@ namespace SchedulerUI
             }
         }
 
-        private async void BtnRun_Click(object sender, EventArgs e)
+        private async void BtnRun_Click(object? sender, EventArgs e)
         {
             try
             {
