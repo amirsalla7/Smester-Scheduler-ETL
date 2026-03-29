@@ -1,5 +1,5 @@
 SERVER = "localhost"
-DATABASE = "UniversityDB"
+DATABASE = "master"
 DRIVER = "ODBC Driver 17 for SQL Server"
 
 USE_TRUSTED_CONNECTION = True
