@@ -1,5 +1,5 @@
 from scheduler_engine import SchedulerEngine
-
+from exporter import export_schedule_to_excel
 def main():
     scheduler = SchedulerEngine()
 
@@ -13,6 +13,8 @@ def main():
 
     print("Saving schedule to database...")
     scheduler.save_schedule()
+
+    export_schedule_to_excel(scheduler.schedule)
 
     print("Done successfully.")
 
