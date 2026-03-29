@@ -1,6 +1,4 @@
-CREATE DATABASE UniversityDB;
-GO
-USE UniversityDB;
+USE master;
 
 -- College
 CREATE TABLE collage (
