@@ -1,4 +1,4 @@
-# Semester-Scheduler
+## Semester-Scheduler
 
 ## Project Overview
  Semester Schedule Generator is an automated scheduling system designed to generate university semester timetables based on academic rules and constraints.
