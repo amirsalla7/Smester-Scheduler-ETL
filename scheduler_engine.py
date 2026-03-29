@@ -25,9 +25,7 @@ class SchedulerEngine:
         # لتتبع الحمل
         self.instructor_current_load = defaultdict(int)
 
-    # -----------------------------
     # تحميل البيانات من قاعدة البيانات
-    # -----------------------------
     def load_data(self):
         # course: course_id, course_na, credit_hours, type, major_id, plan_id, prereq_id
         self.courses = fetch_all("""
@@ -82,18 +80,14 @@ class SchedulerEngine:
         if not self.time_slots:
             raise ValueError("لا يوجد أوقات في جدول time_slot")
 
-    # -----------------------------
     # حساب الحمل الأقصى للمدرس
-    # -----------------------------
     def get_max_load_for_instructor(self, instructor):
         _, _, _, degree_type = instructor
         max_load = LOAD_RULES.get(degree_type, 9)
         # إذا بدك لاحقًا تضيف is_department_head من جدول آخر
         return max_load
 
-    # -----------------------------
     # مطابقة المدرس مع المادة
-    # -----------------------------
     def instructor_matches_course(self, instructor, course):
         """
         منطق بسيط:
@@ -123,9 +117,7 @@ class SchedulerEngine:
 
         return False
 
-    # -----------------------------
     # اختيار المدرس الأنسب
-    # -----------------------------
     def assign_instructor(self, course):
         course_id, course_name, credit_hours, course_type, major_id, plan_id, prereq_id = course
 
@@ -150,9 +142,7 @@ class SchedulerEngine:
         candidates.sort(key=lambda x: x[0], reverse=True)
         return candidates[0][1]
 
-    # -----------------------------
     # اختيار القاعة
-    # -----------------------------
     def assign_room(self, course, time_id):
         course_id, course_name, credit_hours, course_type, major_id, plan_id, prereq_id = course
         needed_type = course_type if course_type else DEFAULT_ROOM_TYPE
@@ -178,9 +168,7 @@ class SchedulerEngine:
 
         return None
 
-    # -----------------------------
     # اختيار الوقت
-    # -----------------------------
     def assign_time_slot(self, instructor_id):
         for slot in self.time_slots:
             time_id, day, s_time, e_time = slot
@@ -188,9 +176,7 @@ class SchedulerEngine:
                 return slot
         return None
 
-    # -----------------------------
     # التحقق من التعارض
-    # -----------------------------
     def has_conflict(self, instructor_id, room_id, time_id):
         if (instructor_id, time_id) in self.instructor_time_map:
             return True
@@ -198,9 +184,7 @@ class SchedulerEngine:
             return True
         return False
 
-    # -----------------------------
     # توليد جدول المواد
-    # -----------------------------
     def generate_schedule(self):
         self.schedule = []
         self.instructor_time_map.clear()
@@ -259,9 +243,7 @@ class SchedulerEngine:
 
             schedule_id_counter += 1
 
-    # -----------------------------
     # حفظ الجدول في قاعدة البيانات
-    # -----------------------------
     def ensure_schedule_table(self):
         execute("""
         IF NOT EXISTS (
@@ -298,9 +280,7 @@ class SchedulerEngine:
                 VALUES (?, ?, ?, ?, ?)
             """, rows)
 
-    # -----------------------------
     # طباعة الجدول في التيرمنال
-    # -----------------------------
     def print_schedule(self):
         print("\n========== FINAL GENERATED SCHEDULE ==========")
         for item in self.schedule:

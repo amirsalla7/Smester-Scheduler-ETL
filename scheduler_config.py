@@ -1,8 +1,7 @@
-SERVER = "localhost"          # عدله حسب جهازك
-DATABASE = "UniversityDB"     # اسم قاعدة البيانات
+SERVER = "localhost"         
+DATABASE = "UniversityDB"    
 DRIVER = "ODBC Driver 17 for SQL Server"
 
-# لو عندك SQL Login بدل Trusted_Connection
 USE_TRUSTED_CONNECTION = True
 
 # إعدادات الجدولة
