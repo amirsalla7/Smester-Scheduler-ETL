@@ -33,7 +33,7 @@ The goal of the system is to reduce manual effort, minimize scheduling conflicts
 
 ## Project Structure
 
-Smart-Scheduler-ETL
+Semester-Scheduler
 
     etl.py
     mapping_engine.py
