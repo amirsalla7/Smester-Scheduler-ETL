@@ -1,9 +1,7 @@
 requests
 pyodbc
-pandas
-sqlalchemy  
 openpyxl
-
+reportlab
 
 
 #  git pull

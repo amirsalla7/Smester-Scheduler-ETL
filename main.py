@@ -17,7 +17,7 @@ def main():
     scheduler.save_schedule()
 
     print("Exporting schedule to PDF...")
-    export_schedule_to_pdf(scheduler.schedule, "semester_schedule.pdf")
+    exporter(scheduler.schedule, "semester_schedule.pdf")
 
     print("Done successfully.")
 
