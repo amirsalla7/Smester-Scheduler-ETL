@@ -1,5 +1,7 @@
 from scheduler_engine import SchedulerEngine
-from exporter import export_schedule_to_excel
+from exporter import exporter
+
+
 def main():
     scheduler = SchedulerEngine()
 
@@ -14,9 +16,11 @@ def main():
     print("Saving schedule to database...")
     scheduler.save_schedule()
 
-    export_schedule_to_excel(scheduler.schedule)
+    print("Exporting schedule to PDF...")
+    export_schedule_to_pdf(scheduler.schedule, "semester_schedule.pdf")
 
     print("Done successfully.")
+
 
 if __name__ == "__main__":
     main()

@@ -1,5 +1,5 @@
-SERVER = "localhost"         
-DATABASE = "UniversityDB"    
+SERVER = "localhost"
+DATABASE = "UniversityDB"
 DRIVER = "ODBC Driver 17 for SQL Server"
 
 USE_TRUSTED_CONNECTION = True
@@ -15,10 +15,7 @@ LOAD_RULES = {
     "Assistant Professor": 9,
     "Doctor": 12,
     "Master": 9,
-    "Bachelor": 6,
-    "PhD": 15,
-    "MSc": 9,
-    "BSc": 6
+    "Bachelor": 6
 }
 
 # إذا المدرس إداري نطرح من الحمل
@@ -33,3 +30,9 @@ DEFAULT_ROOM_TYPE = "Lecture"
 
 # هل نحذف الجدول القديم قبل إنشاء جدول جديد؟
 CLEAR_OLD_SCHEDULE = True
+
+# شرط فتح المادة
+MIN_STUDENTS_TO_OPEN_COURSE = 5
+
+# أولوية الخريجين
+GRADUATING_PRIORITY_ENABLED = True

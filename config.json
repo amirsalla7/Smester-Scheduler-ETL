@@ -1,11 +1,9 @@
 {
   "fields": {
-
     "student": {
       "id": ["id", "student_id", "std_id"],
       "name": ["name", "student_name", "std_name", "full_name"],
       "major_id": ["major_id", "major", "specialization", "program_id"]
-    
     },
 
     "course": {
@@ -17,13 +15,12 @@
       "plan_id": ["plan_id", "study_plan_id"],
       "prereq_id": ["prereq_id", "prerequisite", "pre_course_id"]
     },
-  
+
     "instructor": {
       "id": ["id", "instructor_id", "teacher_id", "staff_id"],
       "name": ["name", "instructor_name", "teacher_name"],
       "specialization": ["spec", "specialization", "field"],
       "degree": ["degree_type", "degree", "qualification"]
-      
     },
 
     "room": {
@@ -73,16 +70,13 @@
       "time_id": ["time_id", "slot_id"],
       "instructor_id": ["instructor_id", "teacher_id"]
     }
-
   },
 
   "values": {
-
     "major": {
       "AI": "Artificial Intelligence",
       "SE": "Software Engineering",
-      "CS": "cyber security"
-      
+      "CY": "Cyber Security"
     },
 
     "degree": {
@@ -130,6 +124,5 @@
       "Wednesday": "Wednesday",
       "Thursday": "Thursday"
     }
-
   }
 }

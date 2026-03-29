@@ -1,5 +1,7 @@
 from collections import defaultdict
-from datetime import datetime
+from datetime import datetime, time
+from math import ceil
+
 from db import fetch_all, execute, execute_many
 from scheduler_config import (
     LOAD_RULES,
@@ -7,8 +9,22 @@ from scheduler_config import (
     DEFAULT_ROOM_CAPACITY_FALLBACK,
     DEFAULT_MAX_SECTIONS_PER_COURSE,
     DEFAULT_ROOM_TYPE,
-    CLEAR_OLD_SCHEDULE
+    CLEAR_OLD_SCHEDULE,
+    ALLOWED_START,
+    ALLOWED_END,
 )
+
+# لو ما كانوا موجودين في scheduler_config.py
+try:
+    from scheduler_config import MIN_STUDENTS_TO_OPEN_COURSE
+except ImportError:
+    MIN_STUDENTS_TO_OPEN_COURSE = 5
+
+try:
+    from scheduler_config import GRADUATING_PRIORITY_ENABLED
+except ImportError:
+    GRADUATING_PRIORITY_ENABLED = True
+
 
 class SchedulerEngine:
     def __init__(self):
@@ -16,18 +32,122 @@ class SchedulerEngine:
         self.instructors = []
         self.rooms = []
         self.time_slots = []
+        self.students = []
+        self.student_courses = []
         self.schedule = []
 
-        # لتتبع التعارضات
+        self.course_by_id = {}
+        self.rooms_by_type = defaultdict(list)
+
+        # الطلب على المواد
+        self.course_demand = defaultdict(int)
+        self.course_demand_graduating = defaultdict(int)
+        self.course_demand_normal = defaultdict(int)
+
+        # حالة الطلاب
+        self.student_passed_courses = defaultdict(set)
+        self.student_attempted_courses = defaultdict(set)
+        self.student_completed_hours = defaultdict(int)
+        self.student_remaining_hours = defaultdict(int)
+        self.graduating_students = set()
+
+        # تتبع التعارضات
         self.instructor_time_map = set()   # (instructor_id, time_id)
         self.room_time_map = set()         # (room_id, time_id)
 
-        # لتتبع الحمل
+        # الحمل الحالي
         self.instructor_current_load = defaultdict(int)
 
-    # تحميل البيانات من قاعدة البيانات
+    # =====================================================
+    # HELPERS
+    # =====================================================
+    def parse_time_value(self, value):
+        if value is None:
+            return None
+
+        if isinstance(value, time):
+            return value
+
+        if isinstance(value, datetime):
+            return value.time()
+
+        value = str(value).strip()
+
+        for fmt in ("%H:%M:%S", "%H:%M"):
+            try:
+                return datetime.strptime(value, fmt).time()
+            except ValueError:
+                continue
+
+        return None
+
+    def is_passed_status(self, status, grade=None):
+        status_text = str(status or "").strip().lower()
+        grade_text = str(grade or "").strip().lower()
+
+        passed_statuses = {
+            "passed", "pass", "success", "successful", "p",
+            "ناجح", "نجاح"
+        }
+
+        failed_statuses = {
+            "failed", "fail", "f", "رسوب", "راسب"
+        }
+
+        if status_text in passed_statuses:
+            return True
+
+        if status_text in failed_statuses:
+            return False
+
+        # محاولة تقدير من العلامة
+        try:
+            grade_num = float(grade)
+            return grade_num >= 50
+        except Exception:
+            pass
+
+        # لو grade نصي مثل A/B/C/D
+        if grade_text in {"a", "a-", "b", "b+", "b-", "c", "c+", "c-", "d", "d+", "d-"}:
+            return True
+
+        return False
+
+    def get_room_capacity_for_course_type(self, course_type):
+        matching_rooms = [
+            room for room in self.rooms
+            if str(room.get("room_type") or DEFAULT_ROOM_TYPE).lower() == str(course_type or DEFAULT_ROOM_TYPE).lower()
+        ]
+
+        if matching_rooms:
+            return max(int(room.get("capacity") or DEFAULT_ROOM_CAPACITY_FALLBACK) for room in matching_rooms)
+
+        if self.rooms:
+            return max(int(room.get("capacity") or DEFAULT_ROOM_CAPACITY_FALLBACK) for room in self.rooms)
+
+        return DEFAULT_ROOM_CAPACITY_FALLBACK
+
+    def get_sections_needed(self, course):
+        course_id = course["course_id"]
+        demand = self.course_demand.get(course_id, 0)
+        course_type = course.get("course_type") or DEFAULT_ROOM_TYPE
+
+        if demand < MIN_STUDENTS_TO_OPEN_COURSE:
+            return 0
+
+        section_capacity = self.get_room_capacity_for_course_type(course_type)
+        estimated_sections = max(1, ceil(demand / max(section_capacity, 1)))
+
+        # نستخدم DEFAULT_MAX_SECTIONS_PER_COURSE كحد أعلى إذا كان > 0
+        if DEFAULT_MAX_SECTIONS_PER_COURSE and DEFAULT_MAX_SECTIONS_PER_COURSE > 0:
+            estimated_sections = min(estimated_sections, DEFAULT_MAX_SECTIONS_PER_COURSE)
+
+        return estimated_sections
+
+    # =====================================================
+    # LOAD DATA
+    # =====================================================
     def load_data(self):
-        # course: course_id, course_na, credit_hours, type, major_id, plan_id, prereq_id
         self.courses = fetch_all("""
             SELECT 
                 course_id,
@@ -40,7 +160,6 @@ class SchedulerEngine:
             FROM course
         """)
 
-        # instructor: instructor_id, instructor_name, spec, degree_type
         self.instructors = fetch_all("""
             SELECT
                 instructor_id,
@@ -50,7 +169,6 @@ class SchedulerEngine:
             FROM instructor
         """)
 
-        # room: room_id, building, capacity, type
         self.rooms = fetch_all("""
             SELECT
                 room_id,
@@ -60,7 +178,6 @@ class SchedulerEngine:
             FROM room
         """)
 
-        # time_slot: time_id, day, s_time, e_time
         self.time_slots = fetch_all("""
             SELECT
                 time_id,
@@ -71,59 +188,158 @@ class SchedulerEngine:
             ORDER BY day, s_time
         """)
 
+        self.students = fetch_all("""
+            SELECT
+                s.std_id,
+                s.std_na,
+                s.major_id,
+                ISNULL(m.credit_hours, 0) AS major_total_hours
+            FROM std s
+            LEFT JOIN major m ON s.major_id = m.major_id
+        """)
+
+        self.student_courses = fetch_all("""
+            SELECT
+                sc.history_id,
+                sc.std_id,
+                sc.course_id,
+                sc.semester_id,
+                sc.garde,
+                sc.status,
+                sc.section,
+                ISNULL(c.credit_hours, 0) AS course_credit_hours
+            FROM std_course sc
+            LEFT JOIN course c ON sc.course_id = c.course_id
+        """)
+
         if not self.courses:
             raise ValueError("لا يوجد مواد في جدول course")
+
         if not self.instructors:
             raise ValueError("لا يوجد مدرسين في جدول instructor")
+
         if not self.rooms:
             raise ValueError("لا يوجد قاعات في جدول room")
+
         if not self.time_slots:
             raise ValueError("لا يوجد أوقات في جدول time_slot")
 
-    # حساب الحمل الأقصى للمدرس
+        self.course_by_id = {c["course_id"]: c for c in self.courses}
+
+        self.rooms_by_type.clear()
+        for room in self.rooms:
+            room_type = str(room.get("room_type") or DEFAULT_ROOM_TYPE)
+            self.rooms_by_type[room_type.lower()].append(room)
+
+    # =====================================================
+    # STUDENT ANALYSIS
+    # =====================================================
+    def analyze_students(self):
+        self.student_passed_courses.clear()
+        self.student_attempted_courses.clear()
+        self.student_completed_hours.clear()
+        self.student_remaining_hours.clear()
+        self.graduating_students.clear()
+
+        for row in self.student_courses:
+            std_id = row["std_id"]
+            course_id = row["course_id"]
+            grade = row.get("garde")
+            status = row.get("status")
+            hours = int(row.get("course_credit_hours") or 0)
+
+            self.student_attempted_courses[std_id].add(course_id)
+
+            if self.is_passed_status(status, grade):
+                self.student_passed_courses[std_id].add(course_id)
+                self.student_completed_hours[std_id] += hours
+
+        for student in self.students:
+            std_id = student["std_id"]
+            total_required = int(student.get("major_total_hours") or 0)
+            completed = self.student_completed_hours.get(std_id, 0)
+            remaining = max(total_required - completed, 0)
+            self.student_remaining_hours[std_id] = remaining
+
+            # نعتبره طالب تخرج إذا باقي عليه 18 ساعة أو أقل
+            if GRADUATING_PRIORITY_ENABLED and remaining <= 18:
+                self.graduating_students.add(std_id)
+
+    def calculate_course_demand(self):
+        self.course_demand.clear()
+        self.course_demand_graduating.clear()
+        self.course_demand_normal.clear()
+
+        self.analyze_students()
+
+        courses_by_major = defaultdict(list)
+        for course in self.courses:
+            courses_by_major[course.get("major_id")].append(course)
+
+        for student in self.students:
+            std_id = student["std_id"]
+            major_id = student.get("major_id")
+            passed_courses = self.student_passed_courses.get(std_id, set())
+
+            for course in courses_by_major.get(major_id, []):
+                course_id = course["course_id"]
+                prereq_id = course.get("prereq_id")
+
+                # إذا الطالب نجح بالمادة مسبقًا لا نعدها
+                if course_id in passed_courses:
+                    continue
+
+                # إذا في prerequisite ولم ينجح به الطالب لا يحق له يأخذها الآن
+                if prereq_id and prereq_id not in passed_courses:
+                    continue
+
+                self.course_demand[course_id] += 1
+
+                if std_id in self.graduating_students:
+                    self.course_demand_graduating[course_id] += 1
+                else:
+                    self.course_demand_normal[course_id] += 1
+
+    # =====================================================
+    # INSTRUCTOR LOGIC
+    # =====================================================
     def get_max_load_for_instructor(self, instructor):
-        _, _, _, degree_type = instructor
+        degree_type = str(instructor.get("degree_type") or "").strip()
         max_load = LOAD_RULES.get(degree_type, 9)
-        # إذا بدك لاحقًا تضيف is_department_head من جدول آخر
+
+        # لو لاحقًا أضفت حقل إداري يمكن نطرح منه
+        if instructor.get("is_admin"):
+            max_load = max(0, max_load - ADMIN_LOAD_REDUCTION)
+
         return max_load
 
-    # مطابقة المدرس مع المادة
     def instructor_matches_course(self, instructor, course):
-        """
-        منطق بسيط:
-        إذا spec يحتوي اسم قريب من major_id أو course name نعتبره مناسب.
-        لاحقًا تقدر تربطه بجدول تخصصات أدق.
-        """
-        _, instructor_name, spec, degree_type = instructor
-        course_id, course_name, credit_hours, course_type, major_id, plan_id, prereq_id = course
+        spec = str(instructor.get("spec") or "").strip().lower()
+        course_name = str(course.get("course_na") or "").strip().lower()
+        major_id = str(course.get("major_id") or "").strip().lower()
 
-        spec_lower = (spec or "").strip().lower()
-        course_name_lower = (course_name or "").strip().lower()
-        major_text = str(major_id).lower() if major_id is not None else ""
-
-        if not spec_lower:
+        if not spec:
             return True
 
-        if spec_lower in course_name_lower:
+        if spec in course_name:
             return True
 
-        if major_text and major_text in spec_lower:
+        if major_id and major_id in spec:
             return True
 
-        # مرونة بسيطة: إذا التخصص عام مثل cs أو se أو it
-        keywords = ["cs", "computer", "software", "it", "information"]
-        if any(k in spec_lower for k in keywords):
+        keywords = ["cs", "computer", "software", "it", "information", "ai", "network", "security"]
+        if any(k in spec for k in keywords):
             return True
 
         return False
 
-    # اختيار المدرس الأنسب
-    def assign_instructor(self, course):
-        course_id, course_name, credit_hours, course_type, major_id, plan_id, prereq_id = course
+    def assign_instructor(self, course, time_id=None):
+        credit_hours = int(course.get("credit_hours") or 0)
 
         candidates = []
+
         for inst in self.instructors:
-            instructor_id, instructor_name, spec, degree_type = inst
+            instructor_id = inst["instructor_id"]
 
             if not self.instructor_matches_course(inst, course):
                 continue
@@ -131,119 +347,184 @@ class SchedulerEngine:
             max_load = self.get_max_load_for_instructor(inst)
             current = self.instructor_current_load[instructor_id]
 
-            if current + credit_hours <= max_load:
-                remaining = max_load - current
-                candidates.append((remaining, inst))
+            if current + credit_hours > max_load:
+                continue
 
-        # نختار المدرس الأقل حملًا/الأكثر توفرًا
+            if time_id is not None and (instructor_id, time_id) in self.instructor_time_map:
+                continue
+
+            remaining_after_assign = max_load - (current + credit_hours)
+            candidates.append((remaining_after_assign, current, inst))
+
         if not candidates:
             return None
 
-        candidates.sort(key=lambda x: x[0], reverse=True)
-        return candidates[0][1]
+        # نختار الأقل حملًا الحاليًا ثم الأكثر ملاءمة
+        candidates.sort(key=lambda x: (x[1], x[0]))
+        return candidates[0][2]
 
-    # اختيار القاعة
+    # =====================================================
+    # ROOM / TIME LOGIC
+    # =====================================================
     def assign_room(self, course, time_id):
-        course_id, course_name, credit_hours, course_type, major_id, plan_id, prereq_id = course
-        needed_type = course_type if course_type else DEFAULT_ROOM_TYPE
+        needed_type = str(course.get("course_type") or DEFAULT_ROOM_TYPE).lower()
 
+        # أولاً نحاول نفس النوع
+        for room in self.rooms_by_type.get(needed_type, []):
+            room_id = room["room_id"]
+            if (room_id, time_id) not in self.room_time_map:
+                return room
+
+        # ثم أي قاعة متاحة
         for room in self.rooms:
-            room_id, building, capacity, room_type = room
-
-            if room_type and needed_type:
-                # مطابقة بسيطة للنوع
-                if room_type.lower() != needed_type.lower():
-                    continue
-
-            if (room_id, time_id) in self.room_time_map:
-                continue
-
-            return room
-
-        # لو ما لقينا بنفس النوع، نأخذ أي قاعة فاضية
-        for room in self.rooms:
-            room_id, building, capacity, room_type = room
+            room_id = room["room_id"]
             if (room_id, time_id) not in self.room_time_map:
                 return room
 
         return None
 
-    # اختيار الوقت
-    def assign_time_slot(self, instructor_id):
+    def assign_time_slot_for_course(self, course):
+        allowed_start = self.parse_time_value(ALLOWED_START)
+        allowed_end = self.parse_time_value(ALLOWED_END)
+
         for slot in self.time_slots:
-            time_id, day, s_time, e_time = slot
-            if (instructor_id, time_id) not in self.instructor_time_map:
-                return slot
+            start_t = self.parse_time_value(slot.get("s_time"))
+            end_t = self.parse_time_value(slot.get("e_time"))
+
+            if start_t is None or end_t is None:
+                continue
+
+            if allowed_start and start_t < allowed_start:
+                continue
+
+            if allowed_end and end_t > allowed_end:
+                continue
+
+            # نتأكد لاحقًا من توافقه مع المدرس والقاعة
+            return slot
+
         return None
 
-    # التحقق من التعارض
     def has_conflict(self, instructor_id, room_id, time_id):
         if (instructor_id, time_id) in self.instructor_time_map:
             return True
+
         if (room_id, time_id) in self.room_time_map:
             return True
+
         return False
 
-    # توليد جدول المواد
+    # =====================================================
+    # SCHEDULING
+    # =====================================================
     def generate_schedule(self):
         self.schedule = []
         self.instructor_time_map.clear()
         self.room_time_map.clear()
         self.instructor_current_load.clear()
 
+        self.calculate_course_demand()
+
         schedule_id_counter = 1
 
-        for course in self.courses:
-            course_id, course_name, credit_hours, course_type, major_id, plan_id, prereq_id = course
+        # ترتيب المواد:
+        # 1) المواد التي عندها طلب خريجين أكثر
+        # 2) بعدها الطلب الكلي
+        # 3) بعدها الساعات
+        sorted_courses = sorted(
+            self.courses,
+            key=lambda c: (
+                self.course_demand_graduating.get(c["course_id"], 0),
+                self.course_demand.get(c["course_id"], 0),
+                int(c.get("credit_hours") or 0)
+            ),
+            reverse=True
+        )
 
-            instructor = self.assign_instructor(course)
-            if instructor is None:
-                print(f"[WARNING] لم يتم العثور على مدرس مناسب للمادة: {course_name}")
+        for course in sorted_courses:
+            course_id = course["course_id"]
+            course_name = course["course_na"]
+            total_demand = self.course_demand.get(course_id, 0)
+            grad_demand = self.course_demand_graduating.get(course_id, 0)
+            sections_needed = self.get_sections_needed(course)
+
+            if total_demand < MIN_STUDENTS_TO_OPEN_COURSE:
+                print(f"[SKIP] المادة {course_name} لن تفتح لأن الطلب = {total_demand}")
                 continue
 
-            instructor_id, instructor_name, spec, degree_type = instructor
-
-            slot = self.assign_time_slot(instructor_id)
-            if slot is None:
-                print(f"[WARNING] لا يوجد وقت متاح للمدرس {instructor_name} للمادة: {course_name}")
+            if sections_needed <= 0:
+                print(f"[SKIP] المادة {course_name} لا تحتاج فتح شعب")
                 continue
 
-            time_id, day, s_time, e_time = slot
+            for section_no in range(1, sections_needed + 1):
+                assigned = False
 
-            room = self.assign_room(course, time_id)
-            if room is None:
-                print(f"[WARNING] لا توجد قاعة متاحة للمادة: {course_name}")
-                continue
+                for slot in self.time_slots:
+                    time_id = slot["time_id"]
+                    start_t = self.parse_time_value(slot.get("s_time"))
+                    end_t = self.parse_time_value(slot.get("e_time"))
+                    allowed_start = self.parse_time_value(ALLOWED_START)
+                    allowed_end = self.parse_time_value(ALLOWED_END)
 
-            room_id, building, capacity, room_type = room
+                    if start_t is None or end_t is None:
+                        continue
 
-            if self.has_conflict(instructor_id, room_id, time_id):
-                print(f"[WARNING] تعارض تم اكتشافه للمادة: {course_name}")
-                continue
+                    if allowed_start and start_t < allowed_start:
+                        continue
 
-            # تحديث التتبع
-            self.instructor_time_map.add((instructor_id, time_id))
-            self.room_time_map.add((room_id, time_id))
-            self.instructor_current_load[instructor_id] += credit_hours
+                    if allowed_end and end_t > allowed_end:
+                        continue
 
-            self.schedule.append({
-                "schedule_id": schedule_id_counter,
-                "course_id": course_id,
-                "course_name": course_name,
-                "instructor_id": instructor_id,
-                "instructor_name": instructor_name,
-                "room_id": room_id,
-                "room_name": building,
-                "time_id": time_id,
-                "day": day,
-                "start_time": str(s_time),
-                "end_time": str(e_time),
-                "credit_hours": credit_hours
-            })
+                    instructor = self.assign_instructor(course, time_id=time_id)
+                    if instructor is None:
+                        continue
 
-            schedule_id_counter += 1
+                    room = self.assign_room(course, time_id)
+                    if room is None:
+                        continue
 
-    # حفظ الجدول في قاعدة البيانات
+                    instructor_id = instructor["instructor_id"]
+                    instructor_name = instructor["instructor_name"]
+                    room_id = room["room_id"]
+                    room_name = room.get("building", "")
+                    day = slot.get("day", "")
+
+                    if self.has_conflict(instructor_id, room_id, time_id):
+                        continue
+
+                    # تحديث التتبع
+                    self.instructor_time_map.add((instructor_id, time_id))
+                    self.room_time_map.add((room_id, time_id))
+                    self.instructor_current_load[instructor_id] += int(course.get("credit_hours") or 0)
+
+                    self.schedule.append({
+                        "schedule_id": schedule_id_counter,
+                        "course_id": course_id,
+                        "course_name": course_name,
+                        "section_no": section_no,
+                        "total_demand": total_demand,
+                        "graduating_demand": grad_demand,
+                        "instructor_id": instructor_id,
+                        "instructor_name": instructor_name,
+                        "room_id": room_id,
+                        "room_name": room_name,
+                        "time_id": time_id,
+                        "day": day,
+                        "start_time": str(slot.get("s_time")),
+                        "end_time": str(slot.get("e_time")),
+                        "credit_hours": int(course.get("credit_hours") or 0),
+                    })
+
+                    schedule_id_counter += 1
+                    assigned = True
+                    break
+
+                if not assigned:
+                    print(f"[WARNING] لم أتمكن من جدولة شعبة {section_no} للمادة: {course_name}")
+
+    # =====================================================
+    # DB SAVE
+    # =====================================================
     def ensure_schedule_table(self):
         execute("""
         IF NOT EXISTS (
@@ -280,13 +561,28 @@ class SchedulerEngine:
                 VALUES (?, ?, ?, ?, ?)
             """, rows)
 
-    # طباعة الجدول في التيرمنال
+    # =====================================================
+    # OUTPUT
+    # =====================================================
+    def print_course_demand(self):
+        print("\n========== COURSE DEMAND ==========")
+        for course in sorted(self.courses, key=lambda c: self.course_demand.get(c["course_id"], 0), reverse=True):
+            cid = course["course_id"]
+            print(
+                f"{course['course_na']} | "
+                f"Total={self.course_demand.get(cid, 0)} | "
+                f"Graduating={self.course_demand_graduating.get(cid, 0)} | "
+                f"Normal={self.course_demand_normal.get(cid, 0)}"
+            )
+        print("===================================\n")
+
     def print_schedule(self):
         print("\n========== FINAL GENERATED SCHEDULE ==========")
         for item in self.schedule:
             print(
                 f"[{item['schedule_id']}] "
-                f"{item['course_name']} | "
+                f"{item['course_name']} (Sec {item['section_no']}) | "
+                f"Demand: {item['total_demand']} | "
                 f"Instructor: {item['instructor_name']} | "
                 f"Room: {item['room_name']} | "
                 f"{item['day']} {item['start_time']} - {item['end_time']}"
