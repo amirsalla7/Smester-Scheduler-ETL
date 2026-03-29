@@ -116,7 +116,7 @@ namespace SchedulerUI
 
                 CenterControls();
 
-                string pythonPath = "python";
+              string pythonPath =@"C:\Users\User\Desktop\ssg\.venv\Scripts\python.exe";
 
                 // عدل هذا المسار حسب مكان main.py الحقيقي عندك
                 string scriptPath = @"C:\Users\User\Desktop\ssg\main.py";

@@ -1,5 +1,5 @@
 from scheduler_engine import SchedulerEngine
-from exporter import exporter
+from exporter import export_schedule_to_pdf
 
 
 def main():
@@ -17,7 +17,7 @@ def main():
     scheduler.save_schedule()
 
     print("Exporting schedule to PDF...")
-    exporter(scheduler.schedule, "semester_schedule.pdf")
+    export_schedule_to_pdf(scheduler.schedule, "semester_schedule.pdf")
 
     print("Done successfully.")
 
