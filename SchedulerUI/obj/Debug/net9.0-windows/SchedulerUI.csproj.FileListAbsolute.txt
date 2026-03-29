@@ -1,0 +1,30 @@
+C:\Users\User\OneDrive\سطح المكتب\ssg\SchedulerUI\bin\Debug\net9.0-windows\SchedulerUI.exe
+C:\Users\User\OneDrive\سطح المكتب\ssg\SchedulerUI\bin\Debug\net9.0-windows\SchedulerUI.deps.json
+C:\Users\User\OneDrive\سطح المكتب\ssg\SchedulerUI\bin\Debug\net9.0-windows\SchedulerUI.runtimeconfig.json
+C:\Users\User\OneDrive\سطح المكتب\ssg\SchedulerUI\bin\Debug\net9.0-windows\SchedulerUI.dll
+C:\Users\User\OneDrive\سطح المكتب\ssg\SchedulerUI\bin\Debug\net9.0-windows\SchedulerUI.pdb
+C:\Users\User\OneDrive\سطح المكتب\ssg\SchedulerUI\obj\Debug\net9.0-windows\SchedulerUI.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\User\OneDrive\سطح المكتب\ssg\SchedulerUI\obj\Debug\net9.0-windows\SchedulerUI.AssemblyInfoInputs.cache
+C:\Users\User\OneDrive\سطح المكتب\ssg\SchedulerUI\obj\Debug\net9.0-windows\SchedulerUI.AssemblyInfo.cs
+C:\Users\User\OneDrive\سطح المكتب\ssg\SchedulerUI\obj\Debug\net9.0-windows\SchedulerUI.csproj.CoreCompileInputs.cache
+C:\Users\User\OneDrive\سطح المكتب\ssg\SchedulerUI\obj\Debug\net9.0-windows\SchedulerUI.sourcelink.json
+C:\Users\User\OneDrive\سطح المكتب\ssg\SchedulerUI\obj\Debug\net9.0-windows\SchedulerUI.dll
+C:\Users\User\OneDrive\سطح المكتب\ssg\SchedulerUI\obj\Debug\net9.0-windows\refint\SchedulerUI.dll
+C:\Users\User\OneDrive\سطح المكتب\ssg\SchedulerUI\obj\Debug\net9.0-windows\SchedulerUI.pdb
+C:\Users\User\OneDrive\سطح المكتب\ssg\SchedulerUI\obj\Debug\net9.0-windows\SchedulerUI.genruntimeconfig.cache
+C:\Users\User\OneDrive\سطح المكتب\ssg\SchedulerUI\obj\Debug\net9.0-windows\ref\SchedulerUI.dll
+C:\Users\User\Desktop\ssg\SchedulerUI\bin\Debug\net9.0-windows\SchedulerUI.exe
+C:\Users\User\Desktop\ssg\SchedulerUI\bin\Debug\net9.0-windows\SchedulerUI.deps.json
+C:\Users\User\Desktop\ssg\SchedulerUI\bin\Debug\net9.0-windows\SchedulerUI.runtimeconfig.json
+C:\Users\User\Desktop\ssg\SchedulerUI\bin\Debug\net9.0-windows\SchedulerUI.dll
+C:\Users\User\Desktop\ssg\SchedulerUI\bin\Debug\net9.0-windows\SchedulerUI.pdb
+C:\Users\User\Desktop\ssg\SchedulerUI\obj\Debug\net9.0-windows\SchedulerUI.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\User\Desktop\ssg\SchedulerUI\obj\Debug\net9.0-windows\SchedulerUI.AssemblyInfoInputs.cache
+C:\Users\User\Desktop\ssg\SchedulerUI\obj\Debug\net9.0-windows\SchedulerUI.AssemblyInfo.cs
+C:\Users\User\Desktop\ssg\SchedulerUI\obj\Debug\net9.0-windows\SchedulerUI.csproj.CoreCompileInputs.cache
+C:\Users\User\Desktop\ssg\SchedulerUI\obj\Debug\net9.0-windows\SchedulerUI.sourcelink.json
+C:\Users\User\Desktop\ssg\SchedulerUI\obj\Debug\net9.0-windows\SchedulerUI.dll
+C:\Users\User\Desktop\ssg\SchedulerUI\obj\Debug\net9.0-windows\refint\SchedulerUI.dll
+C:\Users\User\Desktop\ssg\SchedulerUI\obj\Debug\net9.0-windows\SchedulerUI.pdb
+C:\Users\User\Desktop\ssg\SchedulerUI\obj\Debug\net9.0-windows\SchedulerUI.genruntimeconfig.cache
+C:\Users\User\Desktop\ssg\SchedulerUI\obj\Debug\net9.0-windows\ref\SchedulerUI.dll
