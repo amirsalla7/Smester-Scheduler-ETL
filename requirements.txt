@@ -1,3 +1,11 @@
+requests
+pyodbc
+pandas
+sqlalchemy  
+
+
+
+
 git pull
 git push
 git commit -m "anything"
