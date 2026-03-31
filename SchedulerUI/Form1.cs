@@ -116,15 +116,15 @@ namespace SchedulerUI
 
                 CenterControls();
 
-              string pythonPath =@"C:\Users\User\Desktop\ssg\.venv\Scripts\python.exe";
-
-                // عدل هذا المسار حسب مكان main.py الحقيقي عندك
+                string pythonPath = @"C:\Users\User\Desktop\ssg\.venv\Scripts\python.exe";
                 string scriptPath = @"C:\Users\User\Desktop\ssg\main.py";
+                string projectDir = Path.GetDirectoryName(scriptPath) ?? @"C:\Users\User\Desktop\ssg";
 
                 ProcessStartInfo start = new ProcessStartInfo
                 {
                     FileName = pythonPath,
                     Arguments = $"\"{scriptPath}\"",
+                    WorkingDirectory = projectDir,
                     UseShellExecute = false,
                     RedirectStandardOutput = true,
                     RedirectStandardError = true,
@@ -138,7 +138,10 @@ namespace SchedulerUI
 
                     string output = await process.StandardOutput.ReadToEndAsync();
                     string error = await process.StandardError.ReadToEndAsync();
+
                     process.WaitForExit();
+
+                    string pdfPath = Path.Combine(projectDir, "semester_schedule.pdf");
 
                     if (process.ExitCode == 0 && string.IsNullOrWhiteSpace(error))
                     {
@@ -147,36 +150,43 @@ namespace SchedulerUI
 
                         CenterControls();
 
-                        string pdfPath = Path.Combine(
-                            Path.GetDirectoryName(scriptPath) ?? "",
-                            "semester_schedule.pdf"
-                        );
+                        if (!File.Exists(pdfPath))
+                        {
+                            MessageBox.Show(
+                                "The Python script finished, but the PDF file was not found.\n\n" +
+                                "Expected file:\n" + pdfPath + "\n\nOutput:\n" + output,
+                                "PDF Not Found",
+                                MessageBoxButtons.OK,
+                                MessageBoxIcon.Warning
+                            );
+                            return;
+                        }
 
                         MessageBox.Show(
-                            "Schedule generated successfully.",
+                            "Schedule generated and saved successfully.",
                             "Success",
                             MessageBoxButtons.OK,
                             MessageBoxIcon.Information
                         );
 
-                        if (File.Exists(pdfPath))
+                        Process.Start(new ProcessStartInfo
                         {
-                            Process.Start(new ProcessStartInfo
-                            {
-                                FileName = pdfPath,
-                                UseShellExecute = true
-                            });
-                        }
+                            FileName = pdfPath,
+                            UseShellExecute = true
+                        });
                     }
                     else
                     {
                         if (lblStatus != null)
-                            lblStatus.Text = "An error occurred أثناء التشغيل.";
+                            lblStatus.Text = "An error occurred during execution.";
 
                         CenterControls();
 
                         MessageBox.Show(
-                            "Error while running the project:\n\n" + error + "\n\nOutput:\n" + output,
+                            "Error while running the project:\n\n" +
+                            error +
+                            "\n\nOutput:\n" +
+                            output,
                             "Execution Error",
                             MessageBoxButtons.OK,
                             MessageBoxIcon.Error

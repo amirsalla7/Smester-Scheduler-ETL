@@ -3,7 +3,7 @@ from db import fetch_all
 
 
 class StudentAnalysis:
-    def __init__(self, graduating_hours_threshold=18):
+    def __init__(self, graduating_hours_threshold=21):
         self.graduating_hours_threshold = graduating_hours_threshold
 
         self.students = []

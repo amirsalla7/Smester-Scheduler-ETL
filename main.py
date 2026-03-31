@@ -9,7 +9,6 @@ import sys
 def cleanup_database_except_schedule():
     print("Cleaning database except schedule table...")
 
-    # امسح البيانات بترتيب يحترم العلاقات
     execute("DELETE FROM std_course")
     execute("DELETE FROM semester")
     execute("DELETE FROM time_slot")
@@ -33,7 +32,7 @@ def main():
 
     print("Starting system...")
 
-    analysis = StudentAnalysis(graduating_hours_threshold=18)
+    analysis = StudentAnalysis(graduating_hours_threshold=21)
 
     print("Loading student analysis data...")
     analysis.load_data()
