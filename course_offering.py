@@ -12,6 +12,11 @@ try:
 except ImportError:
     MIN_STUDENTS_TO_OPEN_COURSE = 5
 
+try:
+    from scheduler_config import MIN_GRADUATING_TO_FORCE_OPEN
+except ImportError:
+    MIN_GRADUATING_TO_FORCE_OPEN = 3
+
 
 class CourseOffering:
     def __init__(self, student_analysis):
@@ -66,10 +71,16 @@ class CourseOffering:
         ]
 
         if matching_rooms:
-            return max(int(room.get("capacity") or DEFAULT_ROOM_CAPACITY_FALLBACK) for room in matching_rooms)
+            return max(
+                int(room.get("capacity") or DEFAULT_ROOM_CAPACITY_FALLBACK)
+                for room in matching_rooms
+            )
 
         if self.rooms:
-            return max(int(room.get("capacity") or DEFAULT_ROOM_CAPACITY_FALLBACK) for room in self.rooms)
+            return max(
+                int(room.get("capacity") or DEFAULT_ROOM_CAPACITY_FALLBACK)
+                for room in self.rooms
+            )
 
         return DEFAULT_ROOM_CAPACITY_FALLBACK
 
@@ -112,7 +123,14 @@ class CourseOffering:
             graduating_demand = self.course_demand_graduating.get(course_id, 0)
             normal_demand = self.course_demand_normal.get(course_id, 0)
 
-            should_open = total_demand >= MIN_STUDENTS_TO_OPEN_COURSE
+            # المادة تفتح إذا:
+            # 1) العدد الكلي وصل الحد الأدنى
+            # أو
+            # 2) عدد الخريجين وحده وصل الحد المطلوب
+            should_open = (
+                total_demand >= MIN_STUDENTS_TO_OPEN_COURSE
+                or graduating_demand >= MIN_GRADUATING_TO_FORCE_OPEN
+            )
 
             if not should_open:
                 self.offerings.append({
@@ -123,6 +141,7 @@ class CourseOffering:
                     "graduating_demand": graduating_demand,
                     "normal_demand": normal_demand,
                     "should_open": False,
+                    "open_reason": "demand too low",
                     "sections_needed": 0,
                     "estimated_section_capacity": 0
                 })
@@ -134,6 +153,11 @@ class CourseOffering:
             if DEFAULT_MAX_SECTIONS_PER_COURSE and DEFAULT_MAX_SECTIONS_PER_COURSE > 0:
                 sections_needed = min(sections_needed, DEFAULT_MAX_SECTIONS_PER_COURSE)
 
+            if graduating_demand >= MIN_GRADUATING_TO_FORCE_OPEN and total_demand < MIN_STUDENTS_TO_OPEN_COURSE:
+                open_reason = "graduating priority"
+            else:
+                open_reason = "normal demand"
+
             self.offerings.append({
                 "course_id": course_id,
                 "course_name": course_name,
@@ -142,11 +166,15 @@ class CourseOffering:
                 "graduating_demand": graduating_demand,
                 "normal_demand": normal_demand,
                 "should_open": True,
+                "open_reason": open_reason,
                 "sections_needed": sections_needed,
                 "estimated_section_capacity": section_capacity
             })
 
-        # ترتيب: الخريجين أولًا، ثم الطلب الكلي
+        # ترتيب:
+        # 1) المواد المفتوحة أولًا
+        # 2) المواد التي يحتاجها الخريجون أولًا
+        # 3) ثم الأعلى طلبًا
         self.offerings.sort(
             key=lambda x: (
                 x["should_open"],
@@ -178,7 +206,9 @@ class CourseOffering:
                 f"{row['course_name']} | "
                 f"Demand={row['total_demand']} | "
                 f"Graduating={row['graduating_demand']} | "
+                f"Normal={row['normal_demand']} | "
                 f"Sections={row['sections_needed']} | "
+                f"Reason={row['open_reason']} | "
                 f"Status={status}"
             )
         print("==============================================\n")

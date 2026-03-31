@@ -14,7 +14,6 @@ from scheduler_config import (
     ALLOWED_END,
 )
 
-# لو ما كانوا موجودين في scheduler_config.py
 try:
     from scheduler_config import MIN_STUDENTS_TO_OPEN_COURSE
 except ImportError:
@@ -39,23 +38,20 @@ class SchedulerEngine:
         self.course_by_id = {}
         self.rooms_by_type = defaultdict(list)
 
-        # الطلب على المواد
         self.course_demand = defaultdict(int)
         self.course_demand_graduating = defaultdict(int)
         self.course_demand_normal = defaultdict(int)
 
-        # حالة الطلاب
         self.student_passed_courses = defaultdict(set)
         self.student_attempted_courses = defaultdict(set)
         self.student_completed_hours = defaultdict(int)
         self.student_remaining_hours = defaultdict(int)
         self.graduating_students = set()
 
-        # تتبع التعارضات
+        # منع التعارضات
         self.instructor_time_map = set()   # (instructor_id, time_id)
         self.room_time_map = set()         # (room_id, time_id)
 
-        # الحمل الحالي
         self.instructor_current_load = defaultdict(int)
 
     # =====================================================
@@ -91,7 +87,7 @@ class SchedulerEngine:
         }
 
         failed_statuses = {
-            "failed", "fail", "f", "رسوب", "راسب"
+            "failed", "fail", "f", "راسب", "رسوب"
         }
 
         if status_text in passed_statuses:
@@ -100,14 +96,12 @@ class SchedulerEngine:
         if status_text in failed_statuses:
             return False
 
-        # محاولة تقدير من العلامة
         try:
             grade_num = float(grade)
             return grade_num >= 50
         except Exception:
             pass
 
-        # لو grade نصي مثل A/B/C/D
         if grade_text in {"a", "a-", "b", "b+", "b-", "c", "c+", "c-", "d", "d+", "d-"}:
             return True
 
@@ -138,7 +132,6 @@ class SchedulerEngine:
         section_capacity = self.get_room_capacity_for_course_type(course_type)
         estimated_sections = max(1, ceil(demand / max(section_capacity, 1)))
 
-        # نستخدم DEFAULT_MAX_SECTIONS_PER_COURSE كحد أعلى إذا كان > 0
         if DEFAULT_MAX_SECTIONS_PER_COURSE and DEFAULT_MAX_SECTIONS_PER_COURSE > 0:
             estimated_sections = min(estimated_sections, DEFAULT_MAX_SECTIONS_PER_COURSE)
 
@@ -193,9 +186,9 @@ class SchedulerEngine:
                 s.std_id,
                 s.std_na,
                 s.major_id,
-                ISNULL(m.credit_hours, 0) AS major_total_hours
+                ISNULL(p.total_hours, 0) AS major_total_hours
             FROM std s
-            LEFT JOIN major m ON s.major_id = m.major_id
+            LEFT JOIN [plan] p ON s.major_id = p.major_id
         """)
 
         self.student_courses = fetch_all("""
@@ -213,16 +206,16 @@ class SchedulerEngine:
         """)
 
         if not self.courses:
-            raise ValueError("لا يوجد مواد في جدول course")
+            raise ValueError("No courses found in table course")
 
         if not self.instructors:
-            raise ValueError("لا يوجد مدرسين في جدول instructor")
+            raise ValueError("No instructors found in table instructor")
 
         if not self.rooms:
-            raise ValueError("لا يوجد قاعات في جدول room")
+            raise ValueError("No rooms found in table room")
 
         if not self.time_slots:
-            raise ValueError("لا يوجد أوقات في جدول time_slot")
+            raise ValueError("No time slots found in table time_slot")
 
         self.course_by_id = {c["course_id"]: c for c in self.courses}
 
@@ -261,7 +254,6 @@ class SchedulerEngine:
             remaining = max(total_required - completed, 0)
             self.student_remaining_hours[std_id] = remaining
 
-            # نعتبره طالب تخرج إذا باقي عليه 18 ساعة أو أقل
             if GRADUATING_PRIORITY_ENABLED and remaining <= 18:
                 self.graduating_students.add(std_id)
 
@@ -285,11 +277,9 @@ class SchedulerEngine:
                 course_id = course["course_id"]
                 prereq_id = course.get("prereq_id")
 
-                # إذا الطالب نجح بالمادة مسبقًا لا نعدها
                 if course_id in passed_courses:
                     continue
 
-                # إذا في prerequisite ولم ينجح به الطالب لا يحق له يأخذها الآن
                 if prereq_id and prereq_id not in passed_courses:
                     continue
 
@@ -307,7 +297,6 @@ class SchedulerEngine:
         degree_type = str(instructor.get("degree_type") or "").strip()
         max_load = LOAD_RULES.get(degree_type, 9)
 
-        # لو لاحقًا أضفت حقل إداري يمكن نطرح منه
         if instructor.get("is_admin"):
             max_load = max(0, max_load - ADMIN_LOAD_REDUCTION)
 
@@ -327,7 +316,7 @@ class SchedulerEngine:
         if major_id and major_id in spec:
             return True
 
-        keywords = ["cs", "computer", "software", "it", "information", "ai", "network", "security"]
+        keywords = ["cs", "computer", "software", "it", "information", "ai", "network", "security", "cy", "se"]
         if any(k in spec for k in keywords):
             return True
 
@@ -335,7 +324,6 @@ class SchedulerEngine:
 
     def assign_instructor(self, course, time_id=None):
         credit_hours = int(course.get("credit_hours") or 0)
-
         candidates = []
 
         for inst in self.instructors:
@@ -350,6 +338,7 @@ class SchedulerEngine:
             if current + credit_hours > max_load:
                 continue
 
+            # منع تعارض المدرس بنفس الوقت
             if time_id is not None and (instructor_id, time_id) in self.instructor_time_map:
                 continue
 
@@ -359,7 +348,6 @@ class SchedulerEngine:
         if not candidates:
             return None
 
-        # نختار الأقل حملًا الحاليًا ثم الأكثر ملاءمة
         candidates.sort(key=lambda x: (x[1], x[0]))
         return candidates[0][2]
 
@@ -369,39 +357,25 @@ class SchedulerEngine:
     def assign_room(self, course, time_id):
         needed_type = str(course.get("course_type") or DEFAULT_ROOM_TYPE).lower()
 
-        # أولاً نحاول نفس النوع
+        # أولاً: نفس نوع القاعة
         for room in self.rooms_by_type.get(needed_type, []):
             room_id = room["room_id"]
-            if (room_id, time_id) not in self.room_time_map:
-                return room
 
-        # ثم أي قاعة متاحة
+            # منع تعارض الغرفة بنفس الوقت
+            if (room_id, time_id) in self.room_time_map:
+                continue
+
+            return room
+
+        # ثانياً: أي قاعة متاحة
         for room in self.rooms:
             room_id = room["room_id"]
-            if (room_id, time_id) not in self.room_time_map:
-                return room
 
-        return None
-
-    def assign_time_slot_for_course(self, course):
-        allowed_start = self.parse_time_value(ALLOWED_START)
-        allowed_end = self.parse_time_value(ALLOWED_END)
-
-        for slot in self.time_slots:
-            start_t = self.parse_time_value(slot.get("s_time"))
-            end_t = self.parse_time_value(slot.get("e_time"))
-
-            if start_t is None or end_t is None:
+            # منع تعارض الغرفة بنفس الوقت
+            if (room_id, time_id) in self.room_time_map:
                 continue
 
-            if allowed_start and start_t < allowed_start:
-                continue
-
-            if allowed_end and end_t > allowed_end:
-                continue
-
-            # نتأكد لاحقًا من توافقه مع المدرس والقاعة
-            return slot
+            return room
 
         return None
 
@@ -427,10 +401,6 @@ class SchedulerEngine:
 
         schedule_id_counter = 1
 
-        # ترتيب المواد:
-        # 1) المواد التي عندها طلب خريجين أكثر
-        # 2) بعدها الطلب الكلي
-        # 3) بعدها الساعات
         sorted_courses = sorted(
             self.courses,
             key=lambda c: (
@@ -449,11 +419,11 @@ class SchedulerEngine:
             sections_needed = self.get_sections_needed(course)
 
             if total_demand < MIN_STUDENTS_TO_OPEN_COURSE:
-                print(f"[SKIP] المادة {course_name} لن تفتح لأن الطلب = {total_demand}")
+                print(f"[SKIP] Course {course_name} will not open because demand = {total_demand}")
                 continue
 
             if sections_needed <= 0:
-                print(f"[SKIP] المادة {course_name} لا تحتاج فتح شعب")
+                print(f"[SKIP] Course {course_name} does not need any sections")
                 continue
 
             for section_no in range(1, sections_needed + 1):
@@ -489,10 +459,12 @@ class SchedulerEngine:
                     room_name = room.get("building", "")
                     day = slot.get("day", "")
 
+                    # هذا الشرط يمنع:
+                    # 1) نفس المدرس بنفس الوقت
+                    # 2) نفس الغرفة بنفس الوقت
                     if self.has_conflict(instructor_id, room_id, time_id):
                         continue
 
-                    # تحديث التتبع
                     self.instructor_time_map.add((instructor_id, time_id))
                     self.room_time_map.add((room_id, time_id))
                     self.instructor_current_load[instructor_id] += int(course.get("credit_hours") or 0)
@@ -520,7 +492,7 @@ class SchedulerEngine:
                     break
 
                 if not assigned:
-                    print(f"[WARNING] لم أتمكن من جدولة شعبة {section_no} للمادة: {course_name}")
+                    print(f"[WARNING] Could not schedule section {section_no} for course: {course_name}")
 
     # =====================================================
     # DB SAVE
@@ -542,6 +514,9 @@ class SchedulerEngine:
     def save_schedule(self):
         self.ensure_schedule_table()
 
+        if not self.schedule:
+            raise ValueError("Schedule is empty. Nothing to save.")
+
         if CLEAR_OLD_SCHEDULE:
             execute("DELETE FROM schedule")
 
@@ -555,11 +530,10 @@ class SchedulerEngine:
                 item["instructor_id"]
             ))
 
-        if rows:
-            execute_many("""
-                INSERT INTO schedule (schedule_id, room_id, time_id, course_id, instructor_id)
-                VALUES (?, ?, ?, ?, ?)
-            """, rows)
+        execute_many("""
+            INSERT INTO schedule (schedule_id, room_id, time_id, course_id, instructor_id)
+            VALUES (?, ?, ?, ?, ?)
+        """, rows)
 
     # =====================================================
     # OUTPUT

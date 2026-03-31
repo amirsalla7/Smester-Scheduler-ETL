@@ -9,8 +9,10 @@ class StudentAnalysis:
         self.students = []
         self.courses = []
         self.student_courses = []
+        self.plans = []
 
         self.courses_by_major = defaultdict(list)
+        self.plan_hours_by_major = {}
         self.course_by_id = {}
 
         self.student_passed_courses = defaultdict(set)
@@ -29,10 +31,8 @@ class StudentAnalysis:
             SELECT
                 s.std_id,
                 s.std_na,
-                s.major_id,
-                ISNULL(m.credit_hours, 0) AS major_total_hours
+                s.major_id
             FROM std s
-            LEFT JOIN major m ON s.major_id = m.major_id
         """)
 
         self.courses = fetch_all("""
@@ -61,11 +61,27 @@ class StudentAnalysis:
             LEFT JOIN course c ON sc.course_id = c.course_id
         """)
 
+        self.plans = fetch_all("""
+            SELECT
+                plan_id,
+                plan_name,
+                major_id,
+                ISNULL(total_hours, 0) AS total_hours
+            FROM [plan]
+        """)
+
         self.course_by_id = {c["course_id"]: c for c in self.courses}
 
         self.courses_by_major.clear()
         for course in self.courses:
             self.courses_by_major[course.get("major_id")].append(course)
+
+        self.plan_hours_by_major.clear()
+        for plan in self.plans:
+            major_id = plan.get("major_id")
+            total_hours = int(plan.get("total_hours") or 0)
+            if major_id is not None:
+                self.plan_hours_by_major[major_id] = total_hours
 
     # -------------------------------------------------
     # HELPERS
@@ -80,7 +96,7 @@ class StudentAnalysis:
         }
 
         failed_statuses = {
-            "failed", "fail", "f", "راسب", "رسوب"
+            "failed", "fail", "f", "raasib", "راسب", "رسوب"
         }
 
         if status_text in passed_statuses:
@@ -130,8 +146,8 @@ class StudentAnalysis:
             std_id = student["std_id"]
             std_name = student["std_na"]
             major_id = student.get("major_id")
-            total_required = int(student.get("major_total_hours") or 0)
 
+            total_required = int(self.plan_hours_by_major.get(major_id, 0))
             passed_courses = self.student_passed_courses.get(std_id, set())
             completed_hours = self.student_completed_hours.get(std_id, 0)
             remaining_hours = max(total_required - completed_hours, 0)
