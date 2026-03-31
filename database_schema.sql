@@ -91,16 +91,31 @@ CREATE TABLE [plan] (
     FOREIGN KEY (major_id) REFERENCES major(major_id)
 );
 
+USE master;
+
 CREATE TABLE std_course (
-    std_id INT,
-    course_id INT,
-    semester_id INT,
-    grade NVARCHAR(5),
-    status NVARCHAR(20),
 
-    PRIMARY KEY (std_id, course_id, semester_id),
+    history_id INT PRIMARY KEY,
 
-    FOREIGN KEY (std_id) REFERENCES std(std_id),
-    FOREIGN KEY (course_id) REFERENCES course(course_id),
-    FOREIGN KEY (semester_id) REFERENCES semester(semester_id)
+    std_id INT NOT NULL,
+
+    course_id INT NOT NULL,
+
+    semester_id INT NULL,
+
+    garde NVARCHAR(20) NULL,
+
+    status NVARCHAR(20) NULL,
+
+    section NVARCHAR(20) NULL,
+
+    FOREIGN KEY (std_id)
+    REFERENCES std(std_id),
+
+    FOREIGN KEY (course_id)
+    REFERENCES course(course_id),
+
+    FOREIGN KEY (semester_id)
+    REFERENCES semester(semester_id)
+
 );
