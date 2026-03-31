@@ -83,3 +83,24 @@ CREATE TABLE schedule (
     course_id INT,
     instructor_id INT
 );
+CREATE TABLE [plan] (
+    plan_id INT PRIMARY KEY,
+    plan_name NVARCHAR(100),
+    major_id INT,
+    total_hours INT,
+    FOREIGN KEY (major_id) REFERENCES major(major_id)
+);
+
+CREATE TABLE std_course (
+    std_id INT,
+    course_id INT,
+    semester_id INT,
+    grade NVARCHAR(5),
+    status NVARCHAR(20),
+
+    PRIMARY KEY (std_id, course_id, semester_id),
+
+    FOREIGN KEY (std_id) REFERENCES std(std_id),
+    FOREIGN KEY (course_id) REFERENCES course(course_id),
+    FOREIGN KEY (semester_id) REFERENCES semester(semester_id)
+);
