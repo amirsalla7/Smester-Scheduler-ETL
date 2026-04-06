@@ -5,23 +5,24 @@ from exporter import export_schedule_to_pdf
 from db import execute
 import sys
 
+# database cleaning
 
-def cleanup_database_except_schedule():
-    print("Cleaning database except schedule table...")
+# def cleanup_database_except_schedule():
+#     print("Cleaning database except schedule table...")
 
-    execute("DELETE FROM std_course")
-    execute("DELETE FROM semester")
-    execute("DELETE FROM time_slot")
-    execute("DELETE FROM room")
-    execute("DELETE FROM instructor")
-    execute("DELETE FROM std")
-    execute("DELETE FROM course")
-    execute("DELETE FROM [plan]")
-    execute("DELETE FROM major")
-    execute("DELETE FROM department")
-    execute("DELETE FROM collage")
-    execute("DELETE FROM schedule ")
-    print("Database cleaned successfully.")
+#     execute("DELETE FROM std_course")
+#     execute("DELETE FROM semester")
+#     execute("DELETE FROM time_slot")
+#     execute("DELETE FROM room")
+#     execute("DELETE FROM instructor")
+#     execute("DELETE FROM std")
+#     execute("DELETE FROM course")
+#     execute("DELETE FROM [plan]")
+#     execute("DELETE FROM major")
+#     execute("DELETE FROM department")
+#     execute("DELETE FROM collage")
+#     execute("DELETE FROM schedule ")
+#     print("Database cleaned successfully.")
 
 
 def main():
@@ -72,7 +73,8 @@ def main():
     export_schedule_to_pdf(scheduler.schedule, "semester_schedule.pdf")
 
     print("Cleaning all database tables except schedule...")
-    cleanup_database_except_schedule()
+    
+    # cleanup_database_except_schedule()
 
     print("Done successfully.")
 
