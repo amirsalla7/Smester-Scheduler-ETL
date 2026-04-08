@@ -1,25 +1,43 @@
 # Visual Studio
 .vs/
 **/.vs/
-bin/
-obj/
+.vscode/
 *.user
 *.suo
+*.userosscache
+*.sln.docstates
+
+# Build folders
+bin/
+obj/
+**/bin/
+**/obj/
+
+# C# generated files
+*.dll
+*.exe
+*.pdb
+*.cache
+*.lscache
 
 # Python
 __pycache__/
 *.pyc
+*.pyo
+*.pyd
 .venv/
+venv/
+env/
 
-# build files
-*.dll
-*.exe
-*.pdb
-
-# output
+# Output files
 *.pdf
 semester_schedule.pdf
 
-# system files
+# Logs / temp
+*.log
+*.tmp
+*.temp
+
+# OS files
 Thumbs.db
 .DS_Store
