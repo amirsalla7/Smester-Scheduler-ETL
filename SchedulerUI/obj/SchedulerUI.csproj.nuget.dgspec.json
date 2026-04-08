@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "c:\\Users\\User\\Desktop\\ssg\\SchedulerUI\\SchedulerUI.csproj": {}
+    "C:\\Users\\User\\Desktop\\ssg\\SchedulerUI\\SchedulerUI.csproj": {}
   },
   "projects": {
-    "c:\\Users\\User\\Desktop\\ssg\\SchedulerUI\\SchedulerUI.csproj": {
+    "C:\\Users\\User\\Desktop\\ssg\\SchedulerUI\\SchedulerUI.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "c:\\Users\\User\\Desktop\\ssg\\SchedulerUI\\SchedulerUI.csproj",
+        "projectUniqueName": "C:\\Users\\User\\Desktop\\ssg\\SchedulerUI\\SchedulerUI.csproj",
         "projectName": "SchedulerUI",
-        "projectPath": "c:\\Users\\User\\Desktop\\ssg\\SchedulerUI\\SchedulerUI.csproj",
+        "projectPath": "C:\\Users\\User\\Desktop\\ssg\\SchedulerUI\\SchedulerUI.csproj",
         "packagesPath": "C:\\Users\\User\\.nuget\\packages\\",
-        "outputPath": "c:\\Users\\User\\Desktop\\ssg\\SchedulerUI\\obj\\",
+        "outputPath": "C:\\Users\\User\\Desktop\\ssg\\SchedulerUI\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"

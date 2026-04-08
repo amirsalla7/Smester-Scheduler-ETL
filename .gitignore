@@ -1,0 +1,25 @@
+# Visual Studio
+.vs/
+**/.vs/
+bin/
+obj/
+*.user
+*.suo
+
+# Python
+__pycache__/
+*.pyc
+.venv/
+
+# build files
+*.dll
+*.exe
+*.pdb
+
+# output
+*.pdf
+semester_schedule.pdf
+
+# system files
+Thumbs.db
+.DS_Store
