@@ -23,9 +23,8 @@ class StudentAnalysis:
 
         self.analysis_result = []
 
-    # -------------------------------------------------
     # LOAD DATA
-    # -------------------------------------------------
+
     def load_data(self):
         self.students = fetch_all("""
             SELECT
@@ -83,9 +82,8 @@ class StudentAnalysis:
             if major_id is not None:
                 self.plan_hours_by_major[major_id] = total_hours
 
-    # -------------------------------------------------
     # HELPERS
-    # -------------------------------------------------
+
     def is_passed_status(self, status, grade=None):
         status_text = str(status or "").strip().lower()
         grade_text = str(grade or "").strip().lower()
@@ -116,9 +114,8 @@ class StudentAnalysis:
 
         return False
 
-    # -------------------------------------------------
     # CORE ANALYSIS
-    # -------------------------------------------------
+
     def analyze_students(self):
         self.student_passed_courses.clear()
         self.student_attempted_courses.clear()
@@ -190,9 +187,8 @@ class StudentAnalysis:
 
         return self.analysis_result
 
-    # -------------------------------------------------
     # GETTERS
-    # -------------------------------------------------
+
     def get_analysis_result(self):
         return self.analysis_result
 
@@ -205,9 +201,8 @@ class StudentAnalysis:
     def get_student_passed_courses(self):
         return self.student_passed_courses
 
-    # -------------------------------------------------
     # PRINT
-    # -------------------------------------------------
+
     def print_summary(self):
         print("\n========== STUDENT ANALYSIS ==========")
         for row in self.analysis_result:
