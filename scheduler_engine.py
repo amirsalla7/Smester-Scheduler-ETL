@@ -48,11 +48,14 @@ class SchedulerEngine:
         self.student_remaining_hours = defaultdict(int)
         self.graduating_students = set()
 
-        # منع التعارضات
+        # conflict maps
         self.instructor_time_map = set()   # (instructor_id, time_id)
         self.room_time_map = set()         # (room_id, time_id)
 
         self.instructor_current_load = defaultdict(int)
+
+        # new rules
+        self.instructor_course_sections = defaultdict(int)  # (instructor_id, course_id) -> count
 
     # =====================================================
     # HELPERS
@@ -110,7 +113,8 @@ class SchedulerEngine:
     def get_room_capacity_for_course_type(self, course_type):
         matching_rooms = [
             room for room in self.rooms
-            if str(room.get("room_type") or DEFAULT_ROOM_TYPE).lower() == str(course_type or DEFAULT_ROOM_TYPE).lower()
+            if str(room.get("room_type") or DEFAULT_ROOM_TYPE).lower()
+            == str(course_type or DEFAULT_ROOM_TYPE).lower()
         ]
 
         if matching_rooms:
@@ -137,6 +141,73 @@ class SchedulerEngine:
 
         return estimated_sections
 
+    def get_paired_day(self, day):
+        pairs = {
+            "Sunday": "Tuesday",
+            "Tuesday": "Sunday",
+            "Monday": "Wednesday",
+            "Wednesday": "Monday",
+        }
+        return pairs.get(day)
+
+    def get_day_label(self, day):
+        labels = {
+            "Sunday": "Sun/Tue",
+            "Tuesday": "Sun/Tue",
+            "Monday": "Mon/Wed",
+            "Wednesday": "Mon/Wed",
+            "Thursday": "Thu"
+        }
+        return labels.get(day, day)
+
+    def build_time_slot_pairs(self):
+        slot_map = {}
+
+        for slot in self.time_slots:
+            day = slot.get("day")
+            start_time = str(slot.get("s_time"))
+            end_time = str(slot.get("e_time"))
+            slot_map[(day, start_time, end_time)] = slot
+
+        pairs = []
+        used = set()
+
+        for slot in self.time_slots:
+            day = slot.get("day")
+            start_time = str(slot.get("s_time"))
+            end_time = str(slot.get("e_time"))
+
+            if slot["time_id"] in used:
+                continue
+
+            paired_day = self.get_paired_day(day)
+
+            if paired_day:
+                pair_slot = slot_map.get((paired_day, start_time, end_time))
+                if pair_slot and pair_slot["time_id"] not in used:
+                    pairs.append({
+                        "day_label": self.get_day_label(day),
+                        "slot1": slot,
+                        "slot2": pair_slot,
+                        "start_time": start_time,
+                        "end_time": end_time
+                    })
+                    used.add(slot["time_id"])
+                    used.add(pair_slot["time_id"])
+                    continue
+
+            pairs.append({
+                "day_label": self.get_day_label(day),
+                "slot1": slot,
+                "slot2": None,
+                "start_time": start_time,
+                "end_time": end_time
+            })
+            used.add(slot["time_id"])
+
+        return pairs
+
+   
     # =====================================================
     # LOAD DATA
     # =====================================================
@@ -178,7 +249,16 @@ class SchedulerEngine:
                 s_time,
                 e_time
             FROM time_slot
-            ORDER BY day, s_time
+            WHERE day IN ('Sunday', 'Tuesday', 'Monday', 'Wednesday')
+            ORDER BY
+                CASE
+                    WHEN day = 'Sunday' THEN 1
+                    WHEN day = 'Tuesday' THEN 2
+                    WHEN day = 'Monday' THEN 3
+                    WHEN day = 'Wednesday' THEN 4
+                    ELSE 5
+                END,
+                s_time
         """)
 
         self.students = fetch_all("""
@@ -322,8 +402,9 @@ class SchedulerEngine:
 
         return False
 
-    def assign_instructor(self, course, time_id=None):
+    def assign_instructor(self, course, time_ids=None):
         credit_hours = int(course.get("credit_hours") or 0)
+        course_id = course["course_id"]
         candidates = []
 
         for inst in self.instructors:
@@ -338,9 +419,18 @@ class SchedulerEngine:
             if current + credit_hours > max_load:
                 continue
 
-            # منع تعارض المدرس بنفس الوقت
-            if time_id is not None and (instructor_id, time_id) in self.instructor_time_map:
+            # instructor can teach at most 2 sections of the same course
+            if self.instructor_course_sections[(instructor_id, course_id)] >= 2:
                 continue
+
+            if time_ids:
+                busy = False
+                for time_id in time_ids:
+                    if (instructor_id, time_id) in self.instructor_time_map:
+                        busy = True
+                        break
+                if busy:
+                    continue
 
             remaining_after_assign = max_load - (current + credit_hours)
             candidates.append((remaining_after_assign, current, inst))
@@ -354,37 +444,42 @@ class SchedulerEngine:
     # =====================================================
     # ROOM / TIME LOGIC
     # =====================================================
-    def assign_room(self, course, time_id):
+    def assign_room(self, course, time_ids):
         needed_type = str(course.get("course_type") or DEFAULT_ROOM_TYPE).lower()
 
-        # أولاً: نفس نوع القاعة
         for room in self.rooms_by_type.get(needed_type, []):
             room_id = room["room_id"]
+            busy = False
 
-            # منع تعارض الغرفة بنفس الوقت
-            if (room_id, time_id) in self.room_time_map:
-                continue
+            for time_id in time_ids:
+                if (room_id, time_id) in self.room_time_map:
+                    busy = True
+                    break
 
-            return room
+            if not busy:
+                return room
 
-        # ثانياً: أي قاعة متاحة
         for room in self.rooms:
             room_id = room["room_id"]
+            busy = False
 
-            # منع تعارض الغرفة بنفس الوقت
-            if (room_id, time_id) in self.room_time_map:
-                continue
+            for time_id in time_ids:
+                if (room_id, time_id) in self.room_time_map:
+                    busy = True
+                    break
 
-            return room
+            if not busy:
+                return room
 
         return None
 
-    def has_conflict(self, instructor_id, room_id, time_id):
-        if (instructor_id, time_id) in self.instructor_time_map:
-            return True
+    def has_conflict(self, instructor_id, room_id, time_ids):
+        for time_id in time_ids:
+            if (instructor_id, time_id) in self.instructor_time_map:
+                return True
 
-        if (room_id, time_id) in self.room_time_map:
-            return True
+            if (room_id, time_id) in self.room_time_map:
+                return True
 
         return False
 
@@ -396,7 +491,7 @@ class SchedulerEngine:
         self.instructor_time_map.clear()
         self.room_time_map.clear()
         self.instructor_current_load.clear()
-
+        self.instructor_course_sections.clear()
         self.calculate_course_demand()
 
         schedule_id_counter = 1
@@ -410,6 +505,8 @@ class SchedulerEngine:
             ),
             reverse=True
         )
+
+        slot_pairs = self.build_time_slot_pairs()
 
         for course in sorted_courses:
             course_id = course["course_id"]
@@ -429,10 +526,16 @@ class SchedulerEngine:
             for section_no in range(1, sections_needed + 1):
                 assigned = False
 
-                for slot in self.time_slots:
-                    time_id = slot["time_id"]
-                    start_t = self.parse_time_value(slot.get("s_time"))
-                    end_t = self.parse_time_value(slot.get("e_time"))
+                for pair in slot_pairs:
+                    slot1 = pair["slot1"]
+                    slot2 = pair["slot2"]
+
+                    time_ids = [slot1["time_id"]]
+                    if slot2:
+                        time_ids.append(slot2["time_id"])
+
+                    start_t = self.parse_time_value(pair["start_time"])
+                    end_t = self.parse_time_value(pair["end_time"])
                     allowed_start = self.parse_time_value(ALLOWED_START)
                     allowed_end = self.parse_time_value(ALLOWED_END)
 
@@ -445,11 +548,15 @@ class SchedulerEngine:
                     if allowed_end and end_t > allowed_end:
                         continue
 
-                    instructor = self.assign_instructor(course, time_id=time_id)
+                    day_label = pair["day_label"]
+                    base_day = slot1.get("day", "")
+                        
+
+                    instructor = self.assign_instructor(course, time_ids=time_ids)
                     if instructor is None:
                         continue
 
-                    room = self.assign_room(course, time_id)
+                    room = self.assign_room(course, time_ids)
                     if room is None:
                         continue
 
@@ -457,17 +564,16 @@ class SchedulerEngine:
                     instructor_name = instructor["instructor_name"]
                     room_id = room["room_id"]
                     room_name = room.get("building", "")
-                    day = slot.get("day", "")
 
-                    # هذا الشرط يمنع:
-                    # 1) نفس المدرس بنفس الوقت
-                    # 2) نفس الغرفة بنفس الوقت
-                    if self.has_conflict(instructor_id, room_id, time_id):
+                    if self.has_conflict(instructor_id, room_id, time_ids):
                         continue
 
-                    self.instructor_time_map.add((instructor_id, time_id))
-                    self.room_time_map.add((room_id, time_id))
+                    for time_id in time_ids:
+                        self.instructor_time_map.add((instructor_id, time_id))
+                        self.room_time_map.add((room_id, time_id))
+
                     self.instructor_current_load[instructor_id] += int(course.get("credit_hours") or 0)
+                    self.instructor_course_sections[(instructor_id, course_id)] += 1
 
                     self.schedule.append({
                         "schedule_id": schedule_id_counter,
@@ -480,10 +586,10 @@ class SchedulerEngine:
                         "instructor_name": instructor_name,
                         "room_id": room_id,
                         "room_name": room_name,
-                        "time_id": time_id,
-                        "day": day,
-                        "start_time": str(slot.get("s_time")),
-                        "end_time": str(slot.get("e_time")),
+                        "time_id": slot1["time_id"],
+                        "day": day_label,
+                        "start_time": pair["start_time"],
+                        "end_time": pair["end_time"],
                         "credit_hours": int(course.get("credit_hours") or 0),
                     })
 
@@ -551,14 +657,23 @@ class SchedulerEngine:
         print("===================================\n")
 
     def print_schedule(self):
-        print("\n========== FINAL GENERATED SCHEDULE ==========")
+        print("\n" + "=" * 120)
+        print("FINAL GENERATED SCHEDULE")
+        print("=" * 120)
+        print(f"{'Course ID':<10} {'Course Name':<25} {'Sec':<5} {'Instructor':<20} {'Room ID':<10} {'Day':<12} {'Start':<8} {'End':<8} {'Hours':<6}")
+        print("-" * 120)
+
         for item in self.schedule:
             print(
-                f"[{item['schedule_id']}] "
-                f"{item['course_name']} (Sec {item['section_no']}) | "
-                f"Demand: {item['total_demand']} | "
-                f"Instructor: {item['instructor_name']} | "
-                f"Room: {item['room_name']} | "
-                f"{item['day']} {item['start_time']} - {item['end_time']}"
+                f"{item['course_id']:<10} "
+                f"{item['course_name']:<25} "
+                f"{item['section_no']:<5} "
+                f"{item['instructor_name']:<20} "
+                f"{item['room_id']:<10} "
+                f"{item['day']:<12} "
+                f"{item['start_time']:<8} "
+                f"{item['end_time']:<8} "
+                f"{item['credit_hours']:<6}"
             )
-        print("==============================================\n")
+
+        print("=" * 120 + "\n")

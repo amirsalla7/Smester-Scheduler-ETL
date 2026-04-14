@@ -2,27 +2,7 @@ from student_analysis import StudentAnalysis
 from course_offering import CourseOffering
 from scheduler_engine import SchedulerEngine
 from exporter import export_schedule_to_pdf
-from db import execute
 import sys
-
-# database cleaning
-
-# def cleanup_database_except_schedule():
-#     print("Cleaning database except schedule table...")
-
-#     execute("DELETE FROM std_course")
-#     execute("DELETE FROM semester")
-#     execute("DELETE FROM time_slot")
-#     execute("DELETE FROM room")
-#     execute("DELETE FROM instructor")
-#     execute("DELETE FROM std")
-#     execute("DELETE FROM course")
-#     execute("DELETE FROM [plan]")
-#     execute("DELETE FROM major")
-#     execute("DELETE FROM department")
-#     execute("DELETE FROM collage")
-#     execute("DELETE FROM schedule ")
-#     print("Database cleaned successfully.")
 
 
 def main():
@@ -33,7 +13,7 @@ def main():
 
     print("Starting system...")
 
-    analysis = StudentAnalysis(graduating_hours_threshold=21)
+    analysis = StudentAnalysis(graduating_hours_threshold=18)
 
     print("Loading student analysis data...")
     analysis.load_data()
@@ -48,7 +28,7 @@ def main():
     offering.load_data()
 
     print("Building course offerings...")
-    offering.build_offerings()
+    offerings_data = offering.build_offerings()
     offering.print_offerings()
 
     scheduler = SchedulerEngine()
@@ -70,11 +50,11 @@ def main():
     scheduler.save_schedule()
 
     print("Exporting schedule to PDF...")
-    export_schedule_to_pdf(scheduler.schedule, "semester_schedule.pdf")
-
-    print("Cleaning all database tables except schedule...")
-    
-    # cleanup_database_except_schedule()
+    export_schedule_to_pdf(
+        scheduler.schedule,
+        offerings_data,
+        "semester_schedule.pdf"
+    )
 
     print("Done successfully.")
 

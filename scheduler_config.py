@@ -8,17 +8,15 @@ DEFAULT_ROOM_CAPACITY_FALLBACK = 40
 DEFAULT_MAX_SECTIONS_PER_COURSE = 3
 
 LOAD_RULES = {
-    "Professor": 15,
+    "Professor": 9,
     "Associate Professor": 12,
-    "Assistant Professor": 9,
-    "Doctor": 12,
-    "Master": 9,
-    "Bachelor": 6
+    "Assistant Professor": 12,
+    "Master": 15,
 }
 
 ADMIN_LOAD_REDUCTION = 3
 
-ALLOWED_START = "08:30:00"
+ALLOWED_START = "08:00:00"
 ALLOWED_END = "16:00:00"
 
 DEFAULT_ROOM_TYPE = "Lecture"
@@ -26,7 +24,7 @@ DEFAULT_ROOM_TYPE = "Lecture"
 CLEAR_OLD_SCHEDULE = True
 
 MIN_STUDENTS_TO_OPEN_COURSE = 5
-MIN_GRADUATING_TO_FORCE_OPEN = 3
+MIN_GRADUATING_TO_FORCE_OPEN = 1
 
 
 GRADUATING_PRIORITY_ENABLED = True

@@ -1,7 +1,7 @@
 requests
 pyodbc
 reportlab
-
+matplotlib
 
 # git pull
 # git push
