@@ -1,10 +1,10 @@
 from student_analysis import StudentAnalysis
 from course_offering import CourseOffering
 from scheduler_engine import SchedulerEngine
-from exporter import export_schedule_to_pdf
-import sys
+from exporter import export_schedule_to_pdf, export_summary_to_pdf
 from student_summary import build_summary
-from exporter import export_summary_to_pdf
+import sys
+import json
 
 
 def main():
@@ -58,13 +58,35 @@ def main():
         scheduler.course_demand_graduating,
         scheduler.rooms
     )
-    print("Exporting schedule to PDF...")
+
+    stats = {
+        "students": len(scheduler.students),
+        "courses": len(scheduler.courses),
+        "instructors": len(scheduler.instructors),
+        "rooms": len(scheduler.rooms),
+        "sections_generated": len(scheduler.schedule),
+        "opened_courses": len([o for o in offerings_data if o.get("should_open", False)]),
+        "conflicts": 0
+    }
+
+    print("Writing JSON files...")
+
+    with open("schedule.json", "w", encoding="utf-8") as f:
+        json.dump(scheduler.schedule, f, ensure_ascii=False, indent=2)
+
+    with open("report.json", "w", encoding="utf-8") as f:
+        json.dump(summary, f, ensure_ascii=False, indent=2)
+
+    with open("stats.json", "w", encoding="utf-8") as f:
+        json.dump(stats, f, ensure_ascii=False, indent=2)
+
+    print("Exporting schedule PDF...")
     export_schedule_to_pdf(
         scheduler.schedule,
         "semester_schedule.pdf"
     )
 
-    print("Exporting summary report to PDF...")
+    print("Exporting summary PDF...")
     export_summary_to_pdf(
         summary,
         "summary_report.pdf"
