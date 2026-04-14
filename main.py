@@ -3,6 +3,8 @@ from course_offering import CourseOffering
 from scheduler_engine import SchedulerEngine
 from exporter import export_schedule_to_pdf
 import sys
+from student_summary import build_summary
+from exporter import export_summary_to_pdf
 
 
 def main():
@@ -49,11 +51,23 @@ def main():
     print("Saving schedule to database...")
     scheduler.save_schedule()
 
+    print("Building summary report...")
+    summary = build_summary(
+        scheduler.schedule,
+        scheduler.course_demand,
+        scheduler.course_demand_graduating,
+        scheduler.rooms
+    )
     print("Exporting schedule to PDF...")
     export_schedule_to_pdf(
         scheduler.schedule,
-        offerings_data,
         "semester_schedule.pdf"
+    )
+
+    print("Exporting summary report to PDF...")
+    export_summary_to_pdf(
+        summary,
+        "summary_report.pdf"
     )
 
     print("Done successfully.")

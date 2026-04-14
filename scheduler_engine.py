@@ -48,6 +48,9 @@ class SchedulerEngine:
         self.student_remaining_hours = defaultdict(int)
         self.graduating_students = set()
 
+        self.course_primary_instructor = {}        # course_id -> instructor_id
+        self.course_day_patterns = defaultdict(set)  # course_id -> {"Sun/Tue", "Mon/Wed"}  
+        
         # conflict maps
         self.instructor_time_map = set()   # (instructor_id, time_id)
         self.room_time_map = set()         # (room_id, time_id)
@@ -402,45 +405,69 @@ class SchedulerEngine:
 
         return False
 
-    def assign_instructor(self, course, time_ids=None):
+    def assign_instructor(self, course, section_no, time_ids=None):
+
         credit_hours = int(course.get("credit_hours") or 0)
+
         course_id = course["course_id"]
+
+        primary_instructor_id = self.course_primary_instructor.get(course_id)
+
         candidates = []
 
         for inst in self.instructors:
+
             instructor_id = inst["instructor_id"]
 
             if not self.instructor_matches_course(inst, course):
                 continue
 
             max_load = self.get_max_load_for_instructor(inst)
-            current = self.instructor_current_load[instructor_id]
 
-            if current + credit_hours > max_load:
+            current_load = self.instructor_current_load[instructor_id]
+
+            if current_load + credit_hours > max_load:
                 continue
 
-            # instructor can teach at most 2 sections of the same course
+            # الدكتور لا يدرّس أكثر من شعبتين لنفس المادة
             if self.instructor_course_sections[(instructor_id, course_id)] >= 2:
                 continue
 
-            if time_ids:
-                busy = False
-                for time_id in time_ids:
-                    if (instructor_id, time_id) in self.instructor_time_map:
-                        busy = True
-                        break
-                if busy:
+            # الشعبة الثانية لازم نفس دكتور الشعبة الأولى
+            if section_no == 2 and primary_instructor_id is not None:
+
+                if instructor_id != primary_instructor_id:
                     continue
 
-            remaining_after_assign = max_load - (current + credit_hours)
-            candidates.append((remaining_after_assign, current, inst))
+            # تحقق من تعارض الوقت
+            if time_ids:
+
+                conflict = False
+
+                for t in time_ids:
+
+                    if (instructor_id, t) in self.instructor_time_map:
+
+                        conflict = True
+                        break
+
+                if conflict:
+                    continue
+
+            remaining_load = max_load - (current_load + credit_hours)
+
+            candidates.append(
+                (remaining_load, current_load, inst)
+            )
 
         if not candidates:
             return None
 
-        candidates.sort(key=lambda x: (x[1], x[0]))
-        return candidates[0][2]
+        candidates.sort(
+            key=lambda x: (x[1], x[0])
+        )
 
+        return candidates[0][2]
     # =====================================================
     # ROOM / TIME LOGIC
     # =====================================================
@@ -482,7 +509,16 @@ class SchedulerEngine:
                 return True
 
         return False
+    
 
+    def can_use_day_pattern_for_course(self, course_id, section_no, day_label):
+        used_patterns = self.course_day_patterns[course_id]
+
+        if section_no <= 2:
+            if day_label in used_patterns:
+                return False
+
+        return True
     # =====================================================
     # SCHEDULING
     # =====================================================
@@ -493,6 +529,8 @@ class SchedulerEngine:
         self.instructor_current_load.clear()
         self.instructor_course_sections.clear()
         self.calculate_course_demand()
+        self.course_primary_instructor.clear()
+        self.course_day_patterns.clear()
 
         schedule_id_counter = 1
 
@@ -551,8 +589,11 @@ class SchedulerEngine:
                     day_label = pair["day_label"]
                     base_day = slot1.get("day", "")
                         
+                 # إذا المادة لها أكثر من شعبة، لازم الشعب تكون في pattern مختلف
+                    if not self.can_use_day_pattern_for_course(course_id, section_no,day_label):
+                        continue
 
-                    instructor = self.assign_instructor(course, time_ids=time_ids)
+                    instructor = self.assign_instructor(course,section_no=section_no,  time_ids=time_ids)
                     if instructor is None:
                         continue
 
@@ -574,7 +615,10 @@ class SchedulerEngine:
 
                     self.instructor_current_load[instructor_id] += int(course.get("credit_hours") or 0)
                     self.instructor_course_sections[(instructor_id, course_id)] += 1
+                    self.course_day_patterns[course_id].add(day_label)
 
+                    if section_no == 1:
+                        self.course_primary_instructor[course_id] = instructor_id
                     self.schedule.append({
                         "schedule_id": schedule_id_counter,
                         "course_id": course_id,
