@@ -1,204 +1,66 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="utf-8"/>
-<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>UniPlan — Semester Scheduling Generator</title>
-<script src="https://cdn.tailwindcss.com?plugins=forms"></script>
-<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet"/>
-<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
-<script>
-tailwind.config = {
-  theme: {
-    extend: {
-      colors: {
-        "primary":            "#051125",
-        "primary-container":  "#1B263B",
-        "on-primary":         "#ffffff",
-        "on-primary-container":"#828da7",
-        "secondary":          "#47607e",
-        "secondary-container":"#c2dcff",
-        "on-secondary-container":"#48617e",
-        "tertiary-fixed":     "#cde5ff",
-        "tertiary-fixed-dim": "#94ccff",
-        "on-tertiary-fixed":  "#001d32",
-        "on-tertiary-container":"#3a93d4",
-        "surface":            "#f7f9fc",
-        "surface-container":  "#eceef1",
-        "surface-container-low":"#f2f4f7",
-        "surface-container-lowest":"#ffffff",
-        "surface-container-high":"#e6e8eb",
-        "surface-container-highest":"#e0e3e6",
-        "on-surface":         "#191c1e",
-        "on-surface-variant": "#45474d",
-        "outline-variant":    "#c5c6cd",
-        "error":              "#ba1a1a",
-        "error-container":    "#ffdad6",
-      },
-      fontFamily: {
-        headline: ["Manrope", "sans-serif"],
-        body:     ["Inter", "sans-serif"],
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>UniPlan — Semester Scheduling Generator</title>
+
+  <!-- Tailwind CDN -->
+  <script src="https://cdn.tailwindcss.com?plugins=forms"></script>
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+
+  <!-- Custom CSS -->
+  <link rel="stylesheet" href="css/style.css"/>
+
+  <!-- Tailwind config (must stay inline with CDN) -->
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            "primary":                "#051125",
+            "primary-container":      "#1B263B",
+            "on-primary":             "#ffffff",
+            "on-primary-container":   "#828da7",
+            "secondary":              "#47607e",
+            "secondary-container":    "#c2dcff",
+            "on-secondary-container": "#48617e",
+            "tertiary-fixed":         "#cde5ff",
+            "tertiary-fixed-dim":     "#94ccff",
+            "on-tertiary-fixed":      "#001d32",
+            "on-tertiary-container":  "#3a93d4",
+            "surface":                "#f7f9fc",
+            "surface-container":      "#eceef1",
+            "surface-container-low":  "#f2f4f7",
+            "surface-container-lowest":"#ffffff",
+            "surface-container-high": "#e6e8eb",
+            "on-surface":             "#191c1e",
+            "on-surface-variant":     "#45474d",
+            "outline-variant":        "#c5c6cd",
+            "error":                  "#ba1a1a",
+            "error-container":        "#ffdad6",
+          },
+          fontFamily: {
+            headline: ["Manrope", "sans-serif"],
+            body:     ["Inter",   "sans-serif"],
+          }
+        }
       }
     }
-  }
-}
-</script>
-<style>
-  * { font-family: 'Inter', sans-serif; }
-  h1,h2,h3,h4,.brand-font { font-family: 'Manrope', sans-serif; }
-  .material-symbols-outlined { font-variation-settings: 'FILL' 0,'wght' 400,'GRAD' 0,'opsz' 24; font-family: 'Material Symbols Outlined'; }
-  .fill-icon { font-variation-settings: 'FILL' 1,'wght' 400,'GRAD' 0,'opsz' 24; }
-
-  /* Page transitions */
-  .page { display:none; }
-  .page.active { display:block; }
-
-  /* Sidebar nav pill */
-.nav-item {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  padding: 12px 16px;
-  margin: 4px 10px;
-  color: #9fb0c9;
-  font-weight: 600;
-  font-size: 14px;
-  cursor: pointer;
-  border-radius: 9999px;
-  transition: all 0.25s ease;
-  position: relative;
-}
-
-.nav-item:hover {
-  background: rgba(255, 255, 255, 0.08);
-  color: #ffffff;
-  transform: translateX(4px);
-  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.18);
-}
-
-.nav-item.active {
-  background: linear-gradient(135deg, #ffffff 0%, #eaf2ff 100%);
-  color: #051125;
-  box-shadow: 0 8px 22px rgba(0, 0, 0, 0.16);
-  transform: translateX(6px);
-}
-
-.nav-item.active .material-symbols-outlined {
-  color: #051125;
-}
-
-.nav-item:hover .material-symbols-outlined {
-  color: #ffffff;
-}
-.nav-item::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  border-radius: 9999px;
-  background: rgba(255, 255, 255, 0.04);
-  opacity: 0;
-  transition: opacity 0.25s ease;
-  z-index: 0;
-}
-
-.nav-item:hover::before {
-  opacity: 1;
-}
-
-.nav-item > * {
-  position: relative;
-  z-index: 1;
-}
-
-.nav-item.active::after {
-  content: "";
-  position: absolute;
-  left: -6px;
-  top: 50%;
-  transform: translateY(-50%);
-  width: 6px;
-  height: 26px;
-  border-radius: 999px;
-  background: #94ccff;
-  box-shadow: 0 0 12px rgba(148, 204, 255, 0.7);
-}
-
-  /* Table hover */
-  tr.data-row:hover td { background: rgba(230,232,235,0.4); }
-
-  /* Progress bar animation */
-  @keyframes progress-fill {
-    from { width: 0%; } to { width: var(--target); }
-  }
-  .progress-animate { animation: progress-fill 0.8s ease forwards; }
-
-  /* Pulse dot */
-  @keyframes pulse-dot { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:.5;transform:scale(.8)} }
-  .pulse-dot { animation: pulse-dot 1.5s ease infinite; }
-
-  /* Spinner */
-  @keyframes spin { to { transform: rotate(360deg); } }
-  .spinner { animation: spin 0.7s linear infinite; }
-
-  /* Step fade */
-  @keyframes fadeSlideIn { from{opacity:0;transform:translateY(6px)} to{opacity:1;transform:translateY(0)} }
-  .step-visible { animation: fadeSlideIn 0.35s ease forwards; }
-
-  /* Card hover lift */
-  .stat-card { transition: box-shadow .2s, transform .2s; }
-  .stat-card:hover { box-shadow: 0 8px 24px rgba(5,17,37,.08); transform: translateY(-2px); }
-
-  /* Login page bg */
-  .login-bg { background: linear-gradient(135deg, #051125 0%, #1B263B 50%, #0a1e3d 100%); }
-
-  /* Sortable th */
-  th.sortable { cursor: pointer; user-select: none; }
-  th.sortable:hover .sort-icon { opacity: 1; }
-  .sort-icon { opacity: 0.4; transition: opacity .15s; }
-  th.sort-asc .sort-icon, th.sort-desc .sort-icon { opacity: 1; color: #051125; }
-
-  /* Badge colors */
-  .badge-high    { background:#ffdad6; color:#ba1a1a; }
-  .badge-grad    { background:#FFF4C4; color:#8C6D1F; }
-  .badge-normal  { background:#cde5ff; color:#004b74; }
-
-  /* Day chips */
-  .chip-st  { background:#051125; color:#fff; }
-  .chip-mw  { background:#94ccff; color:#001d32; }
-  .chip-sun { background:#1B263B; color:#fff; }
-
-  /* Modal overlay */
-  .modal-overlay { backdrop-filter: blur(4px); }
-
-  /* Scrollbar */
-  ::-webkit-scrollbar { width:6px; height:6px; }
-  ::-webkit-scrollbar-track { background:#f2f4f7; }
-  ::-webkit-scrollbar-thumb { background:#c5c6cd; border-radius:3px; }
-
-  /* Donut chart */
-  .donut-ring { fill: none; stroke-width: 3.5; transform-origin: center; transform: rotate(-90deg); }
-
-  /* Analytics bar */
-  .bar-fill { transition: height .6s cubic-bezier(.4,0,.2,1); }
-
-  /* Action button */
-  .action-btn { @apply flex items-center gap-2 px-4 py-2.5 rounded-xl text-sm font-semibold transition-all duration-150 cursor-pointer; }
-  .action-btn:active { transform: scale(.97); }
-
-  /* Ghost border for inputs */
-  input:focus, select:focus { outline: none; ring: 2px solid #1B263B; }
-</style>
+  </script>
 </head>
 <body class="bg-surface text-on-surface">
 
-<!-- ═══════════════════════════════════════════════════════
+<!-- ═══════════════════════════════════════════════════════════════
      LOGIN PAGE
-═══════════════════════════════════════════════════════ -->
-<div id="page-login" class="page active min-h-screen flex items-center justify-center p-6 relative overflow-hidden login-bg">
+═══════════════════════════════════════════════════════════════ -->
+<div id="page-login" class="min-h-screen items-center justify-center p-6 relative overflow-hidden login-bg" style="display:flex">
   <!-- Decorative blobs -->
-  <div class="absolute top-0 left-0 w-96 h-96 bg-blue-500/10 blur-[120px] rounded-full"></div>
-  <div class="absolute bottom-0 right-0 w-96 h-96 bg-cyan-400/10 blur-[120px] rounded-full"></div>
-  <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-white/3 blur-[80px] rounded-full"></div>
+  <div class="absolute top-0 left-0 w-96 h-96 bg-blue-500/10 blur-[120px] rounded-full pointer-events-none"></div>
+  <div class="absolute bottom-0 right-0 w-96 h-96 bg-cyan-400/10 blur-[120px] rounded-full pointer-events-none"></div>
 
   <main class="relative z-10 w-full max-w-md">
     <!-- Brand -->
@@ -220,210 +82,258 @@ tailwind.config = {
       <div class="space-y-5">
         <!-- Username -->
         <div>
-          <label class="block text-[10px] font-bold text-primary uppercase tracking-wider mb-2 ml-1">University ID</label>
+          <label class="block text-[10px] font-bold text-primary uppercase tracking-wider mb-2 ml-1">
+            University ID / Email
+          </label>
           <div class="relative group">
             <div class="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none text-on-surface-variant group-focus-within:text-primary transition-colors">
               <span class="material-symbols-outlined text-[20px]">person</span>
             </div>
-            <input id="login-user" type="text" placeholder="admin_uniplan" class="block w-full pl-11 pr-4 py-3.5 bg-surface-container-low border-none rounded-xl text-on-surface text-sm ring-1 ring-inset ring-transparent focus:ring-2 focus:ring-primary-container focus:bg-white transition-all"/>
+            <input id="login-user" type="text" placeholder="admin_uniplan"
+              class="block w-full pl-11 pr-4 py-3.5 bg-surface-container-low border-none rounded-xl text-on-surface text-sm ring-1 ring-inset ring-transparent focus:ring-2 focus:ring-primary-container focus:bg-white transition-all"/>
           </div>
         </div>
+
         <!-- Password -->
         <div>
-          <label class="block text-[10px] font-bold text-primary uppercase tracking-wider mb-2 ml-1">Password</label>
+          <label class="block text-[10px] font-bold text-primary uppercase tracking-wider mb-2 ml-1">
+            Password
+          </label>
           <div class="relative group">
             <div class="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none text-on-surface-variant group-focus-within:text-primary transition-colors">
               <span class="material-symbols-outlined text-[20px]">lock</span>
             </div>
-            <input id="login-pass" type="password" placeholder="••••••••" class="block w-full pl-11 pr-12 py-3.5 bg-surface-container-low border-none rounded-xl text-on-surface text-sm ring-1 ring-inset ring-transparent focus:ring-2 focus:ring-primary-container focus:bg-white transition-all"/>
-            <button onclick="togglePassword()" class="absolute inset-y-0 right-0 pr-4 flex items-center text-on-surface-variant hover:text-primary transition-colors" type="button">
+            <input id="login-pass" type="password" placeholder="••••••••"
+              class="block w-full pl-11 pr-12 py-3.5 bg-surface-container-low border-none rounded-xl text-on-surface text-sm ring-1 ring-inset ring-transparent focus:ring-2 focus:ring-primary-container focus:bg-white transition-all"/>
+            <button onclick="togglePassword()" type="button"
+              class="absolute inset-y-0 right-0 pr-4 flex items-center text-on-surface-variant hover:text-primary transition-colors">
               <span id="eye-icon" class="material-symbols-outlined text-[20px]">visibility</span>
             </button>
           </div>
         </div>
-     
-        <!-- Error message -->
-        <div id="login-error" class="hidden px-4 py-2 bg-error-container text-error text-sm rounded-xl font-medium">
-          Invalid credentials. Try <strong>admin</strong> / <strong>uniplan</strong>
+
+        <!-- Options -->
+        <div class="flex items-center justify-between">
+          <label class="flex items-center gap-2 cursor-pointer">
+            <input type="checkbox" class="w-4 h-4 accent-primary rounded"/>
+            <span class="text-sm text-secondary font-medium">Remember me</span>
+          </label>
         </div>
+
+        <!-- Error -->
+        <div id="login-error" class="hidden px-4 py-2 bg-error-container text-error text-sm rounded-xl font-medium">
+          Please enter your username and password.
+        </div>
+
         <!-- Submit -->
-        <button onclick="doLogin()" class="w-full py-4 bg-gradient-to-br from-primary to-primary-container text-white font-headline font-bold text-sm rounded-xl shadow-lg shadow-primary/20 hover:shadow-xl hover:shadow-primary/30 active:scale-[0.98] transition-all flex items-center justify-center gap-2">
+        <button onclick="doLogin()"
+          class="w-full py-4 bg-gradient-to-br from-primary to-primary-container text-white font-headline font-bold text-sm rounded-xl shadow-lg shadow-primary/20 hover:shadow-xl hover:shadow-primary/30 active:scale-[0.98] transition-all flex items-center justify-center gap-2">
           Login to Semester Management
           <span class="material-symbols-outlined text-[18px]">arrow_forward</span>
         </button>
       </div>
 
+      <div class="mt-8 pt-6 border-t border-outline-variant/20 text-center">
+        <p class="text-on-surface-variant/50 text-[10px] uppercase tracking-widest">
+          Semester Scheduling Generator — University of Jordan
+        </p>
+      </div>
     </div>
-
   </main>
 </div>
 
-<!-- ═══════════════════════════════════════════════════════
-     MAIN APP SHELL (Dashboard + All Pages)
-═══════════════════════════════════════════════════════ -->
+<!-- ═══════════════════════════════════════════════════════════════
+     APP SHELL
+═══════════════════════════════════════════════════════════════ -->
 <div id="app-shell" class="hidden">
-<!-- SIDEBAR -->
-<aside class="h-screen w-64 fixed left-0 top-0 bg-primary flex flex-col py-6 z-50 overflow-y-auto">
-  <!-- Brand -->
-  <div class="px-6 mb-10">
-    <div class="flex items-center gap-3">
-      <div class="w-10 h-10 bg-white/10 rounded-xl flex items-center justify-center border border-white/10">
-        <span class="material-symbols-outlined text-white fill-icon">account_balance</span>
+
+  <!-- ── SIDEBAR ──────────────────────────────────────────────── -->
+  <aside class="h-screen w-64 fixed left-0 top-0 bg-primary flex flex-col py-6 z-50 overflow-y-auto">
+    <!-- Brand -->
+    <div class="px-6 mb-10">
+      <div class="flex items-center gap-3">
+        <div class="w-10 h-10 bg-white/10 rounded-xl flex items-center justify-center border border-white/10">
+          <span class="material-symbols-outlined text-white fill-icon">account_balance</span>
+        </div>
+        <div>
+          <h1 class="text-lg font-headline font-bold text-white leading-tight tracking-tight">UniPlan</h1>
+          <p class="text-[9px] text-on-primary-container uppercase tracking-[0.15em] font-semibold">Admin Portal</p>
+        </div>
       </div>
-      <div>
-        <h1 class="text-lg font-headline font-bold text-white leading-tight tracking-tight">UniPlan</h1>
-        <p class="text-[9px] text-on-primary-container uppercase tracking-[0.15em] font-semibold">Admin Portal</p>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="flex-1 space-y-1">
+      <div class="nav-item active" onclick="showPage('dashboard')" data-page="dashboard">
+        <span class="material-symbols-outlined text-[20px]">dashboard</span>
+        <span>Dashboard</span>
       </div>
-    </div>
-  </div>
+      <div class="nav-item" onclick="showPage('schedule')" data-page="schedule">
+        <span class="material-symbols-outlined text-[20px]">calendar_month</span>
+        <span>Schedule</span>
+      </div>
+      <div class="nav-item" onclick="showPage('reports')" data-page="reports">
+        <span class="material-symbols-outlined text-[20px]">assessment</span>
+        <span>Reports</span>
+      </div>
+      <div class="nav-item" onclick="showPage('analytics')" data-page="analytics">
+        <span class="material-symbols-outlined text-[20px]">bar_chart</span>
+        <span>Analytics</span>
+      </div>
+      <div class="px-5 pt-5 pb-1">
+        <p class="text-[9px] text-on-primary-container/50 uppercase tracking-[0.15em] font-bold">Actions</p>
+      </div>
+      <div class="nav-item" onclick="showPage('actions')" data-page="actions">
+        <span class="material-symbols-outlined text-[20px]">bolt</span>
+        <span>Run Pipeline</span>
+      </div>
+    </nav>
 
-  <!-- Navigation -->
-  <nav class="flex-1 space-y-1 px-2">
-    <div class="nav-item active" onclick="showPage('dashboard')" data-page="dashboard">
-      <span class="material-symbols-outlined text-[20px]">dashboard</span>
-      <span>Dashboard</span>
+    <!-- User + Logout -->
+    <div class="px-4 mt-4 space-y-3">
+      <div class="p-3 bg-white/5 rounded-2xl border border-white/10">
+        <div class="flex items-center gap-3">
+          <div class="w-9 h-9 rounded-full bg-secondary-container/30 flex items-center justify-center text-white font-bold text-sm font-headline">A</div>
+          <div class="flex-1 min-w-0">
+            <p class="text-white text-sm font-semibold truncate">Admin User</p>
+            <p class="text-on-primary-container text-[10px] truncate">Scheduler Admin</p>
+          </div>
+        </div>
+      </div>
+      <button onclick="doLogout()"
+        class="w-full flex items-center gap-2 px-3 py-2.5 rounded-xl text-on-primary-container hover:text-white hover:bg-white/10 transition-all text-sm font-medium">
+        <span class="material-symbols-outlined text-[18px]">logout</span>
+        Sign Out
+      </button>
     </div>
-    <div class="nav-item" onclick="showPage('schedule')" data-page="schedule">
-      <span class="material-symbols-outlined text-[20px]">calendar_month</span>
-      <span>Schedule</span>
-    </div>
-    <div class="nav-item" onclick="showPage('reports')" data-page="reports">
-      <span class="material-symbols-outlined text-[20px]">assessment</span>
-      <span>Reports</span>
-    </div>
-  </nav>
+  </aside>
 
-</aside>
-
-  <!-- TOP NAVBAR -->
-  <header class="fixed top-0 left-64 right-0 h-16 z-40 bg-white/80 backdrop-blur-md border-b border-outline-variant/20 flex items-center justify-between px-8 shadow-sm shadow-surface-container">
+  <!-- ── TOP NAVBAR ───────────────────────────────────────────── -->
+  <header class="fixed top-0 left-64 right-0 h-16 z-40 bg-white/80 backdrop-blur-md border-b border-outline-variant/20 flex items-center justify-between px-8 shadow-sm">
     <div class="flex items-center gap-4 flex-1">
       <div class="relative max-w-sm w-full">
         <span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-on-surface-variant text-lg">search</span>
-        <input id="global-search" type="text" placeholder="Search courses, instructors, rooms…" oninput="globalSearch(this.value)" class="w-full pl-10 pr-4 py-2 bg-surface-container-low border-none rounded-xl text-sm focus:ring-2 focus:ring-primary-container focus:bg-white transition-all"/>
+        <input id="global-search" type="text" placeholder="Search courses, instructors, rooms…"
+          oninput="globalSearch(this.value)"
+          class="w-full pl-10 pr-4 py-2 bg-surface-container-low border-none rounded-xl text-sm focus:ring-2 focus:ring-primary-container focus:bg-white transition-all"/>
       </div>
     </div>
     <div class="flex items-center gap-4">
-      <!-- Semester badge -->
       <div class="hidden md:flex items-center gap-2 px-3 py-1.5 bg-tertiary-fixed rounded-lg">
         <span class="w-2 h-2 bg-on-tertiary-container rounded-full pulse-dot"></span>
-        <span class="text-[10px] font-bold text-on-tertiary-fixed uppercase tracking-widest">Fall 2024 — Active</span>
+        <span class="text-[9px] font-bold text-on-tertiary-fixed uppercase tracking-widest">Fall 2024 — Active</span>
       </div>
-      <!-- Export PDF quick button -->
-      <button onclick="simulatePDF('schedule')" class="hidden md:flex items-center gap-2 px-4 py-2 bg-surface-container-low text-secondary rounded-xl text-sm font-semibold hover:bg-surface-container transition-colors border border-outline-variant/20">
+      <button class="relative p-2 text-secondary hover:bg-surface-container-low rounded-xl transition-colors">
+        <span class="material-symbols-outlined">notifications</span>
+      </button>
+      <button onclick="openPDF('schedule')"
+        class="hidden md:flex items-center gap-2 px-4 py-2 bg-surface-container-low text-secondary rounded-xl text-sm font-semibold hover:bg-surface-container transition-colors border border-outline-variant/20">
         <span class="material-symbols-outlined text-lg">picture_as_pdf</span>
         Export PDF
       </button>
-      <!-- Avatar -->
-      <div class="w-9 h-9 rounded-full bg-gradient-to-br from-primary to-primary-container flex items-center justify-center text-white font-bold text-sm font-headline shadow-md cursor-pointer">A</div>
+      <div class="w-9 h-9 rounded-full bg-gradient-to-br from-primary to-primary-container flex items-center justify-center text-white font-bold text-sm font-headline shadow-md">A</div>
     </div>
   </header>
 
-  <!-- MAIN CONTENT AREA -->
+  <!-- ── MAIN CONTENT ─────────────────────────────────────────── -->
   <main class="ml-64 pt-16 min-h-screen">
 
-    <!-- ─── DASHBOARD PAGE ─── -->
+    <!-- ══════════════════════════════════════════════════════════
+         DASHBOARD
+    ══════════════════════════════════════════════════════════ -->
     <div id="content-dashboard" class="p-8 max-w-[1400px] mx-auto">
-      <!-- Header -->
+
+      <!-- Page header -->
       <div class="flex justify-between items-end mb-8">
         <div>
-          <p class="text-[10px] font-bold text-on-primary-container bg-primary-container text-white px-2 py-0.5 rounded uppercase tracking-widest inline-block mb-2">Fall 2024 Planning Phase</p>
+          <p class="text-[9px] font-bold bg-primary text-white px-2 py-0.5 rounded uppercase tracking-widest inline-block mb-2">Fall 2024 Planning Phase</p>
           <h2 class="font-headline text-4xl font-extrabold text-primary tracking-tight">Dashboard</h2>
-          <p class="text-secondary text-sm mt-1 font-medium">University of Jordan — Semester Management</p>
+          <p class="text-secondary text-sm mt-1 font-medium">Semester Scheduling Generator</p>
         </div>
-        <button onclick="showPage('schedule')" class="flex items-center gap-2 px-5 py-2.5 bg-gradient-to-br from-primary to-primary-container text-white rounded-xl text-sm font-bold shadow-lg hover:shadow-xl transition-all active:scale-95">
-          <span class="material-symbols-outlined text-[18px]">calendar_month</span>
-             View Schedule
-          </button>
-          <button onclick="runFullPipeline()"
-class="flex items-center gap-2 px-5 py-2.5
-bg-gradient-to-br from-primary to-primary-container
-text-white rounded-xl text-sm font-bold
-shadow-lg hover:shadow-xl transition-all active:scale-95">
-
-<span class="material-symbols-outlined text-[18px]">auto_awesome</span>
-
-Generate Schedule
-</button>
+        <button onclick="showPage('actions')"
+          class="flex items-center gap-2 px-5 py-2.5 bg-gradient-to-br from-primary to-primary-container text-white rounded-xl text-sm font-bold shadow-lg hover:shadow-xl transition-all active:scale-95">
+          <span class="material-symbols-outlined text-[18px]">bolt</span>
+          Run Pipeline
+        </button>
       </div>
 
-      <!-- Stats Grid -->
+      <!-- Stats Grid — values filled by dashboard.js -->
       <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4 mb-8">
         <div class="stat-card bg-surface-container-lowest p-5 rounded-2xl shadow-sm">
           <p class="text-on-surface-variant text-[9px] font-bold uppercase tracking-wider mb-1">Total Students</p>
-          <h3 class="text-3xl font-extrabold text-primary font-headline">3,240</h3>
-          <div class="mt-3 flex items-center gap-1 text-[9px] font-bold text-emerald-600">
-            <span class="material-symbols-outlined text-sm">trending_up</span>+8% vs Last Year
+          <h3 id="stat-students" class="text-3xl font-extrabold text-primary font-headline">—</h3>
+          <div class="mt-3 flex items-center gap-1 text-[9px] font-bold text-secondary">
+            <span class="material-symbols-outlined text-sm">school</span>Registered
           </div>
         </div>
         <div class="stat-card bg-surface-container-lowest p-5 rounded-2xl shadow-sm">
           <p class="text-on-surface-variant text-[9px] font-bold uppercase tracking-wider mb-1">Total Courses</p>
-          <h3 class="text-3xl font-extrabold text-primary font-headline">85</h3>
+          <h3 id="stat-courses" class="text-3xl font-extrabold text-primary font-headline">—</h3>
           <div class="mt-3 flex items-center gap-1 text-[9px] font-bold text-secondary">
-            <span class="material-symbols-outlined text-sm">list_alt</span>Catalog Active
+            <span class="material-symbols-outlined text-sm">list_alt</span>Catalog
           </div>
         </div>
         <div class="stat-card bg-surface-container-lowest p-5 rounded-2xl shadow-sm">
           <p class="text-on-surface-variant text-[9px] font-bold uppercase tracking-wider mb-1">Instructors</p>
-          <h3 class="text-3xl font-extrabold text-primary font-headline">52</h3>
+          <h3 id="stat-instructors" class="text-3xl font-extrabold text-primary font-headline">—</h3>
           <div class="mt-3 flex items-center gap-1 text-[9px] font-bold text-secondary">
-            <span class="material-symbols-outlined text-sm">groups</span>96% Assigned
+            <span class="material-symbols-outlined text-sm">groups</span>Faculty
           </div>
         </div>
         <div class="stat-card bg-surface-container-lowest p-5 rounded-2xl shadow-sm">
           <p class="text-on-surface-variant text-[9px] font-bold uppercase tracking-wider mb-1">Total Rooms</p>
-          <h3 class="text-3xl font-extrabold text-primary font-headline">28</h3>
+          <h3 id="stat-rooms" class="text-3xl font-extrabold text-primary font-headline">—</h3>
           <div class="mt-3 flex items-center gap-1 text-[9px] font-bold text-secondary">
-            <span class="material-symbols-outlined text-sm">meeting_room</span>4 Buildings
+            <span class="material-symbols-outlined text-sm">meeting_room</span>Available
           </div>
         </div>
         <div class="stat-card bg-surface-container-lowest p-5 rounded-2xl shadow-sm">
           <p class="text-on-surface-variant text-[9px] font-bold uppercase tracking-wider mb-1">Opened Courses</p>
-          <h3 class="text-3xl font-extrabold text-primary font-headline">68</h3>
+          <h3 id="stat-opened" class="text-3xl font-extrabold text-primary font-headline">—</h3>
           <div class="mt-3 flex items-center gap-1 text-[9px] font-bold text-on-tertiary-container">
-            <span class="material-symbols-outlined text-sm">check_circle</span>Enrollment Open
+            <span class="material-symbols-outlined text-sm">check_circle</span>This Term
           </div>
         </div>
         <div class="stat-card bg-surface-container-lowest p-5 rounded-2xl shadow-sm ring-2 ring-primary/5">
           <p class="text-on-surface-variant text-[9px] font-bold uppercase tracking-wider mb-1">Sections Generated</p>
-          <h3 class="text-3xl font-extrabold text-primary font-headline">147</h3>
+          <h3 id="stat-sections" class="text-3xl font-extrabold text-primary font-headline">—</h3>
           <div class="mt-3 flex items-center gap-1 text-[9px] font-bold text-primary">
-            <span class="material-symbols-outlined text-sm">auto_awesome</span>Optimal
+            <span class="material-symbols-outlined text-sm">auto_awesome</span>Generated
           </div>
         </div>
       </div>
 
       <!-- Charts Row -->
       <div class="grid grid-cols-1 lg:grid-cols-7 gap-6 mb-8">
-        <!-- Bar Chart: Top Courses by Demand -->
+        <!-- Demand Bars -->
         <div class="lg:col-span-4 bg-surface-container-lowest rounded-2xl p-7 shadow-sm">
-          <div class="flex justify-between items-center mb-8">
+          <div class="flex justify-between items-center mb-6">
             <div>
-              <h3 class="font-headline font-bold text-primary text-lg">Eligible Students per Course</h3>
-              <p class="text-on-surface-variant text-xs mt-0.5">Top 6 courses by demand this semester</p>
+              <h3 class="font-headline font-bold text-primary text-lg">Top Courses by Demand</h3>
+              <p class="text-on-surface-variant text-xs mt-0.5">Eligible students per course (from schedule data)</p>
             </div>
-           <button onclick="showPage('reports')" class="text-xs font-bold text-secondary hover:text-primary transition-colors flex items-center gap-1">
-  View report <span class="material-symbols-outlined text-sm">arrow_forward</span>
-</button>
+            <button onclick="showPage('analytics')" class="text-xs font-bold text-secondary hover:text-primary transition-colors flex items-center gap-1">
+              View all <span class="material-symbols-outlined text-sm">arrow_forward</span>
+            </button>
           </div>
-          <div class="space-y-5" id="demand-bars">
-            <!-- JS-rendered bars -->
+          <div id="demand-bars" class="space-y-5">
+            <p class="text-xs text-on-surface-variant text-center py-8">Run the pipeline to see demand data.</p>
           </div>
         </div>
 
-        <!-- Donut: Open vs Closed -->
+        <!-- Donut -->
         <div class="lg:col-span-3 bg-surface-container-lowest rounded-2xl p-7 shadow-sm flex flex-col">
-          <h3 class="font-headline font-bold text-primary text-lg mb-2">Opened vs Closed</h3>
+          <h3 class="font-headline font-bold text-primary text-lg mb-1">Opened vs Closed</h3>
           <p class="text-on-surface-variant text-xs mb-6">Course offering status</p>
           <div class="flex-1 flex flex-col items-center justify-center">
             <div class="relative w-44 h-44">
               <svg viewBox="0 0 42 42" class="w-full h-full -rotate-90">
                 <circle class="donut-ring" cx="21" cy="21" r="16" stroke="#f2f4f7"/>
-                <circle class="donut-ring" cx="21" cy="21" r="16" stroke="#051125" stroke-dasharray="80 100" id="donut-open"/>
-                <circle class="donut-ring" cx="21" cy="21" r="16" stroke="#c2dcff" stroke-dasharray="20 100" stroke-dashoffset="-80" id="donut-closed"/>
+                <circle class="donut-ring" id="donut-open" cx="21" cy="21" r="16" stroke="#051125" stroke-dasharray="0 100"/>
+                <circle class="donut-ring" id="donut-closed" cx="21" cy="21" r="16" stroke="#c2dcff" stroke-dasharray="0 100" stroke-dashoffset="0"/>
               </svg>
               <div class="absolute inset-0 flex flex-col items-center justify-center">
-                <span class="text-3xl font-extrabold text-primary font-headline">85</span>
+                <span id="donut-total" class="text-3xl font-extrabold text-primary font-headline">—</span>
                 <span class="text-[9px] font-bold text-on-surface-variant uppercase tracking-wider">Total</span>
               </div>
             </div>
@@ -433,177 +343,146 @@ Generate Schedule
                   <span class="w-2.5 h-2.5 bg-primary rounded-full"></span>
                   <span class="text-[9px] font-bold text-primary uppercase tracking-wider">Opened</span>
                 </div>
-                <span class="text-2xl font-bold font-headline text-primary">68</span>
+                <span id="donut-open-count" class="text-2xl font-bold font-headline text-primary">—</span>
               </div>
               <div class="p-4 bg-surface-container-low rounded-xl">
                 <div class="flex items-center gap-2 mb-1">
                   <span class="w-2.5 h-2.5 bg-secondary-container rounded-full"></span>
                   <span class="text-[9px] font-bold text-secondary uppercase tracking-wider">Closed</span>
                 </div>
-                <span class="text-2xl font-bold font-headline text-primary">17</span>
+                <span id="donut-closed-count" class="text-2xl font-bold font-headline text-primary">—</span>
               </div>
             </div>
           </div>
         </div>
       </div>
 
-      <!-- Room Usage Row -->
+      <!-- Room Utilization -->
       <div class="bg-surface-container-lowest rounded-2xl p-7 shadow-sm mb-8">
         <div class="flex justify-between items-center mb-7">
           <div>
             <h3 class="font-headline font-bold text-primary text-lg">Room Utilization</h3>
-            <p class="text-on-surface-variant text-xs mt-0.5">Average capacity usage across all buildings</p>
-          </div>
-          <div class="flex gap-2">
-            <span class="px-3 py-1 bg-primary text-white rounded-full text-[9px] font-bold">Weekly Aggregate</span>
+            <p class="text-on-surface-variant text-xs mt-0.5">Section share per room (derived from schedule)</p>
           </div>
         </div>
-        <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
-          <div class="flex flex-col items-center text-center">
-            <div class="relative w-24 h-24 mb-3">
-              <svg viewBox="0 0 42 42" class="w-full h-full -rotate-90">
-                <circle class="donut-ring" cx="21" cy="21" r="16" stroke="#f2f4f7"/>
-                <circle class="donut-ring" cx="21" cy="21" r="16" stroke="#051125" stroke-dasharray="88 100"/>
-              </svg>
-              <div class="absolute inset-0 flex items-center justify-center">
-                <span class="text-lg font-extrabold text-primary font-headline">88%</span>
-              </div>
-            </div>
-            <p class="text-sm font-bold text-primary">Eng. Building A</p>
-            <p class="text-[10px] text-on-surface-variant">CS & IT Dept.</p>
-          </div>
-          <div class="flex flex-col items-center text-center">
-            <div class="relative w-24 h-24 mb-3">
-              <svg viewBox="0 0 42 42" class="w-full h-full -rotate-90">
-                <circle class="donut-ring" cx="21" cy="21" r="16" stroke="#f2f4f7"/>
-                <circle class="donut-ring" cx="21" cy="21" r="16" stroke="#94ccff" stroke-dasharray="72 100"/>
-              </svg>
-              <div class="absolute inset-0 flex items-center justify-center">
-                <span class="text-lg font-extrabold text-secondary font-headline">72%</span>
-              </div>
-            </div>
-            <p class="text-sm font-bold text-primary">Science Hall</p>
-            <p class="text-[10px] text-on-surface-variant">Math & Physics</p>
-          </div>
-          <div class="flex flex-col items-center text-center">
-            <div class="relative w-24 h-24 mb-3">
-              <svg viewBox="0 0 42 42" class="w-full h-full -rotate-90">
-                <circle class="donut-ring" cx="21" cy="21" r="16" stroke="#f2f4f7"/>
-                <circle class="donut-ring" cx="21" cy="21" r="16" stroke="#051125" stroke-dasharray="81 100"/>
-              </svg>
-              <div class="absolute inset-0 flex items-center justify-center">
-                <span class="text-lg font-extrabold text-primary font-headline">81%</span>
-              </div>
-            </div>
-            <p class="text-sm font-bold text-primary">Humanities Hub</p>
-            <p class="text-[10px] text-on-surface-variant">General Studies</p>
-          </div>
-          <div class="flex flex-col items-center text-center">
-            <div class="relative w-24 h-24 mb-3">
-              <svg viewBox="0 0 42 42" class="w-full h-full -rotate-90">
-                <circle class="donut-ring" cx="21" cy="21" r="16" stroke="#f2f4f7"/>
-                <circle class="donut-ring" cx="21" cy="21" r="16" stroke="#ba1a1a" stroke-dasharray="38 100"/>
-              </svg>
-              <div class="absolute inset-0 flex items-center justify-center">
-                <span class="text-lg font-extrabold text-error font-headline">38%</span>
-              </div>
-            </div>
-            <p class="text-sm font-bold text-primary">Innovation Lab</p>
-            <p class="text-[10px] text-on-surface-variant">Research Wing</p>
-          </div>
+        <div id="room-usage-grid" class="grid grid-cols-2 md:grid-cols-4 gap-6">
+          <p class="col-span-4 text-xs text-on-surface-variant text-center py-4">Run the pipeline to see room data.</p>
         </div>
       </div>
 
-      <!-- Graduating Students Banner -->
+      <!-- Graduating Banner -->
       <div class="bg-gradient-to-br from-primary to-primary-container p-7 rounded-2xl text-white flex flex-col md:flex-row justify-between items-start md:items-center gap-6">
         <div>
           <p class="text-on-primary-container text-[10px] font-bold uppercase tracking-widest mb-2">Priority Alert</p>
           <h3 class="font-headline text-xl font-bold mb-1">Graduating Student Demand</h3>
-          <p class="text-on-primary-container text-sm max-w-xl">326 graduating students have unmet course requirements. The scheduler has prioritized these students across 14 course sections to ensure on-time graduation.</p>
+          <p class="text-on-primary-container text-sm max-w-xl">
+            Graduating students have unmet course requirements. The scheduler prioritises these students to ensure on-time graduation.
+          </p>
         </div>
         <div class="flex gap-8 flex-shrink-0">
           <div class="text-center">
-            <span class="text-3xl font-extrabold font-headline text-tertiary-fixed-dim">326</span>
-            <p class="text-on-primary-container text-[9px] uppercase tracking-wider font-bold mt-1">Graduating</p>
+            <span id="banner-grad-count" class="text-3xl font-extrabold font-headline text-tertiary-fixed-dim">—</span>
+            <p class="text-on-primary-container text-[9px] uppercase tracking-wider font-bold mt-1">Grad Demand</p>
           </div>
           <div class="text-center">
-            <span class="text-3xl font-extrabold font-headline text-tertiary-fixed-dim">14</span>
+            <span id="banner-grad-sections" class="text-3xl font-extrabold font-headline text-tertiary-fixed-dim">—</span>
             <p class="text-on-primary-container text-[9px] uppercase tracking-wider font-bold mt-1">Priority Sections</p>
           </div>
           <div class="text-center">
-            <span class="text-3xl font-extrabold font-headline text-tertiary-fixed-dim">0</span>
+            <span id="stat-conflicts" class="text-3xl font-extrabold font-headline text-tertiary-fixed-dim">0</span>
             <p class="text-on-primary-container text-[9px] uppercase tracking-wider font-bold mt-1">Conflicts</p>
           </div>
         </div>
       </div>
-    </div>
+    </div><!-- /content-dashboard -->
 
-    <!-- ─── SCHEDULE PAGE ─── -->
+    <!-- ══════════════════════════════════════════════════════════
+         SCHEDULE
+    ══════════════════════════════════════════════════════════ -->
     <div id="content-schedule" class="hidden p-8 max-w-[1400px] mx-auto">
-      <!-- Header -->
+
+      <!-- Page header -->
       <div class="flex flex-col md:flex-row md:items-end justify-between mb-8 gap-4">
         <div>
-          <p class="text-[9px] font-bold text-on-primary-container bg-primary-container text-white px-2 py-0.5 rounded uppercase tracking-widest inline-block mb-2">Academic Year 2024-25</p>
-          <h2 class="font-headline text-3xl font-extrabold text-primary tracking-tight">Generated Semester Schedule</h2>
-          <p id="schedule-count" class="text-on-surface-variant text-sm mt-1">Showing all 20 course sections</p>
+          <p class="text-[9px] font-bold bg-primary text-white px-2 py-0.5 rounded uppercase tracking-widest inline-block mb-2">Generated Output</p>
+          <h2 class="font-headline text-3xl font-extrabold text-primary tracking-tight">Semester Schedule</h2>
+          <p id="schedule-count" class="text-on-surface-variant text-sm mt-1">No data yet — run the pipeline.</p>
         </div>
         <div class="flex gap-3 flex-wrap">
-          <button onclick="showPage('dashboard')" class="action-btn bg-surface-container-lowest border border-outline-variant/30 text-secondary hover:bg-surface-container">
-  <span class="material-symbols-outlined text-sm">dashboard</span>Back to Dashboard
-</button>
-          <button onclick="simulatePDF('schedule')" class="action-btn bg-primary text-white shadow-md shadow-primary/20 hover:bg-primary-container">
+          <button onclick="showPage('actions')"
+            class="action-btn bg-surface-container-lowest border border-outline-variant/30 text-secondary hover:bg-surface-container">
+            <span class="material-symbols-outlined text-sm">bolt</span>Generate New
+          </button>
+          <button onclick="openPDF('schedule')"
+            class="action-btn bg-primary text-white shadow-md shadow-primary/20 hover:bg-primary-container">
             <span class="material-symbols-outlined text-sm">download</span>Export PDF
           </button>
         </div>
       </div>
 
-      <!-- Quick Stats -->
-      <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-7">
+      <!-- Quick stats (filled by schedule.js) -->
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-6">
         <div class="bg-surface-container-lowest p-4 rounded-xl flex items-center gap-3">
           <div class="w-11 h-11 rounded-full bg-secondary-container flex items-center justify-center">
             <span class="material-symbols-outlined text-on-secondary-container text-[18px]">menu_book</span>
           </div>
-          <div><p class="text-[9px] font-bold text-on-surface-variant uppercase tracking-wider">Courses</p><p class="text-xl font-headline font-bold text-primary">20</p></div>
+          <div>
+            <p class="text-[9px] font-bold text-on-surface-variant uppercase tracking-wider">Courses</p>
+            <p id="qs-courses" class="text-xl font-headline font-bold text-primary">—</p>
+          </div>
         </div>
         <div class="bg-surface-container-lowest p-4 rounded-xl flex items-center gap-3">
           <div class="w-11 h-11 rounded-full bg-tertiary-fixed flex items-center justify-center">
             <span class="material-symbols-outlined text-on-tertiary-fixed text-[18px]">groups</span>
           </div>
-          <div><p class="text-[9px] font-bold text-on-surface-variant uppercase tracking-wider">Instructors</p><p class="text-xl font-headline font-bold text-primary">12</p></div>
+          <div>
+            <p class="text-[9px] font-bold text-on-surface-variant uppercase tracking-wider">Instructors</p>
+            <p id="qs-instructors" class="text-xl font-headline font-bold text-primary">—</p>
+          </div>
         </div>
         <div class="bg-surface-container-lowest p-4 rounded-xl flex items-center gap-3">
           <div class="w-11 h-11 rounded-full bg-secondary-container flex items-center justify-center">
             <span class="material-symbols-outlined text-on-secondary-container text-[18px]">meeting_room</span>
           </div>
-          <div><p class="text-[9px] font-bold text-on-surface-variant uppercase tracking-wider">Rooms</p><p class="text-xl font-headline font-bold text-primary">8</p></div>
+          <div>
+            <p class="text-[9px] font-bold text-on-surface-variant uppercase tracking-wider">Rooms Used</p>
+            <p id="qs-rooms" class="text-xl font-headline font-bold text-primary">—</p>
+          </div>
         </div>
         <div class="bg-surface-container-lowest p-4 rounded-xl flex items-center gap-3">
           <div class="w-11 h-11 rounded-full bg-tertiary-fixed flex items-center justify-center">
-            <span class="material-symbols-outlined text-on-tertiary-fixed text-[18px]">schedule</span>
+            <span class="material-symbols-outlined text-on-tertiary-fixed text-[18px]">view_list</span>
           </div>
-          <div><p class="text-[9px] font-bold text-on-surface-variant uppercase tracking-wider">0 Conflicts</p><p class="text-xl font-headline font-bold text-primary">100%</p></div>
+          <div>
+            <p class="text-[9px] font-bold text-on-surface-variant uppercase tracking-wider">Total Sections</p>
+            <p id="qs-sections" class="text-xl font-headline font-bold text-primary">—</p>
+          </div>
         </div>
       </div>
 
-      <!-- Filters Bar -->
+      <!-- Filter Bar -->
       <div class="bg-surface-container-lowest rounded-2xl p-4 mb-4 flex flex-wrap gap-3 items-center shadow-sm border border-outline-variant/10">
         <div class="relative flex-1 min-w-[200px]">
           <span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-on-surface-variant text-sm">search</span>
-          <input id="sched-search" type="text" placeholder="Search course, instructor, room…" oninput="filterSchedule()" class="w-full pl-9 pr-3 py-2 bg-surface-container-low rounded-xl text-sm border-none focus:ring-2 focus:ring-primary-container"/>
+          <input id="sched-search" type="text" placeholder="Search course name, instructor, room…"
+            oninput="ScheduleModule.applyFilters()"
+            class="w-full pl-9 pr-3 py-2 bg-surface-container-low rounded-xl text-sm border-none focus:ring-2 focus:ring-primary-container"/>
         </div>
-        <select id="sched-filter-day" onchange="filterSchedule()" class="px-3 py-2 bg-surface-container-low rounded-xl text-sm border-none text-on-surface focus:ring-2 focus:ring-primary-container">
+        <select id="sched-filter-day" onchange="ScheduleModule.applyFilters()"
+          class="px-3 py-2 bg-surface-container-low rounded-xl text-sm border-none text-on-surface focus:ring-2 focus:ring-primary-container">
           <option value="">All Day Patterns</option>
           <option value="Sun/Tue">Sun / Tue</option>
           <option value="Mon/Wed">Mon / Wed</option>
-          <option value="Sun/Tue/Thu">Sun / Tue / Thu</option>
         </select>
-        <select id="sched-filter-hours" onchange="filterSchedule()" class="px-3 py-2 bg-surface-container-low rounded-xl text-sm border-none text-on-surface focus:ring-2 focus:ring-primary-container">
-          <option value="">All Hours</option>
-          <option value="3">3 hr</option>
-          <option value="2">2 hr</option>
+        <select id="sched-filter-hours" onchange="ScheduleModule.applyFilters()"
+          class="px-3 py-2 bg-surface-container-low rounded-xl text-sm border-none text-on-surface focus:ring-2 focus:ring-primary-container">
+          <option value="">All Credit Hours</option>
           <option value="1">1 hr</option>
+          <option value="2">2 hr</option>
+          <option value="3">3 hr</option>
         </select>
-        <button onclick="clearScheduleFilters()" class="px-4 py-2 text-secondary text-sm font-medium hover:text-primary transition-colors flex items-center gap-1">
+        <button onclick="ScheduleModule.clearFilters()"
+          class="px-4 py-2 text-secondary text-sm font-medium hover:text-primary transition-colors flex items-center gap-1">
           <span class="material-symbols-outlined text-sm">close</span>Clear
         </button>
       </div>
@@ -614,145 +493,125 @@ Generate Schedule
           <table class="w-full text-left">
             <thead>
               <tr class="bg-surface-container-low">
-                <th class="sortable px-5 py-4 text-[10px] font-bold text-on-surface-variant uppercase tracking-widest" onclick="sortSchedule('courseId')">
-                  Course ID <span class="sort-icon material-symbols-outlined text-sm align-middle">unfold_more</span>
+                <th class="sortable px-5 py-4 text-[10px] font-bold text-on-surface-variant uppercase tracking-widest"
+                    onclick="ScheduleModule.sort('course_id')">
+                  Course ID <span class="sort-icon material-symbols-outlined">unfold_more</span>
                 </th>
-                <th class="sortable px-5 py-4 text-[10px] font-bold text-on-surface-variant uppercase tracking-widest" onclick="sortSchedule('name')">
-                  Course Name <span class="sort-icon material-symbols-outlined text-sm align-middle">unfold_more</span>
+                <th class="sortable px-5 py-4 text-[10px] font-bold text-on-surface-variant uppercase tracking-widest"
+                    onclick="ScheduleModule.sort('course_name')">
+                  Course Name <span class="sort-icon material-symbols-outlined">unfold_more</span>
                 </th>
                 <th class="px-5 py-4 text-[10px] font-bold text-on-surface-variant uppercase tracking-widest text-center">Section</th>
-                <th class="sortable px-5 py-4 text-[10px] font-bold text-on-surface-variant uppercase tracking-widest" onclick="sortSchedule('instructor')">
-                  Instructor <span class="sort-icon material-symbols-outlined text-sm align-middle">unfold_more</span>
+                <th class="sortable px-5 py-4 text-[10px] font-bold text-on-surface-variant uppercase tracking-widest"
+                    onclick="ScheduleModule.sort('instructor_name')">
+                  Instructor <span class="sort-icon material-symbols-outlined">unfold_more</span>
                 </th>
                 <th class="px-5 py-4 text-[10px] font-bold text-on-surface-variant uppercase tracking-widest">Room</th>
                 <th class="px-5 py-4 text-[10px] font-bold text-on-surface-variant uppercase tracking-widest">Day Pattern</th>
-                <th class="sortable px-5 py-4 text-[10px] font-bold text-on-surface-variant uppercase tracking-widest" onclick="sortSchedule('startTime')">
-                  Start <span class="sort-icon material-symbols-outlined text-sm align-middle">unfold_more</span>
+                <th class="sortable px-5 py-4 text-[10px] font-bold text-on-surface-variant uppercase tracking-widest"
+                    onclick="ScheduleModule.sort('start_time')">
+                  Start <span class="sort-icon material-symbols-outlined">unfold_more</span>
                 </th>
                 <th class="px-5 py-4 text-[10px] font-bold text-on-surface-variant uppercase tracking-widest">End</th>
-                <th class="sortable px-5 py-4 text-[10px] font-bold text-on-surface-variant uppercase tracking-widest text-right" onclick="sortSchedule('hours')">
-                  Hrs <span class="sort-icon material-symbols-outlined text-sm align-middle">unfold_more</span>
+                <th class="sortable px-5 py-4 text-[10px] font-bold text-on-surface-variant uppercase tracking-widest text-right"
+                    onclick="ScheduleModule.sort('credit_hours')">
+                  Hrs <span class="sort-icon material-symbols-outlined">unfold_more</span>
                 </th>
               </tr>
             </thead>
-            <tbody id="schedule-tbody" class="divide-y divide-outline-variant/5 text-sm">
-              <!-- JS-rendered -->
-            </tbody>
+            <tbody id="schedule-tbody" class="divide-y divide-outline-variant/5 text-sm"></tbody>
           </table>
         </div>
+        <!-- Pagination -->
         <div class="px-5 py-3 bg-surface-container-low/50 flex justify-between items-center text-xs text-on-surface-variant border-t border-outline-variant/10">
-          <span id="sched-pager-info">Showing 1–20 of 20</span>
+          <span id="sched-pager-info">—</span>
           <div class="flex items-center gap-2">
-            <button id="sched-prev" onclick="schedPage(-1)" class="w-7 h-7 flex items-center justify-center rounded-lg bg-surface-container-lowest text-secondary shadow-sm disabled:opacity-40 hover:bg-surface-container-high transition-colors" disabled>
+            <button id="sched-prev" onclick="ScheduleModule.changePage(-1)"
+              class="w-7 h-7 flex items-center justify-center rounded-lg bg-surface-container-lowest text-secondary shadow-sm disabled:opacity-40 hover:bg-surface-container-high transition-colors" disabled>
               <span class="material-symbols-outlined text-sm">chevron_left</span>
             </button>
             <span id="sched-page-num" class="w-7 h-7 flex items-center justify-center bg-primary text-white rounded-lg text-xs font-bold">1</span>
-            <button id="sched-next" onclick="schedPage(1)" class="w-7 h-7 flex items-center justify-center rounded-lg bg-surface-container-lowest text-secondary shadow-sm hover:bg-surface-container-high transition-colors">
+            <button id="sched-next" onclick="ScheduleModule.changePage(1)"
+              class="w-7 h-7 flex items-center justify-center rounded-lg bg-surface-container-lowest text-secondary shadow-sm hover:bg-surface-container-high transition-colors">
               <span class="material-symbols-outlined text-sm">chevron_right</span>
             </button>
           </div>
         </div>
       </div>
+    </div><!-- /content-schedule -->
 
-      <!-- Insights Card -->
-      <div class="mt-6 grid grid-cols-1 md:grid-cols-2 gap-5">
-        <div class="bg-gradient-to-br from-primary to-primary-container p-7 rounded-2xl text-white">
-          <h3 class="font-headline text-lg font-bold mb-2">Scheduler Insights</h3>
-          <p class="text-on-primary-container text-sm leading-relaxed mb-5">Room utilization optimized at 88%. No scheduling conflicts detected. All paired-day constraints (Sun/Tue, Mon/Wed) respected.</p>
-          <div class="flex gap-6">
-            <div><span class="text-[9px] font-bold text-on-primary-container uppercase tracking-wider block">Conflicts</span><span class="text-2xl font-extrabold font-headline text-tertiary-fixed-dim">0</span></div>
-            <div class="w-px bg-white/20"></div>
-            <div><span class="text-[9px] font-bold text-on-primary-container uppercase tracking-wider block">Efficiency</span><span class="text-2xl font-extrabold font-headline text-tertiary-fixed-dim">88%</span></div>
-            <div class="w-px bg-white/20"></div>
-            <div><span class="text-[9px] font-bold text-on-primary-container uppercase tracking-wider block">Sections</span><span class="text-2xl font-extrabold font-headline text-tertiary-fixed-dim">147</span></div>
-          </div>
-        </div>
-        <div class="bg-tertiary-fixed p-6 rounded-2xl border border-outline-variant/10">
-          <h4 class="font-headline font-bold text-primary mb-4 flex items-center gap-2">
-            <span class="material-symbols-outlined text-lg">history</span>Recent Versions
-          </h4>
-          <div class="space-y-3">
-            <div class="p-3 bg-white/60 rounded-xl"><p class="text-xs font-bold text-primary">Version 3.1 (Current)</p><p class="text-[10px] text-on-surface-variant">Generated Nov 12, 09:45 AM</p></div>
-            <div class="p-3 bg-white/30 rounded-xl"><p class="text-xs font-semibold text-secondary">Version 3.0</p><p class="text-[10px] text-on-surface-variant">Generated Nov 11, 03:20 PM</p></div>
-            <div class="p-3 bg-white/30 rounded-xl"><p class="text-xs font-semibold text-secondary">Version 2.9</p><p class="text-[10px] text-on-surface-variant">Generated Nov 10, 11:00 AM</p></div>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- ─── REPORTS PAGE ─── -->
+    <!-- ══════════════════════════════════════════════════════════
+         REPORTS
+    ══════════════════════════════════════════════════════════ -->
     <div id="content-reports" class="hidden p-8 max-w-[1400px] mx-auto">
+
       <div class="flex flex-col md:flex-row md:items-end justify-between mb-8 gap-4">
         <div>
           <div class="flex items-center gap-2 mb-2">
-            <span class="text-[9px] bg-surface-container-high text-on-surface-variant px-2 py-0.5 rounded uppercase tracking-widest font-bold">AY 2024-25</span>
-            <span class="text-[9px] bg-primary text-white px-2 py-0.5 rounded uppercase tracking-widest font-bold">Fall Term</span>
+            <span class="text-[9px] bg-primary text-white px-2 py-0.5 rounded uppercase tracking-widest font-bold">Fall 2024</span>
+            <span class="text-[9px] bg-tertiary-fixed text-on-tertiary-fixed px-2 py-0.5 rounded uppercase tracking-widest font-bold">Summary Report</span>
           </div>
           <h2 class="font-headline text-3xl font-extrabold text-primary tracking-tight">Semester Summary Report</h2>
-          <p class="text-on-surface-variant text-sm mt-1">Course allocation performance, student demand priorities, and faculty distribution.</p>
+          <p class="text-on-surface-variant text-sm mt-1">Course allocation, demand analysis, and faculty distribution.</p>
         </div>
-        <button onclick="simulatePDF('report')" class="action-btn bg-gradient-to-br from-primary to-primary-container text-white shadow-lg">
+        <button onclick="openPDF('report')"
+          class="action-btn bg-gradient-to-br from-primary to-primary-container text-white shadow-lg">
           <span class="material-symbols-outlined text-sm">download</span>Generate Report PDF
         </button>
       </div>
 
-      <!-- Stats -->
-      <!-- Stats -->
-<div class="grid grid-cols-1 md:grid-cols-4 gap-5 mb-8">
-  <div class="bg-surface-container-lowest p-6 rounded-2xl shadow-sm border border-outline-variant/10">
-    <p class="text-on-surface-variant text-[9px] font-bold uppercase tracking-wider mb-1">Total Sections</p>
-    <h3 id="stat-sections" class="text-3xl font-extrabold text-primary font-headline">0</h3>
-    <div class="mt-3 flex items-center gap-1 text-emerald-600 text-[9px] font-bold">
-      <span class="material-symbols-outlined text-sm">trending_up</span>Generated sections
-    </div>
-  </div>
-
-  <div class="bg-surface-container-lowest p-6 rounded-2xl shadow-sm border border-outline-variant/10">
-    <p class="text-on-surface-variant text-[9px] font-bold uppercase tracking-wider mb-1">Graduating Seats</p>
-    <h3 id="stat-graduating" class="text-3xl font-extrabold text-primary font-headline">0</h3>
-    <div class="mt-3 text-secondary text-[9px] font-medium">Priority seats allocated</div>
-  </div>
-
-  <div class="md:col-span-2 bg-primary p-6 rounded-2xl shadow-xl text-white relative overflow-hidden">
-    <div class="relative z-10">
-      <p class="text-on-primary-container text-[9px] font-bold uppercase tracking-wider mb-1">Efficiency Rating</p>
-      <h3 id="stat-efficiency" class="text-3xl font-extrabold font-headline mb-4">0%</h3>
-      <div class="w-full bg-white/20 rounded-full h-1.5 mb-2">
-        <div id="stat-efficiency-bar" class="bg-tertiary-fixed-dim h-full rounded-full" style="width:0%"></div>
+      <!-- Report stats -->
+      <div class="grid grid-cols-1 md:grid-cols-4 gap-5 mb-8">
+        <div class="bg-surface-container-lowest p-6 rounded-2xl shadow-sm border border-outline-variant/10">
+          <p class="text-on-surface-variant text-[9px] font-bold uppercase tracking-wider mb-1">Total Sections</p>
+          <h3 id="rpt-stat-sections" class="text-3xl font-extrabold text-primary font-headline">—</h3>
+        </div>
+        <div class="bg-surface-container-lowest p-6 rounded-2xl shadow-sm border border-outline-variant/10">
+          <p class="text-on-surface-variant text-[9px] font-bold uppercase tracking-wider mb-1">Graduating Students</p>
+          <h3 id="rpt-stat-graduating" class="text-3xl font-extrabold text-primary font-headline">—</h3>
+          <div class="mt-3 text-secondary text-[9px] font-medium">Across all sections</div>
+        </div>
+        <div class="md:col-span-2 bg-primary p-6 rounded-2xl shadow-xl text-white relative overflow-hidden">
+          <div class="relative z-10">
+            <p class="text-on-primary-container text-[9px] font-bold uppercase tracking-wider mb-1">Scheduling Efficiency</p>
+            <h3 class="text-3xl font-extrabold font-headline mb-3">0 Conflicts</h3>
+            <div class="w-full bg-white/20 rounded-full h-1.5 mb-2">
+              <div class="bg-tertiary-fixed-dim h-full rounded-full" style="width:100%"></div>
+            </div>
+            <p class="text-on-primary-container text-[10px]">No room or instructor conflicts detected</p>
+          </div>
+          <div class="absolute -right-4 -bottom-4 opacity-10">
+            <span class="material-symbols-outlined text-[100px]">insights</span>
+          </div>
+        </div>
       </div>
-      <p class="text-on-primary-container text-[10px]">Room utilization optimized across all campus buildings</p>
-    </div>
-    <div class="absolute -right-4 -bottom-4 opacity-10">
-      <span class="material-symbols-outlined text-[100px]">insights</span>
-    </div>
-  </div>
-</div>
 
-      <!-- Report Filter Bar -->
+      <!-- Report filter bar -->
       <div class="bg-surface-container-lowest rounded-2xl p-4 mb-4 flex flex-wrap gap-3 items-center shadow-sm border border-outline-variant/10">
         <div class="relative flex-1 min-w-[180px]">
           <span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-on-surface-variant text-sm">search</span>
-          <input id="report-search" type="text" placeholder="Search course or instructor…" oninput="filterReport()" class="w-full pl-9 pr-3 py-2 bg-surface-container-low rounded-xl text-sm border-none focus:ring-2 focus:ring-primary-container"/>
+          <input id="report-search" type="text" placeholder="Search course name or instructor…"
+            oninput="ReportModule.applyFilters()"
+            class="w-full pl-9 pr-3 py-2 bg-surface-container-low rounded-xl text-sm border-none focus:ring-2 focus:ring-primary-container"/>
         </div>
-        <select id="report-filter-reason" onchange="filterReport()" class="px-3 py-2 bg-surface-container-low rounded-xl text-sm border-none text-on-surface focus:ring-2 focus:ring-primary-container">
+        <select id="report-filter-reason" onchange="ReportModule.applyFilters()"
+          class="px-3 py-2 bg-surface-container-low rounded-xl text-sm border-none text-on-surface focus:ring-2 focus:ring-primary-container">
           <option value="">All Reasons</option>
-          <option value="High Demand">High Demand</option>
-          <option value="Graduation Priority">Graduation Priority</option>
-          <option value="Normal Demand">Normal Demand</option>
+          <option value="High demand">High Demand</option>
+          <option value="Graduating priority">Graduating Priority</option>
+          <option value="Normal demand">Normal Demand</option>
+          <option value="Low demand">Low Demand</option>
         </select>
-        <button onclick="clearReportFilters()" class="px-4 py-2 text-secondary text-sm font-medium hover:text-primary transition-colors flex items-center gap-1">
+        <button onclick="ReportModule.clearFilters()"
+          class="px-4 py-2 text-secondary text-sm font-medium hover:text-primary transition-colors flex items-center gap-1">
           <span class="material-symbols-outlined text-sm">close</span>Clear
         </button>
       </div>
 
-      <!-- Report Table -->
+      <!-- Report table -->
       <div class="bg-surface-container-lowest rounded-2xl shadow-sm overflow-hidden border border-outline-variant/10">
         <div class="px-7 py-5 flex items-center justify-between border-b border-surface-container-low">
           <h3 class="font-headline font-bold text-primary text-lg">Course Distribution Analysis</h3>
-          <div class="flex gap-2">
-            <button class="p-2 rounded-xl hover:bg-surface-container-low text-on-surface-variant transition-colors"><span class="material-symbols-outlined">filter_list</span></button>
-            <button class="p-2 rounded-xl hover:bg-surface-container-low text-on-surface-variant transition-colors"><span class="material-symbols-outlined">more_vert</span></button>
-          </div>
         </div>
         <div class="overflow-x-auto">
           <table class="w-full text-left">
@@ -767,44 +626,237 @@ Generate Schedule
                 <th class="px-7 py-4 text-[10px] font-bold text-on-surface-variant uppercase tracking-widest text-right">Reason Opened</th>
               </tr>
             </thead>
-            <tbody id="report-tbody" class="divide-y divide-surface-container-low text-sm text-secondary">
-              <!-- JS-rendered -->
-            </tbody>
+            <tbody id="report-tbody" class="divide-y divide-surface-container-low text-sm text-secondary"></tbody>
           </table>
         </div>
         <div class="px-7 py-4 bg-surface-container-low/30 flex justify-between items-center text-xs text-on-surface-variant border-t border-outline-variant/10">
-          <span id="report-count">Showing all sections</span>
-          <div class="flex items-center gap-4">
-            <button onclick="simulatePDF('report')" class="text-primary font-bold hover:underline">Generate PDF Report</button>
+          <span id="report-count">—</span>
+          <button onclick="openPDF('report')" class="text-primary font-bold hover:underline">Open PDF Report</button>
+        </div>
+      </div>
+    </div><!-- /content-reports -->
+
+    <!-- ══════════════════════════════════════════════════════════
+         ANALYTICS
+    ══════════════════════════════════════════════════════════ -->
+    <div id="content-analytics" class="hidden p-8 max-w-[1400px] mx-auto">
+      <div class="mb-8">
+        <h2 class="font-headline text-3xl font-extrabold text-primary tracking-tight">Analytics</h2>
+        <p class="text-secondary text-sm mt-1">All charts are derived from the generated schedule data.</p>
+      </div>
+
+      <!-- Metric row -->
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8">
+        <div class="bg-surface-container-lowest p-5 rounded-2xl shadow-sm text-center">
+          <span class="material-symbols-outlined text-secondary mb-2">view_list</span>
+          <p id="an-total-sections"  class="text-2xl font-extrabold text-primary font-headline">—</p>
+          <p class="text-[9px] text-on-surface-variant uppercase tracking-wider font-bold mt-1">Total Sections</p>
+        </div>
+        <div class="bg-surface-container-lowest p-5 rounded-2xl shadow-sm text-center">
+          <span class="material-symbols-outlined text-secondary mb-2">menu_book</span>
+          <p id="an-unique-courses"  class="text-2xl font-extrabold text-primary font-headline">—</p>
+          <p class="text-[9px] text-on-surface-variant uppercase tracking-wider font-bold mt-1">Unique Courses</p>
+        </div>
+        <div class="bg-surface-container-lowest p-5 rounded-2xl shadow-sm text-center">
+          <span class="material-symbols-outlined text-secondary mb-2">meeting_room</span>
+          <p id="an-unique-rooms"    class="text-2xl font-extrabold text-primary font-headline">—</p>
+          <p class="text-[9px] text-on-surface-variant uppercase tracking-wider font-bold mt-1">Rooms Used</p>
+        </div>
+        <div class="bg-surface-container-lowest p-5 rounded-2xl shadow-sm text-center">
+          <span class="material-symbols-outlined text-secondary mb-2">school</span>
+          <p id="an-total-students"  class="text-2xl font-extrabold text-primary font-headline">—</p>
+          <p class="text-[9px] text-on-surface-variant uppercase tracking-wider font-bold mt-1">Total Students</p>
+        </div>
+      </div>
+
+      <div class="grid grid-cols-1 lg:grid-cols-7 gap-6 mb-6">
+        <!-- Full demand bars -->
+        <div class="lg:col-span-4 bg-surface-container-lowest rounded-2xl p-7 shadow-sm">
+          <h3 class="font-headline font-bold text-primary mb-6">All Courses — Student Demand</h3>
+          <div id="analytics-full-bars" class="space-y-3 max-h-[400px] overflow-y-auto pr-2"></div>
+        </div>
+        <!-- Section dist + day split -->
+        <div class="lg:col-span-3 bg-surface-container-lowest rounded-2xl p-7 shadow-sm">
+          <h3 class="font-headline font-bold text-primary mb-5">Section Distribution</h3>
+          <div id="analytics-section-dist" class="space-y-4 mb-8"></div>
+          <h4 class="font-headline font-semibold text-primary mb-4 text-base">Day Pattern Split</h4>
+          <div id="analytics-day-split" class="space-y-3"></div>
+        </div>
+      </div>
+
+      <!-- Room usage -->
+      <div class="bg-surface-container-lowest rounded-2xl p-7 shadow-sm">
+        <h3 class="font-headline font-bold text-primary mb-6">Room Usage — Sections per Room</h3>
+        <div id="analytics-room-usage" class="grid grid-cols-1 md:grid-cols-2 gap-3 max-h-[300px] overflow-y-auto pr-2"></div>
+      </div>
+    </div><!-- /content-analytics -->
+
+    <!-- ══════════════════════════════════════════════════════════
+         PIPELINE ACTIONS
+    ══════════════════════════════════════════════════════════ -->
+    <div id="content-actions" class="hidden p-8 max-w-[1400px] mx-auto">
+      <div class="mb-8">
+        <h2 class="font-headline text-3xl font-extrabold text-primary tracking-tight">Run Pipeline</h2>
+        <p class="text-secondary text-sm mt-1">Execute the full scheduling pipeline. Calls <code class="bg-surface-container-low px-1 rounded text-xs">eel.run_pipeline()</code> in <code class="bg-surface-container-low px-1 rounded text-xs">web_app.py</code>.</p>
+      </div>
+
+      <div class="grid grid-cols-1 lg:grid-cols-5 gap-6">
+        <!-- Steps + Run All -->
+        <div class="lg:col-span-3 space-y-4">
+          <!-- Step cards (visual only — full pipeline runs as one eel call) -->
+          <div class="bg-surface-container-lowest rounded-2xl p-6 shadow-sm border-2 border-transparent hover:border-primary/10 transition-all">
+            <div class="flex items-center gap-4">
+              <div class="w-12 h-12 rounded-2xl bg-secondary-container flex items-center justify-center flex-shrink-0">
+                <span class="material-symbols-outlined text-on-secondary-container">cloud_download</span>
+              </div>
+              <div>
+                <p class="font-headline font-bold text-primary">1. Load Data</p>
+                <p class="text-on-surface-variant text-xs mt-0.5">Import students, courses, instructors, rooms, and time slots from SQL Server.</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="bg-surface-container-lowest rounded-2xl p-6 shadow-sm border-2 border-transparent hover:border-primary/10 transition-all">
+            <div class="flex items-center gap-4">
+              <div class="w-12 h-12 rounded-2xl bg-tertiary-fixed flex items-center justify-center flex-shrink-0">
+                <span class="material-symbols-outlined text-on-tertiary-fixed">manage_search</span>
+              </div>
+              <div>
+                <p class="font-headline font-bold text-primary">2. Analyze Students</p>
+                <p class="text-on-surface-variant text-xs mt-0.5">Identify needed courses, flag graduating students, compute demand per course.</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="bg-surface-container-lowest rounded-2xl p-6 shadow-sm border-2 border-transparent hover:border-primary/10 transition-all">
+            <div class="flex items-center gap-4">
+              <div class="w-12 h-12 rounded-2xl bg-secondary-container flex items-center justify-center flex-shrink-0">
+                <span class="material-symbols-outlined text-on-secondary-container">playlist_add_check</span>
+              </div>
+              <div>
+                <p class="font-headline font-bold text-primary">3. Build Course Offerings</p>
+                <p class="text-on-surface-variant text-xs mt-0.5">Open sections based on demand, capacity, and graduation priority rules.</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="bg-surface-container-lowest rounded-2xl p-6 shadow-sm border-2 border-transparent hover:border-primary/10 transition-all">
+            <div class="flex items-center gap-4">
+              <div class="w-12 h-12 rounded-2xl bg-primary flex items-center justify-center flex-shrink-0">
+                <span class="material-symbols-outlined text-white">auto_awesome</span>
+              </div>
+              <div>
+                <p class="font-headline font-bold text-primary">4. Generate Schedule + Export PDFs</p>
+                <p class="text-on-surface-variant text-xs mt-0.5">Assign instructors, rooms, and time slots. Save to DB and export PDFs.</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Run All -->
+          <button onclick="PipelineModule.runPipeline()"
+            class="w-full py-4 bg-gradient-to-br from-primary to-primary-container text-white font-headline font-bold rounded-2xl shadow-xl shadow-primary/20 hover:shadow-2xl hover:shadow-primary/30 active:scale-[0.98] transition-all flex items-center justify-center gap-3 text-base mt-2">
+            <span class="material-symbols-outlined text-xl">rocket_launch</span>
+            Run Full Pipeline
+          </button>
+        </div>
+
+        <!-- Right panel -->
+        <div class="lg:col-span-2 space-y-5">
+          <!-- Export -->
+          <div class="bg-surface-container-lowest rounded-2xl p-6 shadow-sm">
+            <h3 class="font-headline font-bold text-primary mb-5">Export PDFs</h3>
+            <div class="space-y-3">
+              <button onclick="openPDF('schedule')"
+                class="w-full flex items-center gap-3 p-4 bg-surface-container-low rounded-xl hover:bg-surface-container-high transition-colors text-left group">
+                <div class="w-10 h-10 bg-error-container rounded-xl flex items-center justify-center flex-shrink-0">
+                  <span class="material-symbols-outlined text-error text-[20px]">picture_as_pdf</span>
+                </div>
+                <div>
+                  <p class="font-semibold text-primary text-sm">Schedule PDF</p>
+                  <p class="text-[10px] text-on-surface-variant">semester_schedule.pdf</p>
+                </div>
+                <span class="material-symbols-outlined text-on-surface-variant ml-auto group-hover:text-primary transition-colors">open_in_new</span>
+              </button>
+              <button onclick="openPDF('report')"
+                class="w-full flex items-center gap-3 p-4 bg-surface-container-low rounded-xl hover:bg-surface-container-high transition-colors text-left group">
+                <div class="w-10 h-10 bg-secondary-container rounded-xl flex items-center justify-center flex-shrink-0">
+                  <span class="material-symbols-outlined text-on-secondary-container text-[20px]">summarize</span>
+                </div>
+                <div>
+                  <p class="font-semibold text-primary text-sm">Summary Report PDF</p>
+                  <p class="text-[10px] text-on-surface-variant">summary_report.pdf</p>
+                </div>
+                <span class="material-symbols-outlined text-on-surface-variant ml-auto group-hover:text-primary transition-colors">open_in_new</span>
+              </button>
+            </div>
+          </div>
+
+          <!-- System Status -->
+          <div class="bg-surface-container-lowest rounded-2xl p-6 shadow-sm">
+            <h3 class="font-headline font-bold text-primary mb-5">System Status</h3>
+            <div class="space-y-3 text-sm">
+              <div class="flex items-center justify-between">
+                <span class="text-secondary font-medium">SQL Server (localhost)</span>
+                <span class="flex items-center gap-1.5 text-emerald-600 font-bold text-[9px] uppercase">
+                  <span class="w-2 h-2 bg-emerald-500 rounded-full pulse-dot"></span>Connected
+                </span>
+              </div>
+              <div class="flex items-center justify-between">
+                <span class="text-secondary font-medium">Scheduling Engine</span>
+                <span class="flex items-center gap-1.5 text-emerald-600 font-bold text-[9px] uppercase">
+                  <span class="w-2 h-2 bg-emerald-500 rounded-full pulse-dot"></span>Ready
+                </span>
+              </div>
+              <div class="flex items-center justify-between">
+                <span class="text-secondary font-medium">PDF Exporter</span>
+                <span class="flex items-center gap-1.5 text-emerald-600 font-bold text-[9px] uppercase">
+                  <span class="w-2 h-2 bg-emerald-500 rounded-full pulse-dot"></span>Available
+                </span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Constraints -->
+          <div class="bg-tertiary-fixed rounded-2xl p-6 border border-outline-variant/10">
+            <h3 class="font-headline font-bold text-primary mb-4 flex items-center gap-2 text-base">
+              <span class="material-symbols-outlined text-lg">rule</span>Active Constraints
+            </h3>
+            <ul class="space-y-2 text-xs text-on-tertiary-fixed font-medium">
+              <li class="flex items-start gap-2"><span class="material-symbols-outlined text-sm text-primary mt-0.5">check</span>No room or instructor conflicts</li>
+              <li class="flex items-start gap-2"><span class="material-symbols-outlined text-sm text-primary mt-0.5">check</span>Max 2 sections per course per instructor</li>
+              <li class="flex items-start gap-2"><span class="material-symbols-outlined text-sm text-primary mt-0.5">check</span>First 2 sections assigned same instructor</li>
+              <li class="flex items-start gap-2"><span class="material-symbols-outlined text-sm text-primary mt-0.5">check</span>Sections must be on different day patterns</li>
+              <li class="flex items-start gap-2"><span class="material-symbols-outlined text-sm text-primary mt-0.5">check</span>Operating hours: 08:00 – 16:00</li>
+              <li class="flex items-start gap-2"><span class="material-symbols-outlined text-sm text-primary mt-0.5">check</span>Graduating priority: &gt;= 1 graduating student forces section open</li>
+            </ul>
           </div>
         </div>
       </div>
-    </div>
-    
+    </div><!-- /content-actions -->
 
-   
   </main><!-- /main -->
 </div><!-- /app-shell -->
 
-<!-- ═══════════════════════════════════════════════════════
+<!-- ═══════════════════════════════════════════════════════════════
      PROCESSING MODAL
-═══════════════════════════════════════════════════════ -->
-<div id="processing-modal" class="fixed inset-0 z-[100] hidden flex items-center justify-center modal-overlay bg-primary/40">
+═══════════════════════════════════════════════════════════════ -->
+<div id="processing-modal" class="fixed inset-0 z-[100] hidden items-center justify-center modal-overlay bg-primary/40">
   <div class="bg-surface-container-lowest w-full max-w-lg mx-4 rounded-3xl shadow-2xl p-8">
     <!-- Header -->
     <div class="flex items-center gap-4 mb-7">
       <div class="w-12 h-12 rounded-2xl bg-gradient-to-br from-primary to-primary-container flex items-center justify-center">
         <svg id="spinner-svg" class="spinner w-6 h-6 text-white" viewBox="0 0 24 24" fill="none">
-          <circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="2.5" stroke-dasharray="56.5" stroke-dashoffset="45" stroke-linecap="round"/>
+          <circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="2.5"
+            stroke-dasharray="56.5" stroke-dashoffset="45" stroke-linecap="round"/>
         </svg>
       </div>
       <div>
-        <h3 class="font-headline font-bold text-primary text-lg" id="modal-title">Running Pipeline</h3>
-        <p class="text-on-surface-variant text-xs" id="modal-subtitle">UniPlan Semester Scheduling Generator</p>
+        <h3 class="font-headline font-bold text-primary text-lg">Running Pipeline</h3>
+        <p class="text-on-surface-variant text-xs">UniPlan Semester Scheduling Generator</p>
       </div>
     </div>
 
-    <!-- Progress Bar -->
+    <!-- Progress -->
     <div class="mb-6">
       <div class="flex justify-between text-xs font-bold text-primary mb-2">
         <span id="modal-step-label">Initializing…</span>
@@ -815,663 +867,77 @@ Generate Schedule
       </div>
     </div>
 
-    <!-- Steps List -->
-    <div class="space-y-3" id="modal-steps">
-      <div class="flex items-center gap-3 text-sm step-visible" id="mstep-0">
-        <div class="w-7 h-7 rounded-full bg-surface-container-low flex items-center justify-center flex-shrink-0" id="mstep-icon-0">
+    <!-- Steps -->
+    <div class="space-y-3">
+      <div class="flex items-center gap-3 text-sm">
+        <div id="mstep-icon-0" class="w-7 h-7 rounded-full bg-surface-container-low flex items-center justify-center flex-shrink-0">
           <span class="material-symbols-outlined text-sm text-on-surface-variant">radio_button_unchecked</span>
         </div>
-        <span class="text-on-surface-variant" id="mstep-text-0">Load Data</span>
+        <span id="mstep-text-0" class="text-on-surface-variant">Load Data</span>
       </div>
-      <div class="flex items-center gap-3 text-sm" id="mstep-1">
-        <div class="w-7 h-7 rounded-full bg-surface-container-low flex items-center justify-center flex-shrink-0" id="mstep-icon-1">
+      <div class="flex items-center gap-3 text-sm">
+        <div id="mstep-icon-1" class="w-7 h-7 rounded-full bg-surface-container-low flex items-center justify-center flex-shrink-0">
           <span class="material-symbols-outlined text-sm text-on-surface-variant">radio_button_unchecked</span>
         </div>
-        <span class="text-on-surface-variant" id="mstep-text-1">Analyze Students</span>
+        <span id="mstep-text-1" class="text-on-surface-variant">Analyze Students</span>
       </div>
-      <div class="flex items-center gap-3 text-sm" id="mstep-2">
-        <div class="w-7 h-7 rounded-full bg-surface-container-low flex items-center justify-center flex-shrink-0" id="mstep-icon-2">
+      <div class="flex items-center gap-3 text-sm">
+        <div id="mstep-icon-2" class="w-7 h-7 rounded-full bg-surface-container-low flex items-center justify-center flex-shrink-0">
           <span class="material-symbols-outlined text-sm text-on-surface-variant">radio_button_unchecked</span>
         </div>
-        <span class="text-on-surface-variant" id="mstep-text-2">Build Course Offerings</span>
+        <span id="mstep-text-2" class="text-on-surface-variant">Build Course Offerings</span>
       </div>
-      <div class="flex items-center gap-3 text-sm" id="mstep-3">
-        <div class="w-7 h-7 rounded-full bg-surface-container-low flex items-center justify-center flex-shrink-0" id="mstep-icon-3">
+      <div class="flex items-center gap-3 text-sm">
+        <div id="mstep-icon-3" class="w-7 h-7 rounded-full bg-surface-container-low flex items-center justify-center flex-shrink-0">
           <span class="material-symbols-outlined text-sm text-on-surface-variant">radio_button_unchecked</span>
         </div>
-        <span class="text-on-surface-variant" id="mstep-text-3">Generate Schedule</span>
+        <span id="mstep-text-3" class="text-on-surface-variant">Generate Schedule</span>
       </div>
     </div>
 
     <!-- Status message -->
     <div id="modal-status" class="mt-6 p-3 bg-surface-container-low rounded-xl text-xs text-on-surface-variant font-mono">
-      Connecting to SQL Server database…
+      Waiting for backend…
     </div>
 
-    <!-- Done state (hidden initially) -->
+    <!-- Error box (hidden by default) -->
+    <div id="modal-error-box" class="hidden mt-3 p-3 bg-error-container text-error rounded-xl text-xs font-medium"></div>
+
+    <!-- Done button -->
     <div id="modal-done" class="hidden mt-5 flex justify-end">
-      <button onclick="closeModal()" class="px-6 py-2.5 bg-primary text-white rounded-xl font-bold text-sm hover:bg-primary-container transition-colors">
+      <button onclick="PipelineModule.closeModal()"
+        class="px-6 py-2.5 bg-primary text-white rounded-xl font-bold text-sm hover:bg-primary-container transition-colors">
         View Schedule →
       </button>
     </div>
   </div>
 </div>
 
-<!-- PDF Toast -->
-<div id="pdf-toast" class="fixed bottom-6 right-6 z-[200] hidden">
+<!-- ═══════════════════════════════════════════════════════════════
+     TOAST NOTIFICATION
+═══════════════════════════════════════════════════════════════ -->
+<div id="toast" class="fixed bottom-6 right-6 z-[200] hidden">
   <div class="bg-primary text-white px-5 py-4 rounded-2xl shadow-2xl flex items-center gap-3 text-sm font-medium">
-    <span class="material-symbols-outlined text-tertiary-fixed-dim">check_circle</span>
-    <span id="pdf-toast-msg">PDF generated successfully!</span>
+    <span id="toast-icon" class="material-symbols-outlined text-tertiary-fixed-dim">check_circle</span>
+    <span id="toast-msg">Done</span>
   </div>
 </div>
 
-<!-- ═══════════════════════════════════════════════════════
-     DATA + JAVASCRIPT
-═══════════════════════════════════════════════════════ -->
-<script>
 
-// ─── STATE ──────────────────────────────────────────────
-let SCHEDULE_DATA = [];
-let REPORT_DATA = [];
-let DEMAND_DATA = [];
-
-let currentPage = 'dashboard';
-let schedSortCol = null, schedSortDir = 1;
-let schedCurrentPage = 1, schedPageSize = 10;
-let filteredSched = [];
-let filteredReport = [];
-let completedSteps = new Set();
-// ─── LOGIN ───────────────────────────────────────────────
-function doLogin() {
-  const u = document.getElementById('login-user').value.trim();
-  const p = document.getElementById('login-pass').value.trim();
-  const errEl = document.getElementById('login-error');
-  if ((u === 'admin' || u === '') && (p === 'uniplan' || p === '')) {
-    errEl.classList.add('hidden');
-    document.getElementById('page-login').classList.remove('active');
-    document.getElementById('page-login').style.display = 'none';
-    document.getElementById('app-shell').classList.remove('hidden');
-    renderDemandBars();
-    renderScheduleTable();
-    renderReportTable();
-    renderAnalyticsBars();
-  } else {
-    errEl.classList.remove('hidden');
-  }
-}
-
-function doLogout() {
-  document.getElementById('app-shell').classList.add('hidden');
-  document.getElementById('page-login').style.display = 'flex';
-  document.getElementById('page-login').classList.add('active');
-  document.getElementById('login-user').value = '';
-  document.getElementById('login-pass').value = '';
-}
-
-function togglePassword() {
-  const inp = document.getElementById('login-pass');
-  const icon = document.getElementById('eye-icon');
-  if (inp.type === 'password') { inp.type = 'text'; icon.textContent = 'visibility_off'; }
-  else { inp.type = 'password'; icon.textContent = 'visibility'; }
-}
-
-// Enter key on login
-document.addEventListener('keydown', e => {
-  if (e.key === 'Enter' && document.getElementById('page-login').style.display !== 'none') doLogin();
-});
-
-// ─── NAVIGATION ─────────────────────────────────────────
-function showPage(page) {
-  // Hide all content divs
-  ['dashboard','schedule','reports','analytics','actions'].forEach(p => {
-    const el = document.getElementById('content-' + p);
-    if (el) el.classList.add('hidden');
-  });
-  // Show selected
-  const target = document.getElementById('content-' + page);
-  if (target) target.classList.remove('hidden');
-
-  // Update sidebar
-  document.querySelectorAll('[data-page]').forEach(el => {
-    el.classList.remove('active');
-    if (el.dataset.page === page) el.classList.add('active');
-  });
-  currentPage = page;
-  window.scrollTo(0,0);
-}
-
-// ─── DEMAND BARS (dashboard) ────────────────────────────
-function renderDemandBars() {
-  const container = document.getElementById('demand-bars');
-  if (!container) return;
-  const top6 = DEMAND_DATA.slice(0,6);
-  const maxVal = top6[0].students;
-  container.innerHTML = top6.map(d => `
-    <div class="space-y-1.5">
-      <div class="flex justify-between text-xs font-semibold text-secondary">
-        <span>${d.name}</span><span>${d.students} students</span>
-      </div>
-      <div class="h-2.5 w-full bg-surface-container-low rounded-full overflow-hidden">
-        <div class="h-full bg-gradient-to-r from-primary to-primary-container rounded-full" style="width:${Math.round(d.students/maxVal*100)}%"></div>
-      </div>
-    </div>`).join('');
-}
-
-// ─── ANALYTICS FULL BARS ────────────────────────────────
-function renderAnalyticsBars() {
-  const container = document.getElementById('analytics-full-bars');
-  if (!container) return;
-  const maxVal = DEMAND_DATA[0].students;
-  container.innerHTML = DEMAND_DATA.map(d => `
-    <div class="space-y-1">
-      <div class="flex justify-between text-xs font-semibold text-secondary">
-        <span>${d.name}</span><span>${d.students}</span>
-      </div>
-      <div class="h-2.5 w-full bg-surface-container-low rounded-full overflow-hidden">
-        <div class="h-full bg-gradient-to-r from-primary to-primary-container rounded-full" style="width:${Math.round(d.students/maxVal*100)}%"></div>
-      </div>
-    </div>`).join('');
-}
-
-// ─── SCHEDULE TABLE ─────────────────────────────────────
-function dayChips(day) {
-  if (day === 'Sun/Tue') {
-    return '<div class="flex gap-1"><span class="px-1.5 py-0.5 rounded text-[9px] font-bold chip-st">SUN</span><span class="px-1.5 py-0.5 rounded text-[9px] font-bold chip-st">TUE</span></div>';
-  } else if (day === 'Mon/Wed') {
-    return '<div class="flex gap-1"><span class="px-1.5 py-0.5 rounded text-[9px] font-bold chip-mw">MON</span><span class="px-1.5 py-0.5 rounded text-[9px] font-bold chip-mw">WED</span></div>';
-  } else {
-    return `<span class="px-2 py-0.5 rounded text-[9px] font-bold chip-sun">${day || ''}</span>`;
-  }
-}
-
-function renderScheduleTable() {
-  const tbody = document.getElementById('schedule-tbody');
-  if (!tbody) return;
-
-  const start = (schedCurrentPage - 1) * schedPageSize;
-  const page = filteredSched.slice(start, start + schedPageSize);
-
-  tbody.innerHTML = page.map(r => `
-    <tr class="data-row transition-colors">
-      <td class="px-5 py-3.5 font-mono text-xs font-semibold text-secondary">${r.course_id ?? ''}</td>
-      <td class="px-5 py-3.5 font-medium text-primary text-sm">${r.course_name ?? ''}</td>
-      <td class="px-5 py-3.5 text-center">
-        <span class="px-2 py-0.5 bg-secondary-container text-on-secondary-container text-[9px] font-bold rounded">${r.section_no ?? ''}</span>
-      </td>
-      <td class="px-5 py-3.5 text-on-surface-variant text-sm">${r.instructor_name ?? ''}</td>
-      <td class="px-5 py-3.5 text-on-surface-variant text-sm">${r.room_id ?? ''}</td>
-      <td class="px-5 py-3.5">${dayChips(r.day)}</td>
-      <td class="px-5 py-3.5 text-sm tabular-nums font-medium">${r.start_time ?? ''}</td>
-      <td class="px-5 py-3.5 text-sm tabular-nums font-medium">${r.end_time ?? ''}</td>
-      <td class="px-5 py-3.5 text-right font-semibold text-secondary">${r.credit_hours ?? ''}</td>
-    </tr>`).join('');
-
-  const total = filteredSched.length;
-  const totalPages = Math.max(1, Math.ceil(total / schedPageSize));
-  document.getElementById('schedule-count').textContent = `Showing ${Math.min(start + 1, total || 0)}–${Math.min(start + schedPageSize, total)} of ${total} course sections`;
-  document.getElementById('sched-pager-info').textContent = `Showing ${Math.min(start + 1, total || 0)}–${Math.min(start + schedPageSize, total)} of ${total}`;
-  document.getElementById('sched-page-num').textContent = schedCurrentPage;
-  document.getElementById('sched-prev').disabled = schedCurrentPage <= 1;
-  document.getElementById('sched-next').disabled = schedCurrentPage >= totalPages;
-}
-
-function dayChips(day) {
-  if (day === 'Sun/Tue') {
-    return '<div class="flex gap-1"><span class="px-1.5 py-0.5 rounded text-[9px] font-bold chip-st">SUN</span><span class="px-1.5 py-0.5 rounded text-[9px] font-bold chip-st">TUE</span></div>';
-  } else if (day === 'Mon/Wed') {
-    return '<div class="flex gap-1"><span class="px-1.5 py-0.5 rounded text-[9px] font-bold chip-mw">MON</span><span class="px-1.5 py-0.5 rounded text-[9px] font-bold chip-mw">WED</span></div>';
-  } else {
-    return `<span class="px-2 py-0.5 rounded text-[9px] font-bold chip-sun">${day || ''}</span>`;
-  }
-}
-
-function renderScheduleTable() {
-  const tbody = document.getElementById('schedule-tbody');
-  if (!tbody) return;
-
-  const start = (schedCurrentPage - 1) * schedPageSize;
-  const page = filteredSched.slice(start, start + schedPageSize);
-
-  tbody.innerHTML = page.map(r => `
-    <tr class="data-row transition-colors">
-      <td class="px-5 py-3.5 font-mono text-xs font-semibold text-secondary">${r.course_id ?? ''}</td>
-      <td class="px-5 py-3.5 font-medium text-primary text-sm">${r.course_name ?? ''}</td>
-      <td class="px-5 py-3.5 text-center">
-        <span class="px-2 py-0.5 bg-secondary-container text-on-secondary-container text-[9px] font-bold rounded">${r.section_no ?? ''}</span>
-      </td>
-      <td class="px-5 py-3.5 text-on-surface-variant text-sm">${r.instructor_name ?? ''}</td>
-      <td class="px-5 py-3.5 text-on-surface-variant text-sm">${r.room_id ?? ''}</td>
-      <td class="px-5 py-3.5">${dayChips(r.day)}</td>
-      <td class="px-5 py-3.5 text-sm tabular-nums font-medium">${r.start_time ?? ''}</td>
-      <td class="px-5 py-3.5 text-sm tabular-nums font-medium">${r.end_time ?? ''}</td>
-      <td class="px-5 py-3.5 text-right font-semibold text-secondary">${r.credit_hours ?? ''}</td>
-    </tr>
-  `).join('');
-
-  const total = filteredSched.length;
-  const totalPages = Math.max(1, Math.ceil(total / schedPageSize));
-
-  document.getElementById('schedule-count').textContent =
-    `Showing ${Math.min(start + 1, total || 0)}–${Math.min(start + schedPageSize, total)} of ${total} course sections`;
-
-  document.getElementById('sched-pager-info').textContent =
-    `Showing ${Math.min(start + 1, total || 0)}–${Math.min(start + schedPageSize, total)} of ${total}`;
-
-  document.getElementById('sched-page-num').textContent = schedCurrentPage;
-  document.getElementById('sched-prev').disabled = schedCurrentPage <= 1;
-  document.getElementById('sched-next').disabled = schedCurrentPage >= totalPages;
-}
-
-function filterSchedule() {
-  const search = (document.getElementById('sched-search')?.value || '').toLowerCase();
-  const day = document.getElementById('sched-filter-day')?.value || '';
-  const hrs = document.getElementById('sched-filter-hours')?.value || '';
-
-  filteredSched = SCHEDULE_DATA.filter(r => {
-    const matchText =
-      !search ||
-      String(r.course_name ?? '').toLowerCase().includes(search) ||
-      String(r.course_id ?? '').toLowerCase().includes(search) ||
-      String(r.instructor_name ?? '').toLowerCase().includes(search) ||
-      String(r.room_id ?? '').toLowerCase().includes(search);
-
-    const matchDay = !day || r.day === day;
-    const matchHrs = !hrs || String(r.credit_hours ?? '') === hrs;
-
-    return matchText && matchDay && matchHrs;
-  });
-
-  if (schedSortCol) applySortToFiltered();
-  schedCurrentPage = 1;
-  renderScheduleTable();
-}
-
-function clearScheduleFilters() {
-  document.getElementById('sched-search').value = '';
-  document.getElementById('sched-filter-day').value = '';
-  document.getElementById('sched-filter-hours').value = '';
-  filteredSched = [...SCHEDULE_DATA];
-  schedCurrentPage = 1;
-  renderScheduleTable();
-}
-
-function sortSchedule(col) {
-  if (schedSortCol === col) schedSortDir *= -1;
-  else { schedSortCol = col; schedSortDir = 1; }
-  applySortToFiltered();
-  renderScheduleTable();
-}
-
-function applySortToFiltered() {
-  filteredSched.sort((a, b) => {
-    let va = '';
-    let vb = '';
-
-    if (schedSortCol === 'courseId') {
-      va = a.course_id ?? '';
-      vb = b.course_id ?? '';
-    } else if (schedSortCol === 'name') {
-      va = a.course_name ?? '';
-      vb = b.course_name ?? '';
-    } else if (schedSortCol === 'instructor') {
-      va = a.instructor_name ?? '';
-      vb = b.instructor_name ?? '';
-    } else if (schedSortCol === 'startTime') {
-      va = a.start_time ?? '';
-      vb = b.start_time ?? '';
-    } else if (schedSortCol === 'hours') {
-      va = Number(a.credit_hours ?? 0);
-      vb = Number(b.credit_hours ?? 0);
-      return (va - vb) * schedSortDir;
-    }
-
-    return String(va).localeCompare(String(vb)) * schedSortDir;
-  });
-}
-
-function schedPage(dir) {
-  const totalPages = Math.ceil(filteredSched.length / schedPageSize);
-  schedCurrentPage = Math.max(1, Math.min(totalPages, schedCurrentPage + dir));
-  renderScheduleTable();
-}
-
-// ─── REPORT TABLE ────────────────────────────────────────
-function reasonBadge(reason) {
-  if (reason === 'High Demand') return '<span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-[9px] font-bold badge-high uppercase tracking-wider">High Demand</span>';
-  if (reason === 'Graduation Priority') return '<span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-[9px] font-bold badge-grad uppercase tracking-wider">Graduation Priority</span>';
-  return '<span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-[9px] font-bold badge-normal uppercase tracking-wider">Normal Demand</span>';
-}
-
-function renderReportTable() {
-  const tbody = document.getElementById('report-tbody');
-  if (!tbody) return;
-
-  tbody.innerHTML = filteredReport.map(r => `
-    <tr class="data-row transition-colors">
-      <td class="px-7 py-4">
-        <div class="flex flex-col">
-          <span class="font-bold text-primary text-sm">${r.course_name ?? ''}</span>
-          <span class="text-[10px] text-on-surface-variant">${r.course_id ?? ''}</span>
-        </div>
-      </td>
-
-      <td class="px-5 py-4 text-center font-medium text-secondary">${r.section ?? ''}</td>
-
-      <td class="px-5 py-4 text-sm text-on-surface-variant">
-        <div class="flex items-center gap-1.5">
-          <span class="material-symbols-outlined text-sm">location_on</span>
-          ${r.room ?? ''}
-        </div>
-      </td>
-
-      <td class="px-5 py-4 text-sm font-medium text-secondary">${r.instructor ?? ''}</td>
-
-      <td class="px-5 py-4 text-center text-sm">${r.students ?? 0}/${r.room_capacity ?? ''}</td>
-
-      <td class="px-5 py-4 text-center text-sm font-semibold ${Number(r.graduating_students ?? 0) > 15 ? 'text-error' : 'text-on-surface-variant'}">
-        ${r.graduating_students ?? 0}
-      </td>
-
-      <td class="px-7 py-4 text-right">${reasonBadge(r.reason)}</td>
-    </tr>
-  `).join('');
-
-  document.getElementById('report-count').textContent =
-    `Showing ${filteredReport.length} of ${REPORT_DATA.length} sections`;
-}
-
-function filterReport() {
-  const search = (document.getElementById('report-search')?.value || '').toLowerCase();
-  const reason = document.getElementById('report-filter-reason')?.value || '';
-
-  filteredReport = REPORT_DATA.filter(r => {
-    const matchText =
-      !search ||
-      String(r.course_name ?? '').toLowerCase().includes(search) ||
-      String(r.instructor ?? '').toLowerCase().includes(search) ||
-      String(r.course_id ?? '').toLowerCase().includes(search);
-
-    const matchReason = !reason || String(r.reason ?? '') === reason;
-
-    return matchText && matchReason;
-  });
-
-  renderReportTable();
-}
-
-function clearReportFilters() {
-  document.getElementById('report-search').value = '';
-  document.getElementById('report-filter-reason').value = '';
-  filteredReport = [...REPORT_DATA];
-  renderReportTable();
-}
-
-// ─── GLOBAL SEARCH ──────────────────────────────────────
-function globalSearch(val) {
-  if (!val) return;
-  // Navigate to schedule page and apply search
-  showPage('schedule');
-  const si = document.getElementById('sched-search');
-  if (si) { si.value = val; filterSchedule(); }
-}
-
-// ─── PIPELINE ────────────────────────────────────────────
-const PIPELINE_STEPS = [
-  { label:'Load Data',             msgs:['Connecting to SQL Server…','Loading student records…','Importing course catalog…','Loading rooms and time slots…'] },
-  { label:'Analyze Students',      msgs:['Scanning student transcripts…','Identifying prerequisite gaps…','Flagging graduating students…','Computing course demand weights…'] },
-  { label:'Build Course Offerings',msgs:['Ranking courses by demand…','Applying graduation priority rules…','Calculating section counts…','Opening sections in database…'] },
-  { label:'Generate Schedule',     msgs:['Assigning instructors to sections…','Allocating rooms without conflicts…','Applying Sun/Tue, Mon/Wed patterns…','Verifying time slot integrity…','Final conflict scan… 0 found!'] },
-];
-
-function showProcessingModal(stepsToRun) {
-  document.getElementById('processing-modal').classList.remove('hidden');
-  document.getElementById('processing-modal').style.display = 'flex';
-  document.getElementById('modal-done').classList.add('hidden');
-  document.getElementById('spinner-svg').classList.add('spinner');
-  // Reset step icons
-  for (let i=0;i<4;i++){
-    const icon = document.getElementById('mstep-icon-'+i);
-    const text = document.getElementById('mstep-text-'+i);
-    icon.innerHTML = '<span class="material-symbols-outlined text-sm text-on-surface-variant">radio_button_unchecked</span>';
-    icon.className = 'w-7 h-7 rounded-full bg-surface-container-low flex items-center justify-center flex-shrink-0';
-    text.className = 'text-on-surface-variant';
-  }
-  runSteps(stepsToRun, 0);
-}
-
-function runSteps(stepsToRun, idx) {
-  if (idx >= stepsToRun.length) {
-    // Done
-    document.getElementById('modal-progress-bar').style.width = '100%';
-    document.getElementById('modal-pct').textContent = '100%';
-    document.getElementById('modal-step-label').textContent = '✓ Schedule Generated Successfully';
-    document.getElementById('modal-status').textContent = '✓ All steps completed. 0 conflicts detected.';
-    document.getElementById('spinner-svg').classList.remove('spinner');
-    document.getElementById('modal-done').classList.remove('hidden');
-    stepsToRun.forEach(si => completedSteps.add(si));
-    updateStepBadges();
-    return;
-  }
-  const stepIdx = stepsToRun[idx];
-  const step = PIPELINE_STEPS[stepIdx];
-  const pct = Math.round((idx / stepsToRun.length) * 100);
-  document.getElementById('modal-progress-bar').style.width = pct + '%';
-  document.getElementById('modal-pct').textContent = pct + '%';
-  document.getElementById('modal-step-label').textContent = step.label + '…';
-
-  // Mark previous steps done
-  for (let i=0;i<idx;i++){
-    const prevIdx = stepsToRun[i];
-    const ic = document.getElementById('mstep-icon-'+prevIdx);
-    if (ic) {
-      ic.innerHTML = '<span class="material-symbols-outlined text-sm text-white">check</span>';
-      ic.className = 'w-7 h-7 rounded-full bg-emerald-500 flex items-center justify-center flex-shrink-0';
-      document.getElementById('mstep-text-'+prevIdx).className = 'text-on-surface font-semibold';
-    }
-  }
-  // Mark current active
-  const ac = document.getElementById('mstep-icon-'+stepIdx);
-  if (ac) {
-    ac.innerHTML = '<div class="w-3 h-3 border-2 border-primary border-t-transparent rounded-full" style="animation: spin .6s linear infinite"></div>';
-    ac.className = 'w-7 h-7 rounded-full bg-surface-container-high flex items-center justify-center flex-shrink-0';
-    document.getElementById('mstep-text-'+stepIdx).className = 'text-primary font-bold';
-  }
-
-  // Cycle through step messages
-  let msgIdx = 0;
-  const interval = setInterval(() => {
-    document.getElementById('modal-status').textContent = step.msgs[msgIdx] || step.msgs[step.msgs.length-1];
-    msgIdx++;
-    if (msgIdx >= step.msgs.length) {
-      clearInterval(interval);
-      setTimeout(() => runSteps(stepsToRun, idx+1), 300);
-    }
-  }, 500);
-}
-
-function runFullPipeline() {
-  showProcessingModal([0,1,2,3]);
-}
-
-function runSingleStep(stepIdx) {
-  showProcessingModal([stepIdx]);
-}
-
-function updateStepBadges() {
-  const names = ['load','analyze','offer','gen'];
-  names.forEach((n,i) => {
-    const badge = document.getElementById('step-'+n+'-badge');
-    if (badge && completedSteps.has(i)) badge.classList.remove('hidden');
-  });
-}
-
-function closeModal() {
-  document.getElementById('processing-modal').style.display = 'none';
-  document.getElementById('processing-modal').classList.add('hidden');
-  showPage('schedule');
-}
-
-// ─── PDF SIMULATION ─────────────────────────────────────
-function simulatePDF(type) {
-  const toast = document.getElementById('pdf-toast');
-  const msg = document.getElementById('pdf-toast-msg');
-  msg.textContent = type === 'schedule' ? 'Schedule PDF generated successfully!' : 'Summary Report PDF generated!';
-  toast.classList.remove('hidden');
-  toast.style.display = 'block';
-  setTimeout(() => {
-    toast.style.display = 'none';
-    toast.classList.add('hidden');
-  }, 3000);
-}
-
-// ─── INIT ────────────────────────────────────────────────
-// Allow Enter key to proceed login
-document.addEventListener('DOMContentLoaded', () => {
-  // Pre-fill for demo ease
-  // document.getElementById('login-user').value = 'admin';
-  // document.getElementById('login-pass').value = 'uniplan';
-});
-async function loadSchedule() {
-  const res = await fetch('./schedule.json');
-  const data = await res.json();
-
-  SCHEDULE_DATA = data;
-  filteredSched = [...SCHEDULE_DATA];
-  renderScheduleTable();
-}
-
-async function loadReport() {
-  const res = await fetch('./report.json');
-  const data = await res.json();
-
-  REPORT_DATA = data;
-  filteredReport = [...REPORT_DATA];
-  renderReportTable();
-}
-
-async function loadStats() {
-  const res = await fetch('./stats.json');
-  const data = await res.json();
-
-  const statCards = document.querySelectorAll('#content-dashboard h3.text-3xl');
-  if (statCards.length >= 6) {
-    statCards[0].textContent = data.students ?? 0;
-    statCards[1].textContent = data.courses ?? 0;
-    statCards[2].textContent = data.instructors ?? 0;
-    statCards[3].textContent = data.rooms ?? 0;
-    statCards[4].textContent = data.opened_courses ?? 0;
-    statCards[5].textContent = data.sections_generated ?? 0;
-  }
-}
-
-window.addEventListener("DOMContentLoaded", async () => {
-  try {
-    await loadStats();
-    await loadSchedule();
-    await loadReport();
-  } catch (err) {
-    console.error("Failed to load JSON files:", err);
-  }
-});
-async function runFullPipeline() {
-
-  try {
-
-    showProcessingModal([0,1,2,3]);
-
-    const result = await eel.run_pipeline()();
-
-    if (!result || result.status !== "success") {
-
-      document.getElementById('modal-status').textContent =
-        result?.message || "Generation failed";
-
-      return;
-    }
-
-    await loadStats();
-    await loadSchedule();
-    await loadReport();
-
-    document.getElementById('modal-status').textContent =
-      "Schedule generated successfully";
-
-    document.getElementById('modal-done').classList.remove('hidden');
-
-  }
-  catch(err) {
-
-    console.error(err);
-
-    alert("Error running pipeline");
-  }
-}async function loadSchedule() {
-
-  const res = await fetch('./schedule.json');
-
-  const data = await res.json();
-
-  SCHEDULE_DATA = data;
-
-  filteredSched = [...SCHEDULE_DATA];
-
-  renderScheduleTable();
-}
-async function loadReport() {
-
-  const res = await fetch('./report.json');
-
-  const data = await res.json();
-
-  REPORT_DATA = data;
-
-  filteredReport = [...REPORT_DATA];
-
-  renderReportTable();
-}
-async function loadStats() {
-
-  const res = await fetch('./stats.json');
-
-  const data = await res.json();
-
-  document.getElementById('stat-students').textContent =
-    data.students ?? 0;
-
-  document.getElementById('stat-courses').textContent =
-    data.courses ?? 0;
-
-  document.getElementById('stat-instructors').textContent =
-    data.instructors ?? 0;
-
-  document.getElementById('stat-rooms').textContent =
-    data.rooms ?? 0;
-
-  document.getElementById('stat-sections').textContent =
-    data.sections_generated ?? 0;
-
-}
-window.addEventListener("DOMContentLoaded", async () => {
-
-  try {
-
-    await loadSchedule();
-
-    await loadReport();
-
-    await loadStats();
-
-  }
-  catch(e) {
-
-    console.log("waiting for generate...");
-
-  }
-
-});
-
-</script>
-
+<!-- ═══════════════════════════════════════════════════════════════
+     SCRIPTS — loaded in dependency order, NO inline logic
+═══════════════════════════════════════════════════════════════ -->
+<script src="js/config.js"></script>
+<script src="js/ui.js"></script>
+<script src="js/dashboard.js"></script>
+<script src="js/schedule.js"></script>
+<script src="js/reports.js"></script>
+<script src="js/analytics.js"></script>
+<script src="js/pipeline.js"></script>
+<script src="js/app.js"></script>
+
+<!-- eel.js — served automatically by eel (Python) at runtime -->
 <script src="/eel.js"></script>
+
 </body>
 </html>
