@@ -1,11 +1,12 @@
 /**
- * config.js
- * Central configuration: file paths, field name constants,
- * pipeline step definitions. Edit here to update globally.
+ * config.js  —  updated
+ * Central configuration: file paths, field name constants, pipeline steps.
+ * New in this version:
+ *   SF.ROOM_TYPE   — 'room_type' field in schedule rows
+ *   RF.ROOM_TYPE   — 'room_type' field in report rows
  */
 
-// ─── FILE PATHS ───────────────────────────────────────────────────────────────
-// These match what web_app.py writes into the web/ folder.
+// ── File Paths ────────────────────────────────────────────────────────────────
 const CONFIG = {
   SCHEDULE_JSON:  'schedule.json',
   REPORT_JSON:    'report.json',
@@ -14,8 +15,7 @@ const CONFIG = {
   REPORT_PDF:     'summary_report.pdf',
 };
 
-// ─── FIELD NAMES: SCHEDULE (matches scheduler_engine output) ─────────────────
-// Reference: schedule.json keys
+// ── Schedule Row Fields  (matches scheduler_engine output + schedule.json) ────
 const SF = {
   SCHEDULE_ID:       'schedule_id',
   COURSE_ID:         'course_id',
@@ -27,6 +27,7 @@ const SF = {
   INSTRUCTOR_NAME:   'instructor_name',
   ROOM_ID:           'room_id',
   ROOM_NAME:         'room_name',
+  ROOM_TYPE:         'room_type',        // ← NEW
   TIME_ID:           'time_id',
   DAY:               'day',
   START_TIME:        'start_time',
@@ -34,14 +35,14 @@ const SF = {
   CREDIT_HOURS:      'credit_hours',
 };
 
-// ─── FIELD NAMES: REPORT (matches student_summary.py output) ─────────────────
-// Reference: report.json keys
+// ── Report Row Fields  (matches student_summary.py build_summary output) ──────
 const RF = {
   COURSE_ID:           'course_id',
   COURSE_NAME:         'course_name',
   SECTION:             'section',
-  ROOM:                'room',
-  ROOM_NAME:           'room_name',      // added in updated student_summary.py
+  ROOM:                'room',            // room_id integer (kept for compat)
+  ROOM_NAME:           'room_name',       // human-readable room label
+  ROOM_TYPE:           'room_type',       // ← NEW
   ROOM_CAPACITY:       'room_capacity',
   INSTRUCTOR:          'instructor',
   STUDENTS:            'students',
@@ -50,7 +51,7 @@ const RF = {
   REASON:              'reason',
 };
 
-// ─── FIELD NAMES: STATS (matches web_app.py stats dict) ──────────────────────
+// ── Stats Fields  (matches stats.json written by web_app.py) ─────────────────
 const STAT_F = {
   STUDENTS:           'students',
   COURSES:            'courses',
@@ -61,7 +62,7 @@ const STAT_F = {
   CONFLICTS:          'conflicts',
 };
 
-// ─── REASON VALUES (exact strings from student_summary.py) ───────────────────
+// ── Reason Values  (exact strings from student_summary.py) ───────────────────
 const REASON = {
   GRADUATING: 'Graduating priority',
   HIGH:       'High demand',
@@ -69,7 +70,10 @@ const REASON = {
   LOW:        'Low demand',
 };
 
-// ─── PIPELINE STEP DEFINITIONS ────────────────────────────────────────────────
+// ── Valid Day Patterns ────────────────────────────────────────────────────────
+const VALID_DAYS = ['Sun/Tue', 'Mon/Wed'];
+
+// ── Pipeline Step Definitions ─────────────────────────────────────────────────
 const PIPELINE_STEPS = [
   {
     id:    'load',
@@ -105,10 +109,10 @@ const PIPELINE_STEPS = [
     id:    'schedule',
     label: 'Generate Schedule',
     msgs: [
+      'Sorting sections by demand (high → low)…',
+      'Assigning largest suitable rooms first…',
       'Assigning instructors to sections…',
-      'Allocating rooms without conflicts…',
       'Applying Sun/Tue · Mon/Wed patterns…',
-      'Verifying time slot integrity…',
       'Final conflict scan… 0 found ✓',
     ],
   },

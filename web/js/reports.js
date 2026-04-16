@@ -1,17 +1,16 @@
 /**
- * reports.js
- * Summary report table: rendering and filtering.
- * Uses real field names from RF constants (config.js).
- * Matches exact output of student_summary.py build_summary().
+ * reports.js  —  updated
+ * New in this version:
+ *   • room_type column added to the report table (RF.ROOM_TYPE)
+ *   • Filter dropdown option labels now use the exact backend reason strings
  */
 
 const ReportModule = (() => {
 
-  // ── State ────────────────────────────────────────────────────────────────────
   let _data     = [];
   let _filtered = [];
 
-  // ── Init ─────────────────────────────────────────────────────────────────────
+  // ── Init ───────────────────────────────────────────────────────────────────
   function init(data) {
     _data     = Array.isArray(data) ? data : [];
     _filtered = [..._data];
@@ -19,7 +18,7 @@ const ReportModule = (() => {
     _renderStats();
   }
 
-  // ── Filter ───────────────────────────────────────────────────────────────────
+  // ── Filter ─────────────────────────────────────────────────────────────────
   function applyFilters() {
     const search = (document.getElementById('report-search')?.value || '').toLowerCase().trim();
     const reason = document.getElementById('report-filter-reason')?.value || '';
@@ -29,9 +28,7 @@ const ReportModule = (() => {
         || String(r[RF.COURSE_NAME] || '').toLowerCase().includes(search)
         || String(r[RF.INSTRUCTOR]  || '').toLowerCase().includes(search)
         || String(r[RF.COURSE_ID]   || '').toLowerCase().includes(search);
-
-      const matchReason = !reason || String(r[RF.REASON] || '') === reason;
-
+      const matchReason = !reason || r[RF.REASON] === reason;
       return matchText && matchReason;
     });
 
@@ -39,13 +36,15 @@ const ReportModule = (() => {
   }
 
   function clearFilters() {
-    const els = ['report-search', 'report-filter-reason'];
-    els.forEach(id => { const el = document.getElementById(id); if (el) el.value = ''; });
+    ['report-search', 'report-filter-reason'].forEach(id => {
+      const el = document.getElementById(id);
+      if (el) el.value = '';
+    });
     _filtered = [..._data];
     _render();
   }
 
-  // ── Render Table ─────────────────────────────────────────────────────────────
+  // ── Render Table ───────────────────────────────────────────────────────────
   function _render() {
     const tbody = document.getElementById('report-tbody');
     if (!tbody) return;
@@ -64,8 +63,8 @@ const ReportModule = (() => {
     }
 
     tbody.innerHTML = _filtered.map(r => {
-      // room_name: prefer updated field, fall back to room (id)
       const roomDisplay = r[RF.ROOM_NAME] || r[RF.ROOM] || '—';
+      const roomType    = r[RF.ROOM_TYPE] || '—';
       const capacity    = r[RF.ROOM_CAPACITY] != null ? r[RF.ROOM_CAPACITY] : '—';
       const students    = r[RF.STUDENTS]  ?? 0;
       const graduating  = r[RF.GRADUATING_STUDENTS] ?? 0;
@@ -90,18 +89,17 @@ const ReportModule = (() => {
               ${roomDisplay}
             </div>
           </td>
-          <td class="px-5 py-4 text-sm font-medium text-secondary">
-            ${r[RF.INSTRUCTOR] ?? ''}
+          <td class="px-5 py-4">
+            <span class="text-[9px] font-bold bg-surface-container-low text-on-surface-variant px-2 py-1 rounded uppercase tracking-wider">
+              ${roomType}
+            </span>
           </td>
-          <td class="px-5 py-4 text-center text-sm tabular-nums">
-            ${students} / ${capacity}
-          </td>
+          <td class="px-5 py-4 text-sm font-medium text-secondary">${r[RF.INSTRUCTOR] ?? ''}</td>
+          <td class="px-5 py-4 text-center text-sm tabular-nums">${students} / ${capacity}</td>
           <td class="px-5 py-4 text-center text-sm font-semibold ${isHighGrad ? 'text-error' : 'text-on-surface-variant'}">
             ${graduating}
           </td>
-          <td class="px-7 py-4 text-right">
-            ${reasonBadge(r[RF.REASON])}
-          </td>
+          <td class="px-7 py-4 text-right">${reasonBadge(r[RF.REASON])}</td>
         </tr>`;
     }).join('');
 
@@ -113,19 +111,14 @@ const ReportModule = (() => {
     if (el) el.textContent = `Showing ${n} of ${_data.length} section${_data.length !== 1 ? 's' : ''}`;
   }
 
-  // ── Report-Level Stats ───────────────────────────────────────────────────────
+  // ── Report Stats ───────────────────────────────────────────────────────────
   function _renderStats() {
-    const totalSections = document.getElementById('rpt-stat-sections');
-    const totalGrad     = document.getElementById('rpt-stat-graduating');
-
-    if (totalSections) totalSections.textContent = _data.length;
-
-    if (totalGrad) {
-      const gradTotal = _data.reduce((s, r) => s + Number(r[RF.GRADUATING_STUDENTS] || 0), 0);
-      totalGrad.textContent = gradTotal;
-    }
+    const secEl  = document.getElementById('rpt-stat-sections');
+    const gradEl = document.getElementById('rpt-stat-graduating');
+    if (secEl)  secEl.textContent  = _data.length;
+    if (gradEl) gradEl.textContent = _data.reduce((s, r) => s + Number(r[RF.GRADUATING_STUDENTS] || 0), 0);
   }
 
-  // ── Public API ───────────────────────────────────────────────────────────────
+  // ── Public API ─────────────────────────────────────────────────────────────
   return { init, applyFilters, clearFilters };
 })();

@@ -4,18 +4,12 @@
   <meta charset="utf-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>UniPlan — Semester Scheduling Generator</title>
-
-  <!-- Tailwind CDN -->
   <script src="https://cdn.tailwindcss.com?plugins=forms"></script>
-
-  <!-- Google Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet"/>
   <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
-
-  <!-- Custom CSS -->
+  <!-- PATCH 1: both CSS files loaded -->
   <link rel="stylesheet" href="css/style.css"/>
-
-  <!-- Tailwind config (must stay inline with CDN) -->
+  <link rel="stylesheet" href="css/style_additions.css"/>
   <script>
     tailwind.config = {
       theme: {
@@ -58,12 +52,9 @@
      LOGIN PAGE
 ═══════════════════════════════════════════════════════════════ -->
 <div id="page-login" class="min-h-screen items-center justify-center p-6 relative overflow-hidden login-bg" style="display:flex">
-  <!-- Decorative blobs -->
   <div class="absolute top-0 left-0 w-96 h-96 bg-blue-500/10 blur-[120px] rounded-full pointer-events-none"></div>
   <div class="absolute bottom-0 right-0 w-96 h-96 bg-cyan-400/10 blur-[120px] rounded-full pointer-events-none"></div>
-
   <main class="relative z-10 w-full max-w-md">
-    <!-- Brand -->
     <div class="mb-8 text-center">
       <div class="inline-flex items-center justify-center w-16 h-16 bg-white/10 backdrop-blur rounded-2xl mb-4 shadow-xl border border-white/10">
         <span class="material-symbols-outlined text-white text-3xl fill-icon">account_balance</span>
@@ -71,20 +62,14 @@
       <h1 class="font-headline text-3xl font-extrabold text-white tracking-tight drop-shadow">UniPlan</h1>
       <p class="text-white/60 text-xs mt-1 uppercase tracking-[0.2em] font-medium">Semester Scheduling Generator</p>
     </div>
-
-    <!-- Card -->
     <div class="bg-white/95 backdrop-blur-xl rounded-3xl p-10 shadow-[0_24px_60px_rgba(0,0,0,0.25)]">
       <div class="mb-8">
         <h2 class="font-headline text-xl font-bold text-primary">Administrator Login</h2>
         <p class="text-on-surface-variant text-sm mt-1">Enter your credentials to access the scheduling suite.</p>
       </div>
-
       <div class="space-y-5">
-        <!-- Username -->
         <div>
-          <label class="block text-[10px] font-bold text-primary uppercase tracking-wider mb-2 ml-1">
-            University ID / Email
-          </label>
+          <label class="block text-[10px] font-bold text-primary uppercase tracking-wider mb-2 ml-1">University ID / Email</label>
           <div class="relative group">
             <div class="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none text-on-surface-variant group-focus-within:text-primary transition-colors">
               <span class="material-symbols-outlined text-[20px]">person</span>
@@ -93,12 +78,8 @@
               class="block w-full pl-11 pr-4 py-3.5 bg-surface-container-low border-none rounded-xl text-on-surface text-sm ring-1 ring-inset ring-transparent focus:ring-2 focus:ring-primary-container focus:bg-white transition-all"/>
           </div>
         </div>
-
-        <!-- Password -->
         <div>
-          <label class="block text-[10px] font-bold text-primary uppercase tracking-wider mb-2 ml-1">
-            Password
-          </label>
+          <label class="block text-[10px] font-bold text-primary uppercase tracking-wider mb-2 ml-1">Password</label>
           <div class="relative group">
             <div class="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none text-on-surface-variant group-focus-within:text-primary transition-colors">
               <span class="material-symbols-outlined text-[20px]">lock</span>
@@ -111,31 +92,24 @@
             </button>
           </div>
         </div>
-
-        <!-- Options -->
         <div class="flex items-center justify-between">
           <label class="flex items-center gap-2 cursor-pointer">
             <input type="checkbox" class="w-4 h-4 accent-primary rounded"/>
             <span class="text-sm text-secondary font-medium">Remember me</span>
           </label>
         </div>
-
-        <!-- Error -->
         <div id="login-error" class="hidden px-4 py-2 bg-error-container text-error text-sm rounded-xl font-medium">
           Please enter your username and password.
         </div>
-
-        <!-- Submit -->
         <button onclick="doLogin()"
           class="w-full py-4 bg-gradient-to-br from-primary to-primary-container text-white font-headline font-bold text-sm rounded-xl shadow-lg shadow-primary/20 hover:shadow-xl hover:shadow-primary/30 active:scale-[0.98] transition-all flex items-center justify-center gap-2">
           Login to Semester Management
           <span class="material-symbols-outlined text-[18px]">arrow_forward</span>
         </button>
       </div>
-
       <div class="mt-8 pt-6 border-t border-outline-variant/20 text-center">
         <p class="text-on-surface-variant/50 text-[10px] uppercase tracking-widest">
-          Semester Scheduling Generator — University of Jordan
+          Semester Scheduling Generator — University of Technology
         </p>
       </div>
     </div>
@@ -147,9 +121,8 @@
 ═══════════════════════════════════════════════════════════════ -->
 <div id="app-shell" class="hidden">
 
-  <!-- ── SIDEBAR ──────────────────────────────────────────────── -->
+  <!-- SIDEBAR -->
   <aside class="h-screen w-64 fixed left-0 top-0 bg-primary flex flex-col py-6 z-50 overflow-y-auto">
-    <!-- Brand -->
     <div class="px-6 mb-10">
       <div class="flex items-center gap-3">
         <div class="w-10 h-10 bg-white/10 rounded-xl flex items-center justify-center border border-white/10">
@@ -161,35 +134,26 @@
         </div>
       </div>
     </div>
-
-    <!-- Navigation -->
     <nav class="flex-1 space-y-1">
       <div class="nav-item active" onclick="showPage('dashboard')" data-page="dashboard">
-        <span class="material-symbols-outlined text-[20px]">dashboard</span>
-        <span>Dashboard</span>
+        <span class="material-symbols-outlined text-[20px]">dashboard</span><span>Dashboard</span>
       </div>
       <div class="nav-item" onclick="showPage('schedule')" data-page="schedule">
-        <span class="material-symbols-outlined text-[20px]">calendar_month</span>
-        <span>Schedule</span>
+        <span class="material-symbols-outlined text-[20px]">calendar_month</span><span>Schedule</span>
       </div>
       <div class="nav-item" onclick="showPage('reports')" data-page="reports">
-        <span class="material-symbols-outlined text-[20px]">assessment</span>
-        <span>Reports</span>
+        <span class="material-symbols-outlined text-[20px]">assessment</span><span>Reports</span>
       </div>
       <div class="nav-item" onclick="showPage('analytics')" data-page="analytics">
-        <span class="material-symbols-outlined text-[20px]">bar_chart</span>
-        <span>Analytics</span>
+        <span class="material-symbols-outlined text-[20px]">bar_chart</span><span>Analytics</span>
       </div>
       <div class="px-5 pt-5 pb-1">
         <p class="text-[9px] text-on-primary-container/50 uppercase tracking-[0.15em] font-bold">Actions</p>
       </div>
       <div class="nav-item" onclick="showPage('actions')" data-page="actions">
-        <span class="material-symbols-outlined text-[20px]">bolt</span>
-        <span>Run Pipeline</span>
+        <span class="material-symbols-outlined text-[20px]">bolt</span><span>Run Pipeline</span>
       </div>
     </nav>
-
-    <!-- User + Logout -->
     <div class="px-4 mt-4 space-y-3">
       <div class="p-3 bg-white/5 rounded-2xl border border-white/10">
         <div class="flex items-center gap-3">
@@ -202,13 +166,12 @@
       </div>
       <button onclick="doLogout()"
         class="w-full flex items-center gap-2 px-3 py-2.5 rounded-xl text-on-primary-container hover:text-white hover:bg-white/10 transition-all text-sm font-medium">
-        <span class="material-symbols-outlined text-[18px]">logout</span>
-        Sign Out
+        <span class="material-symbols-outlined text-[18px]">logout</span>Sign Out
       </button>
     </div>
   </aside>
 
-  <!-- ── TOP NAVBAR ───────────────────────────────────────────── -->
+  <!-- TOP NAVBAR -->
   <header class="fixed top-0 left-64 right-0 h-16 z-40 bg-white/80 backdrop-blur-md border-b border-outline-variant/20 flex items-center justify-between px-8 shadow-sm">
     <div class="flex items-center gap-4 flex-1">
       <div class="relative max-w-sm w-full">
@@ -221,91 +184,68 @@
     <div class="flex items-center gap-4">
       <div class="hidden md:flex items-center gap-2 px-3 py-1.5 bg-tertiary-fixed rounded-lg">
         <span class="w-2 h-2 bg-on-tertiary-container rounded-full pulse-dot"></span>
-        <span class="text-[9px] font-bold text-on-tertiary-fixed uppercase tracking-widest">Fall 2024 — Active</span>
+        <span class="text-[9px] font-bold text-on-tertiary-fixed uppercase tracking-widest">Summer 2026 — Active</span>
       </div>
       <button class="relative p-2 text-secondary hover:bg-surface-container-low rounded-xl transition-colors">
         <span class="material-symbols-outlined">notifications</span>
       </button>
       <button onclick="openPDF('schedule')"
         class="hidden md:flex items-center gap-2 px-4 py-2 bg-surface-container-low text-secondary rounded-xl text-sm font-semibold hover:bg-surface-container transition-colors border border-outline-variant/20">
-        <span class="material-symbols-outlined text-lg">picture_as_pdf</span>
-        Export PDF
+        <span class="material-symbols-outlined text-lg">picture_as_pdf</span>Export PDF
       </button>
       <div class="w-9 h-9 rounded-full bg-gradient-to-br from-primary to-primary-container flex items-center justify-center text-white font-bold text-sm font-headline shadow-md">A</div>
     </div>
   </header>
 
-  <!-- ── MAIN CONTENT ─────────────────────────────────────────── -->
+  <!-- MAIN CONTENT -->
   <main class="ml-64 pt-16 min-h-screen">
 
-    <!-- ══════════════════════════════════════════════════════════
-         DASHBOARD
-    ══════════════════════════════════════════════════════════ -->
+    <!-- ══════════ DASHBOARD ══════════ -->
     <div id="content-dashboard" class="p-8 max-w-[1400px] mx-auto">
-
-      <!-- Page header -->
       <div class="flex justify-between items-end mb-8">
         <div>
-          <p class="text-[9px] font-bold bg-primary text-white px-2 py-0.5 rounded uppercase tracking-widest inline-block mb-2">Fall 2024 Planning Phase</p>
+          <p class="text-[9px] font-bold bg-primary text-white px-2 py-0.5 rounded uppercase tracking-widest inline-block mb-2">Summer 2026 Planning Phase</p>
           <h2 class="font-headline text-4xl font-extrabold text-primary tracking-tight">Dashboard</h2>
           <p class="text-secondary text-sm mt-1 font-medium">Semester Scheduling Generator</p>
         </div>
         <button onclick="showPage('actions')"
           class="flex items-center gap-2 px-5 py-2.5 bg-gradient-to-br from-primary to-primary-container text-white rounded-xl text-sm font-bold shadow-lg hover:shadow-xl transition-all active:scale-95">
-          <span class="material-symbols-outlined text-[18px]">bolt</span>
-          Run Pipeline
+          <span class="material-symbols-outlined text-[18px]">bolt</span>Run Pipeline
         </button>
       </div>
-
-      <!-- Stats Grid — values filled by dashboard.js -->
       <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4 mb-8">
         <div class="stat-card bg-surface-container-lowest p-5 rounded-2xl shadow-sm">
           <p class="text-on-surface-variant text-[9px] font-bold uppercase tracking-wider mb-1">Total Students</p>
           <h3 id="stat-students" class="text-3xl font-extrabold text-primary font-headline">—</h3>
-          <div class="mt-3 flex items-center gap-1 text-[9px] font-bold text-secondary">
-            <span class="material-symbols-outlined text-sm">school</span>Registered
-          </div>
+          <div class="mt-3 flex items-center gap-1 text-[9px] font-bold text-secondary"><span class="material-symbols-outlined text-sm">school</span>Registered</div>
         </div>
         <div class="stat-card bg-surface-container-lowest p-5 rounded-2xl shadow-sm">
           <p class="text-on-surface-variant text-[9px] font-bold uppercase tracking-wider mb-1">Total Courses</p>
           <h3 id="stat-courses" class="text-3xl font-extrabold text-primary font-headline">—</h3>
-          <div class="mt-3 flex items-center gap-1 text-[9px] font-bold text-secondary">
-            <span class="material-symbols-outlined text-sm">list_alt</span>Catalog
-          </div>
+          <div class="mt-3 flex items-center gap-1 text-[9px] font-bold text-secondary"><span class="material-symbols-outlined text-sm">list_alt</span>Catalog</div>
         </div>
         <div class="stat-card bg-surface-container-lowest p-5 rounded-2xl shadow-sm">
           <p class="text-on-surface-variant text-[9px] font-bold uppercase tracking-wider mb-1">Instructors</p>
           <h3 id="stat-instructors" class="text-3xl font-extrabold text-primary font-headline">—</h3>
-          <div class="mt-3 flex items-center gap-1 text-[9px] font-bold text-secondary">
-            <span class="material-symbols-outlined text-sm">groups</span>Faculty
-          </div>
+          <div class="mt-3 flex items-center gap-1 text-[9px] font-bold text-secondary"><span class="material-symbols-outlined text-sm">groups</span>Faculty</div>
         </div>
         <div class="stat-card bg-surface-container-lowest p-5 rounded-2xl shadow-sm">
           <p class="text-on-surface-variant text-[9px] font-bold uppercase tracking-wider mb-1">Total Rooms</p>
           <h3 id="stat-rooms" class="text-3xl font-extrabold text-primary font-headline">—</h3>
-          <div class="mt-3 flex items-center gap-1 text-[9px] font-bold text-secondary">
-            <span class="material-symbols-outlined text-sm">meeting_room</span>Available
-          </div>
+          <div class="mt-3 flex items-center gap-1 text-[9px] font-bold text-secondary"><span class="material-symbols-outlined text-sm">meeting_room</span>Available</div>
         </div>
         <div class="stat-card bg-surface-container-lowest p-5 rounded-2xl shadow-sm">
           <p class="text-on-surface-variant text-[9px] font-bold uppercase tracking-wider mb-1">Opened Courses</p>
           <h3 id="stat-opened" class="text-3xl font-extrabold text-primary font-headline">—</h3>
-          <div class="mt-3 flex items-center gap-1 text-[9px] font-bold text-on-tertiary-container">
-            <span class="material-symbols-outlined text-sm">check_circle</span>This Term
-          </div>
+          <div class="mt-3 flex items-center gap-1 text-[9px] font-bold text-on-tertiary-container"><span class="material-symbols-outlined text-sm">check_circle</span>This Term</div>
         </div>
         <div class="stat-card bg-surface-container-lowest p-5 rounded-2xl shadow-sm ring-2 ring-primary/5">
           <p class="text-on-surface-variant text-[9px] font-bold uppercase tracking-wider mb-1">Sections Generated</p>
           <h3 id="stat-sections" class="text-3xl font-extrabold text-primary font-headline">—</h3>
-          <div class="mt-3 flex items-center gap-1 text-[9px] font-bold text-primary">
-            <span class="material-symbols-outlined text-sm">auto_awesome</span>Generated
-          </div>
+          <div class="mt-3 flex items-center gap-1 text-[9px] font-bold text-primary"><span class="material-symbols-outlined text-sm">auto_awesome</span>Generated</div>
         </div>
       </div>
-
-      <!-- Charts Row -->
       <div class="grid grid-cols-1 lg:grid-cols-7 gap-6 mb-8">
-        <!-- Demand Bars -->
         <div class="lg:col-span-4 bg-surface-container-lowest rounded-2xl p-7 shadow-sm">
           <div class="flex justify-between items-center mb-6">
             <div>
@@ -320,8 +260,6 @@
             <p class="text-xs text-on-surface-variant text-center py-8">Run the pipeline to see demand data.</p>
           </div>
         </div>
-
-        <!-- Donut -->
         <div class="lg:col-span-3 bg-surface-container-lowest rounded-2xl p-7 shadow-sm flex flex-col">
           <h3 class="font-headline font-bold text-primary text-lg mb-1">Opened vs Closed</h3>
           <p class="text-on-surface-variant text-xs mb-6">Course offering status</p>
@@ -339,25 +277,17 @@
             </div>
             <div class="mt-6 w-full grid grid-cols-2 gap-3">
               <div class="p-4 bg-surface-container-low rounded-xl">
-                <div class="flex items-center gap-2 mb-1">
-                  <span class="w-2.5 h-2.5 bg-primary rounded-full"></span>
-                  <span class="text-[9px] font-bold text-primary uppercase tracking-wider">Opened</span>
-                </div>
+                <div class="flex items-center gap-2 mb-1"><span class="w-2.5 h-2.5 bg-primary rounded-full"></span><span class="text-[9px] font-bold text-primary uppercase tracking-wider">Opened</span></div>
                 <span id="donut-open-count" class="text-2xl font-bold font-headline text-primary">—</span>
               </div>
               <div class="p-4 bg-surface-container-low rounded-xl">
-                <div class="flex items-center gap-2 mb-1">
-                  <span class="w-2.5 h-2.5 bg-secondary-container rounded-full"></span>
-                  <span class="text-[9px] font-bold text-secondary uppercase tracking-wider">Closed</span>
-                </div>
+                <div class="flex items-center gap-2 mb-1"><span class="w-2.5 h-2.5 bg-secondary-container rounded-full"></span><span class="text-[9px] font-bold text-secondary uppercase tracking-wider">Closed</span></div>
                 <span id="donut-closed-count" class="text-2xl font-bold font-headline text-primary">—</span>
               </div>
             </div>
           </div>
         </div>
       </div>
-
-      <!-- Room Utilization -->
       <div class="bg-surface-container-lowest rounded-2xl p-7 shadow-sm mb-8">
         <div class="flex justify-between items-center mb-7">
           <div>
@@ -369,15 +299,11 @@
           <p class="col-span-4 text-xs text-on-surface-variant text-center py-4">Run the pipeline to see room data.</p>
         </div>
       </div>
-
-      <!-- Graduating Banner -->
       <div class="bg-gradient-to-br from-primary to-primary-container p-7 rounded-2xl text-white flex flex-col md:flex-row justify-between items-start md:items-center gap-6">
         <div>
           <p class="text-on-primary-container text-[10px] font-bold uppercase tracking-widest mb-2">Priority Alert</p>
           <h3 class="font-headline text-xl font-bold mb-1">Graduating Student Demand</h3>
-          <p class="text-on-primary-container text-sm max-w-xl">
-            Graduating students have unmet course requirements. The scheduler prioritises these students to ensure on-time graduation.
-          </p>
+          <p class="text-on-primary-container text-sm max-w-xl">Graduating students have unmet course requirements. The scheduler prioritises these students to ensure on-time graduation.</p>
         </div>
         <div class="flex gap-8 flex-shrink-0">
           <div class="text-center">
@@ -396,12 +322,8 @@
       </div>
     </div><!-- /content-dashboard -->
 
-    <!-- ══════════════════════════════════════════════════════════
-         SCHEDULE
-    ══════════════════════════════════════════════════════════ -->
+    <!-- ══════════ SCHEDULE ══════════ -->
     <div id="content-schedule" class="hidden p-8 max-w-[1400px] mx-auto">
-
-      <!-- Page header -->
       <div class="flex flex-col md:flex-row md:items-end justify-between mb-8 gap-4">
         <div>
           <p class="text-[9px] font-bold bg-primary text-white px-2 py-0.5 rounded uppercase tracking-widest inline-block mb-2">Generated Output</p>
@@ -409,55 +331,44 @@
           <p id="schedule-count" class="text-on-surface-variant text-sm mt-1">No data yet — run the pipeline.</p>
         </div>
         <div class="flex gap-3 flex-wrap">
-          <button onclick="showPage('actions')"
-            class="action-btn bg-surface-container-lowest border border-outline-variant/30 text-secondary hover:bg-surface-container">
+          <button onclick="showPage('actions')" class="action-btn bg-surface-container-lowest border border-outline-variant/30 text-secondary hover:bg-surface-container">
             <span class="material-symbols-outlined text-sm">bolt</span>Generate New
           </button>
-          <button onclick="openPDF('schedule')"
-            class="action-btn bg-primary text-white shadow-md shadow-primary/20 hover:bg-primary-container">
+          <button onclick="openPDF('schedule')" class="action-btn bg-primary text-white shadow-md shadow-primary/20 hover:bg-primary-container">
             <span class="material-symbols-outlined text-sm">download</span>Export PDF
           </button>
         </div>
       </div>
 
-      <!-- Quick stats (filled by schedule.js) -->
+      <!-- Quick stats -->
       <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-6">
         <div class="bg-surface-container-lowest p-4 rounded-xl flex items-center gap-3">
-          <div class="w-11 h-11 rounded-full bg-secondary-container flex items-center justify-center">
-            <span class="material-symbols-outlined text-on-secondary-container text-[18px]">menu_book</span>
-          </div>
-          <div>
-            <p class="text-[9px] font-bold text-on-surface-variant uppercase tracking-wider">Courses</p>
-            <p id="qs-courses" class="text-xl font-headline font-bold text-primary">—</p>
-          </div>
+          <div class="w-11 h-11 rounded-full bg-secondary-container flex items-center justify-center"><span class="material-symbols-outlined text-on-secondary-container text-[18px]">menu_book</span></div>
+          <div><p class="text-[9px] font-bold text-on-surface-variant uppercase tracking-wider">Courses</p><p id="qs-courses" class="text-xl font-headline font-bold text-primary">—</p></div>
         </div>
         <div class="bg-surface-container-lowest p-4 rounded-xl flex items-center gap-3">
-          <div class="w-11 h-11 rounded-full bg-tertiary-fixed flex items-center justify-center">
-            <span class="material-symbols-outlined text-on-tertiary-fixed text-[18px]">groups</span>
-          </div>
-          <div>
-            <p class="text-[9px] font-bold text-on-surface-variant uppercase tracking-wider">Instructors</p>
-            <p id="qs-instructors" class="text-xl font-headline font-bold text-primary">—</p>
-          </div>
+          <div class="w-11 h-11 rounded-full bg-tertiary-fixed flex items-center justify-center"><span class="material-symbols-outlined text-on-tertiary-fixed text-[18px]">groups</span></div>
+          <div><p class="text-[9px] font-bold text-on-surface-variant uppercase tracking-wider">Instructors</p><p id="qs-instructors" class="text-xl font-headline font-bold text-primary">—</p></div>
         </div>
         <div class="bg-surface-container-lowest p-4 rounded-xl flex items-center gap-3">
-          <div class="w-11 h-11 rounded-full bg-secondary-container flex items-center justify-center">
-            <span class="material-symbols-outlined text-on-secondary-container text-[18px]">meeting_room</span>
-          </div>
-          <div>
-            <p class="text-[9px] font-bold text-on-surface-variant uppercase tracking-wider">Rooms Used</p>
-            <p id="qs-rooms" class="text-xl font-headline font-bold text-primary">—</p>
-          </div>
+          <div class="w-11 h-11 rounded-full bg-secondary-container flex items-center justify-center"><span class="material-symbols-outlined text-on-secondary-container text-[18px]">meeting_room</span></div>
+          <div><p class="text-[9px] font-bold text-on-surface-variant uppercase tracking-wider">Rooms Used</p><p id="qs-rooms" class="text-xl font-headline font-bold text-primary">—</p></div>
         </div>
         <div class="bg-surface-container-lowest p-4 rounded-xl flex items-center gap-3">
-          <div class="w-11 h-11 rounded-full bg-tertiary-fixed flex items-center justify-center">
-            <span class="material-symbols-outlined text-on-tertiary-fixed text-[18px]">view_list</span>
-          </div>
-          <div>
-            <p class="text-[9px] font-bold text-on-surface-variant uppercase tracking-wider">Total Sections</p>
-            <p id="qs-sections" class="text-xl font-headline font-bold text-primary">—</p>
-          </div>
+          <div class="w-11 h-11 rounded-full bg-tertiary-fixed flex items-center justify-center"><span class="material-symbols-outlined text-on-tertiary-fixed text-[18px]">view_list</span></div>
+          <div><p class="text-[9px] font-bold text-on-surface-variant uppercase tracking-wider">Total Sections</p><p id="qs-sections" class="text-xl font-headline font-bold text-primary">—</p></div>
         </div>
+      </div>
+
+      <!-- PATCH 2: Conflicts Panel -->
+      <div id="conflicts-panel" class="hidden mb-5 bg-error-container border border-error/20 rounded-2xl p-5">
+        <h4 class="font-headline font-bold text-error flex items-center gap-2 mb-3 text-base">
+          <span class="material-symbols-outlined">error</span>
+          Conflicts Detected — Fix before saving
+        </h4>
+        <ul id="conflicts-list" class="space-y-1.5 text-sm text-error list-none"></ul>
+        <button onclick="ScheduleModule.hideConflicts()"
+          class="mt-4 text-xs text-error/70 hover:text-error underline font-medium">Dismiss</button>
       </div>
 
       <!-- Filter Bar -->
@@ -493,30 +404,27 @@
           <table class="w-full text-left">
             <thead>
               <tr class="bg-surface-container-low">
-                <th class="sortable px-5 py-4 text-[10px] font-bold text-on-surface-variant uppercase tracking-widest"
-                    onclick="ScheduleModule.sort('course_id')">
+                <th class="sortable px-5 py-4 text-[10px] font-bold text-on-surface-variant uppercase tracking-widest" onclick="ScheduleModule.sort('course_id')">
                   Course ID <span class="sort-icon material-symbols-outlined">unfold_more</span>
                 </th>
-                <th class="sortable px-5 py-4 text-[10px] font-bold text-on-surface-variant uppercase tracking-widest"
-                    onclick="ScheduleModule.sort('course_name')">
+                <th class="sortable px-5 py-4 text-[10px] font-bold text-on-surface-variant uppercase tracking-widest" onclick="ScheduleModule.sort('course_name')">
                   Course Name <span class="sort-icon material-symbols-outlined">unfold_more</span>
                 </th>
                 <th class="px-5 py-4 text-[10px] font-bold text-on-surface-variant uppercase tracking-widest text-center">Section</th>
-                <th class="sortable px-5 py-4 text-[10px] font-bold text-on-surface-variant uppercase tracking-widest"
-                    onclick="ScheduleModule.sort('instructor_name')">
+                <th class="sortable px-5 py-4 text-[10px] font-bold text-on-surface-variant uppercase tracking-widest" onclick="ScheduleModule.sort('instructor_name')">
                   Instructor <span class="sort-icon material-symbols-outlined">unfold_more</span>
                 </th>
                 <th class="px-5 py-4 text-[10px] font-bold text-on-surface-variant uppercase tracking-widest">Room</th>
                 <th class="px-5 py-4 text-[10px] font-bold text-on-surface-variant uppercase tracking-widest">Day Pattern</th>
-                <th class="sortable px-5 py-4 text-[10px] font-bold text-on-surface-variant uppercase tracking-widest"
-                    onclick="ScheduleModule.sort('start_time')">
+                <th class="sortable px-5 py-4 text-[10px] font-bold text-on-surface-variant uppercase tracking-widest" onclick="ScheduleModule.sort('start_time')">
                   Start <span class="sort-icon material-symbols-outlined">unfold_more</span>
                 </th>
                 <th class="px-5 py-4 text-[10px] font-bold text-on-surface-variant uppercase tracking-widest">End</th>
-                <th class="sortable px-5 py-4 text-[10px] font-bold text-on-surface-variant uppercase tracking-widest text-right"
-                    onclick="ScheduleModule.sort('credit_hours')">
+                <th class="sortable px-5 py-4 text-[10px] font-bold text-on-surface-variant uppercase tracking-widest text-right" onclick="ScheduleModule.sort('credit_hours')">
                   Hrs <span class="sort-icon material-symbols-outlined">unfold_more</span>
                 </th>
+                <!-- PATCH 3: Edit action column -->
+                <th class="px-5 py-4 text-[10px] font-bold text-on-surface-variant uppercase tracking-widest text-center w-14">Edit</th>
               </tr>
             </thead>
             <tbody id="schedule-tbody" class="divide-y divide-outline-variant/5 text-sm"></tbody>
@@ -538,24 +446,25 @@
           </div>
         </div>
       </div>
+      <button onclick="saveAllScheduleChanges()"
+  class="action-btn bg-green-600 text-white shadow-md hover:bg-green-700">
+  <span class="material-symbols-outlined text-sm">save</span>
+  Save Changes
+</button>
     </div><!-- /content-schedule -->
 
-    <!-- ══════════════════════════════════════════════════════════
-         REPORTS
-    ══════════════════════════════════════════════════════════ -->
+    <!-- ══════════ REPORTS ══════════ -->
     <div id="content-reports" class="hidden p-8 max-w-[1400px] mx-auto">
-
       <div class="flex flex-col md:flex-row md:items-end justify-between mb-8 gap-4">
         <div>
           <div class="flex items-center gap-2 mb-2">
-            <span class="text-[9px] bg-primary text-white px-2 py-0.5 rounded uppercase tracking-widest font-bold">Fall 2024</span>
+            <span class="text-[9px] bg-primary text-white px-2 py-0.5 rounded uppercase tracking-widest font-bold">Summer 2026</span>
             <span class="text-[9px] bg-tertiary-fixed text-on-tertiary-fixed px-2 py-0.5 rounded uppercase tracking-widest font-bold">Summary Report</span>
           </div>
           <h2 class="font-headline text-3xl font-extrabold text-primary tracking-tight">Semester Summary Report</h2>
           <p class="text-on-surface-variant text-sm mt-1">Course allocation, demand analysis, and faculty distribution.</p>
         </div>
-        <button onclick="openPDF('report')"
-          class="action-btn bg-gradient-to-br from-primary to-primary-container text-white shadow-lg">
+        <button onclick="openPDF('report')" class="action-btn bg-gradient-to-br from-primary to-primary-container text-white shadow-lg">
           <span class="material-symbols-outlined text-sm">download</span>Generate Report PDF
         </button>
       </div>
@@ -575,14 +484,10 @@
           <div class="relative z-10">
             <p class="text-on-primary-container text-[9px] font-bold uppercase tracking-wider mb-1">Scheduling Efficiency</p>
             <h3 class="text-3xl font-extrabold font-headline mb-3">0 Conflicts</h3>
-            <div class="w-full bg-white/20 rounded-full h-1.5 mb-2">
-              <div class="bg-tertiary-fixed-dim h-full rounded-full" style="width:100%"></div>
-            </div>
+            <div class="w-full bg-white/20 rounded-full h-1.5 mb-2"><div class="bg-tertiary-fixed-dim h-full rounded-full" style="width:100%"></div></div>
             <p class="text-on-primary-container text-[10px]">No room or instructor conflicts detected</p>
           </div>
-          <div class="absolute -right-4 -bottom-4 opacity-10">
-            <span class="material-symbols-outlined text-[100px]">insights</span>
-          </div>
+          <div class="absolute -right-4 -bottom-4 opacity-10"><span class="material-symbols-outlined text-[100px]">insights</span></div>
         </div>
       </div>
 
@@ -594,6 +499,7 @@
             oninput="ReportModule.applyFilters()"
             class="w-full pl-9 pr-3 py-2 bg-surface-container-low rounded-xl text-sm border-none focus:ring-2 focus:ring-primary-container"/>
         </div>
+        <!-- PATCH 5: values match exact backend reason strings -->
         <select id="report-filter-reason" onchange="ReportModule.applyFilters()"
           class="px-3 py-2 bg-surface-container-low rounded-xl text-sm border-none text-on-surface focus:ring-2 focus:ring-primary-container">
           <option value="">All Reasons</option>
@@ -620,6 +526,8 @@
                 <th class="px-7 py-4 text-[10px] font-bold text-on-surface-variant uppercase tracking-widest">Course Name</th>
                 <th class="px-5 py-4 text-[10px] font-bold text-on-surface-variant uppercase tracking-widest text-center">Section</th>
                 <th class="px-5 py-4 text-[10px] font-bold text-on-surface-variant uppercase tracking-widest">Room</th>
+                <!-- PATCH 4: Room Type column -->
+                <th class="px-5 py-4 text-[10px] font-bold text-on-surface-variant uppercase tracking-widest">Type</th>
                 <th class="px-5 py-4 text-[10px] font-bold text-on-surface-variant uppercase tracking-widest">Instructor</th>
                 <th class="px-5 py-4 text-[10px] font-bold text-on-surface-variant uppercase tracking-widest text-center">Students</th>
                 <th class="px-5 py-4 text-[10px] font-bold text-on-surface-variant uppercase tracking-widest text-center">Graduating</th>
@@ -636,46 +544,39 @@
       </div>
     </div><!-- /content-reports -->
 
-    <!-- ══════════════════════════════════════════════════════════
-         ANALYTICS
-    ══════════════════════════════════════════════════════════ -->
+    <!-- ══════════ ANALYTICS ══════════ -->
     <div id="content-analytics" class="hidden p-8 max-w-[1400px] mx-auto">
       <div class="mb-8">
         <h2 class="font-headline text-3xl font-extrabold text-primary tracking-tight">Analytics</h2>
         <p class="text-secondary text-sm mt-1">All charts are derived from the generated schedule data.</p>
       </div>
-
-      <!-- Metric row -->
       <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8">
         <div class="bg-surface-container-lowest p-5 rounded-2xl shadow-sm text-center">
           <span class="material-symbols-outlined text-secondary mb-2">view_list</span>
-          <p id="an-total-sections"  class="text-2xl font-extrabold text-primary font-headline">—</p>
+          <p id="an-total-sections" class="text-2xl font-extrabold text-primary font-headline">—</p>
           <p class="text-[9px] text-on-surface-variant uppercase tracking-wider font-bold mt-1">Total Sections</p>
         </div>
         <div class="bg-surface-container-lowest p-5 rounded-2xl shadow-sm text-center">
           <span class="material-symbols-outlined text-secondary mb-2">menu_book</span>
-          <p id="an-unique-courses"  class="text-2xl font-extrabold text-primary font-headline">—</p>
+          <p id="an-unique-courses" class="text-2xl font-extrabold text-primary font-headline">—</p>
           <p class="text-[9px] text-on-surface-variant uppercase tracking-wider font-bold mt-1">Unique Courses</p>
         </div>
         <div class="bg-surface-container-lowest p-5 rounded-2xl shadow-sm text-center">
           <span class="material-symbols-outlined text-secondary mb-2">meeting_room</span>
-          <p id="an-unique-rooms"    class="text-2xl font-extrabold text-primary font-headline">—</p>
+          <p id="an-unique-rooms" class="text-2xl font-extrabold text-primary font-headline">—</p>
           <p class="text-[9px] text-on-surface-variant uppercase tracking-wider font-bold mt-1">Rooms Used</p>
         </div>
         <div class="bg-surface-container-lowest p-5 rounded-2xl shadow-sm text-center">
           <span class="material-symbols-outlined text-secondary mb-2">school</span>
-          <p id="an-total-students"  class="text-2xl font-extrabold text-primary font-headline">—</p>
+          <p id="an-total-students" class="text-2xl font-extrabold text-primary font-headline">—</p>
           <p class="text-[9px] text-on-surface-variant uppercase tracking-wider font-bold mt-1">Total Students</p>
         </div>
       </div>
-
       <div class="grid grid-cols-1 lg:grid-cols-7 gap-6 mb-6">
-        <!-- Full demand bars -->
         <div class="lg:col-span-4 bg-surface-container-lowest rounded-2xl p-7 shadow-sm">
           <h3 class="font-headline font-bold text-primary mb-6">All Courses — Student Demand</h3>
           <div id="analytics-full-bars" class="space-y-3 max-h-[400px] overflow-y-auto pr-2"></div>
         </div>
-        <!-- Section dist + day split -->
         <div class="lg:col-span-3 bg-surface-container-lowest rounded-2xl p-7 shadow-sm">
           <h3 class="font-headline font-bold text-primary mb-5">Section Distribution</h3>
           <div id="analytics-section-dist" class="space-y-4 mb-8"></div>
@@ -683,144 +584,75 @@
           <div id="analytics-day-split" class="space-y-3"></div>
         </div>
       </div>
-
-      <!-- Room usage -->
       <div class="bg-surface-container-lowest rounded-2xl p-7 shadow-sm">
         <h3 class="font-headline font-bold text-primary mb-6">Room Usage — Sections per Room</h3>
         <div id="analytics-room-usage" class="grid grid-cols-1 md:grid-cols-2 gap-3 max-h-[300px] overflow-y-auto pr-2"></div>
       </div>
     </div><!-- /content-analytics -->
 
-    <!-- ══════════════════════════════════════════════════════════
-         PIPELINE ACTIONS
-    ══════════════════════════════════════════════════════════ -->
+    <!-- ══════════ PIPELINE ACTIONS ══════════ -->
     <div id="content-actions" class="hidden p-8 max-w-[1400px] mx-auto">
       <div class="mb-8">
         <h2 class="font-headline text-3xl font-extrabold text-primary tracking-tight">Run Pipeline</h2>
         <p class="text-secondary text-sm mt-1">Execute the full scheduling pipeline. Calls <code class="bg-surface-container-low px-1 rounded text-xs">eel.run_pipeline()</code> in <code class="bg-surface-container-low px-1 rounded text-xs">web_app.py</code>.</p>
       </div>
-
       <div class="grid grid-cols-1 lg:grid-cols-5 gap-6">
-        <!-- Steps + Run All -->
         <div class="lg:col-span-3 space-y-4">
-          <!-- Step cards (visual only — full pipeline runs as one eel call) -->
           <div class="bg-surface-container-lowest rounded-2xl p-6 shadow-sm border-2 border-transparent hover:border-primary/10 transition-all">
             <div class="flex items-center gap-4">
-              <div class="w-12 h-12 rounded-2xl bg-secondary-container flex items-center justify-center flex-shrink-0">
-                <span class="material-symbols-outlined text-on-secondary-container">cloud_download</span>
-              </div>
-              <div>
-                <p class="font-headline font-bold text-primary">1. Load Data</p>
-                <p class="text-on-surface-variant text-xs mt-0.5">Import students, courses, instructors, rooms, and time slots from SQL Server.</p>
-              </div>
+              <div class="w-12 h-12 rounded-2xl bg-secondary-container flex items-center justify-center flex-shrink-0"><span class="material-symbols-outlined text-on-secondary-container">cloud_download</span></div>
+              <div><p class="font-headline font-bold text-primary">1. Load Data</p><p class="text-on-surface-variant text-xs mt-0.5">Import students, courses, instructors, rooms, and time slots from SQL Server.</p></div>
             </div>
           </div>
-
           <div class="bg-surface-container-lowest rounded-2xl p-6 shadow-sm border-2 border-transparent hover:border-primary/10 transition-all">
             <div class="flex items-center gap-4">
-              <div class="w-12 h-12 rounded-2xl bg-tertiary-fixed flex items-center justify-center flex-shrink-0">
-                <span class="material-symbols-outlined text-on-tertiary-fixed">manage_search</span>
-              </div>
-              <div>
-                <p class="font-headline font-bold text-primary">2. Analyze Students</p>
-                <p class="text-on-surface-variant text-xs mt-0.5">Identify needed courses, flag graduating students, compute demand per course.</p>
-              </div>
+              <div class="w-12 h-12 rounded-2xl bg-tertiary-fixed flex items-center justify-center flex-shrink-0"><span class="material-symbols-outlined text-on-tertiary-fixed">manage_search</span></div>
+              <div><p class="font-headline font-bold text-primary">2. Analyze Students</p><p class="text-on-surface-variant text-xs mt-0.5">Identify needed courses, flag graduating students, compute demand per course.</p></div>
             </div>
           </div>
-
           <div class="bg-surface-container-lowest rounded-2xl p-6 shadow-sm border-2 border-transparent hover:border-primary/10 transition-all">
             <div class="flex items-center gap-4">
-              <div class="w-12 h-12 rounded-2xl bg-secondary-container flex items-center justify-center flex-shrink-0">
-                <span class="material-symbols-outlined text-on-secondary-container">playlist_add_check</span>
-              </div>
-              <div>
-                <p class="font-headline font-bold text-primary">3. Build Course Offerings</p>
-                <p class="text-on-surface-variant text-xs mt-0.5">Open sections based on demand, capacity, and graduation priority rules.</p>
-              </div>
+              <div class="w-12 h-12 rounded-2xl bg-secondary-container flex items-center justify-center flex-shrink-0"><span class="material-symbols-outlined text-on-secondary-container">playlist_add_check</span></div>
+              <div><p class="font-headline font-bold text-primary">3. Build Course Offerings</p><p class="text-on-surface-variant text-xs mt-0.5">Open sections based on demand, capacity, and graduation priority rules.</p></div>
             </div>
           </div>
-
           <div class="bg-surface-container-lowest rounded-2xl p-6 shadow-sm border-2 border-transparent hover:border-primary/10 transition-all">
             <div class="flex items-center gap-4">
-              <div class="w-12 h-12 rounded-2xl bg-primary flex items-center justify-center flex-shrink-0">
-                <span class="material-symbols-outlined text-white">auto_awesome</span>
-              </div>
-              <div>
-                <p class="font-headline font-bold text-primary">4. Generate Schedule + Export PDFs</p>
-                <p class="text-on-surface-variant text-xs mt-0.5">Assign instructors, rooms, and time slots. Save to DB and export PDFs.</p>
-              </div>
+              <div class="w-12 h-12 rounded-2xl bg-primary flex items-center justify-center flex-shrink-0"><span class="material-symbols-outlined text-white">auto_awesome</span></div>
+              <div><p class="font-headline font-bold text-primary">4. Generate Schedule + Export PDFs</p><p class="text-on-surface-variant text-xs mt-0.5">Assign instructors, rooms, and time slots. Save to DB and export PDFs.</p></div>
             </div>
           </div>
-
-          <!-- Run All -->
           <button onclick="PipelineModule.runPipeline()"
             class="w-full py-4 bg-gradient-to-br from-primary to-primary-container text-white font-headline font-bold rounded-2xl shadow-xl shadow-primary/20 hover:shadow-2xl hover:shadow-primary/30 active:scale-[0.98] transition-all flex items-center justify-center gap-3 text-base mt-2">
-            <span class="material-symbols-outlined text-xl">rocket_launch</span>
-            Run Full Pipeline
+            <span class="material-symbols-outlined text-xl">rocket_launch</span>Run Full Pipeline
           </button>
         </div>
-
-        <!-- Right panel -->
         <div class="lg:col-span-2 space-y-5">
-          <!-- Export -->
           <div class="bg-surface-container-lowest rounded-2xl p-6 shadow-sm">
             <h3 class="font-headline font-bold text-primary mb-5">Export PDFs</h3>
             <div class="space-y-3">
-              <button onclick="openPDF('schedule')"
-                class="w-full flex items-center gap-3 p-4 bg-surface-container-low rounded-xl hover:bg-surface-container-high transition-colors text-left group">
-                <div class="w-10 h-10 bg-error-container rounded-xl flex items-center justify-center flex-shrink-0">
-                  <span class="material-symbols-outlined text-error text-[20px]">picture_as_pdf</span>
-                </div>
-                <div>
-                  <p class="font-semibold text-primary text-sm">Schedule PDF</p>
-                  <p class="text-[10px] text-on-surface-variant">semester_schedule.pdf</p>
-                </div>
+              <button onclick="openPDF('schedule')" class="w-full flex items-center gap-3 p-4 bg-surface-container-low rounded-xl hover:bg-surface-container-high transition-colors text-left group">
+                <div class="w-10 h-10 bg-error-container rounded-xl flex items-center justify-center flex-shrink-0"><span class="material-symbols-outlined text-error text-[20px]">picture_as_pdf</span></div>
+                <div><p class="font-semibold text-primary text-sm">Schedule PDF</p><p class="text-[10px] text-on-surface-variant">semester_schedule.pdf</p></div>
                 <span class="material-symbols-outlined text-on-surface-variant ml-auto group-hover:text-primary transition-colors">open_in_new</span>
               </button>
-              <button onclick="openPDF('report')"
-                class="w-full flex items-center gap-3 p-4 bg-surface-container-low rounded-xl hover:bg-surface-container-high transition-colors text-left group">
-                <div class="w-10 h-10 bg-secondary-container rounded-xl flex items-center justify-center flex-shrink-0">
-                  <span class="material-symbols-outlined text-on-secondary-container text-[20px]">summarize</span>
-                </div>
-                <div>
-                  <p class="font-semibold text-primary text-sm">Summary Report PDF</p>
-                  <p class="text-[10px] text-on-surface-variant">summary_report.pdf</p>
-                </div>
+              <button onclick="openPDF('report')" class="w-full flex items-center gap-3 p-4 bg-surface-container-low rounded-xl hover:bg-surface-container-high transition-colors text-left group">
+                <div class="w-10 h-10 bg-secondary-container rounded-xl flex items-center justify-center flex-shrink-0"><span class="material-symbols-outlined text-on-secondary-container text-[20px]">summarize</span></div>
+                <div><p class="font-semibold text-primary text-sm">Summary Report PDF</p><p class="text-[10px] text-on-surface-variant">summary_report.pdf</p></div>
                 <span class="material-symbols-outlined text-on-surface-variant ml-auto group-hover:text-primary transition-colors">open_in_new</span>
               </button>
             </div>
           </div>
-
-          <!-- System Status -->
           <div class="bg-surface-container-lowest rounded-2xl p-6 shadow-sm">
             <h3 class="font-headline font-bold text-primary mb-5">System Status</h3>
             <div class="space-y-3 text-sm">
-              <div class="flex items-center justify-between">
-                <span class="text-secondary font-medium">SQL Server (localhost)</span>
-                <span class="flex items-center gap-1.5 text-emerald-600 font-bold text-[9px] uppercase">
-                  <span class="w-2 h-2 bg-emerald-500 rounded-full pulse-dot"></span>Connected
-                </span>
-              </div>
-              <div class="flex items-center justify-between">
-                <span class="text-secondary font-medium">Scheduling Engine</span>
-                <span class="flex items-center gap-1.5 text-emerald-600 font-bold text-[9px] uppercase">
-                  <span class="w-2 h-2 bg-emerald-500 rounded-full pulse-dot"></span>Ready
-                </span>
-              </div>
-              <div class="flex items-center justify-between">
-                <span class="text-secondary font-medium">PDF Exporter</span>
-                <span class="flex items-center gap-1.5 text-emerald-600 font-bold text-[9px] uppercase">
-                  <span class="w-2 h-2 bg-emerald-500 rounded-full pulse-dot"></span>Available
-                </span>
-              </div>
+              <div class="flex items-center justify-between"><span class="text-secondary font-medium">SQL Server (localhost)</span><span class="flex items-center gap-1.5 text-emerald-600 font-bold text-[9px] uppercase"><span class="w-2 h-2 bg-emerald-500 rounded-full pulse-dot"></span>Connected</span></div>
+              <div class="flex items-center justify-between"><span class="text-secondary font-medium">Scheduling Engine</span><span class="flex items-center gap-1.5 text-emerald-600 font-bold text-[9px] uppercase"><span class="w-2 h-2 bg-emerald-500 rounded-full pulse-dot"></span>Ready</span></div>
+              <div class="flex items-center justify-between"><span class="text-secondary font-medium">PDF Exporter</span><span class="flex items-center gap-1.5 text-emerald-600 font-bold text-[9px] uppercase"><span class="w-2 h-2 bg-emerald-500 rounded-full pulse-dot"></span>Available</span></div>
             </div>
           </div>
-
-          <!-- Constraints -->
           <div class="bg-tertiary-fixed rounded-2xl p-6 border border-outline-variant/10">
-            <h3 class="font-headline font-bold text-primary mb-4 flex items-center gap-2 text-base">
-              <span class="material-symbols-outlined text-lg">rule</span>Active Constraints
-            </h3>
+            <h3 class="font-headline font-bold text-primary mb-4 flex items-center gap-2 text-base"><span class="material-symbols-outlined text-lg">rule</span>Active Constraints</h3>
             <ul class="space-y-2 text-xs text-on-tertiary-fixed font-medium">
               <li class="flex items-start gap-2"><span class="material-symbols-outlined text-sm text-primary mt-0.5">check</span>No room or instructor conflicts</li>
               <li class="flex items-start gap-2"><span class="material-symbols-outlined text-sm text-primary mt-0.5">check</span>Max 2 sections per course per instructor</li>
@@ -834,7 +666,7 @@
       </div>
     </div><!-- /content-actions -->
 
-  </main><!-- /main -->
+  </main>
 </div><!-- /app-shell -->
 
 <!-- ═══════════════════════════════════════════════════════════════
@@ -842,12 +674,10 @@
 ═══════════════════════════════════════════════════════════════ -->
 <div id="processing-modal" class="fixed inset-0 z-[100] hidden items-center justify-center modal-overlay bg-primary/40">
   <div class="bg-surface-container-lowest w-full max-w-lg mx-4 rounded-3xl shadow-2xl p-8">
-    <!-- Header -->
     <div class="flex items-center gap-4 mb-7">
       <div class="w-12 h-12 rounded-2xl bg-gradient-to-br from-primary to-primary-container flex items-center justify-center">
         <svg id="spinner-svg" class="spinner w-6 h-6 text-white" viewBox="0 0 24 24" fill="none">
-          <circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="2.5"
-            stroke-dasharray="56.5" stroke-dashoffset="45" stroke-linecap="round"/>
+          <circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="2.5" stroke-dasharray="56.5" stroke-dashoffset="45" stroke-linecap="round"/>
         </svg>
       </div>
       <div>
@@ -855,67 +685,41 @@
         <p class="text-on-surface-variant text-xs">UniPlan Semester Scheduling Generator</p>
       </div>
     </div>
-
-    <!-- Progress -->
     <div class="mb-6">
       <div class="flex justify-between text-xs font-bold text-primary mb-2">
-        <span id="modal-step-label">Initializing…</span>
-        <span id="modal-pct">0%</span>
+        <span id="modal-step-label">Initializing…</span><span id="modal-pct">0%</span>
       </div>
       <div class="w-full h-2.5 bg-surface-container-low rounded-full overflow-hidden">
         <div id="modal-progress-bar" class="h-full bg-gradient-to-r from-primary to-primary-container rounded-full transition-all duration-500" style="width:0%"></div>
       </div>
     </div>
-
-    <!-- Steps -->
     <div class="space-y-3">
       <div class="flex items-center gap-3 text-sm">
-        <div id="mstep-icon-0" class="w-7 h-7 rounded-full bg-surface-container-low flex items-center justify-center flex-shrink-0">
-          <span class="material-symbols-outlined text-sm text-on-surface-variant">radio_button_unchecked</span>
-        </div>
+        <div id="mstep-icon-0" class="w-7 h-7 rounded-full bg-surface-container-low flex items-center justify-center flex-shrink-0"><span class="material-symbols-outlined text-sm text-on-surface-variant">radio_button_unchecked</span></div>
         <span id="mstep-text-0" class="text-on-surface-variant">Load Data</span>
       </div>
       <div class="flex items-center gap-3 text-sm">
-        <div id="mstep-icon-1" class="w-7 h-7 rounded-full bg-surface-container-low flex items-center justify-center flex-shrink-0">
-          <span class="material-symbols-outlined text-sm text-on-surface-variant">radio_button_unchecked</span>
-        </div>
+        <div id="mstep-icon-1" class="w-7 h-7 rounded-full bg-surface-container-low flex items-center justify-center flex-shrink-0"><span class="material-symbols-outlined text-sm text-on-surface-variant">radio_button_unchecked</span></div>
         <span id="mstep-text-1" class="text-on-surface-variant">Analyze Students</span>
       </div>
       <div class="flex items-center gap-3 text-sm">
-        <div id="mstep-icon-2" class="w-7 h-7 rounded-full bg-surface-container-low flex items-center justify-center flex-shrink-0">
-          <span class="material-symbols-outlined text-sm text-on-surface-variant">radio_button_unchecked</span>
-        </div>
+        <div id="mstep-icon-2" class="w-7 h-7 rounded-full bg-surface-container-low flex items-center justify-center flex-shrink-0"><span class="material-symbols-outlined text-sm text-on-surface-variant">radio_button_unchecked</span></div>
         <span id="mstep-text-2" class="text-on-surface-variant">Build Course Offerings</span>
       </div>
       <div class="flex items-center gap-3 text-sm">
-        <div id="mstep-icon-3" class="w-7 h-7 rounded-full bg-surface-container-low flex items-center justify-center flex-shrink-0">
-          <span class="material-symbols-outlined text-sm text-on-surface-variant">radio_button_unchecked</span>
-        </div>
+        <div id="mstep-icon-3" class="w-7 h-7 rounded-full bg-surface-container-low flex items-center justify-center flex-shrink-0"><span class="material-symbols-outlined text-sm text-on-surface-variant">radio_button_unchecked</span></div>
         <span id="mstep-text-3" class="text-on-surface-variant">Generate Schedule</span>
       </div>
     </div>
-
-    <!-- Status message -->
-    <div id="modal-status" class="mt-6 p-3 bg-surface-container-low rounded-xl text-xs text-on-surface-variant font-mono">
-      Waiting for backend…
-    </div>
-
-    <!-- Error box (hidden by default) -->
+    <div id="modal-status" class="mt-6 p-3 bg-surface-container-low rounded-xl text-xs text-on-surface-variant font-mono">Waiting for backend…</div>
     <div id="modal-error-box" class="hidden mt-3 p-3 bg-error-container text-error rounded-xl text-xs font-medium"></div>
-
-    <!-- Done button -->
     <div id="modal-done" class="hidden mt-5 flex justify-end">
-      <button onclick="PipelineModule.closeModal()"
-        class="px-6 py-2.5 bg-primary text-white rounded-xl font-bold text-sm hover:bg-primary-container transition-colors">
-        View Schedule →
-      </button>
+      <button onclick="PipelineModule.closeModal()" class="px-6 py-2.5 bg-primary text-white rounded-xl font-bold text-sm hover:bg-primary-container transition-colors">View Schedule →</button>
     </div>
   </div>
 </div>
 
-<!-- ═══════════════════════════════════════════════════════════════
-     TOAST NOTIFICATION
-═══════════════════════════════════════════════════════════════ -->
+<!-- TOAST -->
 <div id="toast" class="fixed bottom-6 right-6 z-[200] hidden">
   <div class="bg-primary text-white px-5 py-4 rounded-2xl shadow-2xl flex items-center gap-3 text-sm font-medium">
     <span id="toast-icon" class="material-symbols-outlined text-tertiary-fixed-dim">check_circle</span>
@@ -923,10 +727,32 @@
   </div>
 </div>
 
+<!-- PATCH 6: Save Bar — fixed bottom, visible when edits exist -->
+<div id="save-bar" class="hidden fixed bottom-0 left-64 right-0 z-50">
+  <div class="bg-primary-container border-t border-white/10 px-8 py-4 flex justify-between items-center shadow-2xl">
+    <div class="flex items-center gap-3">
+      <span class="material-symbols-outlined text-tertiary-fixed-dim">edit_note</span>
+      <div>
+        <p id="save-bar-count" class="text-white font-bold text-sm">0 rows edited</p>
+        <p class="text-on-primary-container text-[10px]">Unsaved edits — Save to persist and regenerate PDFs</p>
+      </div>
+    </div>
+    <div class="flex items-center gap-3">
+      <button onclick="ScheduleModule.clearEdits()"
+        class="px-4 py-2 text-on-primary-container hover:text-white text-sm font-medium rounded-xl hover:bg-white/10 transition-colors">
+        Discard All
+      </button>
+      <button id="save-bar-save-btn" onclick="PipelineModule.saveEdits()"
+        class="flex items-center gap-2 px-5 py-2.5 bg-white text-primary rounded-xl text-sm font-bold hover:bg-tertiary-fixed transition-colors shadow-lg active:scale-95">
+        <span class="material-symbols-outlined text-[18px]">save</span>
+        Save Changes
+      </button>
+    </div>
+  </div>
+</div>
 
-<!-- ═══════════════════════════════════════════════════════════════
-     SCRIPTS — loaded in dependency order, NO inline logic
-═══════════════════════════════════════════════════════════════ -->
+<!-- SCRIPTS -->
+<script src="/eel.js"></script>
 <script src="js/config.js"></script>
 <script src="js/ui.js"></script>
 <script src="js/dashboard.js"></script>
@@ -935,9 +761,5 @@
 <script src="js/analytics.js"></script>
 <script src="js/pipeline.js"></script>
 <script src="js/app.js"></script>
-
-<!-- eel.js — served automatically by eel (Python) at runtime -->
-<script src="/eel.js"></script>
-
 </body>
 </html>

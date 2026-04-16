@@ -1,0 +1,84 @@
+/* ─── (append these rules to your existing css/style.css) ────── */
+
+/* ─── INLINE EDIT MODE ───────────────────────────────────────── */
+
+/* Row being actively edited */
+.editing-row {
+  background: rgba(205, 229, 255, 0.22) !important;
+  outline: 2px solid rgba(148, 204, 255, 0.55);
+  outline-offset: -1px;
+}
+.editing-row td { vertical-align: middle; }
+
+/* Row that has been edited (pending save) */
+.row-edited td:first-child {
+  border-left: 3px solid #3a93d4;
+}
+.row-edited { background: rgba(205, 229, 255, 0.08); }
+
+/* Edit pencil button — visible only on row hover */
+.edit-btn {
+  opacity: 0;
+  transition: opacity 0.15s;
+}
+tr.data-row:hover .edit-btn { opacity: 1; }
+
+/* Select dropdown inside edit row */
+.edit-select {
+  width: 100%;
+  min-width: 130px;
+  padding: 5px 8px;
+  border-radius: 8px;
+  background: #f2f4f7;
+  border: 1.5px solid #c5c6cd;
+  font-family: 'Inter', sans-serif;
+  font-size: 12px;
+  color: #191c1e;
+  cursor: pointer;
+  transition: border-color 0.15s, background 0.15s;
+}
+.edit-select:focus {
+  outline: none;
+  border-color: #1B263B;
+  background: #ffffff;
+  box-shadow: 0 0 0 2.5px rgba(27, 38, 59, 0.18);
+}
+
+/* Time input inside edit row */
+.edit-time {
+  width: 100%;
+  min-width: 86px;
+  padding: 5px 8px;
+  border-radius: 8px;
+  background: #f2f4f7;
+  border: 1.5px solid #c5c6cd;
+  font-family: 'Inter', sans-serif;
+  font-size: 12px;
+  color: #191c1e;
+  transition: border-color 0.15s, background 0.15s;
+}
+.edit-time:focus {
+  outline: none;
+  border-color: #1B263B;
+  background: #ffffff;
+  box-shadow: 0 0 0 2.5px rgba(27, 38, 59, 0.18);
+}
+
+/* ─── SAVE BAR ───────────────────────────────────────────────── */
+#save-bar {
+  transition: transform 0.25s ease, opacity 0.2s ease;
+}
+#save-bar.hidden {
+  transform: translateY(100%);
+  opacity: 0;
+  pointer-events: none;
+}
+
+/* ─── CONFLICTS PANEL ────────────────────────────────────────── */
+#conflicts-panel {
+  animation: fadeSlideIn 0.3s ease forwards;
+}
+#conflicts-list li {
+  padding: 4px 0;
+  line-height: 1.45;
+}
