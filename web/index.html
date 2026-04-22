@@ -3,6 +3,7 @@
 <head>
   <meta charset="utf-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <link rel="icon" type="image/png" href="static/Untitled design.png">
   <title>UniPlan — Semester Scheduling Generator</title>
   <script src="https://cdn.tailwindcss.com?plugins=forms"></script>
   <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet"/>
@@ -57,8 +58,7 @@
   <main class="relative z-10 w-full max-w-md">
     <div class="mb-8 text-center">
       <div class="inline-flex items-center justify-center w-16 h-16 bg-white/10 backdrop-blur rounded-2xl mb-4 shadow-xl border border-white/10">
-        <span class="material-symbols-outlined text-white text-3xl fill-icon">account_balance</span>
-      </div>
+      <img src="static/Untitled design.png" class="h-10 w-10 object-contain" alt="Logo">      </div>
       <h1 class="font-headline text-3xl font-extrabold text-white tracking-tight drop-shadow">UniPlan</h1>
       <p class="text-white/60 text-xs mt-1 uppercase tracking-[0.2em] font-medium">Semester Scheduling Generator</p>
     </div>
@@ -314,10 +314,7 @@
             <span id="banner-grad-sections" class="text-3xl font-extrabold font-headline text-tertiary-fixed-dim">—</span>
             <p class="text-on-primary-container text-[9px] uppercase tracking-wider font-bold mt-1">Priority Sections</p>
           </div>
-          <div class="text-center">
-            <span id="stat-conflicts" class="text-3xl font-extrabold font-headline text-tertiary-fixed-dim">0</span>
-            <p class="text-on-primary-container text-[9px] uppercase tracking-wider font-bold mt-1">Conflicts</p>
-          </div>
+        
         </div>
       </div>
     </div><!-- /content-dashboard -->
@@ -481,14 +478,16 @@
           <div class="mt-3 text-secondary text-[9px] font-medium">Across all sections</div>
         </div>
         <div class="md:col-span-2 bg-primary p-6 rounded-2xl shadow-xl text-white relative overflow-hidden">
-          <div class="relative z-10">
-            <p class="text-on-primary-container text-[9px] font-bold uppercase tracking-wider mb-1">Scheduling Efficiency</p>
-            <h3 class="text-3xl font-extrabold font-headline mb-3">0 Conflicts</h3>
-            <div class="w-full bg-white/20 rounded-full h-1.5 mb-2"><div class="bg-tertiary-fixed-dim h-full rounded-full" style="width:100%"></div></div>
-            <p class="text-on-primary-container text-[10px]">No room or instructor conflicts detected</p>
+        <div class="relative z-10">
+          <p class="text-on-primary-container text-[9px] font-bold uppercase tracking-wider mb-1">Scheduling Efficiency</p>
+          <h3 id="stat-conflicts" class="text-3xl font-extrabold font-headline mb-3">0 Conflicts</h3>
+          <div class="w-full bg-white/20 rounded-full h-1.5 mb-2">
+            <div id="stat-conflicts-bar" class="bg-tertiary-fixed-dim h-full rounded-full" style="width:100%"></div>
           </div>
-          <div class="absolute -right-4 -bottom-4 opacity-10"><span class="material-symbols-outlined text-[100px]">insights</span></div>
+          <p id="stat-conflicts-text" class="text-on-primary-container text-[10px]">No room or instructor conflicts detected</p>
         </div>
+        <div class="absolute -right-4 -bottom-4 opacity-10"><span class="material-symbols-outlined text-[100px]">insights</span></div>
+      </div>
       </div>
 
       <!-- Report filter bar -->

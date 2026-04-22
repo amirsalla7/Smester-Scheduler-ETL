@@ -9,27 +9,44 @@ const DashboardModule = (() => {
 
   // ── Stats Cards ─────────────────────────────────────────────────────────────
   function renderStats(stats) {
-    const map = {
-      'stat-students':    STAT_F.STUDENTS,
-      'stat-courses':     STAT_F.COURSES,
-      'stat-instructors': STAT_F.INSTRUCTORS,
-      'stat-rooms':       STAT_F.ROOMS,
-      'stat-opened':      STAT_F.OPENED_COURSES,
-      'stat-sections':    STAT_F.SECTIONS_GENERATED,
-    };
-    Object.entries(map).forEach(([elId, field]) => {
-      const el = document.getElementById(elId);
-      if (el) el.textContent = (stats && stats[field] != null) ? stats[field] : '—';
-    });
+  const map = {
+    'stat-students':    STAT_F.STUDENTS,
+    'stat-courses':     STAT_F.COURSES,
+    'stat-instructors': STAT_F.INSTRUCTORS,
+    'stat-rooms':       STAT_F.ROOMS,
+    'stat-opened':      STAT_F.OPENED_COURSES,
+    'stat-sections':    STAT_F.SECTIONS_GENERATED,
+  };
 
-    // Conflicts badge
-    const conflictsEl = document.getElementById('stat-conflicts');
-    if (conflictsEl) {
-      const c = (stats && stats[STAT_F.CONFLICTS] != null) ? stats[STAT_F.CONFLICTS] : 0;
-      conflictsEl.textContent = c;
-      conflictsEl.classList.toggle('text-error', c > 0);
-    }
-  }
+  Object.entries(map).forEach(([elId, field]) => {
+    const el = document.getElementById(elId);
+    if (el) el.textContent = (stats && stats[field] != null) ? stats[field] : '—';
+  });
+
+  // Conflicts card
+const conflicts = Number(stats?.[STAT_F.CONFLICTS] ?? 0);
+
+const conflictsEl = document.getElementById('stat-conflicts');
+const conflictsBarEl = document.getElementById('stat-conflicts-bar');
+const conflictsTextEl = document.getElementById('stat-conflicts-text');
+
+console.log("DASHBOARD CONFLICTS =", conflicts);
+
+if (conflictsEl) {
+  conflictsEl.innerText = `${conflicts} Conflict${conflicts !== 1 ? 's' : ''}`;
+}
+
+if (conflictsBarEl) {
+  const width = conflicts === 0 ? 100 : Math.max(15, 100 - conflicts * 15);
+  conflictsBarEl.style.width = `${width}%`;
+}
+
+if (conflictsTextEl) {
+  conflictsTextEl.innerText = conflicts === 0
+    ? 'No room or instructor conflicts detected'
+    : `${conflicts} room/instructor conflict${conflicts !== 1 ? 's' : ''} detected`;
+}
+}
 
   // ── Demand Bars (top 6 courses) ──────────────────────────────────────────────
   /**

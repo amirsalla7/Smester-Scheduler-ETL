@@ -238,73 +238,162 @@ def save_schedule_edits(edited_schedule: list) -> dict:
 # ── Conflict Validator ─────────────────────────────────────────────────────────
 def validate_schedule(schedule: list) -> list:
     """
-    Check for:
+    Checks:
     - room conflicts
     - instructor conflicts
-    - bad times
-    - bad day patterns
+    - invalid times
+    - invalid day patterns
 
-    Returns a list of human-readable conflict strings.
+    Returns a list of human-readable conflict messages.
     """
+
     conflicts = []
-    VALID_DAYS = {"Sun/Tue", "Mon/Wed"}
+
+    VALID_DAYS = {"Sun", "Mon", "Tue", "Wed", "Thu"}
+    VALID_PATTERNS = {"Sun/Tue", "Mon/Wed", "Sun/Tue/Thu"}
+
+    def normalize_time(t: str) -> str:
+        """
+        Converts:
+        8:00 -> 08:00:00
+        08:00 -> 08:00:00
+        08:00:00 -> 08:00:00
+        """
+        if not t:
+            return ""
+
+        t = str(t).strip()
+
+        if len(t) == 4:   # 8:00
+            t = "0" + t
+
+        if len(t) == 5:   # 08:00
+            t = t + ":00"
+
+        return t
+
+    def time_to_minutes(t: str) -> int:
+        t = normalize_time(t)
+        if not t:
+            return -1
+        hh, mm, _ = t.split(":")
+        return int(hh) * 60 + int(mm)
 
     def overlaps(s1, e1, s2, e2):
-        return s1 < e2 and s2 < e1
+        s1m = time_to_minutes(s1)
+        e1m = time_to_minutes(e1)
+        s2m = time_to_minutes(s2)
+        e2m = time_to_minutes(e2)
 
-    room_slots = {}
-    instr_slots = {}
+        return s1m < e2m and s2m < e1m
+
+    def expand_days(day_pattern: str) -> set:
+        """
+        Sun/Tue -> {'Sun', 'Tue'}
+        Mon/Wed -> {'Mon', 'Wed'}
+        Sun/Tue/Thu -> {'Sun', 'Tue', 'Thu'}
+        """
+        if not day_pattern:
+            return set()
+
+        parts = [p.strip() for p in str(day_pattern).split("/") if p.strip()]
+        return {p for p in parts if p in VALID_DAYS}
+
+    room_slots = []
+    instr_slots = []
 
     for row in schedule:
         course = row.get("course_name", "?")
         section = row.get("section_no", "?")
-        day = row.get("day", "")
-        start = row.get("start_time", "")
-        end = row.get("end_time", "")
+        day = str(row.get("day", "")).strip()
+
+        start = normalize_time(row.get("start_time", ""))
+        end = normalize_time(row.get("end_time", ""))
+
         room_id = row.get("room_id")
-        instr_id = row.get("instructor_id")
+        room_name = row.get("room_name", room_id)
+
+        # استخدم id إذا موجود، وإلا name
+        instr_key = row.get("instructor_id") or row.get("instructor_name")
+        instructor_name = row.get("instructor_name", instr_key)
+
         label = f"{course} §{section}"
 
-        # Day pattern validation
-        if day not in VALID_DAYS:
+        # ── Day validation ─────────────────────────────────────────────────────
+        if day not in VALID_PATTERNS:
             conflicts.append(
-                f"{label}: invalid day pattern '{day}'. Must be Sun/Tue or Mon/Wed."
+                f"{label}: invalid day pattern '{day}'. Must be Sun/Tue, Mon/Wed, or Sun/Tue/Thu."
             )
 
-        # Time validation
+        row_days = expand_days(day)
+        if not row_days:
+            conflicts.append(f"{label}: no valid teaching days found.")
+
+        # ── Time validation ────────────────────────────────────────────────────
         if start and end:
-            if start >= end:
+            if time_to_minutes(start) >= time_to_minutes(end):
                 conflicts.append(
-                    f"{label}: start ({_fmt(start)}) must be before end ({_fmt(end)})."
+                    f"{label}: start ({start[:5]}) must be before end ({end[:5]})."
                 )
-            if start < "08:00:00":
-                conflicts.append(f"{label}: start time {_fmt(start)} is before 08:00.")
-            if end > "16:00:00":
-                conflicts.append(f"{label}: end time {_fmt(end)} is after 16:00.")
+
+            if time_to_minutes(start) < time_to_minutes("08:00:00"):
+                conflicts.append(f"{label}: start time {start[:5]} is before 08:00.")
+
+            if time_to_minutes(end) > time_to_minutes("16:00:00"):
+                conflicts.append(f"{label}: end time {end[:5]} is after 16:00.")
         else:
             conflicts.append(f"{label}: missing start or end time.")
 
-        # Room conflict
-        if room_id and day and start and end:
-            for (d, rid, rs, re), other_label in list(room_slots.items()):
-                if d == day and rid == room_id and overlaps(start, end, rs, re):
-                    rname = row.get("room_name", room_id)
-                    conflicts.append(
-                        f"Room conflict: {label} and {other_label} share room "
-                        f"{rname} on {day} ({_fmt(start)}–{_fmt(end)})."
-                    )
-            room_slots[(day, room_id, start, end)] = label
+        # ── Room conflict ──────────────────────────────────────────────────────
+        if room_id and row_days and start and end:
+            for existing in room_slots:
+                common_days = row_days.intersection(existing["days"])
+                if existing["room_id"] == room_id and common_days:
+                    if overlaps(start, end, existing["start"], existing["end"]):
+                        conflicts.append(
+                            f"Room conflict: {label} and {existing['label']} share room "
+                            f"{room_name} on {', '.join(sorted(common_days))} "
+                            f"({start[:5]}–{end[:5]})."
+                        )
 
-        # Instructor conflict
-        if instr_id and day and start and end:
-            for (d, iid, is_, ie), other_label in list(instr_slots.items()):
-                if d == day and iid == instr_id and overlaps(start, end, is_, ie):
-                    iname = row.get("instructor_name", instr_id)
+            room_slots.append({
+                "room_id": room_id,
+                "days": row_days,
+                "start": start,
+                "end": end,
+                "label": label
+            })
+
+        # ── Instructor conflict ───────────────────────────────────────────────
+            instr_key = (
+            str(row.get("instructor_id") or row.get("instructor_name") or "")
+            .strip()
+            .lower()
+        )
+
+        if instr_key and row_days and start and end:
+            for existing in instr_slots:
+                if existing["instr_key"] != instr_key:
+                    continue
+
+                common_days = row_days & existing["days"]
+                if not common_days:
+                    continue
+
+                if overlaps(start, end, existing["start"], existing["end"]):
                     conflicts.append(
-                        f"Instructor conflict: {label} and {other_label} have "
-                        f"{iname} on {day} ({_fmt(start)}–{_fmt(end)})."
+                        f"Instructor conflict: {label} and {existing['label']} have "
+                        f"{instructor_name} on {', '.join(sorted(common_days))} "
+                        f"({start[:5]}–{end[:5]})."
                     )
-            instr_slots[(day, instr_id, start, end)] = label
+
+            instr_slots.append({
+                "instr_key": instr_key,
+                "days": set(row_days),
+                "start": start,
+                "end": end,
+                "label": label
+            })
 
     return conflicts
 

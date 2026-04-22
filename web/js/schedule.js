@@ -151,7 +151,14 @@ const ScheduleModule = (() => {
   }
 
 function saveEdit(globalIndex) {
-  const row = _filtered[globalIndex];
+  const filteredRow = _filtered[globalIndex];
+  if (!filteredRow) return;
+
+  const row = _data.find(x =>
+    String(x[SF.COURSE_ID]) === String(filteredRow[SF.COURSE_ID]) &&
+    String(x[SF.SECTION_NO]) === String(filteredRow[SF.SECTION_NO])
+  );
+
   if (!row) return;
 
   const instructorSelect = document.getElementById(`edit-instructor-${globalIndex}`);
@@ -190,17 +197,10 @@ function saveEdit(globalIndex) {
   row[SF.START_TIME] = startInput?.value ? `${startInput.value}:00` : row[SF.START_TIME];
   row[SF.END_TIME] = endInput?.value ? `${endInput.value}:00` : row[SF.END_TIME];
 
-  // تحديث _data أيضًا
-  const original = _data.find(x =>
-    String(x[SF.COURSE_ID]) === String(row[SF.COURSE_ID]) &&
-    String(x[SF.SECTION_NO]) === String(row[SF.SECTION_NO])
-  );
+  // حدّث الصف الظاهر في الفلترة أيضًا
+  Object.assign(filteredRow, row);
 
-  if (original) {
-    Object.assign(original, row);
-  }
-
-  // تحديث AppState.schedule أيضًا
+  // حدّث AppState.schedule أيضًا
   if (window.AppState && Array.isArray(AppState.schedule)) {
     const appRow = AppState.schedule.find(x =>
       String(x[SF.COURSE_ID]) === String(row[SF.COURSE_ID]) &&
@@ -211,6 +211,9 @@ function saveEdit(globalIndex) {
       Object.assign(appRow, row);
     }
   }
+
+  console.log("UPDATED ROW:", row);
+  console.log("APPSTATE AFTER EDIT:", AppState.schedule);
 
   _editingIndex = null;
   _render();

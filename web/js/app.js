@@ -103,8 +103,10 @@ window.addEventListener('DOMContentLoaded', () => {
   if (loginPage) loginPage.style.display = 'flex';
 });
 
-
 async function saveAllScheduleChanges() {
+  console.log("BUTTON CLICKED");
+  console.log("APPSTATE BEFORE SAVE:", AppState.schedule);
+
   try {
     const result = await eel.save_schedule_edits(AppState.schedule)();
     console.log("SAVE RESULT:", result);
@@ -122,3 +124,5 @@ async function saveAllScheduleChanges() {
     alert("Error saving schedule changes");
   }
 }
+
+window.saveAllScheduleChanges = saveAllScheduleChanges;
