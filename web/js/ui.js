@@ -125,7 +125,7 @@ function showToast(message, type = 'success') {
  */
 function openPDF(type) {
   const path = (type === 'schedule') ? CONFIG.SCHEDULE_PDF : CONFIG.REPORT_PDF;
-  window.open(path, '_blank');
+  window.open(path + '?t=' + Date.now(), '_blank');
   showToast(type === 'schedule' ? 'Opening Schedule PDF…' : 'Opening Report PDF…');
 }
 

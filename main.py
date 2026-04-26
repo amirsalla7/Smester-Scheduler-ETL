@@ -15,7 +15,7 @@ def main():
 
     print("Starting system...")
 
-    analysis = StudentAnalysis(graduating_hours_threshold=18)
+    analysis = StudentAnalysis(graduating_hours_threshold=21)
 
     print("Loading student analysis data...")
     analysis.load_data()

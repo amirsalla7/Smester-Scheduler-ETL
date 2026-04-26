@@ -12,12 +12,18 @@ from scheduler_config import (
     CLEAR_OLD_SCHEDULE,
     ALLOWED_START,
     ALLOWED_END,
+    GRADUATING_HOURS_THRESHOLD,
 )
 
 try:
     from scheduler_config import MIN_STUDENTS_TO_OPEN_COURSE
 except ImportError:
     MIN_STUDENTS_TO_OPEN_COURSE = 5
+
+try:
+    from scheduler_config import MIN_GRADUATING_TO_FORCE_OPEN
+except ImportError:
+    MIN_GRADUATING_TO_FORCE_OPEN = 1
 
 try:
     from scheduler_config import GRADUATING_PRIORITY_ENABLED
@@ -131,9 +137,12 @@ class SchedulerEngine:
     def get_sections_needed(self, course):
         course_id = course["course_id"]
         demand = self.course_demand.get(course_id, 0)
+        grad_demand = self.course_demand_graduating.get(course_id, 0)
         course_type = course.get("course_type") or DEFAULT_ROOM_TYPE
 
         if demand < MIN_STUDENTS_TO_OPEN_COURSE:
+            if grad_demand >= MIN_GRADUATING_TO_FORCE_OPEN:
+                return 1
             return 0
 
         section_capacity = self.get_room_capacity_for_course_type(course_type)
@@ -337,7 +346,7 @@ class SchedulerEngine:
             remaining = max(total_required - completed, 0)
             self.student_remaining_hours[std_id] = remaining
 
-            if GRADUATING_PRIORITY_ENABLED and remaining <= 18:
+            if GRADUATING_PRIORITY_ENABLED and remaining <= GRADUATING_HOURS_THRESHOLD:
                 self.graduating_students.add(std_id)
 
     def calculate_course_demand(self):
@@ -433,11 +442,7 @@ class SchedulerEngine:
             if self.instructor_course_sections[(instructor_id, course_id)] >= 2:
                 continue
 
-            # الشعبة الثانية لازم نفس دكتور الشعبة الأولى
-            if section_no == 2 and primary_instructor_id is not None:
-
-                if instructor_id != primary_instructor_id:
-                    continue
+            # الشعبة الثانية تفضّل نفس دكتور الشعبة الأولى لكن لا تُجبر عليه
 
             # تحقق من تعارض الوقت
             if time_ids:
@@ -464,7 +469,12 @@ class SchedulerEngine:
             return None
 
         candidates.sort(
-            key=lambda x: (x[1], x[0])
+            key=lambda x: (
+                0 if (section_no == 2 and primary_instructor_id is not None
+                      and x[2]["instructor_id"] == primary_instructor_id) else 1,
+                x[1],
+                x[0],
+            )
         )
 
         return candidates[0][2]
@@ -553,7 +563,7 @@ class SchedulerEngine:
             grad_demand = self.course_demand_graduating.get(course_id, 0)
             sections_needed = self.get_sections_needed(course)
 
-            if total_demand < MIN_STUDENTS_TO_OPEN_COURSE:
+            if total_demand < MIN_STUDENTS_TO_OPEN_COURSE and grad_demand < MIN_GRADUATING_TO_FORCE_OPEN:
                 print(f"[SKIP] Course {course_name} will not open because demand = {total_demand}")
                 continue
 

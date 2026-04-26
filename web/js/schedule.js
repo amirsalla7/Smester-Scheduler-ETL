@@ -15,6 +15,7 @@ const ScheduleModule = (() => {
   const PAGE_SIZE = 12;
 
   let _editingIndex = null;
+  let _editedCount  = 0;
   let _resources = { instructors: [], rooms: [] };
 
   // ── Init ─────────────────────────────────────────────────────────────────────
@@ -25,6 +26,8 @@ const ScheduleModule = (() => {
     _sortDir = 1;
     _currentPage = 1;
     _editingIndex = null;
+    _editedCount  = 0;
+    _updateSaveBar();
     _render();
   }
 
@@ -212,9 +215,8 @@ function saveEdit(globalIndex) {
     }
   }
 
-  console.log("UPDATED ROW:", row);
-  console.log("APPSTATE AFTER EDIT:", AppState.schedule);
-
+  _editedCount++;
+  _updateSaveBar();
   _editingIndex = null;
   _render();
 }
@@ -384,6 +386,50 @@ function saveEdit(globalIndex) {
     });
   }
 
+  // ── Save Bar ─────────────────────────────────────────────────────────────────
+  function _updateSaveBar() {
+    const bar = document.getElementById('save-bar');
+    const countEl = document.getElementById('save-bar-count');
+    if (!bar) return;
+    if (_editedCount > 0) {
+      bar.classList.remove('hidden');
+      if (countEl) countEl.textContent = `${_editedCount} row${_editedCount !== 1 ? 's' : ''} edited`;
+    } else {
+      bar.classList.add('hidden');
+    }
+  }
+
+  // ── Edit tracking ────────────────────────────────────────────────────────────
+  function hasEdits() {
+    return _editedCount > 0;
+  }
+
+  function getEditedSchedule() {
+    return _data;
+  }
+
+  async function clearEdits() {
+    await PipelineModule.loadAllData();
+  }
+
+  // ── Conflicts panel ──────────────────────────────────────────────────────────
+  function showConflicts(conflicts) {
+    const panel = document.getElementById('conflicts-panel');
+    const list  = document.getElementById('conflicts-list');
+    if (!panel || !list) return;
+    list.innerHTML = conflicts.map(c =>
+      `<li class="flex items-start gap-2">
+         <span class="material-symbols-outlined text-sm mt-0.5">warning</span>${c}
+       </li>`
+    ).join('');
+    panel.classList.remove('hidden');
+  }
+
+  function hideConflicts() {
+    const panel = document.getElementById('conflicts-panel');
+    if (panel) panel.classList.add('hidden');
+  }
+
   // ── Public API ───────────────────────────────────────────────────────────────
   return {
     init,
@@ -395,6 +441,11 @@ function saveEdit(globalIndex) {
     setResources,
     toggleEdit,
     saveEdit,
-    cancelEdit
+    cancelEdit,
+    hasEdits,
+    getEditedSchedule,
+    clearEdits,
+    showConflicts,
+    hideConflicts,
   };
 })();

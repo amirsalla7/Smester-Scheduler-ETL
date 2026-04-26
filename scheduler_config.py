@@ -1,3 +1,8 @@
+API_BASE_URL = "https://api.example.com"  # ← set your real API URL here
+API_TIMEOUT  = 30
+
+GRADUATING_HOURS_THRESHOLD = 21
+
 SERVER = "localhost"
 DATABASE = "master"
 DRIVER = "ODBC Driver 17 for SQL Server"
@@ -12,6 +17,7 @@ LOAD_RULES = {
     "Associate Professor": 12,
     "Assistant Professor": 12,
     "Master": 15,
+    "Doctor": 15,
 }
 
 ADMIN_LOAD_REDUCTION = 3

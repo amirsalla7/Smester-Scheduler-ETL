@@ -69,6 +69,23 @@
       "room_id": ["room_id", "classroom_id"],
       "time_id": ["time_id", "slot_id"],
       "instructor_id": ["instructor_id", "teacher_id"]
+    },
+
+    "plan": {
+      "id": ["plan_id", "id"],
+      "name": ["plan_name", "name"],
+      "major_id": ["major_id", "program_id"],
+      "total_hours": ["total_hours", "credit_hours", "hours"]
+    },
+
+    "std_course": {
+      "id": ["history_id", "id"],
+      "student_id": ["std_id", "student_id"],
+      "course_id": ["course_id", "subject_id"],
+      "semester_id": ["semester_id", "term_id"],
+      "grade": ["grade", "mark"],
+      "status": ["status", "state"],
+      "section": ["section"]
     }
   },
 

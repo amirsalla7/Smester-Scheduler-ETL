@@ -103,26 +103,3 @@ window.addEventListener('DOMContentLoaded', () => {
   if (loginPage) loginPage.style.display = 'flex';
 });
 
-async function saveAllScheduleChanges() {
-  console.log("BUTTON CLICKED");
-  console.log("APPSTATE BEFORE SAVE:", AppState.schedule);
-
-  try {
-    const result = await eel.save_schedule_edits(AppState.schedule)();
-    console.log("SAVE RESULT:", result);
-
-    await PipelineModule.loadAllData();
-
-    if (!result || result.status !== "success") {
-      alert(result?.message || "Failed to save changes");
-      return;
-    }
-
-    alert("Changes saved successfully.");
-  } catch (err) {
-    console.error("Save changes failed:", err);
-    alert("Error saving schedule changes");
-  }
-}
-
-window.saveAllScheduleChanges = saveAllScheduleChanges;

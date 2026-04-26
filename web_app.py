@@ -47,7 +47,7 @@ def run_pipeline():
         except Exception:
             pass
 
-        analysis = StudentAnalysis(graduating_hours_threshold=18)
+        analysis = StudentAnalysis(graduating_hours_threshold=21)
         analysis.load_data()
         analysis.analyze_students()
 

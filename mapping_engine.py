@@ -3,13 +3,10 @@ import os
 from typing import Any, Dict, List
 
 
-CONFIG_FILE = "config.json"
+CONFIG_FILE = os.path.join("web", "config.json")
 
 
 def load_config() -> Dict[str, Any]:
-    """
-    Load config.json from project root.
-    """
     config_path = os.path.join(os.path.dirname(__file__), CONFIG_FILE)
 
     try:

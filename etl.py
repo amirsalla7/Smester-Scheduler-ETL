@@ -1,7 +1,8 @@
 import requests
 from typing import Any, Dict, List, Tuple, Optional
 
-from db import execute
+from db import execute, get_connection
+from scheduler_config import API_BASE_URL, API_TIMEOUT
 from mapping_engine import (
     get_field,
     normalize_major,
@@ -10,13 +11,6 @@ from mapping_engine import (
     normalize_room_type,
     normalize_day,
 )
-
-# =========================================================
-# CONFIG
-# =========================================================
-API_BASE_URL = "https://api.example.com"   # غيره
-API_TIMEOUT = 30
-
 
 # =========================================================
 # GENERAL HELPERS
@@ -66,13 +60,30 @@ def execute_many_merge(query: str, rows: List[Tuple], label: str):
         return
 
     processed = 0
+    conn = None
+    cursor = None
 
-    for row in rows:
-        try:
-            execute(query, row)
-            processed += 1
-        except Exception as e:
-            print(f"[INSERT ERROR] {label} | row={row} | error={e}")
+    try:
+        conn = get_connection()
+        cursor = conn.cursor()
+
+        for row in rows:
+            try:
+                cursor.execute(query, row)
+                processed += 1
+            except Exception as e:
+                print(f"[INSERT ERROR] {label} | row={row} | error={e}")
+
+        conn.commit()
+    except Exception as e:
+        if conn:
+            conn.rollback()
+        print(f"[CONNECT ERROR] {label}: {e}")
+    finally:
+        if cursor:
+            cursor.close()
+        if conn:
+            conn.close()
 
     print(f"[OK] {label}: {processed}/{len(rows)} rows processed")
 
@@ -246,47 +257,39 @@ def transform_semesters(data: List[Dict[str, Any]]) -> List[Tuple]:
     return rows
 
 
-# ===== NEW: PLAN =====
 def transform_plans(data: List[Dict[str, Any]]) -> List[Tuple]:
     rows = []
 
     for row in data:
-        plan_id = to_int(row.get("plan_id") or row.get("id"))
-        major_id = to_int(row.get("major_id") or row.get("program_id"))
+        plan_id    = to_int(get_field(row, "plan", "id"))
+        plan_name  = to_str(get_field(row, "plan", "name"))
+        major_id   = to_int(get_field(row, "plan", "major_id"))
+        total_hours = to_int(get_field(row, "plan", "total_hours"), 0)
 
-        if not plan_id or not major_id:
+        if not plan_id:
             continue
 
-        rows.append((plan_id, major_id))
+        rows.append((plan_id, plan_name, major_id, total_hours))
 
     return rows
 
 
-# ===== NEW: STD_COURSE =====
 def transform_std_courses(data: List[Dict[str, Any]]) -> List[Tuple]:
     rows = []
 
     for row in data:
-        history_id = to_int(row.get("history_id") or row.get("id"))
-        std_id = to_int(row.get("std_id") or row.get("student_id"))
-        course_id = to_int(row.get("course_id") or row.get("subject_id"))
-        semester_id = to_int(row.get("semester_id") or row.get("term_id"))
-        grade = to_str(row.get("grade"))
-        status = to_str(row.get("status"))
-        section = to_str(row.get("section"))
+        history_id  = to_int(get_field(row, "std_course", "id"))
+        std_id      = to_int(get_field(row, "std_course", "student_id"))
+        course_id   = to_int(get_field(row, "std_course", "course_id"))
+        semester_id = to_int(get_field(row, "std_course", "semester_id"))
+        grade       = to_str(get_field(row, "std_course", "grade"))
+        status      = to_str(get_field(row, "std_course", "status"))
+        section     = to_str(get_field(row, "std_course", "section"))
 
         if not history_id or not std_id or not course_id:
             continue
 
-        rows.append((
-            history_id,
-            std_id,
-            course_id,
-            semester_id,
-            grade,
-            status,
-            section
-        ))
+        rows.append((history_id, std_id, course_id, semester_id, grade, status, section))
 
     return rows
 
@@ -354,14 +357,16 @@ def load_plans():
     execute_many_merge("""
     MERGE plan AS target
     USING (
-        SELECT ? AS plan_id, ? AS major_id
+        SELECT ? AS plan_id, ? AS plan_name, ? AS major_id, ? AS total_hours
     ) AS source
     ON target.plan_id = source.plan_id
     WHEN MATCHED THEN
-        UPDATE SET major_id = source.major_id
+        UPDATE SET plan_name   = source.plan_name,
+                   major_id    = source.major_id,
+                   total_hours = source.total_hours
     WHEN NOT MATCHED THEN
-        INSERT (plan_id, major_id)
-        VALUES (source.plan_id, source.major_id);
+        INSERT (plan_id, plan_name, major_id, total_hours)
+        VALUES (source.plan_id, source.plan_name, source.major_id, source.total_hours);
     """, data, "plans")
 
 
