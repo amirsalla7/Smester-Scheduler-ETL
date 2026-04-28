@@ -510,7 +510,7 @@ def load_std_courses():
             ? AS std_id,
             ? AS course_id,
             ? AS semester_id,
-            ? AS garde,
+            ? AS grade,
             ? AS status,
             ? AS section
     ) AS source
@@ -520,12 +520,12 @@ def load_std_courses():
             std_id = source.std_id,
             course_id = source.course_id,
             semester_id = source.semester_id,
-            garde = source.garde,
+            grade = source.grade,
             status = source.status,
             section = source.section
     WHEN NOT MATCHED THEN
-        INSERT (history_id, std_id, course_id, semester_id, garde, status, section)
-        VALUES (source.history_id, source.std_id, source.course_id, source.semester_id, source.garde, source.status, source.section);
+        INSERT (history_id, std_id, course_id, semester_id, grade, status, section)
+        VALUES (source.history_id, source.std_id, source.course_id, source.semester_id, source.grade, source.status, source.section);
     """, data, "std_courses")
 
 

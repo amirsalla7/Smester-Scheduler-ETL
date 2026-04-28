@@ -103,7 +103,7 @@ CREATE TABLE std_course (
 
     semester_id INT NULL,
 
-    garde NVARCHAR(20) NULL,
+    grade NVARCHAR(20) NULL,
 
     status NVARCHAR(20) NULL,
 

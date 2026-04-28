@@ -52,7 +52,7 @@ class StudentAnalysis:
                 sc.std_id,
                 sc.course_id,
                 sc.semester_id,
-                sc.garde,
+                sc.grade,
                 sc.status,
                 sc.section,
                 ISNULL(c.credit_hours, 0) AS course_credit_hours
@@ -128,7 +128,7 @@ class StudentAnalysis:
         for row in self.student_courses:
             std_id = row["std_id"]
             course_id = row["course_id"]
-            grade = row.get("garde")
+            grade = row.get("grade")
             status = row.get("status")
             hours = int(row.get("course_credit_hours") or 0)
 
