@@ -6,8 +6,12 @@ Eel bridge for the Semester Scheduling Generator UI.
 
 import eel
 import json
+import os
 import sys
 import hashlib
+import threading
+import tempfile
+import shutil
 
 from student_analysis import StudentAnalysis
 from course_offering import CourseOffering
@@ -16,6 +20,10 @@ from exporter import export_schedule_to_pdf, export_summary_to_pdf
 from student_summary import build_summary
 
 eel.init("web")
+
+# ── Pipeline guard (prevents double-run deadlocks) ─────────────────────────────
+_pipeline_lock   = threading.Lock()
+_pipeline_active = False
 
 # ── Credentials ────────────────────────────────────────────────────────────────
 USERS = {
@@ -38,14 +46,66 @@ def check_login(username: str, password: str) -> dict:
     return {"ok": True}
 
 
+# ── Safe PDF writer (handles Windows file-lock issues) ────────────────────────
+def _write_pdf_safe(export_fn, filepath):
+    """
+    Write a PDF safely on Windows.
+    Writes to a temp file first then renames, so a browser-locked
+    old file never blocks the new write.
+    """
+    os.makedirs(os.path.dirname(filepath) or ".", exist_ok=True)
+
+    # Try to remove the old file first (releases browser lock on most systems)
+    try:
+        if os.path.exists(filepath):
+            os.remove(filepath)
+    except OSError:
+        pass  # file might still be locked — temp-rename approach will handle it
+
+    # Write to a temp file in the same folder, then move into place
+    dir_name = os.path.dirname(filepath) or "."
+    fd, tmp_path = tempfile.mkstemp(dir=dir_name, suffix=".tmp.pdf")
+    os.close(fd)
+    try:
+        export_fn(tmp_path)
+        try:
+            shutil.move(tmp_path, filepath)
+        except OSError:
+            # Old file still locked — keep the temp file under a timestamped name
+            import time as _time
+            safe_path = filepath.replace(".pdf", f"_{int(_time.time())}.pdf")
+            shutil.move(tmp_path, safe_path)
+            print(f"[WARN] Could not replace {filepath} (file locked). Saved as {safe_path}")
+    except Exception:
+        try:
+            os.remove(tmp_path)
+        except OSError:
+            pass
+        raise
+
+
 # ── Main Pipeline ──────────────────────────────────────────────────────────────
 @eel.expose
 def run_pipeline():
+    global _pipeline_active
+
+    # ── Guard against concurrent runs ─────────────────────────────────────────
+    with _pipeline_lock:
+        if _pipeline_active:
+            return {
+                "status": "error",
+                "message": "Pipeline is already running. Please wait for it to finish.",
+            }
+        _pipeline_active = True
+
     try:
         try:
             sys.stdout.reconfigure(encoding="utf-8")
         except Exception:
             pass
+
+        # Ensure output folder exists
+        os.makedirs("web", exist_ok=True)
 
         analysis = StudentAnalysis(graduating_hours_threshold=21)
         analysis.load_data()
@@ -92,17 +152,35 @@ def run_pipeline():
         with open("web/stats.json", "w", encoding="utf-8") as f:
             json.dump(stats, f, ensure_ascii=False, indent=2)
 
-        export_schedule_to_pdf(scheduler.schedule, "web/semester_schedule.pdf")
-        export_summary_to_pdf(summary, "web/summary_report.pdf")
+        # PDFs are written safely — a locked/deleted file won't crash the pipeline
+        pdf_warning = None
+        try:
+            _write_pdf_safe(
+                lambda p: export_schedule_to_pdf(scheduler.schedule, p),
+                "web/semester_schedule.pdf"
+            )
+            _write_pdf_safe(
+                lambda p: export_summary_to_pdf(summary, p),
+                "web/summary_report.pdf"
+            )
+        except Exception as pdf_err:
+            pdf_warning = str(pdf_err)
+            print(f"[WARN] PDF export failed: {pdf_err}")
 
         return {
             "status": "success",
             "sections_generated": len(scheduler.schedule),
             "conflicts": len(conflicts),
+            "pdf_warning": pdf_warning,
         }
 
     except Exception as e:
         return {"status": "error", "message": str(e)}
+
+    finally:
+        # Always release the lock so next run isn't blocked
+        with _pipeline_lock:
+            _pipeline_active = False
 
 
 # ── Resources for Edit Dropdowns ───────────────────────────────────────────────
@@ -217,9 +295,15 @@ def save_schedule_edits(edited_schedule: list) -> dict:
                 "conflicts": conflicts
             }
 
-        # 5) Re-export PDFs
-        export_schedule_to_pdf(edited_schedule, "web/semester_schedule.pdf")
-        export_summary_to_pdf(summary, "web/summary_report.pdf")
+        # 5) Re-export PDFs (safe write handles Windows file locks)
+        _write_pdf_safe(
+            lambda p: export_schedule_to_pdf(edited_schedule, p),
+            "web/semester_schedule.pdf"
+        )
+        _write_pdf_safe(
+            lambda p: export_summary_to_pdf(summary, p),
+            "web/summary_report.pdf"
+        )
 
         return {
             "status": "success",

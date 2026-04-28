@@ -116,14 +116,84 @@ def fetch_rooms():
     """)
 
 
+def fetch_collages():
+    return fetch_all("SELECT collage_id, collage_na AS collage_name FROM collage ORDER BY collage_id")
+
+
+def fetch_departments():
+    return fetch_all("""
+        SELECT d.department_id, d.department_na AS department_name, d.collage_id,
+               c.collage_na AS collage_name
+        FROM department d
+        LEFT JOIN collage c ON d.collage_id = c.collage_id
+        ORDER BY d.department_id
+    """)
+
+
+def fetch_majors():
+    return fetch_all("""
+        SELECT m.major_id, m.major_na AS major_name, m.credit_hours, m.department_id,
+               d.department_na AS department_name
+        FROM major m
+        LEFT JOIN department d ON m.department_id = d.department_id
+        ORDER BY m.major_id
+    """)
+
+
+def fetch_plans():
+    return fetch_all("""
+        SELECT p.plan_id, p.plan_name, p.major_id, p.total_hours,
+               m.major_na AS major_name
+        FROM [plan] p
+        LEFT JOIN major m ON p.major_id = m.major_id
+        ORDER BY p.plan_id
+    """)
+
+
+def fetch_time_slots():
+    return fetch_all("""
+        SELECT time_id, day, s_time AS start_time, e_time AS end_time
+        FROM time_slot
+        ORDER BY time_id
+    """)
+
+
+def fetch_semesters():
+    return fetch_all("""
+        SELECT semester_id, name AS semester_name, s_date AS start_date,
+               e_date AS end_date, status
+        FROM semester
+        ORDER BY semester_id
+    """)
+
+
+def fetch_std_course():
+    return fetch_all("""
+        SELECT sc.history_id, sc.std_id, s.std_na AS student_name,
+               sc.course_id, c.course_na AS course_name,
+               sc.semester_id, sc.garde AS grade, sc.status, sc.section
+        FROM std_course sc
+        LEFT JOIN std    s ON sc.std_id    = s.std_id
+        LEFT JOIN course c ON sc.course_id = c.course_id
+        ORDER BY sc.history_id
+    """)
+
+
 def fetch_all_data():
     return {
         "exported_at": datetime.now().isoformat(),
-        "schedule":    fetch_schedule(),
-        "students":    fetch_students(),
-        "courses":     fetch_courses(),
+        "collages":    fetch_collages(),
+        "departments": fetch_departments(),
+        "majors":      fetch_majors(),
+        "plans":       fetch_plans(),
+        "semesters":   fetch_semesters(),
+        "time_slots":  fetch_time_slots(),
         "instructors": fetch_instructors(),
         "rooms":       fetch_rooms(),
+        "courses":     fetch_courses(),
+        "students":    fetch_students(),
+        "std_course":  fetch_std_course(),
+        "schedule":    fetch_schedule(),
     }
 
 
@@ -135,7 +205,9 @@ def export_to_files():
     timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
 
     # ── JSON files ────────────────────────────────────────────────────────────
-    for key in ("schedule", "students", "courses", "instructors", "rooms"):
+    for key in ("collages", "departments", "majors", "plans", "semesters",
+                "time_slots", "instructors", "rooms", "courses", "students",
+                "std_course", "schedule"):
         path = os.path.join(EXPORT_DIR, f"{key}.json")
         with open(path, "w", encoding="utf-8") as f:
             f.write(_dump(data[key]))
@@ -159,7 +231,9 @@ def export_to_files():
         header_fill  = PatternFill("solid", fgColor="2E75B6")
         center_align = Alignment(horizontal="center", vertical="center")
 
-        for key in ("schedule", "students", "courses", "instructors", "rooms"):
+        for key in ("collages", "departments", "majors", "plans", "semesters",
+                    "time_slots", "instructors", "rooms", "courses", "students",
+                    "std_course", "schedule"):
             rows = data[key]
             if not rows:
                 continue
@@ -238,12 +312,19 @@ def run_server(port=5050):
         return _resp({
             "service": "SSG Data Exporter",
             "endpoints": {
+                "GET /api/all":          "Everything in one response",
                 "GET /api/schedule":     "Full schedule with rooms & instructors",
                 "GET /api/students":     "All students",
                 "GET /api/courses":      "All courses",
                 "GET /api/instructors":  "All instructors",
                 "GET /api/rooms":        "All rooms",
-                "GET /api/all":          "Everything in one response",
+                "GET /api/majors":       "All majors",
+                "GET /api/departments":  "All departments",
+                "GET /api/collages":     "All collages",
+                "GET /api/plans":        "All study plans",
+                "GET /api/time_slots":   "All time slots",
+                "GET /api/semesters":    "All semesters",
+                "GET /api/std_course":   "All student course history",
             },
             "your_ip": local_ip,
             "port": port,
@@ -269,6 +350,34 @@ def run_server(port=5050):
     @app.route("/api/rooms")
     def api_rooms():
         return _resp(fetch_rooms())
+
+    @app.route("/api/majors")
+    def api_majors():
+        return _resp(fetch_majors())
+
+    @app.route("/api/departments")
+    def api_departments():
+        return _resp(fetch_departments())
+
+    @app.route("/api/collages")
+    def api_collages():
+        return _resp(fetch_collages())
+
+    @app.route("/api/plans")
+    def api_plans():
+        return _resp(fetch_plans())
+
+    @app.route("/api/time_slots")
+    def api_time_slots():
+        return _resp(fetch_time_slots())
+
+    @app.route("/api/semesters")
+    def api_semesters():
+        return _resp(fetch_semesters())
+
+    @app.route("/api/std_course")
+    def api_std_course():
+        return _resp(fetch_std_course())
 
     @app.route("/api/all")
     def api_all():

@@ -47,7 +47,16 @@ const PipelineModule = (() => {
   }
 
   // ── Run Full Pipeline ──────────────────────────────────────────────────────
+  let _isRunning = false;
+
   async function runPipeline() {
+    // Prevent double-clicks / re-entry while Python is still working
+    if (_isRunning) {
+      showToast('Pipeline is already running. Please wait.', 'error');
+      return;
+    }
+    _isRunning = true;
+
     _openModal();
     _startStepAnimation();
 
@@ -57,10 +66,12 @@ const PipelineModule = (() => {
         throw new Error('eel is not available. Run the app via web_app.py.');
       result = await eel.run_pipeline()();
     } catch (e) {
+      _isRunning = false;
       _stopStepAnimation();
       _showModalError(e.message || 'Unknown error calling backend.');
       return;
     }
+    _isRunning = false;
 
     _stopStepAnimation();
 
