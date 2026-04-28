@@ -33,10 +33,11 @@ CREATE TABLE std (
 
 -- Instructor
 CREATE TABLE instructor (
-    instructor_id INT PRIMARY KEY,
+    instructor_id   INT PRIMARY KEY,
     instructor_name NVARCHAR(100),
-    spec NVARCHAR(100),
-    degree_type NVARCHAR(50)
+    spec            NVARCHAR(100),
+    degree_type     NVARCHAR(50),
+    is_admin        BIT DEFAULT 0
 );
 
 -- Course
@@ -103,7 +104,7 @@ CREATE TABLE std_course (
 
     semester_id INT NULL,
 
-    grade NVARCHAR(20) NULL,
+    garde NVARCHAR(20) NULL,
 
     status NVARCHAR(20) NULL,
 

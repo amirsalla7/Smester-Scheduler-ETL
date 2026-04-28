@@ -130,7 +130,7 @@ END;
 -- std_course
 -- أول 10 طلاب خريجين (باقي لهم 18 ساعة أو أقل)
 ------------------------------------------------
-INSERT INTO std_course (history_id, std_id, course_id, semester_id, grade, status, section) VALUES
+INSERT INTO std_course (history_id, std_id, course_id, semester_id, garde, status, section) VALUES
 (1, 1001, 1, 1, 'A', 'passed', '1'),
 (2, 1001, 2, 1, 'B', 'passed', '1'),
 (3, 1001, 3, 1, 'B', 'passed', '1'),
@@ -191,19 +191,19 @@ WHILE @student_id <= 1100
 BEGIN
     IF (@student_id % 3 = 2)
     BEGIN
-        INSERT INTO std_course (history_id, std_id, course_id, semester_id, grade, status, section)
+        INSERT INTO std_course (history_id, std_id, course_id, semester_id, garde, status, section)
         VALUES (@history_id, @student_id, 1, 1, 'B', 'passed', '1');
         SET @history_id = @history_id + 1;
     END
     ELSE IF (@student_id % 3 = 0)
     BEGIN
-        INSERT INTO std_course (history_id, std_id, course_id, semester_id, grade, status, section)
+        INSERT INTO std_course (history_id, std_id, course_id, semester_id, garde, status, section)
         VALUES (@history_id, @student_id, 5, 1, 'B', 'passed', '1');
         SET @history_id = @history_id + 1;
     END
     ELSE
     BEGIN
-        INSERT INTO std_course (history_id, std_id, course_id, semester_id, grade, status, section)
+        INSERT INTO std_course (history_id, std_id, course_id, semester_id, garde, status, section)
         VALUES (@history_id, @student_id, 8, 1, 'B', 'passed', '1');
         SET @history_id = @history_id + 1;
     END
