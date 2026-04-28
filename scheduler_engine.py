@@ -289,7 +289,7 @@ class SchedulerEngine:
                 sc.std_id,
                 sc.course_id,
                 sc.semester_id,
-                sc.grade,
+                sc.garde AS grade,
                 sc.status,
                 sc.section,
                 ISNULL(c.credit_hours, 0) AS course_credit_hours
