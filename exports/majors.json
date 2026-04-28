@@ -1,0 +1,23 @@
+[
+  {
+    "major_id": 1,
+    "major_name": "AI",
+    "credit_hours": 132,
+    "department_id": 1,
+    "department_name": "Artificial Intelligence"
+  },
+  {
+    "major_id": 2,
+    "major_name": "SE",
+    "credit_hours": 132,
+    "department_id": 2,
+    "department_name": "Software Engineering"
+  },
+  {
+    "major_id": 3,
+    "major_name": "CY",
+    "credit_hours": 132,
+    "department_id": 3,
+    "department_name": "Cyber Security"
+  }
+]

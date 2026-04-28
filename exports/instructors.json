@@ -1,0 +1,74 @@
+[
+  {
+    "instructor_id": 1,
+    "instructor_name": "Dr Ahmed Salem",
+    "specialization": "CY",
+    "degree_type": "Doctor"
+  },
+  {
+    "instructor_id": 2,
+    "instructor_name": "Dr Mohammad Hassan",
+    "specialization": "CY",
+    "degree_type": "Doctor"
+  },
+  {
+    "instructor_id": 3,
+    "instructor_name": "Dr Lina Khaled",
+    "specialization": "CY",
+    "degree_type": "Doctor"
+  },
+  {
+    "instructor_id": 4,
+    "instructor_name": "Dr Omar Nasser",
+    "specialization": "CY",
+    "degree_type": "Doctor"
+  },
+  {
+    "instructor_id": 5,
+    "instructor_name": "Dr Yousef Ali",
+    "specialization": "SE",
+    "degree_type": "Doctor"
+  },
+  {
+    "instructor_id": 6,
+    "instructor_name": "Dr Rana Majed",
+    "specialization": "SE",
+    "degree_type": "Doctor"
+  },
+  {
+    "instructor_id": 7,
+    "instructor_name": "Dr Khaled Sami",
+    "specialization": "SE",
+    "degree_type": "Doctor"
+  },
+  {
+    "instructor_id": 8,
+    "instructor_name": "Dr Nour Hussein",
+    "specialization": "SE",
+    "degree_type": "Doctor"
+  },
+  {
+    "instructor_id": 9,
+    "instructor_name": "Dr Sara Adel",
+    "specialization": "AI",
+    "degree_type": "Doctor"
+  },
+  {
+    "instructor_id": 10,
+    "instructor_name": "Dr Mahmoud Zein",
+    "specialization": "AI",
+    "degree_type": "Doctor"
+  },
+  {
+    "instructor_id": 11,
+    "instructor_name": "Dr Huda Farouq",
+    "specialization": "AI",
+    "degree_type": "Doctor"
+  },
+  {
+    "instructor_id": 12,
+    "instructor_name": "Dr Anas Karim",
+    "specialization": "AI",
+    "degree_type": "Doctor"
+  }
+]

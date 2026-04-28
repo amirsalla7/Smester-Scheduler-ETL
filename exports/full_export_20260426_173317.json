@@ -1,0 +1,7267 @@
+{
+  "exported_at": "2026-04-26T17:33:17.040182",
+  "schedule": [
+    {
+      "schedule_id": 1,
+      "course_name": "Calculus for AI",
+      "credit_hours": 3,
+      "instructor_name": "Dr Ahmed Salem",
+      "room_name": "A101",
+      "capacity": 80,
+      "day": "Sunday",
+      "start_time": "08:00:00",
+      "end_time": "09:00:00",
+      "course_id": 39,
+      "instructor_id": 1,
+      "room_id": 1,
+      "time_id": 1
+    },
+    {
+      "schedule_id": 2,
+      "course_name": "Calculus for AI",
+      "credit_hours": 3,
+      "instructor_name": "Dr Ahmed Salem",
+      "room_name": "A101",
+      "capacity": 80,
+      "day": "Monday",
+      "start_time": "08:00:00",
+      "end_time": "09:00:00",
+      "course_id": 39,
+      "instructor_id": 1,
+      "room_id": 1,
+      "time_id": 5
+    },
+    {
+      "schedule_id": 3,
+      "course_name": "Calculus for AI",
+      "credit_hours": 3,
+      "instructor_name": "Dr Mohammad Hassan",
+      "room_name": "A102",
+      "capacity": 80,
+      "day": "Sunday",
+      "start_time": "08:00:00",
+      "end_time": "09:00:00",
+      "course_id": 39,
+      "instructor_id": 2,
+      "room_id": 2,
+      "time_id": 1
+    },
+    {
+      "schedule_id": 4,
+      "course_name": "Research Methods",
+      "credit_hours": 3,
+      "instructor_name": "Dr Lina Khaled",
+      "room_name": "A103",
+      "capacity": 80,
+      "day": "Sunday",
+      "start_time": "08:00:00",
+      "end_time": "09:00:00",
+      "course_id": 40,
+      "instructor_id": 3,
+      "room_id": 3,
+      "time_id": 1
+    },
+    {
+      "schedule_id": 5,
+      "course_name": "Research Methods",
+      "credit_hours": 3,
+      "instructor_name": "Dr Lina Khaled",
+      "room_name": "A102",
+      "capacity": 80,
+      "day": "Monday",
+      "start_time": "08:00:00",
+      "end_time": "09:00:00",
+      "course_id": 40,
+      "instructor_id": 3,
+      "room_id": 2,
+      "time_id": 5
+    },
+    {
+      "schedule_id": 6,
+      "course_name": "Research Methods",
+      "credit_hours": 3,
+      "instructor_name": "Dr Omar Nasser",
+      "room_name": "A104",
+      "capacity": 80,
+      "day": "Sunday",
+      "start_time": "08:00:00",
+      "end_time": "09:00:00",
+      "course_id": 40,
+      "instructor_id": 4,
+      "room_id": 4,
+      "time_id": 1
+    },
+    {
+      "schedule_id": 7,
+      "course_name": "Technical Writing",
+      "credit_hours": 3,
+      "instructor_name": "Dr Yousef Ali",
+      "room_name": "A105",
+      "capacity": 80,
+      "day": "Sunday",
+      "start_time": "08:00:00",
+      "end_time": "09:00:00",
+      "course_id": 41,
+      "instructor_id": 5,
+      "room_id": 5,
+      "time_id": 1
+    },
+    {
+      "schedule_id": 8,
+      "course_name": "Technical Writing",
+      "credit_hours": 3,
+      "instructor_name": "Dr Yousef Ali",
+      "room_name": "A103",
+      "capacity": 80,
+      "day": "Monday",
+      "start_time": "08:00:00",
+      "end_time": "09:00:00",
+      "course_id": 41,
+      "instructor_id": 5,
+      "room_id": 3,
+      "time_id": 5
+    },
+    {
+      "schedule_id": 9,
+      "course_name": "Technical Writing",
+      "credit_hours": 3,
+      "instructor_name": "Dr Rana Majed",
+      "room_name": "A106",
+      "capacity": 80,
+      "day": "Sunday",
+      "start_time": "08:00:00",
+      "end_time": "09:00:00",
+      "course_id": 41,
+      "instructor_id": 6,
+      "room_id": 6,
+      "time_id": 1
+    },
+    {
+      "schedule_id": 10,
+      "course_name": "AI Graduation Project",
+      "credit_hours": 3,
+      "instructor_name": "Dr Khaled Sami",
+      "room_name": "A107",
+      "capacity": 80,
+      "day": "Sunday",
+      "start_time": "08:00:00",
+      "end_time": "09:00:00",
+      "course_id": 42,
+      "instructor_id": 7,
+      "room_id": 7,
+      "time_id": 1
+    },
+    {
+      "schedule_id": 11,
+      "course_name": "AI Graduation Project",
+      "credit_hours": 3,
+      "instructor_name": "Dr Khaled Sami",
+      "room_name": "A104",
+      "capacity": 80,
+      "day": "Monday",
+      "start_time": "08:00:00",
+      "end_time": "09:00:00",
+      "course_id": 42,
+      "instructor_id": 7,
+      "room_id": 4,
+      "time_id": 5
+    },
+    {
+      "schedule_id": 12,
+      "course_name": "AI Graduation Project",
+      "credit_hours": 3,
+      "instructor_name": "Dr Nour Hussein",
+      "room_name": "A108",
+      "capacity": 80,
+      "day": "Sunday",
+      "start_time": "08:00:00",
+      "end_time": "09:00:00",
+      "course_id": 42,
+      "instructor_id": 8,
+      "room_id": 8,
+      "time_id": 1
+    },
+    {
+      "schedule_id": 13,
+      "course_name": "AI Ethics",
+      "credit_hours": 3,
+      "instructor_name": "Dr Sara Adel",
+      "room_name": "A109",
+      "capacity": 80,
+      "day": "Sunday",
+      "start_time": "08:00:00",
+      "end_time": "09:00:00",
+      "course_id": 38,
+      "instructor_id": 9,
+      "room_id": 9,
+      "time_id": 1
+    },
+    {
+      "schedule_id": 14,
+      "course_name": "AI Ethics",
+      "credit_hours": 3,
+      "instructor_name": "Dr Sara Adel",
+      "room_name": "A105",
+      "capacity": 80,
+      "day": "Monday",
+      "start_time": "08:00:00",
+      "end_time": "09:00:00",
+      "course_id": 38,
+      "instructor_id": 9,
+      "room_id": 5,
+      "time_id": 5
+    },
+    {
+      "schedule_id": 15,
+      "course_name": "AI Ethics",
+      "credit_hours": 3,
+      "instructor_name": "Dr Mahmoud Zein",
+      "room_name": "A110",
+      "capacity": 80,
+      "day": "Sunday",
+      "start_time": "08:00:00",
+      "end_time": "09:00:00",
+      "course_id": 38,
+      "instructor_id": 10,
+      "room_id": 10,
+      "time_id": 1
+    },
+    {
+      "schedule_id": 16,
+      "course_name": "Computer Organization",
+      "credit_hours": 3,
+      "instructor_name": "Dr Huda Farouq",
+      "room_name": "A301",
+      "capacity": 45,
+      "day": "Sunday",
+      "start_time": "08:00:00",
+      "end_time": "09:00:00",
+      "course_id": 6,
+      "instructor_id": 11,
+      "room_id": 11,
+      "time_id": 1
+    },
+    {
+      "schedule_id": 17,
+      "course_name": "Computer Organization",
+      "credit_hours": 3,
+      "instructor_name": "Dr Huda Farouq",
+      "room_name": "A106",
+      "capacity": 80,
+      "day": "Monday",
+      "start_time": "08:00:00",
+      "end_time": "09:00:00",
+      "course_id": 6,
+      "instructor_id": 11,
+      "room_id": 6,
+      "time_id": 5
+    },
+    {
+      "schedule_id": 18,
+      "course_name": "Computer Organization",
+      "credit_hours": 3,
+      "instructor_name": "Dr Anas Karim",
+      "room_name": "A302",
+      "capacity": 45,
+      "day": "Sunday",
+      "start_time": "08:00:00",
+      "end_time": "09:00:00",
+      "course_id": 6,
+      "instructor_id": 12,
+      "room_id": 12,
+      "time_id": 1
+    },
+    {
+      "schedule_id": 19,
+      "course_name": "Programming 2",
+      "credit_hours": 3,
+      "instructor_name": "Dr Mohammad Hassan",
+      "room_name": "A101",
+      "capacity": 80,
+      "day": "Sunday",
+      "start_time": "09:00:00",
+      "end_time": "10:00:00",
+      "course_id": 29,
+      "instructor_id": 2,
+      "room_id": 1,
+      "time_id": 2
+    },
+    {
+      "schedule_id": 20,
+      "course_name": "Programming 2",
+      "credit_hours": 3,
+      "instructor_name": "Dr Mohammad Hassan",
+      "room_name": "A107",
+      "capacity": 80,
+      "day": "Monday",
+      "start_time": "08:00:00",
+      "end_time": "09:00:00",
+      "course_id": 29,
+      "instructor_id": 2,
+      "room_id": 7,
+      "time_id": 5
+    },
+    {
+      "schedule_id": 21,
+      "course_name": "Programming 2",
+      "credit_hours": 3,
+      "instructor_name": "Dr Omar Nasser",
+      "room_name": "A102",
+      "capacity": 80,
+      "day": "Sunday",
+      "start_time": "09:00:00",
+      "end_time": "10:00:00",
+      "course_id": 29,
+      "instructor_id": 4,
+      "room_id": 2,
+      "time_id": 2
+    },
+    {
+      "schedule_id": 22,
+      "course_name": "Probability and Statistics",
+      "credit_hours": 3,
+      "instructor_name": "Dr Rana Majed",
+      "room_name": "A103",
+      "capacity": 80,
+      "day": "Sunday",
+      "start_time": "09:00:00",
+      "end_time": "10:00:00",
+      "course_id": 31,
+      "instructor_id": 6,
+      "room_id": 3,
+      "time_id": 2
+    },
+    {
+      "schedule_id": 23,
+      "course_name": "Probability and Statistics",
+      "credit_hours": 3,
+      "instructor_name": "Dr Rana Majed",
+      "room_name": "A108",
+      "capacity": 80,
+      "day": "Monday",
+      "start_time": "08:00:00",
+      "end_time": "09:00:00",
+      "course_id": 31,
+      "instructor_id": 6,
+      "room_id": 8,
+      "time_id": 5
+    },
+    {
+      "schedule_id": 24,
+      "course_name": "Probability and Statistics",
+      "credit_hours": 3,
+      "instructor_name": "Dr Nour Hussein",
+      "room_name": "A104",
+      "capacity": 80,
+      "day": "Sunday",
+      "start_time": "09:00:00",
+      "end_time": "10:00:00",
+      "course_id": 31,
+      "instructor_id": 8,
+      "room_id": 4,
+      "time_id": 2
+    },
+    {
+      "schedule_id": 25,
+      "course_name": "Programming 2",
+      "credit_hours": 3,
+      "instructor_name": "Dr Mahmoud Zein",
+      "room_name": "A105",
+      "capacity": 80,
+      "day": "Sunday",
+      "start_time": "09:00:00",
+      "end_time": "10:00:00",
+      "course_id": 2,
+      "instructor_id": 10,
+      "room_id": 5,
+      "time_id": 2
+    },
+    {
+      "schedule_id": 26,
+      "course_name": "Programming 2",
+      "credit_hours": 3,
+      "instructor_name": "Dr Mahmoud Zein",
+      "room_name": "A109",
+      "capacity": 80,
+      "day": "Monday",
+      "start_time": "08:00:00",
+      "end_time": "09:00:00",
+      "course_id": 2,
+      "instructor_id": 10,
+      "room_id": 9,
+      "time_id": 5
+    },
+    {
+      "schedule_id": 27,
+      "course_name": "Programming 2",
+      "credit_hours": 3,
+      "instructor_name": "Dr Anas Karim",
+      "room_name": "A106",
+      "capacity": 80,
+      "day": "Sunday",
+      "start_time": "09:00:00",
+      "end_time": "10:00:00",
+      "course_id": 2,
+      "instructor_id": 12,
+      "room_id": 6,
+      "time_id": 2
+    },
+    {
+      "schedule_id": 28,
+      "course_name": "Introduction to Cyber Security",
+      "credit_hours": 3,
+      "instructor_name": "Dr Ahmed Salem",
+      "room_name": "A107",
+      "capacity": 80,
+      "day": "Sunday",
+      "start_time": "09:00:00",
+      "end_time": "10:00:00",
+      "course_id": 4,
+      "instructor_id": 1,
+      "room_id": 7,
+      "time_id": 2
+    },
+    {
+      "schedule_id": 29,
+      "course_name": "Introduction to Cyber Security",
+      "credit_hours": 3,
+      "instructor_name": "Dr Lina Khaled",
+      "room_name": "A108",
+      "capacity": 80,
+      "day": "Sunday",
+      "start_time": "09:00:00",
+      "end_time": "10:00:00",
+      "course_id": 4,
+      "instructor_id": 3,
+      "room_id": 8,
+      "time_id": 2
+    },
+    {
+      "schedule_id": 30,
+      "course_name": "Networking Fundamentals",
+      "credit_hours": 3,
+      "instructor_name": "Dr Yousef Ali",
+      "room_name": "A109",
+      "capacity": 80,
+      "day": "Sunday",
+      "start_time": "09:00:00",
+      "end_time": "10:00:00",
+      "course_id": 7,
+      "instructor_id": 5,
+      "room_id": 9,
+      "time_id": 2
+    },
+    {
+      "schedule_id": 31,
+      "course_name": "Networking Fundamentals",
+      "credit_hours": 3,
+      "instructor_name": "Dr Khaled Sami",
+      "room_name": "A110",
+      "capacity": 80,
+      "day": "Sunday",
+      "start_time": "09:00:00",
+      "end_time": "10:00:00",
+      "course_id": 7,
+      "instructor_id": 7,
+      "room_id": 10,
+      "time_id": 2
+    },
+    {
+      "schedule_id": 32,
+      "course_name": "Programming 2",
+      "credit_hours": 3,
+      "instructor_name": "Dr Sara Adel",
+      "room_name": "A301",
+      "capacity": 45,
+      "day": "Sunday",
+      "start_time": "09:00:00",
+      "end_time": "10:00:00",
+      "course_id": 18,
+      "instructor_id": 9,
+      "room_id": 11,
+      "time_id": 2
+    },
+    {
+      "schedule_id": 33,
+      "course_name": "Programming 2",
+      "credit_hours": 3,
+      "instructor_name": "Dr Huda Farouq",
+      "room_name": "A302",
+      "capacity": 45,
+      "day": "Sunday",
+      "start_time": "09:00:00",
+      "end_time": "10:00:00",
+      "course_id": 18,
+      "instructor_id": 11,
+      "room_id": 12,
+      "time_id": 2
+    },
+    {
+      "schedule_id": 34,
+      "course_name": "Software Design",
+      "credit_hours": 3,
+      "instructor_name": "Dr Omar Nasser",
+      "room_name": "A101",
+      "capacity": 80,
+      "day": "Sunday",
+      "start_time": "10:00:00",
+      "end_time": "11:00:00",
+      "course_id": 20,
+      "instructor_id": 4,
+      "room_id": 1,
+      "time_id": 3
+    },
+    {
+      "schedule_id": 35,
+      "course_name": "Software Design",
+      "credit_hours": 3,
+      "instructor_name": "Dr Nour Hussein",
+      "room_name": "A102",
+      "capacity": 80,
+      "day": "Sunday",
+      "start_time": "10:00:00",
+      "end_time": "11:00:00",
+      "course_id": 20,
+      "instructor_id": 8,
+      "room_id": 2,
+      "time_id": 3
+    },
+    {
+      "schedule_id": 36,
+      "course_name": "Database Systems",
+      "credit_hours": 3,
+      "instructor_name": "Dr Anas Karim",
+      "room_name": "A103",
+      "capacity": 80,
+      "day": "Sunday",
+      "start_time": "10:00:00",
+      "end_time": "11:00:00",
+      "course_id": 21,
+      "instructor_id": 12,
+      "room_id": 3,
+      "time_id": 3
+    }
+  ],
+  "students": [
+    {
+      "std_id": 1001,
+      "student_name": "Student_1",
+      "major_id": 1,
+      "major_name": "AI"
+    },
+    {
+      "std_id": 1002,
+      "student_name": "Student_2",
+      "major_id": 2,
+      "major_name": "SE"
+    },
+    {
+      "std_id": 1003,
+      "student_name": "Student_3",
+      "major_id": 3,
+      "major_name": "CY"
+    },
+    {
+      "std_id": 1004,
+      "student_name": "Student_4",
+      "major_id": 1,
+      "major_name": "AI"
+    },
+    {
+      "std_id": 1005,
+      "student_name": "Student_5",
+      "major_id": 2,
+      "major_name": "SE"
+    },
+    {
+      "std_id": 1006,
+      "student_name": "Student_6",
+      "major_id": 3,
+      "major_name": "CY"
+    },
+    {
+      "std_id": 1007,
+      "student_name": "Student_7",
+      "major_id": 1,
+      "major_name": "AI"
+    },
+    {
+      "std_id": 1008,
+      "student_name": "Student_8",
+      "major_id": 2,
+      "major_name": "SE"
+    },
+    {
+      "std_id": 1009,
+      "student_name": "Student_9",
+      "major_id": 3,
+      "major_name": "CY"
+    },
+    {
+      "std_id": 1010,
+      "student_name": "Student_10",
+      "major_id": 1,
+      "major_name": "AI"
+    },
+    {
+      "std_id": 1011,
+      "student_name": "Student_11",
+      "major_id": 2,
+      "major_name": "SE"
+    },
+    {
+      "std_id": 1012,
+      "student_name": "Student_12",
+      "major_id": 3,
+      "major_name": "CY"
+    },
+    {
+      "std_id": 1013,
+      "student_name": "Student_13",
+      "major_id": 1,
+      "major_name": "AI"
+    },
+    {
+      "std_id": 1014,
+      "student_name": "Student_14",
+      "major_id": 2,
+      "major_name": "SE"
+    },
+    {
+      "std_id": 1015,
+      "student_name": "Student_15",
+      "major_id": 3,
+      "major_name": "CY"
+    },
+    {
+      "std_id": 1016,
+      "student_name": "Student_16",
+      "major_id": 1,
+      "major_name": "AI"
+    },
+    {
+      "std_id": 1017,
+      "student_name": "Student_17",
+      "major_id": 2,
+      "major_name": "SE"
+    },
+    {
+      "std_id": 1018,
+      "student_name": "Student_18",
+      "major_id": 3,
+      "major_name": "CY"
+    },
+    {
+      "std_id": 1019,
+      "student_name": "Student_19",
+      "major_id": 1,
+      "major_name": "AI"
+    },
+    {
+      "std_id": 1020,
+      "student_name": "Student_20",
+      "major_id": 2,
+      "major_name": "SE"
+    },
+    {
+      "std_id": 1021,
+      "student_name": "Student_21",
+      "major_id": 3,
+      "major_name": "CY"
+    },
+    {
+      "std_id": 1022,
+      "student_name": "Student_22",
+      "major_id": 1,
+      "major_name": "AI"
+    },
+    {
+      "std_id": 1023,
+      "student_name": "Student_23",
+      "major_id": 2,
+      "major_name": "SE"
+    },
+    {
+      "std_id": 1024,
+      "student_name": "Student_24",
+      "major_id": 3,
+      "major_name": "CY"
+    },
+    {
+      "std_id": 1025,
+      "student_name": "Student_25",
+      "major_id": 1,
+      "major_name": "AI"
+    },
+    {
+      "std_id": 1026,
+      "student_name": "Student_26",
+      "major_id": 2,
+      "major_name": "SE"
+    },
+    {
+      "std_id": 1027,
+      "student_name": "Student_27",
+      "major_id": 3,
+      "major_name": "CY"
+    },
+    {
+      "std_id": 1028,
+      "student_name": "Student_28",
+      "major_id": 1,
+      "major_name": "AI"
+    },
+    {
+      "std_id": 1029,
+      "student_name": "Student_29",
+      "major_id": 2,
+      "major_name": "SE"
+    },
+    {
+      "std_id": 1030,
+      "student_name": "Student_30",
+      "major_id": 3,
+      "major_name": "CY"
+    },
+    {
+      "std_id": 1031,
+      "student_name": "Student_31",
+      "major_id": 1,
+      "major_name": "AI"
+    },
+    {
+      "std_id": 1032,
+      "student_name": "Student_32",
+      "major_id": 2,
+      "major_name": "SE"
+    },
+    {
+      "std_id": 1033,
+      "student_name": "Student_33",
+      "major_id": 3,
+      "major_name": "CY"
+    },
+    {
+      "std_id": 1034,
+      "student_name": "Student_34",
+      "major_id": 1,
+      "major_name": "AI"
+    },
+    {
+      "std_id": 1035,
+      "student_name": "Student_35",
+      "major_id": 2,
+      "major_name": "SE"
+    },
+    {
+      "std_id": 1036,
+      "student_name": "Student_36",
+      "major_id": 3,
+      "major_name": "CY"
+    },
+    {
+      "std_id": 1037,
+      "student_name": "Student_37",
+      "major_id": 1,
+      "major_name": "AI"
+    },
+    {
+      "std_id": 1038,
+      "student_name": "Student_38",
+      "major_id": 2,
+      "major_name": "SE"
+    },
+    {
+      "std_id": 1039,
+      "student_name": "Student_39",
+      "major_id": 3,
+      "major_name": "CY"
+    },
+    {
+      "std_id": 1040,
+      "student_name": "Student_40",
+      "major_id": 1,
+      "major_name": "AI"
+    },
+    {
+      "std_id": 1041,
+      "student_name": "Student_41",
+      "major_id": 2,
+      "major_name": "SE"
+    },
+    {
+      "std_id": 1042,
+      "student_name": "Student_42",
+      "major_id": 3,
+      "major_name": "CY"
+    },
+    {
+      "std_id": 1043,
+      "student_name": "Student_43",
+      "major_id": 1,
+      "major_name": "AI"
+    },
+    {
+      "std_id": 1044,
+      "student_name": "Student_44",
+      "major_id": 2,
+      "major_name": "SE"
+    },
+    {
+      "std_id": 1045,
+      "student_name": "Student_45",
+      "major_id": 3,
+      "major_name": "CY"
+    },
+    {
+      "std_id": 1046,
+      "student_name": "Student_46",
+      "major_id": 1,
+      "major_name": "AI"
+    },
+    {
+      "std_id": 1047,
+      "student_name": "Student_47",
+      "major_id": 2,
+      "major_name": "SE"
+    },
+    {
+      "std_id": 1048,
+      "student_name": "Student_48",
+      "major_id": 3,
+      "major_name": "CY"
+    },
+    {
+      "std_id": 1049,
+      "student_name": "Student_49",
+      "major_id": 1,
+      "major_name": "AI"
+    },
+    {
+      "std_id": 1050,
+      "student_name": "Student_50",
+      "major_id": 2,
+      "major_name": "SE"
+    },
+    {
+      "std_id": 1051,
+      "student_name": "Student_51",
+      "major_id": 3,
+      "major_name": "CY"
+    },
+    {
+      "std_id": 1052,
+      "student_name": "Student_52",
+      "major_id": 1,
+      "major_name": "AI"
+    },
+    {
+      "std_id": 1053,
+      "student_name": "Student_53",
+      "major_id": 2,
+      "major_name": "SE"
+    },
+    {
+      "std_id": 1054,
+      "student_name": "Student_54",
+      "major_id": 3,
+      "major_name": "CY"
+    },
+    {
+      "std_id": 1055,
+      "student_name": "Student_55",
+      "major_id": 1,
+      "major_name": "AI"
+    },
+    {
+      "std_id": 1056,
+      "student_name": "Student_56",
+      "major_id": 2,
+      "major_name": "SE"
+    },
+    {
+      "std_id": 1057,
+      "student_name": "Student_57",
+      "major_id": 3,
+      "major_name": "CY"
+    },
+    {
+      "std_id": 1058,
+      "student_name": "Student_58",
+      "major_id": 1,
+      "major_name": "AI"
+    },
+    {
+      "std_id": 1059,
+      "student_name": "Student_59",
+      "major_id": 2,
+      "major_name": "SE"
+    },
+    {
+      "std_id": 1060,
+      "student_name": "Student_60",
+      "major_id": 3,
+      "major_name": "CY"
+    },
+    {
+      "std_id": 1061,
+      "student_name": "Student_61",
+      "major_id": 1,
+      "major_name": "AI"
+    },
+    {
+      "std_id": 1062,
+      "student_name": "Student_62",
+      "major_id": 2,
+      "major_name": "SE"
+    },
+    {
+      "std_id": 1063,
+      "student_name": "Student_63",
+      "major_id": 3,
+      "major_name": "CY"
+    },
+    {
+      "std_id": 1064,
+      "student_name": "Student_64",
+      "major_id": 1,
+      "major_name": "AI"
+    },
+    {
+      "std_id": 1065,
+      "student_name": "Student_65",
+      "major_id": 2,
+      "major_name": "SE"
+    },
+    {
+      "std_id": 1066,
+      "student_name": "Student_66",
+      "major_id": 3,
+      "major_name": "CY"
+    },
+    {
+      "std_id": 1067,
+      "student_name": "Student_67",
+      "major_id": 1,
+      "major_name": "AI"
+    },
+    {
+      "std_id": 1068,
+      "student_name": "Student_68",
+      "major_id": 2,
+      "major_name": "SE"
+    },
+    {
+      "std_id": 1069,
+      "student_name": "Student_69",
+      "major_id": 3,
+      "major_name": "CY"
+    },
+    {
+      "std_id": 1070,
+      "student_name": "Student_70",
+      "major_id": 1,
+      "major_name": "AI"
+    },
+    {
+      "std_id": 1071,
+      "student_name": "Student_71",
+      "major_id": 2,
+      "major_name": "SE"
+    },
+    {
+      "std_id": 1072,
+      "student_name": "Student_72",
+      "major_id": 3,
+      "major_name": "CY"
+    },
+    {
+      "std_id": 1073,
+      "student_name": "Student_73",
+      "major_id": 1,
+      "major_name": "AI"
+    },
+    {
+      "std_id": 1074,
+      "student_name": "Student_74",
+      "major_id": 2,
+      "major_name": "SE"
+    },
+    {
+      "std_id": 1075,
+      "student_name": "Student_75",
+      "major_id": 3,
+      "major_name": "CY"
+    },
+    {
+      "std_id": 1076,
+      "student_name": "Student_76",
+      "major_id": 1,
+      "major_name": "AI"
+    },
+    {
+      "std_id": 1077,
+      "student_name": "Student_77",
+      "major_id": 2,
+      "major_name": "SE"
+    },
+    {
+      "std_id": 1078,
+      "student_name": "Student_78",
+      "major_id": 3,
+      "major_name": "CY"
+    },
+    {
+      "std_id": 1079,
+      "student_name": "Student_79",
+      "major_id": 1,
+      "major_name": "AI"
+    },
+    {
+      "std_id": 1080,
+      "student_name": "Student_80",
+      "major_id": 2,
+      "major_name": "SE"
+    },
+    {
+      "std_id": 1081,
+      "student_name": "Student_81",
+      "major_id": 3,
+      "major_name": "CY"
+    },
+    {
+      "std_id": 1082,
+      "student_name": "Student_82",
+      "major_id": 1,
+      "major_name": "AI"
+    },
+    {
+      "std_id": 1083,
+      "student_name": "Student_83",
+      "major_id": 2,
+      "major_name": "SE"
+    },
+    {
+      "std_id": 1084,
+      "student_name": "Student_84",
+      "major_id": 3,
+      "major_name": "CY"
+    },
+    {
+      "std_id": 1085,
+      "student_name": "Student_85",
+      "major_id": 1,
+      "major_name": "AI"
+    },
+    {
+      "std_id": 1086,
+      "student_name": "Student_86",
+      "major_id": 2,
+      "major_name": "SE"
+    },
+    {
+      "std_id": 1087,
+      "student_name": "Student_87",
+      "major_id": 3,
+      "major_name": "CY"
+    },
+    {
+      "std_id": 1088,
+      "student_name": "Student_88",
+      "major_id": 1,
+      "major_name": "AI"
+    },
+    {
+      "std_id": 1089,
+      "student_name": "Student_89",
+      "major_id": 2,
+      "major_name": "SE"
+    },
+    {
+      "std_id": 1090,
+      "student_name": "Student_90",
+      "major_id": 3,
+      "major_name": "CY"
+    },
+    {
+      "std_id": 1091,
+      "student_name": "Student_91",
+      "major_id": 1,
+      "major_name": "AI"
+    },
+    {
+      "std_id": 1092,
+      "student_name": "Student_92",
+      "major_id": 2,
+      "major_name": "SE"
+    },
+    {
+      "std_id": 1093,
+      "student_name": "Student_93",
+      "major_id": 3,
+      "major_name": "CY"
+    },
+    {
+      "std_id": 1094,
+      "student_name": "Student_94",
+      "major_id": 1,
+      "major_name": "AI"
+    },
+    {
+      "std_id": 1095,
+      "student_name": "Student_95",
+      "major_id": 2,
+      "major_name": "SE"
+    },
+    {
+      "std_id": 1096,
+      "student_name": "Student_96",
+      "major_id": 3,
+      "major_name": "CY"
+    },
+    {
+      "std_id": 1097,
+      "student_name": "Student_97",
+      "major_id": 1,
+      "major_name": "AI"
+    },
+    {
+      "std_id": 1098,
+      "student_name": "Student_98",
+      "major_id": 2,
+      "major_name": "SE"
+    },
+    {
+      "std_id": 1099,
+      "student_name": "Student_99",
+      "major_id": 3,
+      "major_name": "CY"
+    },
+    {
+      "std_id": 1100,
+      "student_name": "Student_100",
+      "major_id": 1,
+      "major_name": "AI"
+    },
+    {
+      "std_id": 1101,
+      "student_name": "Student_101",
+      "major_id": 2,
+      "major_name": "SE"
+    },
+    {
+      "std_id": 1102,
+      "student_name": "Student_102",
+      "major_id": 3,
+      "major_name": "CY"
+    },
+    {
+      "std_id": 1103,
+      "student_name": "Student_103",
+      "major_id": 1,
+      "major_name": "AI"
+    },
+    {
+      "std_id": 1104,
+      "student_name": "Student_104",
+      "major_id": 2,
+      "major_name": "SE"
+    },
+    {
+      "std_id": 1105,
+      "student_name": "Student_105",
+      "major_id": 3,
+      "major_name": "CY"
+    },
+    {
+      "std_id": 1106,
+      "student_name": "Student_106",
+      "major_id": 1,
+      "major_name": "AI"
+    },
+    {
+      "std_id": 1107,
+      "student_name": "Student_107",
+      "major_id": 2,
+      "major_name": "SE"
+    },
+    {
+      "std_id": 1108,
+      "student_name": "Student_108",
+      "major_id": 3,
+      "major_name": "CY"
+    },
+    {
+      "std_id": 1109,
+      "student_name": "Student_109",
+      "major_id": 1,
+      "major_name": "AI"
+    },
+    {
+      "std_id": 1110,
+      "student_name": "Student_110",
+      "major_id": 2,
+      "major_name": "SE"
+    },
+    {
+      "std_id": 1111,
+      "student_name": "Student_111",
+      "major_id": 3,
+      "major_name": "CY"
+    },
+    {
+      "std_id": 1112,
+      "student_name": "Student_112",
+      "major_id": 1,
+      "major_name": "AI"
+    },
+    {
+      "std_id": 1113,
+      "student_name": "Student_113",
+      "major_id": 2,
+      "major_name": "SE"
+    },
+    {
+      "std_id": 1114,
+      "student_name": "Student_114",
+      "major_id": 3,
+      "major_name": "CY"
+    },
+    {
+      "std_id": 1115,
+      "student_name": "Student_115",
+      "major_id": 1,
+      "major_name": "AI"
+    },
+    {
+      "std_id": 1116,
+      "student_name": "Student_116",
+      "major_id": 2,
+      "major_name": "SE"
+    },
+    {
+      "std_id": 1117,
+      "student_name": "Student_117",
+      "major_id": 3,
+      "major_name": "CY"
+    },
+    {
+      "std_id": 1118,
+      "student_name": "Student_118",
+      "major_id": 1,
+      "major_name": "AI"
+    },
+    {
+      "std_id": 1119,
+      "student_name": "Student_119",
+      "major_id": 2,
+      "major_name": "SE"
+    },
+    {
+      "std_id": 1120,
+      "student_name": "Student_120",
+      "major_id": 3,
+      "major_name": "CY"
+    },
+    {
+      "std_id": 1121,
+      "student_name": "Student_121",
+      "major_id": 1,
+      "major_name": "AI"
+    },
+    {
+      "std_id": 1122,
+      "student_name": "Student_122",
+      "major_id": 2,
+      "major_name": "SE"
+    },
+    {
+      "std_id": 1123,
+      "student_name": "Student_123",
+      "major_id": 3,
+      "major_name": "CY"
+    },
+    {
+      "std_id": 1124,
+      "student_name": "Student_124",
+      "major_id": 1,
+      "major_name": "AI"
+    },
+    {
+      "std_id": 1125,
+      "student_name": "Student_125",
+      "major_id": 2,
+      "major_name": "SE"
+    },
+    {
+      "std_id": 1126,
+      "student_name": "Student_126",
+      "major_id": 3,
+      "major_name": "CY"
+    },
+    {
+      "std_id": 1127,
+      "student_name": "Student_127",
+      "major_id": 1,
+      "major_name": "AI"
+    },
+    {
+      "std_id": 1128,
+      "student_name": "Student_128",
+      "major_id": 2,
+      "major_name": "SE"
+    },
+    {
+      "std_id": 1129,
+      "student_name": "Student_129",
+      "major_id": 3,
+      "major_name": "CY"
+    },
+    {
+      "std_id": 1130,
+      "student_name": "Student_130",
+      "major_id": 1,
+      "major_name": "AI"
+    },
+    {
+      "std_id": 1131,
+      "student_name": "Student_131",
+      "major_id": 2,
+      "major_name": "SE"
+    },
+    {
+      "std_id": 1132,
+      "student_name": "Student_132",
+      "major_id": 3,
+      "major_name": "CY"
+    },
+    {
+      "std_id": 1133,
+      "student_name": "Student_133",
+      "major_id": 1,
+      "major_name": "AI"
+    },
+    {
+      "std_id": 1134,
+      "student_name": "Student_134",
+      "major_id": 2,
+      "major_name": "SE"
+    },
+    {
+      "std_id": 1135,
+      "student_name": "Student_135",
+      "major_id": 3,
+      "major_name": "CY"
+    },
+    {
+      "std_id": 1136,
+      "student_name": "Student_136",
+      "major_id": 1,
+      "major_name": "AI"
+    },
+    {
+      "std_id": 1137,
+      "student_name": "Student_137",
+      "major_id": 2,
+      "major_name": "SE"
+    },
+    {
+      "std_id": 1138,
+      "student_name": "Student_138",
+      "major_id": 3,
+      "major_name": "CY"
+    },
+    {
+      "std_id": 1139,
+      "student_name": "Student_139",
+      "major_id": 1,
+      "major_name": "AI"
+    },
+    {
+      "std_id": 1140,
+      "student_name": "Student_140",
+      "major_id": 2,
+      "major_name": "SE"
+    },
+    {
+      "std_id": 1141,
+      "student_name": "Student_141",
+      "major_id": 3,
+      "major_name": "CY"
+    },
+    {
+      "std_id": 1142,
+      "student_name": "Student_142",
+      "major_id": 1,
+      "major_name": "AI"
+    },
+    {
+      "std_id": 1143,
+      "student_name": "Student_143",
+      "major_id": 2,
+      "major_name": "SE"
+    },
+    {
+      "std_id": 1144,
+      "student_name": "Student_144",
+      "major_id": 3,
+      "major_name": "CY"
+    },
+    {
+      "std_id": 1145,
+      "student_name": "Student_145",
+      "major_id": 1,
+      "major_name": "AI"
+    },
+    {
+      "std_id": 1146,
+      "student_name": "Student_146",
+      "major_id": 2,
+      "major_name": "SE"
+    },
+    {
+      "std_id": 1147,
+      "student_name": "Student_147",
+      "major_id": 3,
+      "major_name": "CY"
+    },
+    {
+      "std_id": 1148,
+      "student_name": "Student_148",
+      "major_id": 1,
+      "major_name": "AI"
+    },
+    {
+      "std_id": 1149,
+      "student_name": "Student_149",
+      "major_id": 2,
+      "major_name": "SE"
+    },
+    {
+      "std_id": 1150,
+      "student_name": "Student_150",
+      "major_id": 3,
+      "major_name": "CY"
+    },
+    {
+      "std_id": 1151,
+      "student_name": "Student_151",
+      "major_id": 1,
+      "major_name": "AI"
+    },
+    {
+      "std_id": 1152,
+      "student_name": "Student_152",
+      "major_id": 2,
+      "major_name": "SE"
+    },
+    {
+      "std_id": 1153,
+      "student_name": "Student_153",
+      "major_id": 3,
+      "major_name": "CY"
+    },
+    {
+      "std_id": 1154,
+      "student_name": "Student_154",
+      "major_id": 1,
+      "major_name": "AI"
+    },
+    {
+      "std_id": 1155,
+      "student_name": "Student_155",
+      "major_id": 2,
+      "major_name": "SE"
+    },
+    {
+      "std_id": 1156,
+      "student_name": "Student_156",
+      "major_id": 3,
+      "major_name": "CY"
+    },
+    {
+      "std_id": 1157,
+      "student_name": "Student_157",
+      "major_id": 1,
+      "major_name": "AI"
+    },
+    {
+      "std_id": 1158,
+      "student_name": "Student_158",
+      "major_id": 2,
+      "major_name": "SE"
+    },
+    {
+      "std_id": 1159,
+      "student_name": "Student_159",
+      "major_id": 3,
+      "major_name": "CY"
+    },
+    {
+      "std_id": 1160,
+      "student_name": "Student_160",
+      "major_id": 1,
+      "major_name": "AI"
+    },
+    {
+      "std_id": 1161,
+      "student_name": "Student_161",
+      "major_id": 2,
+      "major_name": "SE"
+    },
+    {
+      "std_id": 1162,
+      "student_name": "Student_162",
+      "major_id": 3,
+      "major_name": "CY"
+    },
+    {
+      "std_id": 1163,
+      "student_name": "Student_163",
+      "major_id": 1,
+      "major_name": "AI"
+    },
+    {
+      "std_id": 1164,
+      "student_name": "Student_164",
+      "major_id": 2,
+      "major_name": "SE"
+    },
+    {
+      "std_id": 1165,
+      "student_name": "Student_165",
+      "major_id": 3,
+      "major_name": "CY"
+    },
+    {
+      "std_id": 1166,
+      "student_name": "Student_166",
+      "major_id": 1,
+      "major_name": "AI"
+    },
+    {
+      "std_id": 1167,
+      "student_name": "Student_167",
+      "major_id": 2,
+      "major_name": "SE"
+    },
+    {
+      "std_id": 1168,
+      "student_name": "Student_168",
+      "major_id": 3,
+      "major_name": "CY"
+    },
+    {
+      "std_id": 1169,
+      "student_name": "Student_169",
+      "major_id": 1,
+      "major_name": "AI"
+    },
+    {
+      "std_id": 1170,
+      "student_name": "Student_170",
+      "major_id": 2,
+      "major_name": "SE"
+    },
+    {
+      "std_id": 1171,
+      "student_name": "Student_171",
+      "major_id": 3,
+      "major_name": "CY"
+    },
+    {
+      "std_id": 1172,
+      "student_name": "Student_172",
+      "major_id": 1,
+      "major_name": "AI"
+    },
+    {
+      "std_id": 1173,
+      "student_name": "Student_173",
+      "major_id": 2,
+      "major_name": "SE"
+    },
+    {
+      "std_id": 1174,
+      "student_name": "Student_174",
+      "major_id": 3,
+      "major_name": "CY"
+    },
+    {
+      "std_id": 1175,
+      "student_name": "Student_175",
+      "major_id": 1,
+      "major_name": "AI"
+    },
+    {
+      "std_id": 1176,
+      "student_name": "Student_176",
+      "major_id": 2,
+      "major_name": "SE"
+    },
+    {
+      "std_id": 1177,
+      "student_name": "Student_177",
+      "major_id": 3,
+      "major_name": "CY"
+    },
+    {
+      "std_id": 1178,
+      "student_name": "Student_178",
+      "major_id": 1,
+      "major_name": "AI"
+    },
+    {
+      "std_id": 1179,
+      "student_name": "Student_179",
+      "major_id": 2,
+      "major_name": "SE"
+    },
+    {
+      "std_id": 1180,
+      "student_name": "Student_180",
+      "major_id": 3,
+      "major_name": "CY"
+    },
+    {
+      "std_id": 1181,
+      "student_name": "Student_181",
+      "major_id": 1,
+      "major_name": "AI"
+    },
+    {
+      "std_id": 1182,
+      "student_name": "Student_182",
+      "major_id": 2,
+      "major_name": "SE"
+    },
+    {
+      "std_id": 1183,
+      "student_name": "Student_183",
+      "major_id": 3,
+      "major_name": "CY"
+    },
+    {
+      "std_id": 1184,
+      "student_name": "Student_184",
+      "major_id": 1,
+      "major_name": "AI"
+    },
+    {
+      "std_id": 1185,
+      "student_name": "Student_185",
+      "major_id": 2,
+      "major_name": "SE"
+    },
+    {
+      "std_id": 1186,
+      "student_name": "Student_186",
+      "major_id": 3,
+      "major_name": "CY"
+    },
+    {
+      "std_id": 1187,
+      "student_name": "Student_187",
+      "major_id": 1,
+      "major_name": "AI"
+    },
+    {
+      "std_id": 1188,
+      "student_name": "Student_188",
+      "major_id": 2,
+      "major_name": "SE"
+    },
+    {
+      "std_id": 1189,
+      "student_name": "Student_189",
+      "major_id": 3,
+      "major_name": "CY"
+    },
+    {
+      "std_id": 1190,
+      "student_name": "Student_190",
+      "major_id": 1,
+      "major_name": "AI"
+    },
+    {
+      "std_id": 1191,
+      "student_name": "Student_191",
+      "major_id": 2,
+      "major_name": "SE"
+    },
+    {
+      "std_id": 1192,
+      "student_name": "Student_192",
+      "major_id": 3,
+      "major_name": "CY"
+    },
+    {
+      "std_id": 1193,
+      "student_name": "Student_193",
+      "major_id": 1,
+      "major_name": "AI"
+    },
+    {
+      "std_id": 1194,
+      "student_name": "Student_194",
+      "major_id": 2,
+      "major_name": "SE"
+    },
+    {
+      "std_id": 1195,
+      "student_name": "Student_195",
+      "major_id": 3,
+      "major_name": "CY"
+    },
+    {
+      "std_id": 1196,
+      "student_name": "Student_196",
+      "major_id": 1,
+      "major_name": "AI"
+    },
+    {
+      "std_id": 1197,
+      "student_name": "Student_197",
+      "major_id": 2,
+      "major_name": "SE"
+    },
+    {
+      "std_id": 1198,
+      "student_name": "Student_198",
+      "major_id": 3,
+      "major_name": "CY"
+    },
+    {
+      "std_id": 1199,
+      "student_name": "Student_199",
+      "major_id": 1,
+      "major_name": "AI"
+    },
+    {
+      "std_id": 1200,
+      "student_name": "Student_200",
+      "major_id": 2,
+      "major_name": "SE"
+    },
+    {
+      "std_id": 1201,
+      "student_name": "Student_201",
+      "major_id": 3,
+      "major_name": "CY"
+    },
+    {
+      "std_id": 1202,
+      "student_name": "Student_202",
+      "major_id": 1,
+      "major_name": "AI"
+    },
+    {
+      "std_id": 1203,
+      "student_name": "Student_203",
+      "major_id": 2,
+      "major_name": "SE"
+    },
+    {
+      "std_id": 1204,
+      "student_name": "Student_204",
+      "major_id": 3,
+      "major_name": "CY"
+    },
+    {
+      "std_id": 1205,
+      "student_name": "Student_205",
+      "major_id": 1,
+      "major_name": "AI"
+    },
+    {
+      "std_id": 1206,
+      "student_name": "Student_206",
+      "major_id": 2,
+      "major_name": "SE"
+    },
+    {
+      "std_id": 1207,
+      "student_name": "Student_207",
+      "major_id": 3,
+      "major_name": "CY"
+    },
+    {
+      "std_id": 1208,
+      "student_name": "Student_208",
+      "major_id": 1,
+      "major_name": "AI"
+    },
+    {
+      "std_id": 1209,
+      "student_name": "Student_209",
+      "major_id": 2,
+      "major_name": "SE"
+    },
+    {
+      "std_id": 1210,
+      "student_name": "Student_210",
+      "major_id": 3,
+      "major_name": "CY"
+    },
+    {
+      "std_id": 1211,
+      "student_name": "Student_211",
+      "major_id": 1,
+      "major_name": "AI"
+    },
+    {
+      "std_id": 1212,
+      "student_name": "Student_212",
+      "major_id": 2,
+      "major_name": "SE"
+    },
+    {
+      "std_id": 1213,
+      "student_name": "Student_213",
+      "major_id": 3,
+      "major_name": "CY"
+    },
+    {
+      "std_id": 1214,
+      "student_name": "Student_214",
+      "major_id": 1,
+      "major_name": "AI"
+    },
+    {
+      "std_id": 1215,
+      "student_name": "Student_215",
+      "major_id": 2,
+      "major_name": "SE"
+    },
+    {
+      "std_id": 1216,
+      "student_name": "Student_216",
+      "major_id": 3,
+      "major_name": "CY"
+    },
+    {
+      "std_id": 1217,
+      "student_name": "Student_217",
+      "major_id": 1,
+      "major_name": "AI"
+    },
+    {
+      "std_id": 1218,
+      "student_name": "Student_218",
+      "major_id": 2,
+      "major_name": "SE"
+    },
+    {
+      "std_id": 1219,
+      "student_name": "Student_219",
+      "major_id": 3,
+      "major_name": "CY"
+    },
+    {
+      "std_id": 1220,
+      "student_name": "Student_220",
+      "major_id": 1,
+      "major_name": "AI"
+    },
+    {
+      "std_id": 1221,
+      "student_name": "Student_221",
+      "major_id": 2,
+      "major_name": "SE"
+    },
+    {
+      "std_id": 1222,
+      "student_name": "Student_222",
+      "major_id": 3,
+      "major_name": "CY"
+    },
+    {
+      "std_id": 1223,
+      "student_name": "Student_223",
+      "major_id": 1,
+      "major_name": "AI"
+    },
+    {
+      "std_id": 1224,
+      "student_name": "Student_224",
+      "major_id": 2,
+      "major_name": "SE"
+    },
+    {
+      "std_id": 1225,
+      "student_name": "Student_225",
+      "major_id": 3,
+      "major_name": "CY"
+    },
+    {
+      "std_id": 1226,
+      "student_name": "Student_226",
+      "major_id": 1,
+      "major_name": "AI"
+    },
+    {
+      "std_id": 1227,
+      "student_name": "Student_227",
+      "major_id": 2,
+      "major_name": "SE"
+    },
+    {
+      "std_id": 1228,
+      "student_name": "Student_228",
+      "major_id": 3,
+      "major_name": "CY"
+    },
+    {
+      "std_id": 1229,
+      "student_name": "Student_229",
+      "major_id": 1,
+      "major_name": "AI"
+    },
+    {
+      "std_id": 1230,
+      "student_name": "Student_230",
+      "major_id": 2,
+      "major_name": "SE"
+    },
+    {
+      "std_id": 1231,
+      "student_name": "Student_231",
+      "major_id": 3,
+      "major_name": "CY"
+    },
+    {
+      "std_id": 1232,
+      "student_name": "Student_232",
+      "major_id": 1,
+      "major_name": "AI"
+    },
+    {
+      "std_id": 1233,
+      "student_name": "Student_233",
+      "major_id": 2,
+      "major_name": "SE"
+    },
+    {
+      "std_id": 1234,
+      "student_name": "Student_234",
+      "major_id": 3,
+      "major_name": "CY"
+    },
+    {
+      "std_id": 1235,
+      "student_name": "Student_235",
+      "major_id": 1,
+      "major_name": "AI"
+    },
+    {
+      "std_id": 1236,
+      "student_name": "Student_236",
+      "major_id": 2,
+      "major_name": "SE"
+    },
+    {
+      "std_id": 1237,
+      "student_name": "Student_237",
+      "major_id": 3,
+      "major_name": "CY"
+    },
+    {
+      "std_id": 1238,
+      "student_name": "Student_238",
+      "major_id": 1,
+      "major_name": "AI"
+    },
+    {
+      "std_id": 1239,
+      "student_name": "Student_239",
+      "major_id": 2,
+      "major_name": "SE"
+    },
+    {
+      "std_id": 1240,
+      "student_name": "Student_240",
+      "major_id": 3,
+      "major_name": "CY"
+    },
+    {
+      "std_id": 1241,
+      "student_name": "Student_241",
+      "major_id": 1,
+      "major_name": "AI"
+    },
+    {
+      "std_id": 1242,
+      "student_name": "Student_242",
+      "major_id": 2,
+      "major_name": "SE"
+    },
+    {
+      "std_id": 1243,
+      "student_name": "Student_243",
+      "major_id": 3,
+      "major_name": "CY"
+    },
+    {
+      "std_id": 1244,
+      "student_name": "Student_244",
+      "major_id": 1,
+      "major_name": "AI"
+    },
+    {
+      "std_id": 1245,
+      "student_name": "Student_245",
+      "major_id": 2,
+      "major_name": "SE"
+    },
+    {
+      "std_id": 1246,
+      "student_name": "Student_246",
+      "major_id": 3,
+      "major_name": "CY"
+    },
+    {
+      "std_id": 1247,
+      "student_name": "Student_247",
+      "major_id": 1,
+      "major_name": "AI"
+    },
+    {
+      "std_id": 1248,
+      "student_name": "Student_248",
+      "major_id": 2,
+      "major_name": "SE"
+    },
+    {
+      "std_id": 1249,
+      "student_name": "Student_249",
+      "major_id": 3,
+      "major_name": "CY"
+    },
+    {
+      "std_id": 1250,
+      "student_name": "Student_250",
+      "major_id": 1,
+      "major_name": "AI"
+    },
+    {
+      "std_id": 1251,
+      "student_name": "Student_251",
+      "major_id": 2,
+      "major_name": "SE"
+    },
+    {
+      "std_id": 1252,
+      "student_name": "Student_252",
+      "major_id": 3,
+      "major_name": "CY"
+    },
+    {
+      "std_id": 1253,
+      "student_name": "Student_253",
+      "major_id": 1,
+      "major_name": "AI"
+    },
+    {
+      "std_id": 1254,
+      "student_name": "Student_254",
+      "major_id": 2,
+      "major_name": "SE"
+    },
+    {
+      "std_id": 1255,
+      "student_name": "Student_255",
+      "major_id": 3,
+      "major_name": "CY"
+    },
+    {
+      "std_id": 1256,
+      "student_name": "Student_256",
+      "major_id": 1,
+      "major_name": "AI"
+    },
+    {
+      "std_id": 1257,
+      "student_name": "Student_257",
+      "major_id": 2,
+      "major_name": "SE"
+    },
+    {
+      "std_id": 1258,
+      "student_name": "Student_258",
+      "major_id": 3,
+      "major_name": "CY"
+    },
+    {
+      "std_id": 1259,
+      "student_name": "Student_259",
+      "major_id": 1,
+      "major_name": "AI"
+    },
+    {
+      "std_id": 1260,
+      "student_name": "Student_260",
+      "major_id": 2,
+      "major_name": "SE"
+    },
+    {
+      "std_id": 1261,
+      "student_name": "Student_261",
+      "major_id": 3,
+      "major_name": "CY"
+    },
+    {
+      "std_id": 1262,
+      "student_name": "Student_262",
+      "major_id": 1,
+      "major_name": "AI"
+    },
+    {
+      "std_id": 1263,
+      "student_name": "Student_263",
+      "major_id": 2,
+      "major_name": "SE"
+    },
+    {
+      "std_id": 1264,
+      "student_name": "Student_264",
+      "major_id": 3,
+      "major_name": "CY"
+    },
+    {
+      "std_id": 1265,
+      "student_name": "Student_265",
+      "major_id": 1,
+      "major_name": "AI"
+    },
+    {
+      "std_id": 1266,
+      "student_name": "Student_266",
+      "major_id": 2,
+      "major_name": "SE"
+    },
+    {
+      "std_id": 1267,
+      "student_name": "Student_267",
+      "major_id": 3,
+      "major_name": "CY"
+    },
+    {
+      "std_id": 1268,
+      "student_name": "Student_268",
+      "major_id": 1,
+      "major_name": "AI"
+    },
+    {
+      "std_id": 1269,
+      "student_name": "Student_269",
+      "major_id": 2,
+      "major_name": "SE"
+    },
+    {
+      "std_id": 1270,
+      "student_name": "Student_270",
+      "major_id": 3,
+      "major_name": "CY"
+    },
+    {
+      "std_id": 1271,
+      "student_name": "Student_271",
+      "major_id": 1,
+      "major_name": "AI"
+    },
+    {
+      "std_id": 1272,
+      "student_name": "Student_272",
+      "major_id": 2,
+      "major_name": "SE"
+    },
+    {
+      "std_id": 1273,
+      "student_name": "Student_273",
+      "major_id": 3,
+      "major_name": "CY"
+    },
+    {
+      "std_id": 1274,
+      "student_name": "Student_274",
+      "major_id": 1,
+      "major_name": "AI"
+    },
+    {
+      "std_id": 1275,
+      "student_name": "Student_275",
+      "major_id": 2,
+      "major_name": "SE"
+    },
+    {
+      "std_id": 1276,
+      "student_name": "Student_276",
+      "major_id": 3,
+      "major_name": "CY"
+    },
+    {
+      "std_id": 1277,
+      "student_name": "Student_277",
+      "major_id": 1,
+      "major_name": "AI"
+    },
+    {
+      "std_id": 1278,
+      "student_name": "Student_278",
+      "major_id": 2,
+      "major_name": "SE"
+    },
+    {
+      "std_id": 1279,
+      "student_name": "Student_279",
+      "major_id": 3,
+      "major_name": "CY"
+    },
+    {
+      "std_id": 1280,
+      "student_name": "Student_280",
+      "major_id": 1,
+      "major_name": "AI"
+    },
+    {
+      "std_id": 1281,
+      "student_name": "Student_281",
+      "major_id": 2,
+      "major_name": "SE"
+    },
+    {
+      "std_id": 1282,
+      "student_name": "Student_282",
+      "major_id": 3,
+      "major_name": "CY"
+    },
+    {
+      "std_id": 1283,
+      "student_name": "Student_283",
+      "major_id": 1,
+      "major_name": "AI"
+    },
+    {
+      "std_id": 1284,
+      "student_name": "Student_284",
+      "major_id": 2,
+      "major_name": "SE"
+    },
+    {
+      "std_id": 1285,
+      "student_name": "Student_285",
+      "major_id": 3,
+      "major_name": "CY"
+    },
+    {
+      "std_id": 1286,
+      "student_name": "Student_286",
+      "major_id": 1,
+      "major_name": "AI"
+    },
+    {
+      "std_id": 1287,
+      "student_name": "Student_287",
+      "major_id": 2,
+      "major_name": "SE"
+    },
+    {
+      "std_id": 1288,
+      "student_name": "Student_288",
+      "major_id": 3,
+      "major_name": "CY"
+    },
+    {
+      "std_id": 1289,
+      "student_name": "Student_289",
+      "major_id": 1,
+      "major_name": "AI"
+    },
+    {
+      "std_id": 1290,
+      "student_name": "Student_290",
+      "major_id": 2,
+      "major_name": "SE"
+    },
+    {
+      "std_id": 1291,
+      "student_name": "Student_291",
+      "major_id": 3,
+      "major_name": "CY"
+    },
+    {
+      "std_id": 1292,
+      "student_name": "Student_292",
+      "major_id": 1,
+      "major_name": "AI"
+    },
+    {
+      "std_id": 1293,
+      "student_name": "Student_293",
+      "major_id": 2,
+      "major_name": "SE"
+    },
+    {
+      "std_id": 1294,
+      "student_name": "Student_294",
+      "major_id": 3,
+      "major_name": "CY"
+    },
+    {
+      "std_id": 1295,
+      "student_name": "Student_295",
+      "major_id": 1,
+      "major_name": "AI"
+    },
+    {
+      "std_id": 1296,
+      "student_name": "Student_296",
+      "major_id": 2,
+      "major_name": "SE"
+    },
+    {
+      "std_id": 1297,
+      "student_name": "Student_297",
+      "major_id": 3,
+      "major_name": "CY"
+    },
+    {
+      "std_id": 1298,
+      "student_name": "Student_298",
+      "major_id": 1,
+      "major_name": "AI"
+    },
+    {
+      "std_id": 1299,
+      "student_name": "Student_299",
+      "major_id": 2,
+      "major_name": "SE"
+    },
+    {
+      "std_id": 1300,
+      "student_name": "Student_300",
+      "major_id": 3,
+      "major_name": "CY"
+    },
+    {
+      "std_id": 1301,
+      "student_name": "Student_301",
+      "major_id": 1,
+      "major_name": "AI"
+    },
+    {
+      "std_id": 1302,
+      "student_name": "Student_302",
+      "major_id": 2,
+      "major_name": "SE"
+    },
+    {
+      "std_id": 1303,
+      "student_name": "Student_303",
+      "major_id": 3,
+      "major_name": "CY"
+    },
+    {
+      "std_id": 1304,
+      "student_name": "Student_304",
+      "major_id": 1,
+      "major_name": "AI"
+    },
+    {
+      "std_id": 1305,
+      "student_name": "Student_305",
+      "major_id": 2,
+      "major_name": "SE"
+    },
+    {
+      "std_id": 1306,
+      "student_name": "Student_306",
+      "major_id": 3,
+      "major_name": "CY"
+    },
+    {
+      "std_id": 1307,
+      "student_name": "Student_307",
+      "major_id": 1,
+      "major_name": "AI"
+    },
+    {
+      "std_id": 1308,
+      "student_name": "Student_308",
+      "major_id": 2,
+      "major_name": "SE"
+    },
+    {
+      "std_id": 1309,
+      "student_name": "Student_309",
+      "major_id": 3,
+      "major_name": "CY"
+    },
+    {
+      "std_id": 1310,
+      "student_name": "Student_310",
+      "major_id": 1,
+      "major_name": "AI"
+    },
+    {
+      "std_id": 1311,
+      "student_name": "Student_311",
+      "major_id": 2,
+      "major_name": "SE"
+    },
+    {
+      "std_id": 1312,
+      "student_name": "Student_312",
+      "major_id": 3,
+      "major_name": "CY"
+    },
+    {
+      "std_id": 1313,
+      "student_name": "Student_313",
+      "major_id": 1,
+      "major_name": "AI"
+    },
+    {
+      "std_id": 1314,
+      "student_name": "Student_314",
+      "major_id": 2,
+      "major_name": "SE"
+    },
+    {
+      "std_id": 1315,
+      "student_name": "Student_315",
+      "major_id": 3,
+      "major_name": "CY"
+    },
+    {
+      "std_id": 1316,
+      "student_name": "Student_316",
+      "major_id": 1,
+      "major_name": "AI"
+    },
+    {
+      "std_id": 1317,
+      "student_name": "Student_317",
+      "major_id": 2,
+      "major_name": "SE"
+    },
+    {
+      "std_id": 1318,
+      "student_name": "Student_318",
+      "major_id": 3,
+      "major_name": "CY"
+    },
+    {
+      "std_id": 1319,
+      "student_name": "Student_319",
+      "major_id": 1,
+      "major_name": "AI"
+    },
+    {
+      "std_id": 1320,
+      "student_name": "Student_320",
+      "major_id": 2,
+      "major_name": "SE"
+    },
+    {
+      "std_id": 1321,
+      "student_name": "Student_321",
+      "major_id": 3,
+      "major_name": "CY"
+    },
+    {
+      "std_id": 1322,
+      "student_name": "Student_322",
+      "major_id": 1,
+      "major_name": "AI"
+    },
+    {
+      "std_id": 1323,
+      "student_name": "Student_323",
+      "major_id": 2,
+      "major_name": "SE"
+    },
+    {
+      "std_id": 1324,
+      "student_name": "Student_324",
+      "major_id": 3,
+      "major_name": "CY"
+    },
+    {
+      "std_id": 1325,
+      "student_name": "Student_325",
+      "major_id": 1,
+      "major_name": "AI"
+    },
+    {
+      "std_id": 1326,
+      "student_name": "Student_326",
+      "major_id": 2,
+      "major_name": "SE"
+    },
+    {
+      "std_id": 1327,
+      "student_name": "Student_327",
+      "major_id": 3,
+      "major_name": "CY"
+    },
+    {
+      "std_id": 1328,
+      "student_name": "Student_328",
+      "major_id": 1,
+      "major_name": "AI"
+    },
+    {
+      "std_id": 1329,
+      "student_name": "Student_329",
+      "major_id": 2,
+      "major_name": "SE"
+    },
+    {
+      "std_id": 1330,
+      "student_name": "Student_330",
+      "major_id": 3,
+      "major_name": "CY"
+    },
+    {
+      "std_id": 1331,
+      "student_name": "Student_331",
+      "major_id": 1,
+      "major_name": "AI"
+    },
+    {
+      "std_id": 1332,
+      "student_name": "Student_332",
+      "major_id": 2,
+      "major_name": "SE"
+    },
+    {
+      "std_id": 1333,
+      "student_name": "Student_333",
+      "major_id": 3,
+      "major_name": "CY"
+    },
+    {
+      "std_id": 1334,
+      "student_name": "Student_334",
+      "major_id": 1,
+      "major_name": "AI"
+    },
+    {
+      "std_id": 1335,
+      "student_name": "Student_335",
+      "major_id": 2,
+      "major_name": "SE"
+    },
+    {
+      "std_id": 1336,
+      "student_name": "Student_336",
+      "major_id": 3,
+      "major_name": "CY"
+    },
+    {
+      "std_id": 1337,
+      "student_name": "Student_337",
+      "major_id": 1,
+      "major_name": "AI"
+    },
+    {
+      "std_id": 1338,
+      "student_name": "Student_338",
+      "major_id": 2,
+      "major_name": "SE"
+    },
+    {
+      "std_id": 1339,
+      "student_name": "Student_339",
+      "major_id": 3,
+      "major_name": "CY"
+    },
+    {
+      "std_id": 1340,
+      "student_name": "Student_340",
+      "major_id": 1,
+      "major_name": "AI"
+    },
+    {
+      "std_id": 1341,
+      "student_name": "Student_341",
+      "major_id": 2,
+      "major_name": "SE"
+    },
+    {
+      "std_id": 1342,
+      "student_name": "Student_342",
+      "major_id": 3,
+      "major_name": "CY"
+    },
+    {
+      "std_id": 1343,
+      "student_name": "Student_343",
+      "major_id": 1,
+      "major_name": "AI"
+    },
+    {
+      "std_id": 1344,
+      "student_name": "Student_344",
+      "major_id": 2,
+      "major_name": "SE"
+    },
+    {
+      "std_id": 1345,
+      "student_name": "Student_345",
+      "major_id": 3,
+      "major_name": "CY"
+    },
+    {
+      "std_id": 1346,
+      "student_name": "Student_346",
+      "major_id": 1,
+      "major_name": "AI"
+    },
+    {
+      "std_id": 1347,
+      "student_name": "Student_347",
+      "major_id": 2,
+      "major_name": "SE"
+    },
+    {
+      "std_id": 1348,
+      "student_name": "Student_348",
+      "major_id": 3,
+      "major_name": "CY"
+    },
+    {
+      "std_id": 1349,
+      "student_name": "Student_349",
+      "major_id": 1,
+      "major_name": "AI"
+    },
+    {
+      "std_id": 1350,
+      "student_name": "Student_350",
+      "major_id": 2,
+      "major_name": "SE"
+    },
+    {
+      "std_id": 1351,
+      "student_name": "Student_351",
+      "major_id": 3,
+      "major_name": "CY"
+    },
+    {
+      "std_id": 1352,
+      "student_name": "Student_352",
+      "major_id": 1,
+      "major_name": "AI"
+    },
+    {
+      "std_id": 1353,
+      "student_name": "Student_353",
+      "major_id": 2,
+      "major_name": "SE"
+    },
+    {
+      "std_id": 1354,
+      "student_name": "Student_354",
+      "major_id": 3,
+      "major_name": "CY"
+    },
+    {
+      "std_id": 1355,
+      "student_name": "Student_355",
+      "major_id": 1,
+      "major_name": "AI"
+    },
+    {
+      "std_id": 1356,
+      "student_name": "Student_356",
+      "major_id": 2,
+      "major_name": "SE"
+    },
+    {
+      "std_id": 1357,
+      "student_name": "Student_357",
+      "major_id": 3,
+      "major_name": "CY"
+    },
+    {
+      "std_id": 1358,
+      "student_name": "Student_358",
+      "major_id": 1,
+      "major_name": "AI"
+    },
+    {
+      "std_id": 1359,
+      "student_name": "Student_359",
+      "major_id": 2,
+      "major_name": "SE"
+    },
+    {
+      "std_id": 1360,
+      "student_name": "Student_360",
+      "major_id": 3,
+      "major_name": "CY"
+    },
+    {
+      "std_id": 1361,
+      "student_name": "Student_361",
+      "major_id": 1,
+      "major_name": "AI"
+    },
+    {
+      "std_id": 1362,
+      "student_name": "Student_362",
+      "major_id": 2,
+      "major_name": "SE"
+    },
+    {
+      "std_id": 1363,
+      "student_name": "Student_363",
+      "major_id": 3,
+      "major_name": "CY"
+    },
+    {
+      "std_id": 1364,
+      "student_name": "Student_364",
+      "major_id": 1,
+      "major_name": "AI"
+    },
+    {
+      "std_id": 1365,
+      "student_name": "Student_365",
+      "major_id": 2,
+      "major_name": "SE"
+    },
+    {
+      "std_id": 1366,
+      "student_name": "Student_366",
+      "major_id": 3,
+      "major_name": "CY"
+    },
+    {
+      "std_id": 1367,
+      "student_name": "Student_367",
+      "major_id": 1,
+      "major_name": "AI"
+    },
+    {
+      "std_id": 1368,
+      "student_name": "Student_368",
+      "major_id": 2,
+      "major_name": "SE"
+    },
+    {
+      "std_id": 1369,
+      "student_name": "Student_369",
+      "major_id": 3,
+      "major_name": "CY"
+    },
+    {
+      "std_id": 1370,
+      "student_name": "Student_370",
+      "major_id": 1,
+      "major_name": "AI"
+    },
+    {
+      "std_id": 1371,
+      "student_name": "Student_371",
+      "major_id": 2,
+      "major_name": "SE"
+    },
+    {
+      "std_id": 1372,
+      "student_name": "Student_372",
+      "major_id": 3,
+      "major_name": "CY"
+    },
+    {
+      "std_id": 1373,
+      "student_name": "Student_373",
+      "major_id": 1,
+      "major_name": "AI"
+    },
+    {
+      "std_id": 1374,
+      "student_name": "Student_374",
+      "major_id": 2,
+      "major_name": "SE"
+    },
+    {
+      "std_id": 1375,
+      "student_name": "Student_375",
+      "major_id": 3,
+      "major_name": "CY"
+    },
+    {
+      "std_id": 1376,
+      "student_name": "Student_376",
+      "major_id": 1,
+      "major_name": "AI"
+    },
+    {
+      "std_id": 1377,
+      "student_name": "Student_377",
+      "major_id": 2,
+      "major_name": "SE"
+    },
+    {
+      "std_id": 1378,
+      "student_name": "Student_378",
+      "major_id": 3,
+      "major_name": "CY"
+    },
+    {
+      "std_id": 1379,
+      "student_name": "Student_379",
+      "major_id": 1,
+      "major_name": "AI"
+    },
+    {
+      "std_id": 1380,
+      "student_name": "Student_380",
+      "major_id": 2,
+      "major_name": "SE"
+    },
+    {
+      "std_id": 1381,
+      "student_name": "Student_381",
+      "major_id": 3,
+      "major_name": "CY"
+    },
+    {
+      "std_id": 1382,
+      "student_name": "Student_382",
+      "major_id": 1,
+      "major_name": "AI"
+    },
+    {
+      "std_id": 1383,
+      "student_name": "Student_383",
+      "major_id": 2,
+      "major_name": "SE"
+    },
+    {
+      "std_id": 1384,
+      "student_name": "Student_384",
+      "major_id": 3,
+      "major_name": "CY"
+    },
+    {
+      "std_id": 1385,
+      "student_name": "Student_385",
+      "major_id": 1,
+      "major_name": "AI"
+    },
+    {
+      "std_id": 1386,
+      "student_name": "Student_386",
+      "major_id": 2,
+      "major_name": "SE"
+    },
+    {
+      "std_id": 1387,
+      "student_name": "Student_387",
+      "major_id": 3,
+      "major_name": "CY"
+    },
+    {
+      "std_id": 1388,
+      "student_name": "Student_388",
+      "major_id": 1,
+      "major_name": "AI"
+    },
+    {
+      "std_id": 1389,
+      "student_name": "Student_389",
+      "major_id": 2,
+      "major_name": "SE"
+    },
+    {
+      "std_id": 1390,
+      "student_name": "Student_390",
+      "major_id": 3,
+      "major_name": "CY"
+    },
+    {
+      "std_id": 1391,
+      "student_name": "Student_391",
+      "major_id": 1,
+      "major_name": "AI"
+    },
+    {
+      "std_id": 1392,
+      "student_name": "Student_392",
+      "major_id": 2,
+      "major_name": "SE"
+    },
+    {
+      "std_id": 1393,
+      "student_name": "Student_393",
+      "major_id": 3,
+      "major_name": "CY"
+    },
+    {
+      "std_id": 1394,
+      "student_name": "Student_394",
+      "major_id": 1,
+      "major_name": "AI"
+    },
+    {
+      "std_id": 1395,
+      "student_name": "Student_395",
+      "major_id": 2,
+      "major_name": "SE"
+    },
+    {
+      "std_id": 1396,
+      "student_name": "Student_396",
+      "major_id": 3,
+      "major_name": "CY"
+    },
+    {
+      "std_id": 1397,
+      "student_name": "Student_397",
+      "major_id": 1,
+      "major_name": "AI"
+    },
+    {
+      "std_id": 1398,
+      "student_name": "Student_398",
+      "major_id": 2,
+      "major_name": "SE"
+    },
+    {
+      "std_id": 1399,
+      "student_name": "Student_399",
+      "major_id": 3,
+      "major_name": "CY"
+    },
+    {
+      "std_id": 1400,
+      "student_name": "Student_400",
+      "major_id": 1,
+      "major_name": "AI"
+    },
+    {
+      "std_id": 1401,
+      "student_name": "Student_401",
+      "major_id": 2,
+      "major_name": "SE"
+    },
+    {
+      "std_id": 1402,
+      "student_name": "Student_402",
+      "major_id": 3,
+      "major_name": "CY"
+    },
+    {
+      "std_id": 1403,
+      "student_name": "Student_403",
+      "major_id": 1,
+      "major_name": "AI"
+    },
+    {
+      "std_id": 1404,
+      "student_name": "Student_404",
+      "major_id": 2,
+      "major_name": "SE"
+    },
+    {
+      "std_id": 1405,
+      "student_name": "Student_405",
+      "major_id": 3,
+      "major_name": "CY"
+    },
+    {
+      "std_id": 1406,
+      "student_name": "Student_406",
+      "major_id": 1,
+      "major_name": "AI"
+    },
+    {
+      "std_id": 1407,
+      "student_name": "Student_407",
+      "major_id": 2,
+      "major_name": "SE"
+    },
+    {
+      "std_id": 1408,
+      "student_name": "Student_408",
+      "major_id": 3,
+      "major_name": "CY"
+    },
+    {
+      "std_id": 1409,
+      "student_name": "Student_409",
+      "major_id": 1,
+      "major_name": "AI"
+    },
+    {
+      "std_id": 1410,
+      "student_name": "Student_410",
+      "major_id": 2,
+      "major_name": "SE"
+    },
+    {
+      "std_id": 1411,
+      "student_name": "Student_411",
+      "major_id": 3,
+      "major_name": "CY"
+    },
+    {
+      "std_id": 1412,
+      "student_name": "Student_412",
+      "major_id": 1,
+      "major_name": "AI"
+    },
+    {
+      "std_id": 1413,
+      "student_name": "Student_413",
+      "major_id": 2,
+      "major_name": "SE"
+    },
+    {
+      "std_id": 1414,
+      "student_name": "Student_414",
+      "major_id": 3,
+      "major_name": "CY"
+    },
+    {
+      "std_id": 1415,
+      "student_name": "Student_415",
+      "major_id": 1,
+      "major_name": "AI"
+    },
+    {
+      "std_id": 1416,
+      "student_name": "Student_416",
+      "major_id": 2,
+      "major_name": "SE"
+    },
+    {
+      "std_id": 1417,
+      "student_name": "Student_417",
+      "major_id": 3,
+      "major_name": "CY"
+    },
+    {
+      "std_id": 1418,
+      "student_name": "Student_418",
+      "major_id": 1,
+      "major_name": "AI"
+    },
+    {
+      "std_id": 1419,
+      "student_name": "Student_419",
+      "major_id": 2,
+      "major_name": "SE"
+    },
+    {
+      "std_id": 1420,
+      "student_name": "Student_420",
+      "major_id": 3,
+      "major_name": "CY"
+    },
+    {
+      "std_id": 1421,
+      "student_name": "Student_421",
+      "major_id": 1,
+      "major_name": "AI"
+    },
+    {
+      "std_id": 1422,
+      "student_name": "Student_422",
+      "major_id": 2,
+      "major_name": "SE"
+    },
+    {
+      "std_id": 1423,
+      "student_name": "Student_423",
+      "major_id": 3,
+      "major_name": "CY"
+    },
+    {
+      "std_id": 1424,
+      "student_name": "Student_424",
+      "major_id": 1,
+      "major_name": "AI"
+    },
+    {
+      "std_id": 1425,
+      "student_name": "Student_425",
+      "major_id": 2,
+      "major_name": "SE"
+    },
+    {
+      "std_id": 1426,
+      "student_name": "Student_426",
+      "major_id": 3,
+      "major_name": "CY"
+    },
+    {
+      "std_id": 1427,
+      "student_name": "Student_427",
+      "major_id": 1,
+      "major_name": "AI"
+    },
+    {
+      "std_id": 1428,
+      "student_name": "Student_428",
+      "major_id": 2,
+      "major_name": "SE"
+    },
+    {
+      "std_id": 1429,
+      "student_name": "Student_429",
+      "major_id": 3,
+      "major_name": "CY"
+    },
+    {
+      "std_id": 1430,
+      "student_name": "Student_430",
+      "major_id": 1,
+      "major_name": "AI"
+    },
+    {
+      "std_id": 1431,
+      "student_name": "Student_431",
+      "major_id": 2,
+      "major_name": "SE"
+    },
+    {
+      "std_id": 1432,
+      "student_name": "Student_432",
+      "major_id": 3,
+      "major_name": "CY"
+    },
+    {
+      "std_id": 1433,
+      "student_name": "Student_433",
+      "major_id": 1,
+      "major_name": "AI"
+    },
+    {
+      "std_id": 1434,
+      "student_name": "Student_434",
+      "major_id": 2,
+      "major_name": "SE"
+    },
+    {
+      "std_id": 1435,
+      "student_name": "Student_435",
+      "major_id": 3,
+      "major_name": "CY"
+    },
+    {
+      "std_id": 1436,
+      "student_name": "Student_436",
+      "major_id": 1,
+      "major_name": "AI"
+    },
+    {
+      "std_id": 1437,
+      "student_name": "Student_437",
+      "major_id": 2,
+      "major_name": "SE"
+    },
+    {
+      "std_id": 1438,
+      "student_name": "Student_438",
+      "major_id": 3,
+      "major_name": "CY"
+    },
+    {
+      "std_id": 1439,
+      "student_name": "Student_439",
+      "major_id": 1,
+      "major_name": "AI"
+    },
+    {
+      "std_id": 1440,
+      "student_name": "Student_440",
+      "major_id": 2,
+      "major_name": "SE"
+    },
+    {
+      "std_id": 1441,
+      "student_name": "Student_441",
+      "major_id": 3,
+      "major_name": "CY"
+    },
+    {
+      "std_id": 1442,
+      "student_name": "Student_442",
+      "major_id": 1,
+      "major_name": "AI"
+    },
+    {
+      "std_id": 1443,
+      "student_name": "Student_443",
+      "major_id": 2,
+      "major_name": "SE"
+    },
+    {
+      "std_id": 1444,
+      "student_name": "Student_444",
+      "major_id": 3,
+      "major_name": "CY"
+    },
+    {
+      "std_id": 1445,
+      "student_name": "Student_445",
+      "major_id": 1,
+      "major_name": "AI"
+    },
+    {
+      "std_id": 1446,
+      "student_name": "Student_446",
+      "major_id": 2,
+      "major_name": "SE"
+    },
+    {
+      "std_id": 1447,
+      "student_name": "Student_447",
+      "major_id": 3,
+      "major_name": "CY"
+    },
+    {
+      "std_id": 1448,
+      "student_name": "Student_448",
+      "major_id": 1,
+      "major_name": "AI"
+    },
+    {
+      "std_id": 1449,
+      "student_name": "Student_449",
+      "major_id": 2,
+      "major_name": "SE"
+    },
+    {
+      "std_id": 1450,
+      "student_name": "Student_450",
+      "major_id": 3,
+      "major_name": "CY"
+    },
+    {
+      "std_id": 1451,
+      "student_name": "Student_451",
+      "major_id": 1,
+      "major_name": "AI"
+    },
+    {
+      "std_id": 1452,
+      "student_name": "Student_452",
+      "major_id": 2,
+      "major_name": "SE"
+    },
+    {
+      "std_id": 1453,
+      "student_name": "Student_453",
+      "major_id": 3,
+      "major_name": "CY"
+    },
+    {
+      "std_id": 1454,
+      "student_name": "Student_454",
+      "major_id": 1,
+      "major_name": "AI"
+    },
+    {
+      "std_id": 1455,
+      "student_name": "Student_455",
+      "major_id": 2,
+      "major_name": "SE"
+    },
+    {
+      "std_id": 1456,
+      "student_name": "Student_456",
+      "major_id": 3,
+      "major_name": "CY"
+    },
+    {
+      "std_id": 1457,
+      "student_name": "Student_457",
+      "major_id": 1,
+      "major_name": "AI"
+    },
+    {
+      "std_id": 1458,
+      "student_name": "Student_458",
+      "major_id": 2,
+      "major_name": "SE"
+    },
+    {
+      "std_id": 1459,
+      "student_name": "Student_459",
+      "major_id": 3,
+      "major_name": "CY"
+    },
+    {
+      "std_id": 1460,
+      "student_name": "Student_460",
+      "major_id": 1,
+      "major_name": "AI"
+    },
+    {
+      "std_id": 1461,
+      "student_name": "Student_461",
+      "major_id": 2,
+      "major_name": "SE"
+    },
+    {
+      "std_id": 1462,
+      "student_name": "Student_462",
+      "major_id": 3,
+      "major_name": "CY"
+    },
+    {
+      "std_id": 1463,
+      "student_name": "Student_463",
+      "major_id": 1,
+      "major_name": "AI"
+    },
+    {
+      "std_id": 1464,
+      "student_name": "Student_464",
+      "major_id": 2,
+      "major_name": "SE"
+    },
+    {
+      "std_id": 1465,
+      "student_name": "Student_465",
+      "major_id": 3,
+      "major_name": "CY"
+    },
+    {
+      "std_id": 1466,
+      "student_name": "Student_466",
+      "major_id": 1,
+      "major_name": "AI"
+    },
+    {
+      "std_id": 1467,
+      "student_name": "Student_467",
+      "major_id": 2,
+      "major_name": "SE"
+    },
+    {
+      "std_id": 1468,
+      "student_name": "Student_468",
+      "major_id": 3,
+      "major_name": "CY"
+    },
+    {
+      "std_id": 1469,
+      "student_name": "Student_469",
+      "major_id": 1,
+      "major_name": "AI"
+    },
+    {
+      "std_id": 1470,
+      "student_name": "Student_470",
+      "major_id": 2,
+      "major_name": "SE"
+    },
+    {
+      "std_id": 1471,
+      "student_name": "Student_471",
+      "major_id": 3,
+      "major_name": "CY"
+    },
+    {
+      "std_id": 1472,
+      "student_name": "Student_472",
+      "major_id": 1,
+      "major_name": "AI"
+    },
+    {
+      "std_id": 1473,
+      "student_name": "Student_473",
+      "major_id": 2,
+      "major_name": "SE"
+    },
+    {
+      "std_id": 1474,
+      "student_name": "Student_474",
+      "major_id": 3,
+      "major_name": "CY"
+    },
+    {
+      "std_id": 1475,
+      "student_name": "Student_475",
+      "major_id": 1,
+      "major_name": "AI"
+    },
+    {
+      "std_id": 1476,
+      "student_name": "Student_476",
+      "major_id": 2,
+      "major_name": "SE"
+    },
+    {
+      "std_id": 1477,
+      "student_name": "Student_477",
+      "major_id": 3,
+      "major_name": "CY"
+    },
+    {
+      "std_id": 1478,
+      "student_name": "Student_478",
+      "major_id": 1,
+      "major_name": "AI"
+    },
+    {
+      "std_id": 1479,
+      "student_name": "Student_479",
+      "major_id": 2,
+      "major_name": "SE"
+    },
+    {
+      "std_id": 1480,
+      "student_name": "Student_480",
+      "major_id": 3,
+      "major_name": "CY"
+    },
+    {
+      "std_id": 1481,
+      "student_name": "Student_481",
+      "major_id": 1,
+      "major_name": "AI"
+    },
+    {
+      "std_id": 1482,
+      "student_name": "Student_482",
+      "major_id": 2,
+      "major_name": "SE"
+    },
+    {
+      "std_id": 1483,
+      "student_name": "Student_483",
+      "major_id": 3,
+      "major_name": "CY"
+    },
+    {
+      "std_id": 1484,
+      "student_name": "Student_484",
+      "major_id": 1,
+      "major_name": "AI"
+    },
+    {
+      "std_id": 1485,
+      "student_name": "Student_485",
+      "major_id": 2,
+      "major_name": "SE"
+    },
+    {
+      "std_id": 1486,
+      "student_name": "Student_486",
+      "major_id": 3,
+      "major_name": "CY"
+    },
+    {
+      "std_id": 1487,
+      "student_name": "Student_487",
+      "major_id": 1,
+      "major_name": "AI"
+    },
+    {
+      "std_id": 1488,
+      "student_name": "Student_488",
+      "major_id": 2,
+      "major_name": "SE"
+    },
+    {
+      "std_id": 1489,
+      "student_name": "Student_489",
+      "major_id": 3,
+      "major_name": "CY"
+    },
+    {
+      "std_id": 1490,
+      "student_name": "Student_490",
+      "major_id": 1,
+      "major_name": "AI"
+    },
+    {
+      "std_id": 1491,
+      "student_name": "Student_491",
+      "major_id": 2,
+      "major_name": "SE"
+    },
+    {
+      "std_id": 1492,
+      "student_name": "Student_492",
+      "major_id": 3,
+      "major_name": "CY"
+    },
+    {
+      "std_id": 1493,
+      "student_name": "Student_493",
+      "major_id": 1,
+      "major_name": "AI"
+    },
+    {
+      "std_id": 1494,
+      "student_name": "Student_494",
+      "major_id": 2,
+      "major_name": "SE"
+    },
+    {
+      "std_id": 1495,
+      "student_name": "Student_495",
+      "major_id": 3,
+      "major_name": "CY"
+    },
+    {
+      "std_id": 1496,
+      "student_name": "Student_496",
+      "major_id": 1,
+      "major_name": "AI"
+    },
+    {
+      "std_id": 1497,
+      "student_name": "Student_497",
+      "major_id": 2,
+      "major_name": "SE"
+    },
+    {
+      "std_id": 1498,
+      "student_name": "Student_498",
+      "major_id": 3,
+      "major_name": "CY"
+    },
+    {
+      "std_id": 1499,
+      "student_name": "Student_499",
+      "major_id": 1,
+      "major_name": "AI"
+    },
+    {
+      "std_id": 1500,
+      "student_name": "Student_500",
+      "major_id": 2,
+      "major_name": "SE"
+    },
+    {
+      "std_id": 1501,
+      "student_name": "Student_501",
+      "major_id": 3,
+      "major_name": "CY"
+    },
+    {
+      "std_id": 1502,
+      "student_name": "Student_502",
+      "major_id": 1,
+      "major_name": "AI"
+    },
+    {
+      "std_id": 1503,
+      "student_name": "Student_503",
+      "major_id": 2,
+      "major_name": "SE"
+    },
+    {
+      "std_id": 1504,
+      "student_name": "Student_504",
+      "major_id": 3,
+      "major_name": "CY"
+    },
+    {
+      "std_id": 1505,
+      "student_name": "Student_505",
+      "major_id": 1,
+      "major_name": "AI"
+    },
+    {
+      "std_id": 1506,
+      "student_name": "Student_506",
+      "major_id": 2,
+      "major_name": "SE"
+    },
+    {
+      "std_id": 1507,
+      "student_name": "Student_507",
+      "major_id": 3,
+      "major_name": "CY"
+    },
+    {
+      "std_id": 1508,
+      "student_name": "Student_508",
+      "major_id": 1,
+      "major_name": "AI"
+    },
+    {
+      "std_id": 1509,
+      "student_name": "Student_509",
+      "major_id": 2,
+      "major_name": "SE"
+    },
+    {
+      "std_id": 1510,
+      "student_name": "Student_510",
+      "major_id": 3,
+      "major_name": "CY"
+    },
+    {
+      "std_id": 1511,
+      "student_name": "Student_511",
+      "major_id": 1,
+      "major_name": "AI"
+    },
+    {
+      "std_id": 1512,
+      "student_name": "Student_512",
+      "major_id": 2,
+      "major_name": "SE"
+    },
+    {
+      "std_id": 1513,
+      "student_name": "Student_513",
+      "major_id": 3,
+      "major_name": "CY"
+    },
+    {
+      "std_id": 1514,
+      "student_name": "Student_514",
+      "major_id": 1,
+      "major_name": "AI"
+    },
+    {
+      "std_id": 1515,
+      "student_name": "Student_515",
+      "major_id": 2,
+      "major_name": "SE"
+    },
+    {
+      "std_id": 1516,
+      "student_name": "Student_516",
+      "major_id": 3,
+      "major_name": "CY"
+    },
+    {
+      "std_id": 1517,
+      "student_name": "Student_517",
+      "major_id": 1,
+      "major_name": "AI"
+    },
+    {
+      "std_id": 1518,
+      "student_name": "Student_518",
+      "major_id": 2,
+      "major_name": "SE"
+    },
+    {
+      "std_id": 1519,
+      "student_name": "Student_519",
+      "major_id": 3,
+      "major_name": "CY"
+    },
+    {
+      "std_id": 1520,
+      "student_name": "Student_520",
+      "major_id": 1,
+      "major_name": "AI"
+    },
+    {
+      "std_id": 1521,
+      "student_name": "Student_521",
+      "major_id": 2,
+      "major_name": "SE"
+    },
+    {
+      "std_id": 1522,
+      "student_name": "Student_522",
+      "major_id": 3,
+      "major_name": "CY"
+    },
+    {
+      "std_id": 1523,
+      "student_name": "Student_523",
+      "major_id": 1,
+      "major_name": "AI"
+    },
+    {
+      "std_id": 1524,
+      "student_name": "Student_524",
+      "major_id": 2,
+      "major_name": "SE"
+    },
+    {
+      "std_id": 1525,
+      "student_name": "Student_525",
+      "major_id": 3,
+      "major_name": "CY"
+    },
+    {
+      "std_id": 1526,
+      "student_name": "Student_526",
+      "major_id": 1,
+      "major_name": "AI"
+    },
+    {
+      "std_id": 1527,
+      "student_name": "Student_527",
+      "major_id": 2,
+      "major_name": "SE"
+    },
+    {
+      "std_id": 1528,
+      "student_name": "Student_528",
+      "major_id": 3,
+      "major_name": "CY"
+    },
+    {
+      "std_id": 1529,
+      "student_name": "Student_529",
+      "major_id": 1,
+      "major_name": "AI"
+    },
+    {
+      "std_id": 1530,
+      "student_name": "Student_530",
+      "major_id": 2,
+      "major_name": "SE"
+    },
+    {
+      "std_id": 1531,
+      "student_name": "Student_531",
+      "major_id": 3,
+      "major_name": "CY"
+    },
+    {
+      "std_id": 1532,
+      "student_name": "Student_532",
+      "major_id": 1,
+      "major_name": "AI"
+    },
+    {
+      "std_id": 1533,
+      "student_name": "Student_533",
+      "major_id": 2,
+      "major_name": "SE"
+    },
+    {
+      "std_id": 1534,
+      "student_name": "Student_534",
+      "major_id": 3,
+      "major_name": "CY"
+    },
+    {
+      "std_id": 1535,
+      "student_name": "Student_535",
+      "major_id": 1,
+      "major_name": "AI"
+    },
+    {
+      "std_id": 1536,
+      "student_name": "Student_536",
+      "major_id": 2,
+      "major_name": "SE"
+    },
+    {
+      "std_id": 1537,
+      "student_name": "Student_537",
+      "major_id": 3,
+      "major_name": "CY"
+    },
+    {
+      "std_id": 1538,
+      "student_name": "Student_538",
+      "major_id": 1,
+      "major_name": "AI"
+    },
+    {
+      "std_id": 1539,
+      "student_name": "Student_539",
+      "major_id": 2,
+      "major_name": "SE"
+    },
+    {
+      "std_id": 1540,
+      "student_name": "Student_540",
+      "major_id": 3,
+      "major_name": "CY"
+    },
+    {
+      "std_id": 1541,
+      "student_name": "Student_541",
+      "major_id": 1,
+      "major_name": "AI"
+    },
+    {
+      "std_id": 1542,
+      "student_name": "Student_542",
+      "major_id": 2,
+      "major_name": "SE"
+    },
+    {
+      "std_id": 1543,
+      "student_name": "Student_543",
+      "major_id": 3,
+      "major_name": "CY"
+    },
+    {
+      "std_id": 1544,
+      "student_name": "Student_544",
+      "major_id": 1,
+      "major_name": "AI"
+    },
+    {
+      "std_id": 1545,
+      "student_name": "Student_545",
+      "major_id": 2,
+      "major_name": "SE"
+    },
+    {
+      "std_id": 1546,
+      "student_name": "Student_546",
+      "major_id": 3,
+      "major_name": "CY"
+    },
+    {
+      "std_id": 1547,
+      "student_name": "Student_547",
+      "major_id": 1,
+      "major_name": "AI"
+    },
+    {
+      "std_id": 1548,
+      "student_name": "Student_548",
+      "major_id": 2,
+      "major_name": "SE"
+    },
+    {
+      "std_id": 1549,
+      "student_name": "Student_549",
+      "major_id": 3,
+      "major_name": "CY"
+    },
+    {
+      "std_id": 1550,
+      "student_name": "Student_550",
+      "major_id": 1,
+      "major_name": "AI"
+    },
+    {
+      "std_id": 1551,
+      "student_name": "Student_551",
+      "major_id": 2,
+      "major_name": "SE"
+    },
+    {
+      "std_id": 1552,
+      "student_name": "Student_552",
+      "major_id": 3,
+      "major_name": "CY"
+    },
+    {
+      "std_id": 1553,
+      "student_name": "Student_553",
+      "major_id": 1,
+      "major_name": "AI"
+    },
+    {
+      "std_id": 1554,
+      "student_name": "Student_554",
+      "major_id": 2,
+      "major_name": "SE"
+    },
+    {
+      "std_id": 1555,
+      "student_name": "Student_555",
+      "major_id": 3,
+      "major_name": "CY"
+    },
+    {
+      "std_id": 1556,
+      "student_name": "Student_556",
+      "major_id": 1,
+      "major_name": "AI"
+    },
+    {
+      "std_id": 1557,
+      "student_name": "Student_557",
+      "major_id": 2,
+      "major_name": "SE"
+    },
+    {
+      "std_id": 1558,
+      "student_name": "Student_558",
+      "major_id": 3,
+      "major_name": "CY"
+    },
+    {
+      "std_id": 1559,
+      "student_name": "Student_559",
+      "major_id": 1,
+      "major_name": "AI"
+    },
+    {
+      "std_id": 1560,
+      "student_name": "Student_560",
+      "major_id": 2,
+      "major_name": "SE"
+    },
+    {
+      "std_id": 1561,
+      "student_name": "Student_561",
+      "major_id": 3,
+      "major_name": "CY"
+    },
+    {
+      "std_id": 1562,
+      "student_name": "Student_562",
+      "major_id": 1,
+      "major_name": "AI"
+    },
+    {
+      "std_id": 1563,
+      "student_name": "Student_563",
+      "major_id": 2,
+      "major_name": "SE"
+    },
+    {
+      "std_id": 1564,
+      "student_name": "Student_564",
+      "major_id": 3,
+      "major_name": "CY"
+    },
+    {
+      "std_id": 1565,
+      "student_name": "Student_565",
+      "major_id": 1,
+      "major_name": "AI"
+    },
+    {
+      "std_id": 1566,
+      "student_name": "Student_566",
+      "major_id": 2,
+      "major_name": "SE"
+    },
+    {
+      "std_id": 1567,
+      "student_name": "Student_567",
+      "major_id": 3,
+      "major_name": "CY"
+    },
+    {
+      "std_id": 1568,
+      "student_name": "Student_568",
+      "major_id": 1,
+      "major_name": "AI"
+    },
+    {
+      "std_id": 1569,
+      "student_name": "Student_569",
+      "major_id": 2,
+      "major_name": "SE"
+    },
+    {
+      "std_id": 1570,
+      "student_name": "Student_570",
+      "major_id": 3,
+      "major_name": "CY"
+    },
+    {
+      "std_id": 1571,
+      "student_name": "Student_571",
+      "major_id": 1,
+      "major_name": "AI"
+    },
+    {
+      "std_id": 1572,
+      "student_name": "Student_572",
+      "major_id": 2,
+      "major_name": "SE"
+    },
+    {
+      "std_id": 1573,
+      "student_name": "Student_573",
+      "major_id": 3,
+      "major_name": "CY"
+    },
+    {
+      "std_id": 1574,
+      "student_name": "Student_574",
+      "major_id": 1,
+      "major_name": "AI"
+    },
+    {
+      "std_id": 1575,
+      "student_name": "Student_575",
+      "major_id": 2,
+      "major_name": "SE"
+    },
+    {
+      "std_id": 1576,
+      "student_name": "Student_576",
+      "major_id": 3,
+      "major_name": "CY"
+    },
+    {
+      "std_id": 1577,
+      "student_name": "Student_577",
+      "major_id": 1,
+      "major_name": "AI"
+    },
+    {
+      "std_id": 1578,
+      "student_name": "Student_578",
+      "major_id": 2,
+      "major_name": "SE"
+    },
+    {
+      "std_id": 1579,
+      "student_name": "Student_579",
+      "major_id": 3,
+      "major_name": "CY"
+    },
+    {
+      "std_id": 1580,
+      "student_name": "Student_580",
+      "major_id": 1,
+      "major_name": "AI"
+    },
+    {
+      "std_id": 1581,
+      "student_name": "Student_581",
+      "major_id": 2,
+      "major_name": "SE"
+    },
+    {
+      "std_id": 1582,
+      "student_name": "Student_582",
+      "major_id": 3,
+      "major_name": "CY"
+    },
+    {
+      "std_id": 1583,
+      "student_name": "Student_583",
+      "major_id": 1,
+      "major_name": "AI"
+    },
+    {
+      "std_id": 1584,
+      "student_name": "Student_584",
+      "major_id": 2,
+      "major_name": "SE"
+    },
+    {
+      "std_id": 1585,
+      "student_name": "Student_585",
+      "major_id": 3,
+      "major_name": "CY"
+    },
+    {
+      "std_id": 1586,
+      "student_name": "Student_586",
+      "major_id": 1,
+      "major_name": "AI"
+    },
+    {
+      "std_id": 1587,
+      "student_name": "Student_587",
+      "major_id": 2,
+      "major_name": "SE"
+    },
+    {
+      "std_id": 1588,
+      "student_name": "Student_588",
+      "major_id": 3,
+      "major_name": "CY"
+    },
+    {
+      "std_id": 1589,
+      "student_name": "Student_589",
+      "major_id": 1,
+      "major_name": "AI"
+    },
+    {
+      "std_id": 1590,
+      "student_name": "Student_590",
+      "major_id": 2,
+      "major_name": "SE"
+    },
+    {
+      "std_id": 1591,
+      "student_name": "Student_591",
+      "major_id": 3,
+      "major_name": "CY"
+    },
+    {
+      "std_id": 1592,
+      "student_name": "Student_592",
+      "major_id": 1,
+      "major_name": "AI"
+    },
+    {
+      "std_id": 1593,
+      "student_name": "Student_593",
+      "major_id": 2,
+      "major_name": "SE"
+    },
+    {
+      "std_id": 1594,
+      "student_name": "Student_594",
+      "major_id": 3,
+      "major_name": "CY"
+    },
+    {
+      "std_id": 1595,
+      "student_name": "Student_595",
+      "major_id": 1,
+      "major_name": "AI"
+    },
+    {
+      "std_id": 1596,
+      "student_name": "Student_596",
+      "major_id": 2,
+      "major_name": "SE"
+    },
+    {
+      "std_id": 1597,
+      "student_name": "Student_597",
+      "major_id": 3,
+      "major_name": "CY"
+    },
+    {
+      "std_id": 1598,
+      "student_name": "Student_598",
+      "major_id": 1,
+      "major_name": "AI"
+    },
+    {
+      "std_id": 1599,
+      "student_name": "Student_599",
+      "major_id": 2,
+      "major_name": "SE"
+    },
+    {
+      "std_id": 1600,
+      "student_name": "Student_600",
+      "major_id": 3,
+      "major_name": "CY"
+    },
+    {
+      "std_id": 1601,
+      "student_name": "Student_601",
+      "major_id": 1,
+      "major_name": "AI"
+    },
+    {
+      "std_id": 1602,
+      "student_name": "Student_602",
+      "major_id": 2,
+      "major_name": "SE"
+    },
+    {
+      "std_id": 1603,
+      "student_name": "Student_603",
+      "major_id": 3,
+      "major_name": "CY"
+    },
+    {
+      "std_id": 1604,
+      "student_name": "Student_604",
+      "major_id": 1,
+      "major_name": "AI"
+    },
+    {
+      "std_id": 1605,
+      "student_name": "Student_605",
+      "major_id": 2,
+      "major_name": "SE"
+    },
+    {
+      "std_id": 1606,
+      "student_name": "Student_606",
+      "major_id": 3,
+      "major_name": "CY"
+    },
+    {
+      "std_id": 1607,
+      "student_name": "Student_607",
+      "major_id": 1,
+      "major_name": "AI"
+    },
+    {
+      "std_id": 1608,
+      "student_name": "Student_608",
+      "major_id": 2,
+      "major_name": "SE"
+    },
+    {
+      "std_id": 1609,
+      "student_name": "Student_609",
+      "major_id": 3,
+      "major_name": "CY"
+    },
+    {
+      "std_id": 1610,
+      "student_name": "Student_610",
+      "major_id": 1,
+      "major_name": "AI"
+    },
+    {
+      "std_id": 1611,
+      "student_name": "Student_611",
+      "major_id": 2,
+      "major_name": "SE"
+    },
+    {
+      "std_id": 1612,
+      "student_name": "Student_612",
+      "major_id": 3,
+      "major_name": "CY"
+    },
+    {
+      "std_id": 1613,
+      "student_name": "Student_613",
+      "major_id": 1,
+      "major_name": "AI"
+    },
+    {
+      "std_id": 1614,
+      "student_name": "Student_614",
+      "major_id": 2,
+      "major_name": "SE"
+    },
+    {
+      "std_id": 1615,
+      "student_name": "Student_615",
+      "major_id": 3,
+      "major_name": "CY"
+    },
+    {
+      "std_id": 1616,
+      "student_name": "Student_616",
+      "major_id": 1,
+      "major_name": "AI"
+    },
+    {
+      "std_id": 1617,
+      "student_name": "Student_617",
+      "major_id": 2,
+      "major_name": "SE"
+    },
+    {
+      "std_id": 1618,
+      "student_name": "Student_618",
+      "major_id": 3,
+      "major_name": "CY"
+    },
+    {
+      "std_id": 1619,
+      "student_name": "Student_619",
+      "major_id": 1,
+      "major_name": "AI"
+    },
+    {
+      "std_id": 1620,
+      "student_name": "Student_620",
+      "major_id": 2,
+      "major_name": "SE"
+    },
+    {
+      "std_id": 1621,
+      "student_name": "Student_621",
+      "major_id": 3,
+      "major_name": "CY"
+    },
+    {
+      "std_id": 1622,
+      "student_name": "Student_622",
+      "major_id": 1,
+      "major_name": "AI"
+    },
+    {
+      "std_id": 1623,
+      "student_name": "Student_623",
+      "major_id": 2,
+      "major_name": "SE"
+    },
+    {
+      "std_id": 1624,
+      "student_name": "Student_624",
+      "major_id": 3,
+      "major_name": "CY"
+    },
+    {
+      "std_id": 1625,
+      "student_name": "Student_625",
+      "major_id": 1,
+      "major_name": "AI"
+    },
+    {
+      "std_id": 1626,
+      "student_name": "Student_626",
+      "major_id": 2,
+      "major_name": "SE"
+    },
+    {
+      "std_id": 1627,
+      "student_name": "Student_627",
+      "major_id": 3,
+      "major_name": "CY"
+    },
+    {
+      "std_id": 1628,
+      "student_name": "Student_628",
+      "major_id": 1,
+      "major_name": "AI"
+    },
+    {
+      "std_id": 1629,
+      "student_name": "Student_629",
+      "major_id": 2,
+      "major_name": "SE"
+    },
+    {
+      "std_id": 1630,
+      "student_name": "Student_630",
+      "major_id": 3,
+      "major_name": "CY"
+    },
+    {
+      "std_id": 1631,
+      "student_name": "Student_631",
+      "major_id": 1,
+      "major_name": "AI"
+    },
+    {
+      "std_id": 1632,
+      "student_name": "Student_632",
+      "major_id": 2,
+      "major_name": "SE"
+    },
+    {
+      "std_id": 1633,
+      "student_name": "Student_633",
+      "major_id": 3,
+      "major_name": "CY"
+    },
+    {
+      "std_id": 1634,
+      "student_name": "Student_634",
+      "major_id": 1,
+      "major_name": "AI"
+    },
+    {
+      "std_id": 1635,
+      "student_name": "Student_635",
+      "major_id": 2,
+      "major_name": "SE"
+    },
+    {
+      "std_id": 1636,
+      "student_name": "Student_636",
+      "major_id": 3,
+      "major_name": "CY"
+    },
+    {
+      "std_id": 1637,
+      "student_name": "Student_637",
+      "major_id": 1,
+      "major_name": "AI"
+    },
+    {
+      "std_id": 1638,
+      "student_name": "Student_638",
+      "major_id": 2,
+      "major_name": "SE"
+    },
+    {
+      "std_id": 1639,
+      "student_name": "Student_639",
+      "major_id": 3,
+      "major_name": "CY"
+    },
+    {
+      "std_id": 1640,
+      "student_name": "Student_640",
+      "major_id": 1,
+      "major_name": "AI"
+    },
+    {
+      "std_id": 1641,
+      "student_name": "Student_641",
+      "major_id": 2,
+      "major_name": "SE"
+    },
+    {
+      "std_id": 1642,
+      "student_name": "Student_642",
+      "major_id": 3,
+      "major_name": "CY"
+    },
+    {
+      "std_id": 1643,
+      "student_name": "Student_643",
+      "major_id": 1,
+      "major_name": "AI"
+    },
+    {
+      "std_id": 1644,
+      "student_name": "Student_644",
+      "major_id": 2,
+      "major_name": "SE"
+    },
+    {
+      "std_id": 1645,
+      "student_name": "Student_645",
+      "major_id": 3,
+      "major_name": "CY"
+    },
+    {
+      "std_id": 1646,
+      "student_name": "Student_646",
+      "major_id": 1,
+      "major_name": "AI"
+    },
+    {
+      "std_id": 1647,
+      "student_name": "Student_647",
+      "major_id": 2,
+      "major_name": "SE"
+    },
+    {
+      "std_id": 1648,
+      "student_name": "Student_648",
+      "major_id": 3,
+      "major_name": "CY"
+    },
+    {
+      "std_id": 1649,
+      "student_name": "Student_649",
+      "major_id": 1,
+      "major_name": "AI"
+    },
+    {
+      "std_id": 1650,
+      "student_name": "Student_650",
+      "major_id": 2,
+      "major_name": "SE"
+    },
+    {
+      "std_id": 1651,
+      "student_name": "Student_651",
+      "major_id": 3,
+      "major_name": "CY"
+    },
+    {
+      "std_id": 1652,
+      "student_name": "Student_652",
+      "major_id": 1,
+      "major_name": "AI"
+    },
+    {
+      "std_id": 1653,
+      "student_name": "Student_653",
+      "major_id": 2,
+      "major_name": "SE"
+    },
+    {
+      "std_id": 1654,
+      "student_name": "Student_654",
+      "major_id": 3,
+      "major_name": "CY"
+    },
+    {
+      "std_id": 1655,
+      "student_name": "Student_655",
+      "major_id": 1,
+      "major_name": "AI"
+    },
+    {
+      "std_id": 1656,
+      "student_name": "Student_656",
+      "major_id": 2,
+      "major_name": "SE"
+    },
+    {
+      "std_id": 1657,
+      "student_name": "Student_657",
+      "major_id": 3,
+      "major_name": "CY"
+    },
+    {
+      "std_id": 1658,
+      "student_name": "Student_658",
+      "major_id": 1,
+      "major_name": "AI"
+    },
+    {
+      "std_id": 1659,
+      "student_name": "Student_659",
+      "major_id": 2,
+      "major_name": "SE"
+    },
+    {
+      "std_id": 1660,
+      "student_name": "Student_660",
+      "major_id": 3,
+      "major_name": "CY"
+    },
+    {
+      "std_id": 1661,
+      "student_name": "Student_661",
+      "major_id": 1,
+      "major_name": "AI"
+    },
+    {
+      "std_id": 1662,
+      "student_name": "Student_662",
+      "major_id": 2,
+      "major_name": "SE"
+    },
+    {
+      "std_id": 1663,
+      "student_name": "Student_663",
+      "major_id": 3,
+      "major_name": "CY"
+    },
+    {
+      "std_id": 1664,
+      "student_name": "Student_664",
+      "major_id": 1,
+      "major_name": "AI"
+    },
+    {
+      "std_id": 1665,
+      "student_name": "Student_665",
+      "major_id": 2,
+      "major_name": "SE"
+    },
+    {
+      "std_id": 1666,
+      "student_name": "Student_666",
+      "major_id": 3,
+      "major_name": "CY"
+    },
+    {
+      "std_id": 1667,
+      "student_name": "Student_667",
+      "major_id": 1,
+      "major_name": "AI"
+    },
+    {
+      "std_id": 1668,
+      "student_name": "Student_668",
+      "major_id": 2,
+      "major_name": "SE"
+    },
+    {
+      "std_id": 1669,
+      "student_name": "Student_669",
+      "major_id": 3,
+      "major_name": "CY"
+    },
+    {
+      "std_id": 1670,
+      "student_name": "Student_670",
+      "major_id": 1,
+      "major_name": "AI"
+    },
+    {
+      "std_id": 1671,
+      "student_name": "Student_671",
+      "major_id": 2,
+      "major_name": "SE"
+    },
+    {
+      "std_id": 1672,
+      "student_name": "Student_672",
+      "major_id": 3,
+      "major_name": "CY"
+    },
+    {
+      "std_id": 1673,
+      "student_name": "Student_673",
+      "major_id": 1,
+      "major_name": "AI"
+    },
+    {
+      "std_id": 1674,
+      "student_name": "Student_674",
+      "major_id": 2,
+      "major_name": "SE"
+    },
+    {
+      "std_id": 1675,
+      "student_name": "Student_675",
+      "major_id": 3,
+      "major_name": "CY"
+    },
+    {
+      "std_id": 1676,
+      "student_name": "Student_676",
+      "major_id": 1,
+      "major_name": "AI"
+    },
+    {
+      "std_id": 1677,
+      "student_name": "Student_677",
+      "major_id": 2,
+      "major_name": "SE"
+    },
+    {
+      "std_id": 1678,
+      "student_name": "Student_678",
+      "major_id": 3,
+      "major_name": "CY"
+    },
+    {
+      "std_id": 1679,
+      "student_name": "Student_679",
+      "major_id": 1,
+      "major_name": "AI"
+    },
+    {
+      "std_id": 1680,
+      "student_name": "Student_680",
+      "major_id": 2,
+      "major_name": "SE"
+    },
+    {
+      "std_id": 1681,
+      "student_name": "Student_681",
+      "major_id": 3,
+      "major_name": "CY"
+    },
+    {
+      "std_id": 1682,
+      "student_name": "Student_682",
+      "major_id": 1,
+      "major_name": "AI"
+    },
+    {
+      "std_id": 1683,
+      "student_name": "Student_683",
+      "major_id": 2,
+      "major_name": "SE"
+    },
+    {
+      "std_id": 1684,
+      "student_name": "Student_684",
+      "major_id": 3,
+      "major_name": "CY"
+    },
+    {
+      "std_id": 1685,
+      "student_name": "Student_685",
+      "major_id": 1,
+      "major_name": "AI"
+    },
+    {
+      "std_id": 1686,
+      "student_name": "Student_686",
+      "major_id": 2,
+      "major_name": "SE"
+    },
+    {
+      "std_id": 1687,
+      "student_name": "Student_687",
+      "major_id": 3,
+      "major_name": "CY"
+    },
+    {
+      "std_id": 1688,
+      "student_name": "Student_688",
+      "major_id": 1,
+      "major_name": "AI"
+    },
+    {
+      "std_id": 1689,
+      "student_name": "Student_689",
+      "major_id": 2,
+      "major_name": "SE"
+    },
+    {
+      "std_id": 1690,
+      "student_name": "Student_690",
+      "major_id": 3,
+      "major_name": "CY"
+    },
+    {
+      "std_id": 1691,
+      "student_name": "Student_691",
+      "major_id": 1,
+      "major_name": "AI"
+    },
+    {
+      "std_id": 1692,
+      "student_name": "Student_692",
+      "major_id": 2,
+      "major_name": "SE"
+    },
+    {
+      "std_id": 1693,
+      "student_name": "Student_693",
+      "major_id": 3,
+      "major_name": "CY"
+    },
+    {
+      "std_id": 1694,
+      "student_name": "Student_694",
+      "major_id": 1,
+      "major_name": "AI"
+    },
+    {
+      "std_id": 1695,
+      "student_name": "Student_695",
+      "major_id": 2,
+      "major_name": "SE"
+    },
+    {
+      "std_id": 1696,
+      "student_name": "Student_696",
+      "major_id": 3,
+      "major_name": "CY"
+    },
+    {
+      "std_id": 1697,
+      "student_name": "Student_697",
+      "major_id": 1,
+      "major_name": "AI"
+    },
+    {
+      "std_id": 1698,
+      "student_name": "Student_698",
+      "major_id": 2,
+      "major_name": "SE"
+    },
+    {
+      "std_id": 1699,
+      "student_name": "Student_699",
+      "major_id": 3,
+      "major_name": "CY"
+    },
+    {
+      "std_id": 1700,
+      "student_name": "Student_700",
+      "major_id": 1,
+      "major_name": "AI"
+    },
+    {
+      "std_id": 1701,
+      "student_name": "Student_701",
+      "major_id": 2,
+      "major_name": "SE"
+    },
+    {
+      "std_id": 1702,
+      "student_name": "Student_702",
+      "major_id": 3,
+      "major_name": "CY"
+    },
+    {
+      "std_id": 1703,
+      "student_name": "Student_703",
+      "major_id": 1,
+      "major_name": "AI"
+    },
+    {
+      "std_id": 1704,
+      "student_name": "Student_704",
+      "major_id": 2,
+      "major_name": "SE"
+    },
+    {
+      "std_id": 1705,
+      "student_name": "Student_705",
+      "major_id": 3,
+      "major_name": "CY"
+    },
+    {
+      "std_id": 1706,
+      "student_name": "Student_706",
+      "major_id": 1,
+      "major_name": "AI"
+    },
+    {
+      "std_id": 1707,
+      "student_name": "Student_707",
+      "major_id": 2,
+      "major_name": "SE"
+    },
+    {
+      "std_id": 1708,
+      "student_name": "Student_708",
+      "major_id": 3,
+      "major_name": "CY"
+    },
+    {
+      "std_id": 1709,
+      "student_name": "Student_709",
+      "major_id": 1,
+      "major_name": "AI"
+    },
+    {
+      "std_id": 1710,
+      "student_name": "Student_710",
+      "major_id": 2,
+      "major_name": "SE"
+    },
+    {
+      "std_id": 1711,
+      "student_name": "Student_711",
+      "major_id": 3,
+      "major_name": "CY"
+    },
+    {
+      "std_id": 1712,
+      "student_name": "Student_712",
+      "major_id": 1,
+      "major_name": "AI"
+    },
+    {
+      "std_id": 1713,
+      "student_name": "Student_713",
+      "major_id": 2,
+      "major_name": "SE"
+    },
+    {
+      "std_id": 1714,
+      "student_name": "Student_714",
+      "major_id": 3,
+      "major_name": "CY"
+    },
+    {
+      "std_id": 1715,
+      "student_name": "Student_715",
+      "major_id": 1,
+      "major_name": "AI"
+    },
+    {
+      "std_id": 1716,
+      "student_name": "Student_716",
+      "major_id": 2,
+      "major_name": "SE"
+    },
+    {
+      "std_id": 1717,
+      "student_name": "Student_717",
+      "major_id": 3,
+      "major_name": "CY"
+    },
+    {
+      "std_id": 1718,
+      "student_name": "Student_718",
+      "major_id": 1,
+      "major_name": "AI"
+    },
+    {
+      "std_id": 1719,
+      "student_name": "Student_719",
+      "major_id": 2,
+      "major_name": "SE"
+    },
+    {
+      "std_id": 1720,
+      "student_name": "Student_720",
+      "major_id": 3,
+      "major_name": "CY"
+    },
+    {
+      "std_id": 1721,
+      "student_name": "Student_721",
+      "major_id": 1,
+      "major_name": "AI"
+    },
+    {
+      "std_id": 1722,
+      "student_name": "Student_722",
+      "major_id": 2,
+      "major_name": "SE"
+    },
+    {
+      "std_id": 1723,
+      "student_name": "Student_723",
+      "major_id": 3,
+      "major_name": "CY"
+    },
+    {
+      "std_id": 1724,
+      "student_name": "Student_724",
+      "major_id": 1,
+      "major_name": "AI"
+    },
+    {
+      "std_id": 1725,
+      "student_name": "Student_725",
+      "major_id": 2,
+      "major_name": "SE"
+    },
+    {
+      "std_id": 1726,
+      "student_name": "Student_726",
+      "major_id": 3,
+      "major_name": "CY"
+    },
+    {
+      "std_id": 1727,
+      "student_name": "Student_727",
+      "major_id": 1,
+      "major_name": "AI"
+    },
+    {
+      "std_id": 1728,
+      "student_name": "Student_728",
+      "major_id": 2,
+      "major_name": "SE"
+    },
+    {
+      "std_id": 1729,
+      "student_name": "Student_729",
+      "major_id": 3,
+      "major_name": "CY"
+    },
+    {
+      "std_id": 1730,
+      "student_name": "Student_730",
+      "major_id": 1,
+      "major_name": "AI"
+    },
+    {
+      "std_id": 1731,
+      "student_name": "Student_731",
+      "major_id": 2,
+      "major_name": "SE"
+    },
+    {
+      "std_id": 1732,
+      "student_name": "Student_732",
+      "major_id": 3,
+      "major_name": "CY"
+    },
+    {
+      "std_id": 1733,
+      "student_name": "Student_733",
+      "major_id": 1,
+      "major_name": "AI"
+    },
+    {
+      "std_id": 1734,
+      "student_name": "Student_734",
+      "major_id": 2,
+      "major_name": "SE"
+    },
+    {
+      "std_id": 1735,
+      "student_name": "Student_735",
+      "major_id": 3,
+      "major_name": "CY"
+    },
+    {
+      "std_id": 1736,
+      "student_name": "Student_736",
+      "major_id": 1,
+      "major_name": "AI"
+    },
+    {
+      "std_id": 1737,
+      "student_name": "Student_737",
+      "major_id": 2,
+      "major_name": "SE"
+    },
+    {
+      "std_id": 1738,
+      "student_name": "Student_738",
+      "major_id": 3,
+      "major_name": "CY"
+    },
+    {
+      "std_id": 1739,
+      "student_name": "Student_739",
+      "major_id": 1,
+      "major_name": "AI"
+    },
+    {
+      "std_id": 1740,
+      "student_name": "Student_740",
+      "major_id": 2,
+      "major_name": "SE"
+    },
+    {
+      "std_id": 1741,
+      "student_name": "Student_741",
+      "major_id": 3,
+      "major_name": "CY"
+    },
+    {
+      "std_id": 1742,
+      "student_name": "Student_742",
+      "major_id": 1,
+      "major_name": "AI"
+    },
+    {
+      "std_id": 1743,
+      "student_name": "Student_743",
+      "major_id": 2,
+      "major_name": "SE"
+    },
+    {
+      "std_id": 1744,
+      "student_name": "Student_744",
+      "major_id": 3,
+      "major_name": "CY"
+    },
+    {
+      "std_id": 1745,
+      "student_name": "Student_745",
+      "major_id": 1,
+      "major_name": "AI"
+    },
+    {
+      "std_id": 1746,
+      "student_name": "Student_746",
+      "major_id": 2,
+      "major_name": "SE"
+    },
+    {
+      "std_id": 1747,
+      "student_name": "Student_747",
+      "major_id": 3,
+      "major_name": "CY"
+    },
+    {
+      "std_id": 1748,
+      "student_name": "Student_748",
+      "major_id": 1,
+      "major_name": "AI"
+    },
+    {
+      "std_id": 1749,
+      "student_name": "Student_749",
+      "major_id": 2,
+      "major_name": "SE"
+    },
+    {
+      "std_id": 1750,
+      "student_name": "Student_750",
+      "major_id": 3,
+      "major_name": "CY"
+    },
+    {
+      "std_id": 1751,
+      "student_name": "Student_751",
+      "major_id": 1,
+      "major_name": "AI"
+    },
+    {
+      "std_id": 1752,
+      "student_name": "Student_752",
+      "major_id": 2,
+      "major_name": "SE"
+    },
+    {
+      "std_id": 1753,
+      "student_name": "Student_753",
+      "major_id": 3,
+      "major_name": "CY"
+    },
+    {
+      "std_id": 1754,
+      "student_name": "Student_754",
+      "major_id": 1,
+      "major_name": "AI"
+    },
+    {
+      "std_id": 1755,
+      "student_name": "Student_755",
+      "major_id": 2,
+      "major_name": "SE"
+    },
+    {
+      "std_id": 1756,
+      "student_name": "Student_756",
+      "major_id": 3,
+      "major_name": "CY"
+    },
+    {
+      "std_id": 1757,
+      "student_name": "Student_757",
+      "major_id": 1,
+      "major_name": "AI"
+    },
+    {
+      "std_id": 1758,
+      "student_name": "Student_758",
+      "major_id": 2,
+      "major_name": "SE"
+    },
+    {
+      "std_id": 1759,
+      "student_name": "Student_759",
+      "major_id": 3,
+      "major_name": "CY"
+    },
+    {
+      "std_id": 1760,
+      "student_name": "Student_760",
+      "major_id": 1,
+      "major_name": "AI"
+    },
+    {
+      "std_id": 1761,
+      "student_name": "Student_761",
+      "major_id": 2,
+      "major_name": "SE"
+    },
+    {
+      "std_id": 1762,
+      "student_name": "Student_762",
+      "major_id": 3,
+      "major_name": "CY"
+    },
+    {
+      "std_id": 1763,
+      "student_name": "Student_763",
+      "major_id": 1,
+      "major_name": "AI"
+    },
+    {
+      "std_id": 1764,
+      "student_name": "Student_764",
+      "major_id": 2,
+      "major_name": "SE"
+    },
+    {
+      "std_id": 1765,
+      "student_name": "Student_765",
+      "major_id": 3,
+      "major_name": "CY"
+    },
+    {
+      "std_id": 1766,
+      "student_name": "Student_766",
+      "major_id": 1,
+      "major_name": "AI"
+    },
+    {
+      "std_id": 1767,
+      "student_name": "Student_767",
+      "major_id": 2,
+      "major_name": "SE"
+    },
+    {
+      "std_id": 1768,
+      "student_name": "Student_768",
+      "major_id": 3,
+      "major_name": "CY"
+    },
+    {
+      "std_id": 1769,
+      "student_name": "Student_769",
+      "major_id": 1,
+      "major_name": "AI"
+    },
+    {
+      "std_id": 1770,
+      "student_name": "Student_770",
+      "major_id": 2,
+      "major_name": "SE"
+    },
+    {
+      "std_id": 1771,
+      "student_name": "Student_771",
+      "major_id": 3,
+      "major_name": "CY"
+    },
+    {
+      "std_id": 1772,
+      "student_name": "Student_772",
+      "major_id": 1,
+      "major_name": "AI"
+    },
+    {
+      "std_id": 1773,
+      "student_name": "Student_773",
+      "major_id": 2,
+      "major_name": "SE"
+    },
+    {
+      "std_id": 1774,
+      "student_name": "Student_774",
+      "major_id": 3,
+      "major_name": "CY"
+    },
+    {
+      "std_id": 1775,
+      "student_name": "Student_775",
+      "major_id": 1,
+      "major_name": "AI"
+    },
+    {
+      "std_id": 1776,
+      "student_name": "Student_776",
+      "major_id": 2,
+      "major_name": "SE"
+    },
+    {
+      "std_id": 1777,
+      "student_name": "Student_777",
+      "major_id": 3,
+      "major_name": "CY"
+    },
+    {
+      "std_id": 1778,
+      "student_name": "Student_778",
+      "major_id": 1,
+      "major_name": "AI"
+    },
+    {
+      "std_id": 1779,
+      "student_name": "Student_779",
+      "major_id": 2,
+      "major_name": "SE"
+    },
+    {
+      "std_id": 1780,
+      "student_name": "Student_780",
+      "major_id": 3,
+      "major_name": "CY"
+    },
+    {
+      "std_id": 1781,
+      "student_name": "Student_781",
+      "major_id": 1,
+      "major_name": "AI"
+    },
+    {
+      "std_id": 1782,
+      "student_name": "Student_782",
+      "major_id": 2,
+      "major_name": "SE"
+    },
+    {
+      "std_id": 1783,
+      "student_name": "Student_783",
+      "major_id": 3,
+      "major_name": "CY"
+    },
+    {
+      "std_id": 1784,
+      "student_name": "Student_784",
+      "major_id": 1,
+      "major_name": "AI"
+    },
+    {
+      "std_id": 1785,
+      "student_name": "Student_785",
+      "major_id": 2,
+      "major_name": "SE"
+    },
+    {
+      "std_id": 1786,
+      "student_name": "Student_786",
+      "major_id": 3,
+      "major_name": "CY"
+    },
+    {
+      "std_id": 1787,
+      "student_name": "Student_787",
+      "major_id": 1,
+      "major_name": "AI"
+    },
+    {
+      "std_id": 1788,
+      "student_name": "Student_788",
+      "major_id": 2,
+      "major_name": "SE"
+    },
+    {
+      "std_id": 1789,
+      "student_name": "Student_789",
+      "major_id": 3,
+      "major_name": "CY"
+    },
+    {
+      "std_id": 1790,
+      "student_name": "Student_790",
+      "major_id": 1,
+      "major_name": "AI"
+    },
+    {
+      "std_id": 1791,
+      "student_name": "Student_791",
+      "major_id": 2,
+      "major_name": "SE"
+    },
+    {
+      "std_id": 1792,
+      "student_name": "Student_792",
+      "major_id": 3,
+      "major_name": "CY"
+    },
+    {
+      "std_id": 1793,
+      "student_name": "Student_793",
+      "major_id": 1,
+      "major_name": "AI"
+    },
+    {
+      "std_id": 1794,
+      "student_name": "Student_794",
+      "major_id": 2,
+      "major_name": "SE"
+    },
+    {
+      "std_id": 1795,
+      "student_name": "Student_795",
+      "major_id": 3,
+      "major_name": "CY"
+    },
+    {
+      "std_id": 1796,
+      "student_name": "Student_796",
+      "major_id": 1,
+      "major_name": "AI"
+    },
+    {
+      "std_id": 1797,
+      "student_name": "Student_797",
+      "major_id": 2,
+      "major_name": "SE"
+    },
+    {
+      "std_id": 1798,
+      "student_name": "Student_798",
+      "major_id": 3,
+      "major_name": "CY"
+    },
+    {
+      "std_id": 1799,
+      "student_name": "Student_799",
+      "major_id": 1,
+      "major_name": "AI"
+    },
+    {
+      "std_id": 1800,
+      "student_name": "Student_800",
+      "major_id": 2,
+      "major_name": "SE"
+    },
+    {
+      "std_id": 1801,
+      "student_name": "Student_801",
+      "major_id": 3,
+      "major_name": "CY"
+    },
+    {
+      "std_id": 1802,
+      "student_name": "Student_802",
+      "major_id": 1,
+      "major_name": "AI"
+    },
+    {
+      "std_id": 1803,
+      "student_name": "Student_803",
+      "major_id": 2,
+      "major_name": "SE"
+    },
+    {
+      "std_id": 1804,
+      "student_name": "Student_804",
+      "major_id": 3,
+      "major_name": "CY"
+    },
+    {
+      "std_id": 1805,
+      "student_name": "Student_805",
+      "major_id": 1,
+      "major_name": "AI"
+    },
+    {
+      "std_id": 1806,
+      "student_name": "Student_806",
+      "major_id": 2,
+      "major_name": "SE"
+    },
+    {
+      "std_id": 1807,
+      "student_name": "Student_807",
+      "major_id": 3,
+      "major_name": "CY"
+    },
+    {
+      "std_id": 1808,
+      "student_name": "Student_808",
+      "major_id": 1,
+      "major_name": "AI"
+    },
+    {
+      "std_id": 1809,
+      "student_name": "Student_809",
+      "major_id": 2,
+      "major_name": "SE"
+    },
+    {
+      "std_id": 1810,
+      "student_name": "Student_810",
+      "major_id": 3,
+      "major_name": "CY"
+    },
+    {
+      "std_id": 1811,
+      "student_name": "Student_811",
+      "major_id": 1,
+      "major_name": "AI"
+    },
+    {
+      "std_id": 1812,
+      "student_name": "Student_812",
+      "major_id": 2,
+      "major_name": "SE"
+    },
+    {
+      "std_id": 1813,
+      "student_name": "Student_813",
+      "major_id": 3,
+      "major_name": "CY"
+    },
+    {
+      "std_id": 1814,
+      "student_name": "Student_814",
+      "major_id": 1,
+      "major_name": "AI"
+    },
+    {
+      "std_id": 1815,
+      "student_name": "Student_815",
+      "major_id": 2,
+      "major_name": "SE"
+    },
+    {
+      "std_id": 1816,
+      "student_name": "Student_816",
+      "major_id": 3,
+      "major_name": "CY"
+    },
+    {
+      "std_id": 1817,
+      "student_name": "Student_817",
+      "major_id": 1,
+      "major_name": "AI"
+    },
+    {
+      "std_id": 1818,
+      "student_name": "Student_818",
+      "major_id": 2,
+      "major_name": "SE"
+    },
+    {
+      "std_id": 1819,
+      "student_name": "Student_819",
+      "major_id": 3,
+      "major_name": "CY"
+    },
+    {
+      "std_id": 1820,
+      "student_name": "Student_820",
+      "major_id": 1,
+      "major_name": "AI"
+    },
+    {
+      "std_id": 1821,
+      "student_name": "Student_821",
+      "major_id": 2,
+      "major_name": "SE"
+    },
+    {
+      "std_id": 1822,
+      "student_name": "Student_822",
+      "major_id": 3,
+      "major_name": "CY"
+    },
+    {
+      "std_id": 1823,
+      "student_name": "Student_823",
+      "major_id": 1,
+      "major_name": "AI"
+    },
+    {
+      "std_id": 1824,
+      "student_name": "Student_824",
+      "major_id": 2,
+      "major_name": "SE"
+    },
+    {
+      "std_id": 1825,
+      "student_name": "Student_825",
+      "major_id": 3,
+      "major_name": "CY"
+    },
+    {
+      "std_id": 1826,
+      "student_name": "Student_826",
+      "major_id": 1,
+      "major_name": "AI"
+    },
+    {
+      "std_id": 1827,
+      "student_name": "Student_827",
+      "major_id": 2,
+      "major_name": "SE"
+    },
+    {
+      "std_id": 1828,
+      "student_name": "Student_828",
+      "major_id": 3,
+      "major_name": "CY"
+    },
+    {
+      "std_id": 1829,
+      "student_name": "Student_829",
+      "major_id": 1,
+      "major_name": "AI"
+    },
+    {
+      "std_id": 1830,
+      "student_name": "Student_830",
+      "major_id": 2,
+      "major_name": "SE"
+    },
+    {
+      "std_id": 1831,
+      "student_name": "Student_831",
+      "major_id": 3,
+      "major_name": "CY"
+    },
+    {
+      "std_id": 1832,
+      "student_name": "Student_832",
+      "major_id": 1,
+      "major_name": "AI"
+    },
+    {
+      "std_id": 1833,
+      "student_name": "Student_833",
+      "major_id": 2,
+      "major_name": "SE"
+    },
+    {
+      "std_id": 1834,
+      "student_name": "Student_834",
+      "major_id": 3,
+      "major_name": "CY"
+    },
+    {
+      "std_id": 1835,
+      "student_name": "Student_835",
+      "major_id": 1,
+      "major_name": "AI"
+    },
+    {
+      "std_id": 1836,
+      "student_name": "Student_836",
+      "major_id": 2,
+      "major_name": "SE"
+    },
+    {
+      "std_id": 1837,
+      "student_name": "Student_837",
+      "major_id": 3,
+      "major_name": "CY"
+    },
+    {
+      "std_id": 1838,
+      "student_name": "Student_838",
+      "major_id": 1,
+      "major_name": "AI"
+    },
+    {
+      "std_id": 1839,
+      "student_name": "Student_839",
+      "major_id": 2,
+      "major_name": "SE"
+    },
+    {
+      "std_id": 1840,
+      "student_name": "Student_840",
+      "major_id": 3,
+      "major_name": "CY"
+    },
+    {
+      "std_id": 1841,
+      "student_name": "Student_841",
+      "major_id": 1,
+      "major_name": "AI"
+    },
+    {
+      "std_id": 1842,
+      "student_name": "Student_842",
+      "major_id": 2,
+      "major_name": "SE"
+    },
+    {
+      "std_id": 1843,
+      "student_name": "Student_843",
+      "major_id": 3,
+      "major_name": "CY"
+    },
+    {
+      "std_id": 1844,
+      "student_name": "Student_844",
+      "major_id": 1,
+      "major_name": "AI"
+    },
+    {
+      "std_id": 1845,
+      "student_name": "Student_845",
+      "major_id": 2,
+      "major_name": "SE"
+    },
+    {
+      "std_id": 1846,
+      "student_name": "Student_846",
+      "major_id": 3,
+      "major_name": "CY"
+    },
+    {
+      "std_id": 1847,
+      "student_name": "Student_847",
+      "major_id": 1,
+      "major_name": "AI"
+    },
+    {
+      "std_id": 1848,
+      "student_name": "Student_848",
+      "major_id": 2,
+      "major_name": "SE"
+    },
+    {
+      "std_id": 1849,
+      "student_name": "Student_849",
+      "major_id": 3,
+      "major_name": "CY"
+    },
+    {
+      "std_id": 1850,
+      "student_name": "Student_850",
+      "major_id": 1,
+      "major_name": "AI"
+    },
+    {
+      "std_id": 1851,
+      "student_name": "Student_851",
+      "major_id": 2,
+      "major_name": "SE"
+    },
+    {
+      "std_id": 1852,
+      "student_name": "Student_852",
+      "major_id": 3,
+      "major_name": "CY"
+    },
+    {
+      "std_id": 1853,
+      "student_name": "Student_853",
+      "major_id": 1,
+      "major_name": "AI"
+    },
+    {
+      "std_id": 1854,
+      "student_name": "Student_854",
+      "major_id": 2,
+      "major_name": "SE"
+    },
+    {
+      "std_id": 1855,
+      "student_name": "Student_855",
+      "major_id": 3,
+      "major_name": "CY"
+    },
+    {
+      "std_id": 1856,
+      "student_name": "Student_856",
+      "major_id": 1,
+      "major_name": "AI"
+    },
+    {
+      "std_id": 1857,
+      "student_name": "Student_857",
+      "major_id": 2,
+      "major_name": "SE"
+    },
+    {
+      "std_id": 1858,
+      "student_name": "Student_858",
+      "major_id": 3,
+      "major_name": "CY"
+    },
+    {
+      "std_id": 1859,
+      "student_name": "Student_859",
+      "major_id": 1,
+      "major_name": "AI"
+    },
+    {
+      "std_id": 1860,
+      "student_name": "Student_860",
+      "major_id": 2,
+      "major_name": "SE"
+    },
+    {
+      "std_id": 1861,
+      "student_name": "Student_861",
+      "major_id": 3,
+      "major_name": "CY"
+    },
+    {
+      "std_id": 1862,
+      "student_name": "Student_862",
+      "major_id": 1,
+      "major_name": "AI"
+    },
+    {
+      "std_id": 1863,
+      "student_name": "Student_863",
+      "major_id": 2,
+      "major_name": "SE"
+    },
+    {
+      "std_id": 1864,
+      "student_name": "Student_864",
+      "major_id": 3,
+      "major_name": "CY"
+    },
+    {
+      "std_id": 1865,
+      "student_name": "Student_865",
+      "major_id": 1,
+      "major_name": "AI"
+    },
+    {
+      "std_id": 1866,
+      "student_name": "Student_866",
+      "major_id": 2,
+      "major_name": "SE"
+    },
+    {
+      "std_id": 1867,
+      "student_name": "Student_867",
+      "major_id": 3,
+      "major_name": "CY"
+    },
+    {
+      "std_id": 1868,
+      "student_name": "Student_868",
+      "major_id": 1,
+      "major_name": "AI"
+    },
+    {
+      "std_id": 1869,
+      "student_name": "Student_869",
+      "major_id": 2,
+      "major_name": "SE"
+    },
+    {
+      "std_id": 1870,
+      "student_name": "Student_870",
+      "major_id": 3,
+      "major_name": "CY"
+    },
+    {
+      "std_id": 1871,
+      "student_name": "Student_871",
+      "major_id": 1,
+      "major_name": "AI"
+    },
+    {
+      "std_id": 1872,
+      "student_name": "Student_872",
+      "major_id": 2,
+      "major_name": "SE"
+    },
+    {
+      "std_id": 1873,
+      "student_name": "Student_873",
+      "major_id": 3,
+      "major_name": "CY"
+    },
+    {
+      "std_id": 1874,
+      "student_name": "Student_874",
+      "major_id": 1,
+      "major_name": "AI"
+    },
+    {
+      "std_id": 1875,
+      "student_name": "Student_875",
+      "major_id": 2,
+      "major_name": "SE"
+    },
+    {
+      "std_id": 1876,
+      "student_name": "Student_876",
+      "major_id": 3,
+      "major_name": "CY"
+    },
+    {
+      "std_id": 1877,
+      "student_name": "Student_877",
+      "major_id": 1,
+      "major_name": "AI"
+    },
+    {
+      "std_id": 1878,
+      "student_name": "Student_878",
+      "major_id": 2,
+      "major_name": "SE"
+    },
+    {
+      "std_id": 1879,
+      "student_name": "Student_879",
+      "major_id": 3,
+      "major_name": "CY"
+    },
+    {
+      "std_id": 1880,
+      "student_name": "Student_880",
+      "major_id": 1,
+      "major_name": "AI"
+    },
+    {
+      "std_id": 1881,
+      "student_name": "Student_881",
+      "major_id": 2,
+      "major_name": "SE"
+    },
+    {
+      "std_id": 1882,
+      "student_name": "Student_882",
+      "major_id": 3,
+      "major_name": "CY"
+    },
+    {
+      "std_id": 1883,
+      "student_name": "Student_883",
+      "major_id": 1,
+      "major_name": "AI"
+    },
+    {
+      "std_id": 1884,
+      "student_name": "Student_884",
+      "major_id": 2,
+      "major_name": "SE"
+    },
+    {
+      "std_id": 1885,
+      "student_name": "Student_885",
+      "major_id": 3,
+      "major_name": "CY"
+    },
+    {
+      "std_id": 1886,
+      "student_name": "Student_886",
+      "major_id": 1,
+      "major_name": "AI"
+    },
+    {
+      "std_id": 1887,
+      "student_name": "Student_887",
+      "major_id": 2,
+      "major_name": "SE"
+    },
+    {
+      "std_id": 1888,
+      "student_name": "Student_888",
+      "major_id": 3,
+      "major_name": "CY"
+    },
+    {
+      "std_id": 1889,
+      "student_name": "Student_889",
+      "major_id": 1,
+      "major_name": "AI"
+    },
+    {
+      "std_id": 1890,
+      "student_name": "Student_890",
+      "major_id": 2,
+      "major_name": "SE"
+    },
+    {
+      "std_id": 1891,
+      "student_name": "Student_891",
+      "major_id": 3,
+      "major_name": "CY"
+    },
+    {
+      "std_id": 1892,
+      "student_name": "Student_892",
+      "major_id": 1,
+      "major_name": "AI"
+    },
+    {
+      "std_id": 1893,
+      "student_name": "Student_893",
+      "major_id": 2,
+      "major_name": "SE"
+    },
+    {
+      "std_id": 1894,
+      "student_name": "Student_894",
+      "major_id": 3,
+      "major_name": "CY"
+    },
+    {
+      "std_id": 1895,
+      "student_name": "Student_895",
+      "major_id": 1,
+      "major_name": "AI"
+    },
+    {
+      "std_id": 1896,
+      "student_name": "Student_896",
+      "major_id": 2,
+      "major_name": "SE"
+    },
+    {
+      "std_id": 1897,
+      "student_name": "Student_897",
+      "major_id": 3,
+      "major_name": "CY"
+    },
+    {
+      "std_id": 1898,
+      "student_name": "Student_898",
+      "major_id": 1,
+      "major_name": "AI"
+    },
+    {
+      "std_id": 1899,
+      "student_name": "Student_899",
+      "major_id": 2,
+      "major_name": "SE"
+    },
+    {
+      "std_id": 1900,
+      "student_name": "Student_900",
+      "major_id": 3,
+      "major_name": "CY"
+    },
+    {
+      "std_id": 1901,
+      "student_name": "Student_901",
+      "major_id": 1,
+      "major_name": "AI"
+    },
+    {
+      "std_id": 1902,
+      "student_name": "Student_902",
+      "major_id": 2,
+      "major_name": "SE"
+    },
+    {
+      "std_id": 1903,
+      "student_name": "Student_903",
+      "major_id": 3,
+      "major_name": "CY"
+    },
+    {
+      "std_id": 1904,
+      "student_name": "Student_904",
+      "major_id": 1,
+      "major_name": "AI"
+    },
+    {
+      "std_id": 1905,
+      "student_name": "Student_905",
+      "major_id": 2,
+      "major_name": "SE"
+    },
+    {
+      "std_id": 1906,
+      "student_name": "Student_906",
+      "major_id": 3,
+      "major_name": "CY"
+    },
+    {
+      "std_id": 1907,
+      "student_name": "Student_907",
+      "major_id": 1,
+      "major_name": "AI"
+    },
+    {
+      "std_id": 1908,
+      "student_name": "Student_908",
+      "major_id": 2,
+      "major_name": "SE"
+    },
+    {
+      "std_id": 1909,
+      "student_name": "Student_909",
+      "major_id": 3,
+      "major_name": "CY"
+    },
+    {
+      "std_id": 1910,
+      "student_name": "Student_910",
+      "major_id": 1,
+      "major_name": "AI"
+    },
+    {
+      "std_id": 1911,
+      "student_name": "Student_911",
+      "major_id": 2,
+      "major_name": "SE"
+    },
+    {
+      "std_id": 1912,
+      "student_name": "Student_912",
+      "major_id": 3,
+      "major_name": "CY"
+    },
+    {
+      "std_id": 1913,
+      "student_name": "Student_913",
+      "major_id": 1,
+      "major_name": "AI"
+    },
+    {
+      "std_id": 1914,
+      "student_name": "Student_914",
+      "major_id": 2,
+      "major_name": "SE"
+    },
+    {
+      "std_id": 1915,
+      "student_name": "Student_915",
+      "major_id": 3,
+      "major_name": "CY"
+    },
+    {
+      "std_id": 1916,
+      "student_name": "Student_916",
+      "major_id": 1,
+      "major_name": "AI"
+    },
+    {
+      "std_id": 1917,
+      "student_name": "Student_917",
+      "major_id": 2,
+      "major_name": "SE"
+    },
+    {
+      "std_id": 1918,
+      "student_name": "Student_918",
+      "major_id": 3,
+      "major_name": "CY"
+    },
+    {
+      "std_id": 1919,
+      "student_name": "Student_919",
+      "major_id": 1,
+      "major_name": "AI"
+    },
+    {
+      "std_id": 1920,
+      "student_name": "Student_920",
+      "major_id": 2,
+      "major_name": "SE"
+    },
+    {
+      "std_id": 1921,
+      "student_name": "Student_921",
+      "major_id": 3,
+      "major_name": "CY"
+    },
+    {
+      "std_id": 1922,
+      "student_name": "Student_922",
+      "major_id": 1,
+      "major_name": "AI"
+    },
+    {
+      "std_id": 1923,
+      "student_name": "Student_923",
+      "major_id": 2,
+      "major_name": "SE"
+    },
+    {
+      "std_id": 1924,
+      "student_name": "Student_924",
+      "major_id": 3,
+      "major_name": "CY"
+    },
+    {
+      "std_id": 1925,
+      "student_name": "Student_925",
+      "major_id": 1,
+      "major_name": "AI"
+    },
+    {
+      "std_id": 1926,
+      "student_name": "Student_926",
+      "major_id": 2,
+      "major_name": "SE"
+    },
+    {
+      "std_id": 1927,
+      "student_name": "Student_927",
+      "major_id": 3,
+      "major_name": "CY"
+    },
+    {
+      "std_id": 1928,
+      "student_name": "Student_928",
+      "major_id": 1,
+      "major_name": "AI"
+    },
+    {
+      "std_id": 1929,
+      "student_name": "Student_929",
+      "major_id": 2,
+      "major_name": "SE"
+    },
+    {
+      "std_id": 1930,
+      "student_name": "Student_930",
+      "major_id": 3,
+      "major_name": "CY"
+    },
+    {
+      "std_id": 1931,
+      "student_name": "Student_931",
+      "major_id": 1,
+      "major_name": "AI"
+    },
+    {
+      "std_id": 1932,
+      "student_name": "Student_932",
+      "major_id": 2,
+      "major_name": "SE"
+    },
+    {
+      "std_id": 1933,
+      "student_name": "Student_933",
+      "major_id": 3,
+      "major_name": "CY"
+    },
+    {
+      "std_id": 1934,
+      "student_name": "Student_934",
+      "major_id": 1,
+      "major_name": "AI"
+    },
+    {
+      "std_id": 1935,
+      "student_name": "Student_935",
+      "major_id": 2,
+      "major_name": "SE"
+    },
+    {
+      "std_id": 1936,
+      "student_name": "Student_936",
+      "major_id": 3,
+      "major_name": "CY"
+    },
+    {
+      "std_id": 1937,
+      "student_name": "Student_937",
+      "major_id": 1,
+      "major_name": "AI"
+    },
+    {
+      "std_id": 1938,
+      "student_name": "Student_938",
+      "major_id": 2,
+      "major_name": "SE"
+    },
+    {
+      "std_id": 1939,
+      "student_name": "Student_939",
+      "major_id": 3,
+      "major_name": "CY"
+    },
+    {
+      "std_id": 1940,
+      "student_name": "Student_940",
+      "major_id": 1,
+      "major_name": "AI"
+    },
+    {
+      "std_id": 1941,
+      "student_name": "Student_941",
+      "major_id": 2,
+      "major_name": "SE"
+    },
+    {
+      "std_id": 1942,
+      "student_name": "Student_942",
+      "major_id": 3,
+      "major_name": "CY"
+    },
+    {
+      "std_id": 1943,
+      "student_name": "Student_943",
+      "major_id": 1,
+      "major_name": "AI"
+    },
+    {
+      "std_id": 1944,
+      "student_name": "Student_944",
+      "major_id": 2,
+      "major_name": "SE"
+    },
+    {
+      "std_id": 1945,
+      "student_name": "Student_945",
+      "major_id": 3,
+      "major_name": "CY"
+    },
+    {
+      "std_id": 1946,
+      "student_name": "Student_946",
+      "major_id": 1,
+      "major_name": "AI"
+    },
+    {
+      "std_id": 1947,
+      "student_name": "Student_947",
+      "major_id": 2,
+      "major_name": "SE"
+    },
+    {
+      "std_id": 1948,
+      "student_name": "Student_948",
+      "major_id": 3,
+      "major_name": "CY"
+    },
+    {
+      "std_id": 1949,
+      "student_name": "Student_949",
+      "major_id": 1,
+      "major_name": "AI"
+    },
+    {
+      "std_id": 1950,
+      "student_name": "Student_950",
+      "major_id": 2,
+      "major_name": "SE"
+    },
+    {
+      "std_id": 1951,
+      "student_name": "Student_951",
+      "major_id": 3,
+      "major_name": "CY"
+    },
+    {
+      "std_id": 1952,
+      "student_name": "Student_952",
+      "major_id": 1,
+      "major_name": "AI"
+    },
+    {
+      "std_id": 1953,
+      "student_name": "Student_953",
+      "major_id": 2,
+      "major_name": "SE"
+    },
+    {
+      "std_id": 1954,
+      "student_name": "Student_954",
+      "major_id": 3,
+      "major_name": "CY"
+    },
+    {
+      "std_id": 1955,
+      "student_name": "Student_955",
+      "major_id": 1,
+      "major_name": "AI"
+    },
+    {
+      "std_id": 1956,
+      "student_name": "Student_956",
+      "major_id": 2,
+      "major_name": "SE"
+    },
+    {
+      "std_id": 1957,
+      "student_name": "Student_957",
+      "major_id": 3,
+      "major_name": "CY"
+    },
+    {
+      "std_id": 1958,
+      "student_name": "Student_958",
+      "major_id": 1,
+      "major_name": "AI"
+    },
+    {
+      "std_id": 1959,
+      "student_name": "Student_959",
+      "major_id": 2,
+      "major_name": "SE"
+    },
+    {
+      "std_id": 1960,
+      "student_name": "Student_960",
+      "major_id": 3,
+      "major_name": "CY"
+    },
+    {
+      "std_id": 1961,
+      "student_name": "Student_961",
+      "major_id": 1,
+      "major_name": "AI"
+    },
+    {
+      "std_id": 1962,
+      "student_name": "Student_962",
+      "major_id": 2,
+      "major_name": "SE"
+    },
+    {
+      "std_id": 1963,
+      "student_name": "Student_963",
+      "major_id": 3,
+      "major_name": "CY"
+    },
+    {
+      "std_id": 1964,
+      "student_name": "Student_964",
+      "major_id": 1,
+      "major_name": "AI"
+    },
+    {
+      "std_id": 1965,
+      "student_name": "Student_965",
+      "major_id": 2,
+      "major_name": "SE"
+    },
+    {
+      "std_id": 1966,
+      "student_name": "Student_966",
+      "major_id": 3,
+      "major_name": "CY"
+    },
+    {
+      "std_id": 1967,
+      "student_name": "Student_967",
+      "major_id": 1,
+      "major_name": "AI"
+    },
+    {
+      "std_id": 1968,
+      "student_name": "Student_968",
+      "major_id": 2,
+      "major_name": "SE"
+    },
+    {
+      "std_id": 1969,
+      "student_name": "Student_969",
+      "major_id": 3,
+      "major_name": "CY"
+    },
+    {
+      "std_id": 1970,
+      "student_name": "Student_970",
+      "major_id": 1,
+      "major_name": "AI"
+    },
+    {
+      "std_id": 1971,
+      "student_name": "Student_971",
+      "major_id": 2,
+      "major_name": "SE"
+    },
+    {
+      "std_id": 1972,
+      "student_name": "Student_972",
+      "major_id": 3,
+      "major_name": "CY"
+    },
+    {
+      "std_id": 1973,
+      "student_name": "Student_973",
+      "major_id": 1,
+      "major_name": "AI"
+    },
+    {
+      "std_id": 1974,
+      "student_name": "Student_974",
+      "major_id": 2,
+      "major_name": "SE"
+    },
+    {
+      "std_id": 1975,
+      "student_name": "Student_975",
+      "major_id": 3,
+      "major_name": "CY"
+    },
+    {
+      "std_id": 1976,
+      "student_name": "Student_976",
+      "major_id": 1,
+      "major_name": "AI"
+    },
+    {
+      "std_id": 1977,
+      "student_name": "Student_977",
+      "major_id": 2,
+      "major_name": "SE"
+    },
+    {
+      "std_id": 1978,
+      "student_name": "Student_978",
+      "major_id": 3,
+      "major_name": "CY"
+    },
+    {
+      "std_id": 1979,
+      "student_name": "Student_979",
+      "major_id": 1,
+      "major_name": "AI"
+    },
+    {
+      "std_id": 1980,
+      "student_name": "Student_980",
+      "major_id": 2,
+      "major_name": "SE"
+    },
+    {
+      "std_id": 1981,
+      "student_name": "Student_981",
+      "major_id": 3,
+      "major_name": "CY"
+    },
+    {
+      "std_id": 1982,
+      "student_name": "Student_982",
+      "major_id": 1,
+      "major_name": "AI"
+    },
+    {
+      "std_id": 1983,
+      "student_name": "Student_983",
+      "major_id": 2,
+      "major_name": "SE"
+    },
+    {
+      "std_id": 1984,
+      "student_name": "Student_984",
+      "major_id": 3,
+      "major_name": "CY"
+    },
+    {
+      "std_id": 1985,
+      "student_name": "Student_985",
+      "major_id": 1,
+      "major_name": "AI"
+    },
+    {
+      "std_id": 1986,
+      "student_name": "Student_986",
+      "major_id": 2,
+      "major_name": "SE"
+    },
+    {
+      "std_id": 1987,
+      "student_name": "Student_987",
+      "major_id": 3,
+      "major_name": "CY"
+    },
+    {
+      "std_id": 1988,
+      "student_name": "Student_988",
+      "major_id": 1,
+      "major_name": "AI"
+    },
+    {
+      "std_id": 1989,
+      "student_name": "Student_989",
+      "major_id": 2,
+      "major_name": "SE"
+    },
+    {
+      "std_id": 1990,
+      "student_name": "Student_990",
+      "major_id": 3,
+      "major_name": "CY"
+    },
+    {
+      "std_id": 1991,
+      "student_name": "Student_991",
+      "major_id": 1,
+      "major_name": "AI"
+    },
+    {
+      "std_id": 1992,
+      "student_name": "Student_992",
+      "major_id": 2,
+      "major_name": "SE"
+    },
+    {
+      "std_id": 1993,
+      "student_name": "Student_993",
+      "major_id": 3,
+      "major_name": "CY"
+    },
+    {
+      "std_id": 1994,
+      "student_name": "Student_994",
+      "major_id": 1,
+      "major_name": "AI"
+    },
+    {
+      "std_id": 1995,
+      "student_name": "Student_995",
+      "major_id": 2,
+      "major_name": "SE"
+    },
+    {
+      "std_id": 1996,
+      "student_name": "Student_996",
+      "major_id": 3,
+      "major_name": "CY"
+    },
+    {
+      "std_id": 1997,
+      "student_name": "Student_997",
+      "major_id": 1,
+      "major_name": "AI"
+    },
+    {
+      "std_id": 1998,
+      "student_name": "Student_998",
+      "major_id": 2,
+      "major_name": "SE"
+    },
+    {
+      "std_id": 1999,
+      "student_name": "Student_999",
+      "major_id": 3,
+      "major_name": "CY"
+    },
+    {
+      "std_id": 2000,
+      "student_name": "Student_1000",
+      "major_id": 1,
+      "major_name": "AI"
+    },
+    {
+      "std_id": 9001,
+      "student_name": "Sara Al-Mansouri (GRAD)",
+      "major_id": 1,
+      "major_name": "AI"
+    },
+    {
+      "std_id": 9002,
+      "student_name": "Omar Khalid (GRAD)",
+      "major_id": 1,
+      "major_name": "AI"
+    },
+    {
+      "std_id": 9003,
+      "student_name": "Lina Hassan (GRAD)",
+      "major_id": 1,
+      "major_name": "AI"
+    },
+    {
+      "std_id": 9004,
+      "student_name": "Yousef Al-Rashidi (GRAD)",
+      "major_id": 1,
+      "major_name": "AI"
+    },
+    {
+      "std_id": 9005,
+      "student_name": "Nour Al-Amin (GRAD)",
+      "major_id": 1,
+      "major_name": "AI"
+    },
+    {
+      "std_id": 9006,
+      "student_name": "Khalid Al-Farsi (GRAD)",
+      "major_id": 2,
+      "major_name": "SE"
+    },
+    {
+      "std_id": 9007,
+      "student_name": "Reem Al-Sulaiman (GRAD)",
+      "major_id": 2,
+      "major_name": "SE"
+    },
+    {
+      "std_id": 9008,
+      "student_name": "Hassan Nasser (GRAD)",
+      "major_id": 2,
+      "major_name": "SE"
+    },
+    {
+      "std_id": 9009,
+      "student_name": "Fatima Al-Zahra (GRAD)",
+      "major_id": 3,
+      "major_name": "CY"
+    },
+    {
+      "std_id": 9010,
+      "student_name": "Ali Al-Baghdadi (GRAD)",
+      "major_id": 3,
+      "major_name": "CY"
+    },
+    {
+      "std_id": 9011,
+      "student_name": "Mariam Al-Saeed (GRAD)",
+      "major_id": 3,
+      "major_name": "CY"
+    },
+    {
+      "std_id": 9999,
+      "student_name": "Ahmed Al-Hussain (TEST GRAD)",
+      "major_id": 1,
+      "major_name": "AI"
+    }
+  ],
+  "courses": [
+    {
+      "course_id": 1,
+      "course_name": "Programming 1",
+      "credit_hours": 3,
+      "course_type": "Lecture",
+      "major_id": 3,
+      "major_name": "CY",
+      "prereq_id": null
+    },
+    {
+      "course_id": 2,
+      "course_name": "Programming 2",
+      "credit_hours": 3,
+      "course_type": "Lecture",
+      "major_id": 3,
+      "major_name": "CY",
+      "prereq_id": 1
+    },
+    {
+      "course_id": 3,
+      "course_name": "Discrete Mathematics",
+      "credit_hours": 3,
+      "course_type": "Lecture",
+      "major_id": 3,
+      "major_name": "CY",
+      "prereq_id": null
+    },
+    {
+      "course_id": 4,
+      "course_name": "Introduction to Cyber Security",
+      "credit_hours": 3,
+      "course_type": "Lecture",
+      "major_id": 3,
+      "major_name": "CY",
+      "prereq_id": null
+    },
+    {
+      "course_id": 5,
+      "course_name": "Data Structures",
+      "credit_hours": 3,
+      "course_type": "Lecture",
+      "major_id": 3,
+      "major_name": "CY",
+      "prereq_id": 2
+    },
+    {
+      "course_id": 6,
+      "course_name": "Computer Organization",
+      "credit_hours": 3,
+      "course_type": "Lecture",
+      "major_id": 3,
+      "major_name": "CY",
+      "prereq_id": null
+    },
+    {
+      "course_id": 7,
+      "course_name": "Networking Fundamentals",
+      "credit_hours": 3,
+      "course_type": "Lecture",
+      "major_id": 3,
+      "major_name": "CY",
+      "prereq_id": null
+    },
+    {
+      "course_id": 8,
+      "course_name": "Operating Systems",
+      "credit_hours": 3,
+      "course_type": "Lecture",
+      "major_id": 3,
+      "major_name": "CY",
+      "prereq_id": 5
+    },
+    {
+      "course_id": 9,
+      "course_name": "Network Security",
+      "credit_hours": 3,
+      "course_type": "Lecture",
+      "major_id": 3,
+      "major_name": "CY",
+      "prereq_id": 7
+    },
+    {
+      "course_id": 10,
+      "course_name": "Cryptography",
+      "credit_hours": 3,
+      "course_type": "Lecture",
+      "major_id": 3,
+      "major_name": "CY",
+      "prereq_id": 7
+    },
+    {
+      "course_id": 11,
+      "course_name": "Ethical Hacking",
+      "credit_hours": 3,
+      "course_type": "Lab",
+      "major_id": 3,
+      "major_name": "CY",
+      "prereq_id": 9
+    },
+    {
+      "course_id": 12,
+      "course_name": "Secure Software Development",
+      "credit_hours": 3,
+      "course_type": "Lecture",
+      "major_id": 3,
+      "major_name": "CY",
+      "prereq_id": 2
+    },
+    {
+      "course_id": 13,
+      "course_name": "Digital Forensics",
+      "credit_hours": 3,
+      "course_type": "Lab",
+      "major_id": 3,
+      "major_name": "CY",
+      "prereq_id": 9
+    },
+    {
+      "course_id": 14,
+      "course_name": "Malware Analysis",
+      "credit_hours": 3,
+      "course_type": "Lab",
+      "major_id": 3,
+      "major_name": "CY",
+      "prereq_id": 10
+    },
+    {
+      "course_id": 15,
+      "course_name": "Penetration Testing",
+      "credit_hours": 3,
+      "course_type": "Lab",
+      "major_id": 3,
+      "major_name": "CY",
+      "prereq_id": 11
+    },
+    {
+      "course_id": 16,
+      "course_name": "Cyber Security Project",
+      "credit_hours": 3,
+      "course_type": "Lecture",
+      "major_id": 3,
+      "major_name": "CY",
+      "prereq_id": 12
+    },
+    {
+      "course_id": 17,
+      "course_name": "Programming 1",
+      "credit_hours": 3,
+      "course_type": "Lecture",
+      "major_id": 2,
+      "major_name": "SE",
+      "prereq_id": null
+    },
+    {
+      "course_id": 18,
+      "course_name": "Programming 2",
+      "credit_hours": 3,
+      "course_type": "Lecture",
+      "major_id": 2,
+      "major_name": "SE",
+      "prereq_id": 17
+    },
+    {
+      "course_id": 19,
+      "course_name": "Software Requirements",
+      "credit_hours": 3,
+      "course_type": "Lecture",
+      "major_id": 2,
+      "major_name": "SE",
+      "prereq_id": null
+    },
+    {
+      "course_id": 20,
+      "course_name": "Software Design",
+      "credit_hours": 3,
+      "course_type": "Lecture",
+      "major_id": 2,
+      "major_name": "SE",
+      "prereq_id": 19
+    },
+    {
+      "course_id": 21,
+      "course_name": "Database Systems",
+      "credit_hours": 3,
+      "course_type": "Lecture",
+      "major_id": 2,
+      "major_name": "SE",
+      "prereq_id": null
+    },
+    {
+      "course_id": 22,
+      "course_name": "Software Testing",
+      "credit_hours": 3,
+      "course_type": "Lecture",
+      "major_id": 2,
+      "major_name": "SE",
+      "prereq_id": 20
+    },
+    {
+      "course_id": 23,
+      "course_name": "Web Development",
+      "credit_hours": 3,
+      "course_type": "Lecture",
+      "major_id": 2,
+      "major_name": "SE",
+      "prereq_id": 18
+    },
+    {
+      "course_id": 24,
+      "course_name": "Mobile App Development",
+      "credit_hours": 3,
+      "course_type": "Lecture",
+      "major_id": 2,
+      "major_name": "SE",
+      "prereq_id": 23
+    },
+    {
+      "course_id": 25,
+      "course_name": "Software Architecture",
+      "credit_hours": 3,
+      "course_type": "Lecture",
+      "major_id": 2,
+      "major_name": "SE",
+      "prereq_id": 20
+    },
+    {
+      "course_id": 26,
+      "course_name": "DevOps",
+      "credit_hours": 3,
+      "course_type": "Lecture",
+      "major_id": 2,
+      "major_name": "SE",
+      "prereq_id": 25
+    },
+    {
+      "course_id": 27,
+      "course_name": "Software Project Management",
+      "credit_hours": 3,
+      "course_type": "Lecture",
+      "major_id": 2,
+      "major_name": "SE",
+      "prereq_id": 20
+    },
+    {
+      "course_id": 28,
+      "course_name": "Programming 1",
+      "credit_hours": 3,
+      "course_type": "Lecture",
+      "major_id": 1,
+      "major_name": "AI",
+      "prereq_id": null
+    },
+    {
+      "course_id": 29,
+      "course_name": "Programming 2",
+      "credit_hours": 3,
+      "course_type": "Lecture",
+      "major_id": 1,
+      "major_name": "AI",
+      "prereq_id": 28
+    },
+    {
+      "course_id": 30,
+      "course_name": "Linear Algebra",
+      "credit_hours": 3,
+      "course_type": "Lecture",
+      "major_id": 1,
+      "major_name": "AI",
+      "prereq_id": null
+    },
+    {
+      "course_id": 31,
+      "course_name": "Probability and Statistics",
+      "credit_hours": 3,
+      "course_type": "Lecture",
+      "major_id": 1,
+      "major_name": "AI",
+      "prereq_id": null
+    },
+    {
+      "course_id": 32,
+      "course_name": "Data Mining",
+      "credit_hours": 3,
+      "course_type": "Lecture",
+      "major_id": 1,
+      "major_name": "AI",
+      "prereq_id": 29
+    },
+    {
+      "course_id": 33,
+      "course_name": "Machine Learning",
+      "credit_hours": 3,
+      "course_type": "Lecture",
+      "major_id": 1,
+      "major_name": "AI",
+      "prereq_id": 32
+    },
+    {
+      "course_id": 34,
+      "course_name": "Computer Vision",
+      "credit_hours": 3,
+      "course_type": "Lecture",
+      "major_id": 1,
+      "major_name": "AI",
+      "prereq_id": 33
+    },
+    {
+      "course_id": 35,
+      "course_name": "Natural Language Processing",
+      "credit_hours": 3,
+      "course_type": "Lecture",
+      "major_id": 1,
+      "major_name": "AI",
+      "prereq_id": 33
+    },
+    {
+      "course_id": 36,
+      "course_name": "Deep Learning",
+      "credit_hours": 3,
+      "course_type": "Lab",
+      "major_id": 1,
+      "major_name": "AI",
+      "prereq_id": 33
+    },
+    {
+      "course_id": 37,
+      "course_name": "Reinforcement Learning",
+      "credit_hours": 3,
+      "course_type": "Lecture",
+      "major_id": 1,
+      "major_name": "AI",
+      "prereq_id": 33
+    },
+    {
+      "course_id": 38,
+      "course_name": "AI Ethics",
+      "credit_hours": 3,
+      "course_type": "Lecture",
+      "major_id": 1,
+      "major_name": "AI",
+      "prereq_id": null
+    },
+    {
+      "course_id": 39,
+      "course_name": "Calculus for AI",
+      "credit_hours": 3,
+      "course_type": "Lecture",
+      "major_id": 1,
+      "major_name": "AI",
+      "prereq_id": null
+    },
+    {
+      "course_id": 40,
+      "course_name": "Research Methods",
+      "credit_hours": 3,
+      "course_type": "Lecture",
+      "major_id": 1,
+      "major_name": "AI",
+      "prereq_id": null
+    },
+    {
+      "course_id": 41,
+      "course_name": "Technical Writing",
+      "credit_hours": 3,
+      "course_type": "Lecture",
+      "major_id": 1,
+      "major_name": "AI",
+      "prereq_id": null
+    },
+    {
+      "course_id": 42,
+      "course_name": "AI Graduation Project",
+      "credit_hours": 3,
+      "course_type": "Lecture",
+      "major_id": 1,
+      "major_name": "AI",
+      "prereq_id": null
+    }
+  ],
+  "instructors": [
+    {
+      "instructor_id": 1,
+      "instructor_name": "Dr Ahmed Salem",
+      "specialization": "CY",
+      "degree_type": "Doctor"
+    },
+    {
+      "instructor_id": 2,
+      "instructor_name": "Dr Mohammad Hassan",
+      "specialization": "CY",
+      "degree_type": "Doctor"
+    },
+    {
+      "instructor_id": 3,
+      "instructor_name": "Dr Lina Khaled",
+      "specialization": "CY",
+      "degree_type": "Doctor"
+    },
+    {
+      "instructor_id": 4,
+      "instructor_name": "Dr Omar Nasser",
+      "specialization": "CY",
+      "degree_type": "Doctor"
+    },
+    {
+      "instructor_id": 5,
+      "instructor_name": "Dr Yousef Ali",
+      "specialization": "SE",
+      "degree_type": "Doctor"
+    },
+    {
+      "instructor_id": 6,
+      "instructor_name": "Dr Rana Majed",
+      "specialization": "SE",
+      "degree_type": "Doctor"
+    },
+    {
+      "instructor_id": 7,
+      "instructor_name": "Dr Khaled Sami",
+      "specialization": "SE",
+      "degree_type": "Doctor"
+    },
+    {
+      "instructor_id": 8,
+      "instructor_name": "Dr Nour Hussein",
+      "specialization": "SE",
+      "degree_type": "Doctor"
+    },
+    {
+      "instructor_id": 9,
+      "instructor_name": "Dr Sara Adel",
+      "specialization": "AI",
+      "degree_type": "Doctor"
+    },
+    {
+      "instructor_id": 10,
+      "instructor_name": "Dr Mahmoud Zein",
+      "specialization": "AI",
+      "degree_type": "Doctor"
+    },
+    {
+      "instructor_id": 11,
+      "instructor_name": "Dr Huda Farouq",
+      "specialization": "AI",
+      "degree_type": "Doctor"
+    },
+    {
+      "instructor_id": 12,
+      "instructor_name": "Dr Anas Karim",
+      "specialization": "AI",
+      "degree_type": "Doctor"
+    }
+  ],
+  "rooms": [
+    {
+      "room_id": 1,
+      "room_name": "A101",
+      "capacity": 80,
+      "room_type": "Lecture"
+    },
+    {
+      "room_id": 2,
+      "room_name": "A102",
+      "capacity": 80,
+      "room_type": "Lecture"
+    },
+    {
+      "room_id": 3,
+      "room_name": "A103",
+      "capacity": 80,
+      "room_type": "Lecture"
+    },
+    {
+      "room_id": 4,
+      "room_name": "A104",
+      "capacity": 80,
+      "room_type": "Lecture"
+    },
+    {
+      "room_id": 5,
+      "room_name": "A105",
+      "capacity": 80,
+      "room_type": "Lecture"
+    },
+    {
+      "room_id": 6,
+      "room_name": "A106",
+      "capacity": 80,
+      "room_type": "Lecture"
+    },
+    {
+      "room_id": 7,
+      "room_name": "A107",
+      "capacity": 80,
+      "room_type": "Lecture"
+    },
+    {
+      "room_id": 8,
+      "room_name": "A108",
+      "capacity": 80,
+      "room_type": "Lecture"
+    },
+    {
+      "room_id": 9,
+      "room_name": "A109",
+      "capacity": 80,
+      "room_type": "Lecture"
+    },
+    {
+      "room_id": 10,
+      "room_name": "A110",
+      "capacity": 80,
+      "room_type": "Lecture"
+    },
+    {
+      "room_id": 11,
+      "room_name": "A301",
+      "capacity": 45,
+      "room_type": "Lecture"
+    },
+    {
+      "room_id": 12,
+      "room_name": "A302",
+      "capacity": 45,
+      "room_type": "Lecture"
+    },
+    {
+      "room_id": 13,
+      "room_name": "A303",
+      "capacity": 45,
+      "room_type": "Lecture"
+    },
+    {
+      "room_id": 14,
+      "room_name": "A304",
+      "capacity": 45,
+      "room_type": "Lecture"
+    },
+    {
+      "room_id": 15,
+      "room_name": "A305",
+      "capacity": 45,
+      "room_type": "Lecture"
+    },
+    {
+      "room_id": 16,
+      "room_name": "A306",
+      "capacity": 45,
+      "room_type": "Lecture"
+    },
+    {
+      "room_id": 17,
+      "room_name": "A307",
+      "capacity": 45,
+      "room_type": "Lecture"
+    },
+    {
+      "room_id": 18,
+      "room_name": "A308",
+      "capacity": 45,
+      "room_type": "Lecture"
+    },
+    {
+      "room_id": 19,
+      "room_name": "A309",
+      "capacity": 45,
+      "room_type": "Lecture"
+    },
+    {
+      "room_id": 20,
+      "room_name": "A310",
+      "capacity": 45,
+      "room_type": "Lecture"
+    },
+    {
+      "room_id": 21,
+      "room_name": "A401",
+      "capacity": 25,
+      "room_type": "Lab"
+    },
+    {
+      "room_id": 22,
+      "room_name": "A402",
+      "capacity": 25,
+      "room_type": "Lab"
+    },
+    {
+      "room_id": 23,
+      "room_name": "A403",
+      "capacity": 25,
+      "room_type": "Lab"
+    },
+    {
+      "room_id": 24,
+      "room_name": "A404",
+      "capacity": 25,
+      "room_type": "Lab"
+    },
+    {
+      "room_id": 25,
+      "room_name": "A405",
+      "capacity": 25,
+      "room_type": "Lab"
+    },
+    {
+      "room_id": 26,
+      "room_name": "A406",
+      "capacity": 25,
+      "room_type": "Lab"
+    },
+    {
+      "room_id": 27,
+      "room_name": "A407",
+      "capacity": 25,
+      "room_type": "Lab"
+    },
+    {
+      "room_id": 28,
+      "room_name": "A408",
+      "capacity": 25,
+      "room_type": "Lab"
+    },
+    {
+      "room_id": 29,
+      "room_name": "A409",
+      "capacity": 25,
+      "room_type": "Lab"
+    },
+    {
+      "room_id": 30,
+      "room_name": "A410",
+      "capacity": 25,
+      "room_type": "Lab"
+    },
+    {
+      "room_id": 31,
+      "room_name": "C201",
+      "capacity": 25,
+      "room_type": "Lab"
+    },
+    {
+      "room_id": 32,
+      "room_name": "C202",
+      "capacity": 25,
+      "room_type": "Lab"
+    }
+  ]
+}

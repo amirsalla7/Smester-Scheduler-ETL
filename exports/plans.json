@@ -1,0 +1,23 @@
+[
+  {
+    "plan_id": 1,
+    "plan_name": "AI Plan 2025",
+    "major_id": 1,
+    "total_hours": 132,
+    "major_name": "AI"
+  },
+  {
+    "plan_id": 2,
+    "plan_name": "SE Plan 2025",
+    "major_id": 2,
+    "total_hours": 132,
+    "major_name": "SE"
+  },
+  {
+    "plan_id": 3,
+    "plan_name": "CY Plan 2025",
+    "major_id": 3,
+    "total_hours": 132,
+    "major_name": "CY"
+  }
+]
