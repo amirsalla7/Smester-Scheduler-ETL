@@ -162,8 +162,9 @@ const PipelineModule = (() => {
     document.getElementById('modal-done')?.classList.add('hidden');
     document.getElementById('modal-error-box')?.classList.add('hidden');
     document.getElementById('spinner-svg')?.classList.add('spinner');
-    document.getElementById('modal-progress-bar').style.width = '0%';
-    document.getElementById('modal-pct').textContent          = '0%';
+    document.getElementById('modal-progress-bar').style.width            = '0%';
+    document.getElementById('modal-progress-bar').style.backgroundColor = '';
+    document.getElementById('modal-pct').textContent                     = '0%';
     document.getElementById('modal-step-label').textContent   = 'Initializing…';
     document.getElementById('modal-status').textContent       = 'Connecting to SQL Server…';
     PIPELINE_STEPS.forEach((_, i) => _resetStepIcon(i));
@@ -240,11 +241,34 @@ const PipelineModule = (() => {
 
   function _showModalError(msg) {
     _stopStepAnimation();
+    // Stop the app-icon spinner
     document.getElementById('spinner-svg')?.classList.remove('spinner');
+    // Mark whichever step was active as failed (red X), reset the rest
+    PIPELINE_STEPS.forEach((_, i) => {
+      const icon = document.getElementById(`mstep-icon-${i}`);
+      const text = document.getElementById(`mstep-text-${i}`);
+      if (!icon) return;
+      if (i < _stepIdx) {
+        // already done steps — keep green
+        _markStepDone(i);
+      } else if (i === _stepIdx) {
+        // the failing step — show red X
+        icon.innerHTML = `<span class="material-symbols-outlined text-sm text-white">close</span>`;
+        icon.className = 'w-7 h-7 rounded-full bg-red-500 flex items-center justify-center flex-shrink-0';
+        if (text) text.className = 'text-red-500 font-bold';
+      } else {
+        _resetStepIcon(i);
+      }
+    });
+    document.getElementById('modal-progress-bar').style.width = '100%';
+    document.getElementById('modal-progress-bar').style.backgroundColor = '#ef4444';
+    document.getElementById('modal-pct').textContent        = 'Error';
     document.getElementById('modal-step-label').textContent = '✕ Pipeline failed';
     document.getElementById('modal-status').textContent     = msg;
     const errBox = document.getElementById('modal-error-box');
     if (errBox) { errBox.textContent = msg; errBox.classList.remove('hidden'); }
+    // Show the close/done button so user can dismiss
+    document.getElementById('modal-done')?.classList.remove('hidden');
   }
 
   // ── Public API ─────────────────────────────────────────────────────────────
