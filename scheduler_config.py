@@ -1,4 +1,4 @@
-API_BASE_URL = "https://api.example.com"  # ← set your real API URL here
+API_BASE_URL = "http://192.168.1.17:5000"  # ← set your real API URL here
 API_TIMEOUT  = 30
 
 GRADUATING_HOURS_THRESHOLD = 21

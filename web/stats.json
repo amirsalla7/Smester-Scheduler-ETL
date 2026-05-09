@@ -1,9 +1,9 @@
 {
-  "students": 1012,
-  "courses": 42,
-  "instructors": 12,
-  "rooms": 32,
-  "sections_generated": 58,
-  "opened_courses": 30,
+  "students": 100,
+  "courses": 10,
+  "instructors": 6,
+  "rooms": 5,
+  "sections_generated": 6,
+  "opened_courses": 6,
   "conflicts": 0
 }

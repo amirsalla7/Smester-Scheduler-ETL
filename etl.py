@@ -355,7 +355,7 @@ def load_plans():
     data = transform_plans(fetch_api("plans"))
 
     execute_many_merge("""
-    MERGE plan AS target
+    MERGE [plan] AS target
     USING (
         SELECT ? AS plan_id, ? AS plan_name, ? AS major_id, ? AS total_hours
     ) AS source
