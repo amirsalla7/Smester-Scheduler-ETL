@@ -18,6 +18,7 @@ from course_offering import CourseOffering
 from scheduler_engine import SchedulerEngine
 from exporter import export_schedule_to_pdf, export_summary_to_pdf
 from student_summary import build_summary
+from etl import run_etl
 
 eel.init("web")
 
@@ -106,6 +107,11 @@ def run_pipeline():
 
         # Ensure output folder exists
         os.makedirs("web", exist_ok=True)
+
+        # ── Step 0: Sync latest data from API into local DB ────────────────────
+        print("[ETL] Syncing data from API...")
+        run_etl()
+        print("[ETL] Sync complete.")
 
         analysis = StudentAnalysis(graduating_hours_threshold=21)
         analysis.load_data()

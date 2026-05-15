@@ -76,6 +76,16 @@ const VALID_DAYS = ['Sun/Tue', 'Mon/Wed'];
 // ── Pipeline Step Definitions ─────────────────────────────────────────────────
 const PIPELINE_STEPS = [
   {
+    id:    'etl',
+    label: 'Sync Data',
+    msgs: [
+      'Connecting to API database…',
+      'Fetching latest students and courses…',
+      'Syncing instructors and rooms…',
+      'ETL complete — local DB updated ✓',
+    ],
+  },
+  {
     id:    'load',
     label: 'Load Data',
     msgs: [
