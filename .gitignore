@@ -31,6 +31,7 @@ env/
 
 # Output files
 *.pdf
+!Semester_Schedule_Generator documentation.pdf
 semester_schedule.pdf
 
 # Logs / temp
@@ -41,3 +42,7 @@ semester_schedule.pdf
 # OS files
 Thumbs.db
 .DS_Store
+
+.claude/
+
+exports/
