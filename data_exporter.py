@@ -403,7 +403,7 @@ def _start_flask(app, port):
 
 
 # ── NGROK TUNNEL ──────────────────────────────────────────────────────────────
-NGROK_TOKEN = "3CtmSPWzjjNy35noSp4nZtmwKVS_7z2VysvRef9LSXNL1ZmLr"
+NGROK_TOKEN = os.environ.get("NGROK_TOKEN", "")
 
 
 def run_tunnel(port=5050):
@@ -414,7 +414,13 @@ def run_tunnel(port=5050):
         os.system(f"{sys.executable} -m pip install pyngrok -q")
         from pyngrok import ngrok, conf
 
-    # set token directly so config file format doesn't matter
+    # set token from NGROK_TOKEN environment variable
+    if not NGROK_TOKEN:
+        print("ERROR: NGROK_TOKEN environment variable is not set.")
+        print("Get a token at https://dashboard.ngrok.com and set it:")
+        print('  Windows:  set NGROK_TOKEN=your_token_here')
+        print('  Linux/Mac: export NGROK_TOKEN=your_token_here')
+        return
     ngrok.set_auth_token(NGROK_TOKEN)
 
     app, port = run_server(port)
