@@ -1,10 +1,8 @@
 requests
 pyodbc
 reportlab
-matplotlib
 eel
-# git pull
-# git push
-# git commit -m "anything"
-# git add . 
-# ......
+flask
+flask-cors
+pyngrok
+openpyxl

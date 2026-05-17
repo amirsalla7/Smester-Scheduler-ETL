@@ -76,7 +76,12 @@ const PipelineModule = (() => {
     _stopStepAnimation();
 
     if (!result || result.status !== 'success') {
-      _showModalError(result?.message || 'Pipeline returned an error.');
+      _showModalError(result?.message || 'Pipeline returned an error.', result?.failed_step);
+      return;
+    }
+
+    if (!result.sections_generated || result.sections_generated === 0) {
+      _showModalError('No sections were generated. The API server may be offline or the database has no data.');
       return;
     }
 
@@ -87,7 +92,12 @@ const PipelineModule = (() => {
     document.getElementById('modal-status').textContent =
       `✓ ${result.sections_generated} sections generated · 0 conflicts`;
     document.getElementById('spinner-svg')?.classList.remove('spinner');
-    document.getElementById('modal-done')?.classList.remove('hidden');
+    const doneBtn = document.getElementById('modal-done');
+    if (doneBtn) {
+      const btn = doneBtn.querySelector('button');
+      if (btn) btn.textContent = 'View Schedule →';
+      doneBtn.classList.remove('hidden');
+    }
 
     await loadAllData();
   }
@@ -170,16 +180,19 @@ const PipelineModule = (() => {
     PIPELINE_STEPS.forEach((_, i) => _resetStepIcon(i));
   }
 
-  let _stepInterval = null;
-  let _stepIdx      = 0;
-  let _msgIdx       = 0;
+  let _stepInterval    = null;
+  let _stepIdx         = 0;
+  let _msgIdx          = 0;
+  let _animationStopped = false;
 
   function _startStepAnimation() {
     _stepIdx = 0; _msgIdx = 0;
+    _animationStopped = false;
     _advanceStep();
   }
 
   function _advanceStep() {
+    if (_animationStopped) return;
     if (_stepIdx >= PIPELINE_STEPS.length) return;
     const step = PIPELINE_STEPS[_stepIdx];
     const pct  = Math.round((_stepIdx / PIPELINE_STEPS.length) * 90);
@@ -190,18 +203,20 @@ const PipelineModule = (() => {
     _markStepActive(_stepIdx);
     _msgIdx = 0;
     _stepInterval = setInterval(() => {
+      if (_animationStopped) { clearInterval(_stepInterval); return; }
       const msg = step.msgs[_msgIdx] || step.msgs[step.msgs.length - 1];
       document.getElementById('modal-status').textContent = msg;
       _msgIdx++;
       if (_msgIdx >= step.msgs.length) {
         clearInterval(_stepInterval);
         _stepIdx++;
-        setTimeout(_advanceStep, 300);
+        setTimeout(() => { if (!_animationStopped) _advanceStep(); }, 300);
       }
     }, 550);
   }
 
   function _stopStepAnimation() {
+    _animationStopped = true;
     if (_stepInterval) { clearInterval(_stepInterval); _stepInterval = null; }
   }
 
@@ -239,20 +254,22 @@ const PipelineModule = (() => {
     PIPELINE_STEPS.forEach((_, i) => _markStepDone(i));
   }
 
-  function _showModalError(msg) {
+  function _showModalError(msg, failAtStep) {
     _stopStepAnimation();
     // Stop the app-icon spinner
     document.getElementById('spinner-svg')?.classList.remove('spinner');
-    // Mark whichever step was active as failed (red X), reset the rest
+    // Use failAtStep if provided, otherwise use current animation step (clamped)
+    const fi = (failAtStep !== undefined && failAtStep !== null)
+      ? failAtStep
+      : Math.min(_stepIdx, PIPELINE_STEPS.length - 1);
+    // Mark steps before the failing one green, failing one red, rest reset
     PIPELINE_STEPS.forEach((_, i) => {
       const icon = document.getElementById(`mstep-icon-${i}`);
       const text = document.getElementById(`mstep-text-${i}`);
       if (!icon) return;
-      if (i < _stepIdx) {
-        // already done steps — keep green
+      if (i < fi) {
         _markStepDone(i);
-      } else if (i === _stepIdx) {
-        // the failing step — show red X
+      } else if (i === fi) {
         icon.innerHTML = `<span class="material-symbols-outlined text-sm text-white">close</span>`;
         icon.className = 'w-7 h-7 rounded-full bg-red-500 flex items-center justify-center flex-shrink-0';
         if (text) text.className = 'text-red-500 font-bold';
@@ -267,8 +284,13 @@ const PipelineModule = (() => {
     document.getElementById('modal-status').textContent     = msg;
     const errBox = document.getElementById('modal-error-box');
     if (errBox) { errBox.textContent = msg; errBox.classList.remove('hidden'); }
-    // Show the close/done button so user can dismiss
-    document.getElementById('modal-done')?.classList.remove('hidden');
+    // Show close button — relabel it so it doesn't say "View Schedule"
+    const doneBtn = document.getElementById('modal-done');
+    if (doneBtn) {
+      const btn = doneBtn.querySelector('button');
+      if (btn) btn.textContent = 'Close';
+      doneBtn.classList.remove('hidden');
+    }
   }
 
   // ── Public API ─────────────────────────────────────────────────────────────

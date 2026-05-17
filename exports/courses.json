@@ -1,380 +1,461 @@
 [
   {
     "course_id": 1,
-    "course_name": "Programming 1",
+    "course_name": "Intro AI",
     "credit_hours": 3,
     "course_type": "Lecture",
-    "major_id": 3,
-    "major_name": "CY",
+    "major_id": 1,
+    "major_name": "Artificial Intelligence",
     "prereq_id": null
   },
   {
     "course_id": 2,
-    "course_name": "Programming 2",
-    "credit_hours": 3,
-    "course_type": "Lecture",
-    "major_id": 3,
-    "major_name": "CY",
-    "prereq_id": 1
-  },
-  {
-    "course_id": 3,
-    "course_name": "Discrete Mathematics",
-    "credit_hours": 3,
-    "course_type": "Lecture",
-    "major_id": 3,
-    "major_name": "CY",
-    "prereq_id": null
-  },
-  {
-    "course_id": 4,
-    "course_name": "Introduction to Cyber Security",
-    "credit_hours": 3,
-    "course_type": "Lecture",
-    "major_id": 3,
-    "major_name": "CY",
-    "prereq_id": null
-  },
-  {
-    "course_id": 5,
-    "course_name": "Data Structures",
-    "credit_hours": 3,
-    "course_type": "Lecture",
-    "major_id": 3,
-    "major_name": "CY",
-    "prereq_id": 2
-  },
-  {
-    "course_id": 6,
-    "course_name": "Computer Organization",
-    "credit_hours": 3,
-    "course_type": "Lecture",
-    "major_id": 3,
-    "major_name": "CY",
-    "prereq_id": null
-  },
-  {
-    "course_id": 7,
-    "course_name": "Networking Fundamentals",
-    "credit_hours": 3,
-    "course_type": "Lecture",
-    "major_id": 3,
-    "major_name": "CY",
-    "prereq_id": null
-  },
-  {
-    "course_id": 8,
-    "course_name": "Operating Systems",
-    "credit_hours": 3,
-    "course_type": "Lecture",
-    "major_id": 3,
-    "major_name": "CY",
-    "prereq_id": 5
-  },
-  {
-    "course_id": 9,
-    "course_name": "Network Security",
-    "credit_hours": 3,
-    "course_type": "Lecture",
-    "major_id": 3,
-    "major_name": "CY",
-    "prereq_id": 7
-  },
-  {
-    "course_id": 10,
-    "course_name": "Cryptography",
-    "credit_hours": 3,
-    "course_type": "Lecture",
-    "major_id": 3,
-    "major_name": "CY",
-    "prereq_id": 7
-  },
-  {
-    "course_id": 11,
-    "course_name": "Ethical Hacking",
-    "credit_hours": 3,
-    "course_type": "Lab",
-    "major_id": 3,
-    "major_name": "CY",
-    "prereq_id": 9
-  },
-  {
-    "course_id": 12,
-    "course_name": "Secure Software Development",
-    "credit_hours": 3,
-    "course_type": "Lecture",
-    "major_id": 3,
-    "major_name": "CY",
-    "prereq_id": 2
-  },
-  {
-    "course_id": 13,
-    "course_name": "Digital Forensics",
-    "credit_hours": 3,
-    "course_type": "Lab",
-    "major_id": 3,
-    "major_name": "CY",
-    "prereq_id": 9
-  },
-  {
-    "course_id": 14,
-    "course_name": "Malware Analysis",
-    "credit_hours": 3,
-    "course_type": "Lab",
-    "major_id": 3,
-    "major_name": "CY",
-    "prereq_id": 10
-  },
-  {
-    "course_id": 15,
-    "course_name": "Penetration Testing",
-    "credit_hours": 3,
-    "course_type": "Lab",
-    "major_id": 3,
-    "major_name": "CY",
-    "prereq_id": 11
-  },
-  {
-    "course_id": 16,
-    "course_name": "Cyber Security Project",
-    "credit_hours": 3,
-    "course_type": "Lecture",
-    "major_id": 3,
-    "major_name": "CY",
-    "prereq_id": 12
-  },
-  {
-    "course_id": 17,
-    "course_name": "Programming 1",
-    "credit_hours": 3,
-    "course_type": "Lecture",
-    "major_id": 2,
-    "major_name": "SE",
-    "prereq_id": null
-  },
-  {
-    "course_id": 18,
-    "course_name": "Programming 2",
-    "credit_hours": 3,
-    "course_type": "Lecture",
-    "major_id": 2,
-    "major_name": "SE",
-    "prereq_id": 17
-  },
-  {
-    "course_id": 19,
-    "course_name": "Software Requirements",
-    "credit_hours": 3,
-    "course_type": "Lecture",
-    "major_id": 2,
-    "major_name": "SE",
-    "prereq_id": null
-  },
-  {
-    "course_id": 20,
-    "course_name": "Software Design",
-    "credit_hours": 3,
-    "course_type": "Lecture",
-    "major_id": 2,
-    "major_name": "SE",
-    "prereq_id": 19
-  },
-  {
-    "course_id": 21,
-    "course_name": "Database Systems",
-    "credit_hours": 3,
-    "course_type": "Lecture",
-    "major_id": 2,
-    "major_name": "SE",
-    "prereq_id": null
-  },
-  {
-    "course_id": 22,
-    "course_name": "Software Testing",
-    "credit_hours": 3,
-    "course_type": "Lecture",
-    "major_id": 2,
-    "major_name": "SE",
-    "prereq_id": 20
-  },
-  {
-    "course_id": 23,
-    "course_name": "Web Development",
-    "credit_hours": 3,
-    "course_type": "Lecture",
-    "major_id": 2,
-    "major_name": "SE",
-    "prereq_id": 18
-  },
-  {
-    "course_id": 24,
-    "course_name": "Mobile App Development",
-    "credit_hours": 3,
-    "course_type": "Lecture",
-    "major_id": 2,
-    "major_name": "SE",
-    "prereq_id": 23
-  },
-  {
-    "course_id": 25,
-    "course_name": "Software Architecture",
-    "credit_hours": 3,
-    "course_type": "Lecture",
-    "major_id": 2,
-    "major_name": "SE",
-    "prereq_id": 20
-  },
-  {
-    "course_id": 26,
-    "course_name": "DevOps",
-    "credit_hours": 3,
-    "course_type": "Lecture",
-    "major_id": 2,
-    "major_name": "SE",
-    "prereq_id": 25
-  },
-  {
-    "course_id": 27,
-    "course_name": "Software Project Management",
-    "credit_hours": 3,
-    "course_type": "Lecture",
-    "major_id": 2,
-    "major_name": "SE",
-    "prereq_id": 20
-  },
-  {
-    "course_id": 28,
-    "course_name": "Programming 1",
-    "credit_hours": 3,
-    "course_type": "Lecture",
-    "major_id": 1,
-    "major_name": "AI",
-    "prereq_id": null
-  },
-  {
-    "course_id": 29,
-    "course_name": "Programming 2",
-    "credit_hours": 3,
-    "course_type": "Lecture",
-    "major_id": 1,
-    "major_name": "AI",
-    "prereq_id": 28
-  },
-  {
-    "course_id": 30,
-    "course_name": "Linear Algebra",
-    "credit_hours": 3,
-    "course_type": "Lecture",
-    "major_id": 1,
-    "major_name": "AI",
-    "prereq_id": null
-  },
-  {
-    "course_id": 31,
-    "course_name": "Probability and Statistics",
-    "credit_hours": 3,
-    "course_type": "Lecture",
-    "major_id": 1,
-    "major_name": "AI",
-    "prereq_id": null
-  },
-  {
-    "course_id": 32,
-    "course_name": "Data Mining",
-    "credit_hours": 3,
-    "course_type": "Lecture",
-    "major_id": 1,
-    "major_name": "AI",
-    "prereq_id": 29
-  },
-  {
-    "course_id": 33,
     "course_name": "Machine Learning",
     "credit_hours": 3,
     "course_type": "Lecture",
     "major_id": 1,
-    "major_name": "AI",
-    "prereq_id": 32
+    "major_name": "Artificial Intelligence",
+    "prereq_id": 1
   },
   {
-    "course_id": 34,
-    "course_name": "Computer Vision",
-    "credit_hours": 3,
-    "course_type": "Lecture",
-    "major_id": 1,
-    "major_name": "AI",
-    "prereq_id": 33
-  },
-  {
-    "course_id": 35,
-    "course_name": "Natural Language Processing",
-    "credit_hours": 3,
-    "course_type": "Lecture",
-    "major_id": 1,
-    "major_name": "AI",
-    "prereq_id": 33
-  },
-  {
-    "course_id": 36,
+    "course_id": 3,
     "course_name": "Deep Learning",
     "credit_hours": 3,
-    "course_type": "Lab",
-    "major_id": 1,
-    "major_name": "AI",
-    "prereq_id": 33
-  },
-  {
-    "course_id": 37,
-    "course_name": "Reinforcement Learning",
-    "credit_hours": 3,
     "course_type": "Lecture",
     "major_id": 1,
-    "major_name": "AI",
-    "prereq_id": 33
+    "major_name": "Artificial Intelligence",
+    "prereq_id": 2
   },
   {
-    "course_id": 38,
+    "course_id": 4,
     "course_name": "AI Ethics",
     "credit_hours": 3,
     "course_type": "Lecture",
     "major_id": 1,
-    "major_name": "AI",
+    "major_name": "Artificial Intelligence",
     "prereq_id": null
   },
   {
-    "course_id": 39,
-    "course_name": "Calculus for AI",
+    "course_id": 5,
+    "course_name": "Computer Vision",
     "credit_hours": 3,
     "course_type": "Lecture",
     "major_id": 1,
-    "major_name": "AI",
+    "major_name": "Artificial Intelligence",
+    "prereq_id": 2
+  },
+  {
+    "course_id": 6,
+    "course_name": "Natural Language Processing",
+    "credit_hours": 3,
+    "course_type": "Lecture",
+    "major_id": 1,
+    "major_name": "Artificial Intelligence",
+    "prereq_id": 2
+  },
+  {
+    "course_id": 7,
+    "course_name": "Robotics",
+    "credit_hours": 3,
+    "course_type": "Lecture",
+    "major_id": 1,
+    "major_name": "Artificial Intelligence",
+    "prereq_id": 1
+  },
+  {
+    "course_id": 8,
+    "course_name": "Software Design",
+    "credit_hours": 3,
+    "course_type": "Lecture",
+    "major_id": 2,
+    "major_name": "Software Engineering",
     "prereq_id": null
   },
   {
-    "course_id": 40,
-    "course_name": "Research Methods",
+    "course_id": 9,
+    "course_name": "Software Testing",
     "credit_hours": 3,
     "course_type": "Lecture",
-    "major_id": 1,
-    "major_name": "AI",
+    "major_id": 2,
+    "major_name": "Software Engineering",
+    "prereq_id": 8
+  },
+  {
+    "course_id": 10,
+    "course_name": "Requirements Eng",
+    "credit_hours": 3,
+    "course_type": "Lecture",
+    "major_id": 2,
+    "major_name": "Software Engineering",
     "prereq_id": null
   },
   {
-    "course_id": 41,
-    "course_name": "Technical Writing",
+    "course_id": 11,
+    "course_name": "Software Architecture",
     "credit_hours": 3,
     "course_type": "Lecture",
-    "major_id": 1,
-    "major_name": "AI",
+    "major_id": 2,
+    "major_name": "Software Engineering",
+    "prereq_id": 8
+  },
+  {
+    "course_id": 12,
+    "course_name": "Agile Development",
+    "credit_hours": 3,
+    "course_type": "Lecture",
+    "major_id": 2,
+    "major_name": "Software Engineering",
+    "prereq_id": 10
+  },
+  {
+    "course_id": 13,
+    "course_name": "DevOps",
+    "credit_hours": 3,
+    "course_type": "Lecture",
+    "major_id": 2,
+    "major_name": "Software Engineering",
+    "prereq_id": 9
+  },
+  {
+    "course_id": 14,
+    "course_name": "Database Systems",
+    "credit_hours": 3,
+    "course_type": "Lecture",
+    "major_id": 2,
+    "major_name": "Software Engineering",
     "prereq_id": null
   },
   {
-    "course_id": 42,
-    "course_name": "AI Graduation Project",
+    "course_id": 15,
+    "course_name": "Cyber Intro",
+    "credit_hours": 3,
+    "course_type": "Lecture",
+    "major_id": 3,
+    "major_name": "Cyber Security",
+    "prereq_id": null
+  },
+  {
+    "course_id": 16,
+    "course_name": "Network Security",
+    "credit_hours": 3,
+    "course_type": "Lecture",
+    "major_id": 3,
+    "major_name": "Cyber Security",
+    "prereq_id": 15
+  },
+  {
+    "course_id": 17,
+    "course_name": "Ethical Hacking",
+    "credit_hours": 3,
+    "course_type": "Lecture",
+    "major_id": 3,
+    "major_name": "Cyber Security",
+    "prereq_id": 15
+  },
+  {
+    "course_id": 18,
+    "course_name": "Cryptography",
+    "credit_hours": 3,
+    "course_type": "Lecture",
+    "major_id": 3,
+    "major_name": "Cyber Security",
+    "prereq_id": null
+  },
+  {
+    "course_id": 19,
+    "course_name": "Digital Forensics",
+    "credit_hours": 3,
+    "course_type": "Lecture",
+    "major_id": 3,
+    "major_name": "Cyber Security",
+    "prereq_id": 16
+  },
+  {
+    "course_id": 20,
+    "course_name": "Malware Analysis",
+    "credit_hours": 3,
+    "course_type": "Lecture",
+    "major_id": 3,
+    "major_name": "Cyber Security",
+    "prereq_id": 17
+  },
+  {
+    "course_id": 21,
+    "course_name": "Cloud Security",
+    "credit_hours": 3,
+    "course_type": "Lecture",
+    "major_id": 3,
+    "major_name": "Cyber Security",
+    "prereq_id": 16
+  },
+  {
+    "course_id": 101,
+    "course_name": "Intro to Programming",
     "credit_hours": 3,
     "course_type": "Lecture",
     "major_id": 1,
-    "major_name": "AI",
+    "major_name": "Artificial Intelligence",
     "prereq_id": null
+  },
+  {
+    "course_id": 102,
+    "course_name": "Data Structures",
+    "credit_hours": 3,
+    "course_type": "Lecture",
+    "major_id": 1,
+    "major_name": "Artificial Intelligence",
+    "prereq_id": 101
+  },
+  {
+    "course_id": 103,
+    "course_name": "Linear Algebra",
+    "credit_hours": 3,
+    "course_type": "Lecture",
+    "major_id": 1,
+    "major_name": "Artificial Intelligence",
+    "prereq_id": null
+  },
+  {
+    "course_id": 104,
+    "course_name": "Probability and Statistics",
+    "credit_hours": 3,
+    "course_type": "Lecture",
+    "major_id": 1,
+    "major_name": "Artificial Intelligence",
+    "prereq_id": 103
+  },
+  {
+    "course_id": 105,
+    "course_name": "Database Systems",
+    "credit_hours": 3,
+    "course_type": "Lecture",
+    "major_id": 1,
+    "major_name": "Artificial Intelligence",
+    "prereq_id": 102
+  },
+  {
+    "course_id": 106,
+    "course_name": "Machine Learning",
+    "credit_hours": 3,
+    "course_type": "Lecture",
+    "major_id": 1,
+    "major_name": "Artificial Intelligence",
+    "prereq_id": 104
+  },
+  {
+    "course_id": 107,
+    "course_name": "Computer Vision",
+    "credit_hours": 3,
+    "course_type": "Lecture",
+    "major_id": 1,
+    "major_name": "Artificial Intelligence",
+    "prereq_id": 106
+  },
+  {
+    "course_id": 108,
+    "course_name": "Natural Language Processing",
+    "credit_hours": 3,
+    "course_type": "Lecture",
+    "major_id": 1,
+    "major_name": "Artificial Intelligence",
+    "prereq_id": 106
+  },
+  {
+    "course_id": 109,
+    "course_name": "Deep Learning",
+    "credit_hours": 3,
+    "course_type": "Lab",
+    "major_id": 1,
+    "major_name": "Artificial Intelligence",
+    "prereq_id": 106
+  },
+  {
+    "course_id": 110,
+    "course_name": "AI Ethics",
+    "credit_hours": 3,
+    "course_type": "Lecture",
+    "major_id": 1,
+    "major_name": "Artificial Intelligence",
+    "prereq_id": null
+  },
+  {
+    "course_id": 201,
+    "course_name": "Intro to Programming",
+    "credit_hours": 3,
+    "course_type": "Lecture",
+    "major_id": 2,
+    "major_name": "Software Engineering",
+    "prereq_id": null
+  },
+  {
+    "course_id": 202,
+    "course_name": "Data Structures",
+    "credit_hours": 3,
+    "course_type": "Lecture",
+    "major_id": 2,
+    "major_name": "Software Engineering",
+    "prereq_id": 201
+  },
+  {
+    "course_id": 203,
+    "course_name": "Software Requirements",
+    "credit_hours": 3,
+    "course_type": "Lecture",
+    "major_id": 2,
+    "major_name": "Software Engineering",
+    "prereq_id": null
+  },
+  {
+    "course_id": 204,
+    "course_name": "Database Systems",
+    "credit_hours": 3,
+    "course_type": "Lecture",
+    "major_id": 2,
+    "major_name": "Software Engineering",
+    "prereq_id": 202
+  },
+  {
+    "course_id": 205,
+    "course_name": "Software Design",
+    "credit_hours": 3,
+    "course_type": "Lecture",
+    "major_id": 2,
+    "major_name": "Software Engineering",
+    "prereq_id": 203
+  },
+  {
+    "course_id": 206,
+    "course_name": "Software Testing",
+    "credit_hours": 3,
+    "course_type": "Lecture",
+    "major_id": 2,
+    "major_name": "Software Engineering",
+    "prereq_id": 205
+  },
+  {
+    "course_id": 207,
+    "course_name": "Web Development",
+    "credit_hours": 3,
+    "course_type": "Lecture",
+    "major_id": 2,
+    "major_name": "Software Engineering",
+    "prereq_id": 204
+  },
+  {
+    "course_id": 208,
+    "course_name": "Mobile Development",
+    "credit_hours": 3,
+    "course_type": "Lecture",
+    "major_id": 2,
+    "major_name": "Software Engineering",
+    "prereq_id": 207
+  },
+  {
+    "course_id": 209,
+    "course_name": "Software Architecture",
+    "credit_hours": 3,
+    "course_type": "Lecture",
+    "major_id": 2,
+    "major_name": "Software Engineering",
+    "prereq_id": 206
+  },
+  {
+    "course_id": 210,
+    "course_name": "DevOps",
+    "credit_hours": 3,
+    "course_type": "Lecture",
+    "major_id": 2,
+    "major_name": "Software Engineering",
+    "prereq_id": 209
+  },
+  {
+    "course_id": 301,
+    "course_name": "Intro to Programming",
+    "credit_hours": 3,
+    "course_type": "Lecture",
+    "major_id": 3,
+    "major_name": "Cyber Security",
+    "prereq_id": null
+  },
+  {
+    "course_id": 302,
+    "course_name": "Data Structures",
+    "credit_hours": 3,
+    "course_type": "Lecture",
+    "major_id": 3,
+    "major_name": "Cyber Security",
+    "prereq_id": 301
+  },
+  {
+    "course_id": 303,
+    "course_name": "Networking Fundamentals",
+    "credit_hours": 3,
+    "course_type": "Lecture",
+    "major_id": 3,
+    "major_name": "Cyber Security",
+    "prereq_id": null
+  },
+  {
+    "course_id": 304,
+    "course_name": "Operating Systems",
+    "credit_hours": 3,
+    "course_type": "Lecture",
+    "major_id": 3,
+    "major_name": "Cyber Security",
+    "prereq_id": 302
+  },
+  {
+    "course_id": 305,
+    "course_name": "Network Security",
+    "credit_hours": 3,
+    "course_type": "Lecture",
+    "major_id": 3,
+    "major_name": "Cyber Security",
+    "prereq_id": 303
+  },
+  {
+    "course_id": 306,
+    "course_name": "Cryptography",
+    "credit_hours": 3,
+    "course_type": "Lecture",
+    "major_id": 3,
+    "major_name": "Cyber Security",
+    "prereq_id": 305
+  },
+  {
+    "course_id": 307,
+    "course_name": "Ethical Hacking",
+    "credit_hours": 3,
+    "course_type": "Lab",
+    "major_id": 3,
+    "major_name": "Cyber Security",
+    "prereq_id": 305
+  },
+  {
+    "course_id": 308,
+    "course_name": "Digital Forensics",
+    "credit_hours": 3,
+    "course_type": "Lab",
+    "major_id": 3,
+    "major_name": "Cyber Security",
+    "prereq_id": 307
+  },
+  {
+    "course_id": 309,
+    "course_name": "Malware Analysis",
+    "credit_hours": 3,
+    "course_type": "Lab",
+    "major_id": 3,
+    "major_name": "Cyber Security",
+    "prereq_id": 307
+  },
+  {
+    "course_id": 310,
+    "course_name": "Cyber Security Project",
+    "credit_hours": 3,
+    "course_type": "Lecture",
+    "major_id": 3,
+    "major_name": "Cyber Security",
+    "prereq_id": 306
   }
 ]

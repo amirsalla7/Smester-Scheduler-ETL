@@ -167,10 +167,19 @@ if (conflictsTextEl) {
 
     if (!schedule || schedule.length === 0) return;
 
-    // Count sections that have graduating_demand > 0
+    // Sections that serve graduating students
     const gradSections = schedule.filter(r => Number(r[SF.GRADUATING_DEMAND] || 0) > 0);
-    const totalGrad    = gradSections.reduce((s, r) => s + Number(r[SF.GRADUATING_DEMAND] || 0), 0);
-    const uniqueGrad   = new Set(gradSections.map(r => r[SF.GRADUATING_DEMAND])).size;
+
+    // graduating_demand is a PER-COURSE value duplicated on every section row,
+    // so count each course only once (dedupe by course_id) before summing.
+    const seenCourses = new Map();
+    for (const r of gradSections) {
+      const cid = r[SF.COURSE_ID];
+      if (!seenCourses.has(cid)) {
+        seenCourses.set(cid, Number(r[SF.GRADUATING_DEMAND] || 0));
+      }
+    }
+    const totalGrad = [...seenCourses.values()].reduce((s, v) => s + v, 0);
 
     if (gradCount)  gradCount.textContent  = totalGrad > 0 ? totalGrad : '—';
     if (sectCount)  sectCount.textContent  = gradSections.length;

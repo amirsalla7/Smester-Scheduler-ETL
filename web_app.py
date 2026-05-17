@@ -110,8 +110,15 @@ def run_pipeline():
 
         # ── Step 0: Sync latest data from API into local DB ────────────────────
         print("[ETL] Syncing data from API...")
-        run_etl()
+        etl_errors = run_etl()
         print("[ETL] Sync complete.")
+
+        if etl_errors > 0:
+            return {
+                "status": "error",
+                "failed_step": 0,
+                "message": f"API is offline or unreachable — {etl_errors} endpoint(s) failed. Start the API server and try again.",
+            }
 
         analysis = StudentAnalysis(graduating_hours_threshold=21)
         analysis.load_data()
@@ -147,6 +154,7 @@ def run_pipeline():
             "sections_generated": len(scheduler.schedule),
             "opened_courses": len([o for o in offerings_data if o.get("should_open", False)]),
             "conflicts": len(conflicts),
+            "graduating_students": len(getattr(scheduler, "graduating_students", [])),
         }
 
         with open("web/schedule.json", "w", encoding="utf-8") as f:

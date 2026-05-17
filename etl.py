@@ -30,6 +30,9 @@ def to_str(value: Any, default: str = "") -> str:
     return str(value).strip()
 
 
+_etl_errors: List[str] = []
+
+
 def fetch_api(endpoint: str) -> List[Dict[str, Any]]:
     url = f"{API_BASE_URL}/{endpoint}"
 
@@ -50,7 +53,9 @@ def fetch_api(endpoint: str) -> List[Dict[str, Any]]:
         return []
 
     except Exception as e:
-        print(f"[ERROR] Failed to fetch {endpoint}: {e}")
+        msg = f"Failed to fetch {endpoint}: {e}"
+        print(f"[ERROR] {msg}")
+        _etl_errors.append(msg)
         return []
 
 
@@ -532,7 +537,11 @@ def load_std_courses():
 # =========================================================
 # MAIN
 # =========================================================
-def run_etl():
+def run_etl() -> int:
+    """Run the full ETL and return the number of fetch errors (0 = all good)."""
+    global _etl_errors
+    _etl_errors = []
+
     print("========== START ETL ==========")
 
     load_colleges()
@@ -549,6 +558,7 @@ def run_etl():
     load_std_courses()
 
     print("========== ETL DONE ==========")
+    return len(_etl_errors)
 
 
 if __name__ == "__main__":

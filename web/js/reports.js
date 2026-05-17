@@ -116,7 +116,14 @@ const ReportModule = (() => {
     const secEl  = document.getElementById('rpt-stat-sections');
     const gradEl = document.getElementById('rpt-stat-graduating');
     if (secEl)  secEl.textContent  = _data.length;
-    if (gradEl) gradEl.textContent = _data.reduce((s, r) => s + Number(r[RF.GRADUATING_STUDENTS] || 0), 0);
+    // True count of unique graduating students comes from the scheduler
+    // (stats.graduating_students), NOT summed from per-section report rows.
+    if (gradEl) {
+      const n = (typeof AppState !== 'undefined' && AppState.stats)
+        ? Number(AppState.stats.graduating_students || 0)
+        : 0;
+      gradEl.textContent = n > 0 ? n : '—';
+    }
   }
 
   // ── Public API ─────────────────────────────────────────────────────────────
